@@ -39,6 +39,7 @@ entrada de solo lectura.
 - [Stack tecnológico](#-stack-tecnológico)
 - [Primeros pasos](#-primeros-pasos)
 - [Calidad y automatización](#-calidad-y-automatización)
+- [Desarrollo dirigido por especificaciones](#-desarrollo-dirigido-por-especificaciones-spec-kit)
 - [Arquitectura del proyecto](#-arquitectura-del-proyecto)
 - [Estructura del repositorio](#-estructura-del-repositorio)
 - [Flujo de trabajo y contribución](#-flujo-de-trabajo-y-contribución)
@@ -51,6 +52,7 @@ entrada de solo lectura.
 | Estructura del repositorio y entorno (`uv`) | ✅ |
 | Constitución técnica y gobernanza | ✅ |
 | Diagrama de arquitectura objetivo | ✅ |
+| Spec-Driven Development (Spec Kit) | ✅ |
 | Módulo de recuperación (corpus web) | ⏳ |
 | Consulta sobre catálogo de empaques | ⏳ |
 | Interfaz de chat con citación | ⏳ |
@@ -67,6 +69,7 @@ entrada de solo lectura.
 | **Lenguaje** | Python 3.13+ |
 | **Gestor de paquetes** | [`uv`](https://docs.astral.sh/uv/) |
 | **Modo de proyecto** | Aplicación (`main.py` como entrypoint) |
+| **Especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` + integración OpenCode) |
 | **Orquestación RAG** | Por definir (fase 1) |
 | **Índice vectorial** | Por definir (fase 1) |
 | **Proveedor LLM** | Por definir (fase 1) |
@@ -128,6 +131,26 @@ make check   # lint + formato + tipos + pruebas
 | `make lint` / `make format` | Ruff. |
 | `make test` | `pytest`. |
 
+## 🧪 Desarrollo dirigido por especificaciones (Spec Kit)
+
+Las capacidades nuevas se especifican **antes** de implementarse con
+[GitHub Spec Kit](https://github.com/github/spec-kit). El flujo estándar:
+
+| Paso | Comando | Artefacto |
+|------|---------|-----------|
+| 1 | `/speckit.specify "…"` | rama `feat/NNN-slug` + `specs/NNN-slug/spec.md` |
+| 2 | `/speckit.clarify` | resuelve ambigüedades |
+| 3 | `/speckit.plan` | `plan.md` con *Constitution Check* |
+| 4 | `/speckit.tasks` | `tasks.md` |
+| 5 | `/speckit.analyze` | coherencia entre artefactos |
+| 6 | `/speckit.implement` | código y pruebas |
+
+- El índice de specs vive en [`specs/README.md`](specs/README.md).
+- `.specify/memory/constitution.md` es una **proyección** de `CONSTITUTION.md` (la
+  raíz manda); ambas se actualizan en el mismo commit.
+- Los comandos están en `.opencode/commands/speckit.*.md`; la extensión git crea
+  ramas `feat/NNN-slug` con numeración secuencial.
+
 ## 🗺️ Arquitectura del proyecto
 
 Mapa de arquitectura **objetivo** (runtime) generado con
@@ -147,9 +170,12 @@ consulta.
 asistente-carvajal/
 ├── main.py                  # punto de entrada de la aplicación
 ├── tests/                   # pruebas (pytest, patrón AAA)
+├── specs/                   # especificaciones por feature (Spec Kit)
+│   └── README.md            # índice de specs
 ├── docs/                    # documentación y arquitectura (JSON + HTML)
+├── .specify/                # motor de Spec Kit (templates, scripts, memoria)
+├── .opencode/               # comandos /speckit.* y reglas para agentes (tgrep)
 ├── .github/                 # gobernanza: PR/issue templates, CI, Dependabot, labels
-├── .opencode/rules/         # reglas para agentes (tgrep)
 ├── AGENTS.md                # contexto para agentes LLM
 ├── CONSTITUTION.md          # verdad central del proyecto
 ├── README.md                # este archivo
@@ -163,11 +189,14 @@ asistente-carvajal/
 
 > 📘 La guía completa está en [`CONTRIBUTING.md`](./CONTRIBUTING.md). Resumen:
 
-1. Crea una rama: `git checkout -b feat/nombre-corto`.
+1. Si es una capacidad nueva, espéranla con `/speckit.specify` (crea la rama
+   `feat/NNN-slug` y `specs/NNN-slug/spec.md`) y completa `clarify` → `plan` →
+   `tasks` → `analyze`. Regístrala en [`specs/README.md`](specs/README.md).
 2. Desarrolla y verifica: `make check`.
 3. Commitea con [Conventional Commits](https://www.conventionalcommits.org/): `git commit -m "feat: ..."`.
-4. Abre un Pull Request con la plantilla oficial.
-5. Mantén `CONSTITUTION.md` actualizado ante cambios arquitectónicos o tecnológicos.
+4. Abre un Pull Request con la plantilla oficial (CI `Calidad` en verde).
+5. Mantén `CONSTITUTION.md` y su proyección `.specify/memory/constitution.md`
+   sincronizadas ante cambios arquitectónicos o tecnológicos.
 
 ## 📄 Licencia
 

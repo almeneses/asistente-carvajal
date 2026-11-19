@@ -73,6 +73,7 @@ Consulta **[`CONSTITUTION.md`](../CONSTITUTION.md)** para los estándares detall
 - [ ] **Sin secretos ni credenciales** versionados (`.env`, tokens, llaves).
 - [ ] **Datos y artefactos pesados** fuera de Git (respetan `.gitignore`).
 - [ ] **`CONSTITUTION.md` actualizado** si hubo cambio arquitectónico, tecnológico o de proceso.
+- [ ] **Spec y plan actualizados** si la capacidad es nueva (`specs/NNN-slug/`) y *Constitution Check* en verde.
 - [ ] **README / documentación** actualizados si aplica.
 - [ ] **PR acotado**: un solo propósito, revisable y con historia limpia.
 

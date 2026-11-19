@@ -34,12 +34,16 @@ dev = [
 line-length = 100
 target-version = "py313"
 src = ["src", "tests"]
+extend-exclude = [".specify"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "RUF", "C4"]
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.ty.src]
+exclude = [".specify"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
