@@ -18,6 +18,7 @@
 | **Nombre** | Asistente Carvajal |
 | **Descripción** | Asistente conversacional con RAG sobre el corpus web y la documentación de empaques de Carvajal. |
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
+| **Visibilidad** | Público 🌐 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -163,6 +164,8 @@ asistente-carvajal/
   (autenticado con el credential helper de `gh`; el remoto SSH queda para cuando se
   repare la configuración SSH local — ver §11).
 - **Rama principal:** `main`
+- **Protección de `main`:** Pull Request obligatorio, check **`Calidad`** (CI) en verde y
+  conversaciones resueltas; sin *force-push* ni borrado de la rama.
 - **Estrategia de ramas:** `feat/...`, `fix/...`, `docs/...`, `refactor/...`, `test/...`, `chore/...`; integración vía Pull Request.
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org/) —
   `feat:`, `fix:`, `docs:`, `refactor:`, `style:`, `test:`, `chore:`.
@@ -198,6 +201,7 @@ git push
 | 2026-11-19 | Documentar la arquitectura objetivo con Archify y versionar el JSON fuente | Mapa de runtime legible antes de escribir código |
 | 2026-11-19 | Diferir framework de UI, índice vectorial y proveedor de LLM | Evitar dependencias prematuras; se deciden en la fase 1 con evidencia |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
+| 2026-11-19 | Publicar el repositorio como público | GitHub Free no permite proteger `main` en repos privados; la protección se habilita al hacerlo público |
 
 ## 10. Notas y tareas pendientes
 
