@@ -53,6 +53,7 @@ entrada de solo lectura.
 | Constitución técnica y gobernanza | ✅ |
 | Diagrama de arquitectura objetivo | ✅ |
 | Spec-Driven Development (Spec Kit) | ✅ |
+| Decisiones de stack de la fase 1 | ✅ |
 | Módulo de recuperación (corpus web) | ⏳ |
 | Consulta sobre catálogo de empaques | ⏳ |
 | Interfaz de chat con citación | ⏳ |
@@ -70,10 +71,12 @@ entrada de solo lectura.
 | **Gestor de paquetes** | [`uv`](https://docs.astral.sh/uv/) |
 | **Modo de proyecto** | Aplicación (`main.py` como entrypoint) |
 | **Especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` + integración OpenCode) |
-| **Orquestación RAG** | Por definir (fase 1) |
-| **Índice vectorial** | Por definir (fase 1) |
-| **Proveedor LLM** | Por definir (fase 1) |
-| **Interfaz de chat** | Por definir (fase 1) |
+| **Orquestación RAG** | Por decidir en el plan de fase 1 (cadena propia / LangGraph) |
+| **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side) |
+| **Índice vectorial** | Qdrant (768 dims, coseno) |
+| **Embeddings** | `nomic-embed-text` vía Ollama |
+| **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
+| **Fuente de datos** | Corpus y catálogo por ruta configurable, solo lectura |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
 | **Testing** | [`pytest`](https://docs.pytest.org/) |
 | **Linting / Formato** | [Ruff](https://docs.astral.sh/ruff/) |

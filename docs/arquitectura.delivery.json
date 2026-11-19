@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "229e9c2b-c84c-4f72-acbe-3ef0fcadd120",
+  "receiptId": "6f298c87-6ec1-46d6-a360-d774dcaf1352",
   "status": "current",
   "command": "deliver",
   "type": "architecture",
-  "input": "/home/alejo/projects/DataScience/tecnicas_avanzadas/asistente-carvajal/.archify/architecture-asistente-carvajal-20261119-154642/candidate.json",
+  "input": "/home/alejo/projects/DataScience/tecnicas_avanzadas/asistente-carvajal/docs/arquitectura.json",
   "output": "/home/alejo/projects/DataScience/tecnicas_avanzadas/asistente-carvajal/docs/arquitectura.html",
   "specification": {
-    "sha256": "15b2ce110c33c7c020f2b6cc89a087c38391e2a61261d6007677910641ae6a8a",
-    "bytes": 6325
+    "sha256": "f6b9ef7d850d394866e13cfc36d4f35a66067adba00f1366e619a3eb857bcfb9",
+    "bytes": 6268
   },
   "artifact": {
-    "sha256": "5209b6a602e4f15e4d550300acc8dca63f127f2c0417ce05bfa698b3fff7868b",
-    "bytes": 858168
+    "sha256": "312ce546755c6048054ee00cae7651e73bc3168f35c88817037d913cc9586043",
+    "bytes": 857469
   }
 }
