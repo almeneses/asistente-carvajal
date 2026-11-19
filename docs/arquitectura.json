@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Asistente Carvajal — Arquitectura objetivo v0.1",
+    "locale": "es",
+    "output": "docs/arquitectura.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "usuario",
+      "type": "external",
+      "label": "Usuario",
+      "sublabel": "Navegador / terminal",
+      "icon": "person",
+      "pos": [
+        40,
+        320
+      ],
+      "size": [
+        110,
+        64
+      ]
+    },
+    {
+      "id": "interfaz",
+      "type": "frontend",
+      "label": "Interfaz de chat",
+      "sublabel": "Framework · pendiente",
+      "tag": "decisión pendiente: framework",
+      "pos": [
+        230,
+        320
+      ],
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "orquestador",
+      "type": "backend",
+      "label": "Orquestador RAG",
+      "sublabel": "Enruta y arma el prompt",
+      "pos": [
+        460,
+        320
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "router",
+      "type": "backend",
+      "label": "Router de consulta",
+      "sublabel": "Directo · corpus · catálogo",
+      "icon": "decision",
+      "pos": [
+        460,
+        540
+      ],
+      "size": [
+        160,
+        72
+      ]
+    },
+    {
+      "id": "recuperador",
+      "type": "backend",
+      "label": "Recuperador",
+      "sublabel": "Búsqueda sin LLM",
+      "pos": [
+        725,
+        540
+      ],
+      "size": [
+        160,
+        72
+      ]
+    },
+    {
+      "id": "indice",
+      "type": "database",
+      "label": "Índice vectorial",
+      "sublabel": "Qdrant / pgvector · pendiente",
+      "tag": "decisión pendiente: Qdrant / pgvector",
+      "pos": [
+        990,
+        540
+      ],
+      "size": [
+        170,
+        72
+      ]
+    },
+    {
+      "id": "catalogo",
+      "type": "database",
+      "label": "Catálogo de empaques",
+      "sublabel": "Doc. interna · solo lectura",
+      "pos": [
+        725,
+        720
+      ],
+      "size": [
+        170,
+        72
+      ]
+    },
+    {
+      "id": "corpus",
+      "type": "database",
+      "label": "Corpus web Carvajal",
+      "sublabel": "Capa gold · solo lectura",
+      "pos": [
+        990,
+        720
+      ],
+      "size": [
+        160,
+        72
+      ]
+    },
+    {
+      "id": "llm",
+      "type": "cloud",
+      "label": "Proveedor LLM",
+      "sublabel": "DeepSeek / Ollama · pendiente",
+      "tag": "decisión pendiente: DeepSeek API / Ollama local",
+      "pos": [
+        460,
+        110
+      ],
+      "size": [
+        200,
+        68
+      ]
+    },
+    {
+      "id": "config",
+      "type": "security",
+      "label": "Configuración",
+      "sublabel": ".env · llaves y rutas",
+      "pos": [
+        180,
+        110
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "observabilidad",
+      "type": "messagebus",
+      "label": "Observabilidad",
+      "sublabel": "request_id · ruta · fuentes",
+      "pos": [
+        760,
+        110
+      ],
+      "size": [
+        170,
+        68
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "usuario-pregunta",
+      "from": "usuario",
+      "to": "interfaz",
+      "label": "pregunta",
+      "variant": "emphasis"
+    },
+    {
+      "id": "interfaz-consulta",
+      "from": "interfaz",
+      "to": "orquestador",
+      "label": "consulta"
+    },
+    {
+      "id": "orquestador-clasifica",
+      "from": "orquestador",
+      "to": "router",
+      "label": "clasifica"
+    },
+    {
+      "id": "router-plan",
+      "from": "router",
+      "to": "recuperador",
+      "label": "plan de ruta"
+    },
+    {
+      "id": "recuperador-topk",
+      "from": "recuperador",
+      "to": "indice",
+      "label": "top-k"
+    },
+    {
+      "id": "recuperador-catalogo",
+      "from": "recuperador",
+      "to": "catalogo",
+      "label": "rama empaques",
+      "variant": "dashed"
+    },
+    {
+      "id": "corpus-indexado",
+      "from": "corpus",
+      "to": "indice",
+      "label": "indexado (batch)",
+      "variant": "dashed"
+    },
+    {
+      "id": "recuperador-contexto",
+      "from": "recuperador",
+      "to": "orquestador",
+      "label": "contexto + citas",
+      "fromSide": "top",
+      "toSide": "right",
+      "via": [
+        [
+          805,
+          358
+        ]
+      ]
+    },
+    {
+      "id": "orquestador-prompt",
+      "from": "orquestador",
+      "to": "llm",
+      "label": "prompt + contexto"
+    },
+    {
+      "id": "llm-respuesta",
+      "from": "llm",
+      "to": "orquestador",
+      "label": "respuesta con citas"
+    },
+    {
+      "id": "orquestador-respuesta",
+      "from": "orquestador",
+      "to": "usuario",
+      "label": "respuesta con citas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "config-orquestador",
+      "from": "config",
+      "to": "orquestador",
+      "label": "llaves y rutas",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "via": [
+        [
+          265,
+          250
+        ],
+        [
+          550,
+          250
+        ]
+      ]
+    },
+    {
+      "id": "config-llm",
+      "from": "config",
+      "to": "llm",
+      "label": "credenciales"
+    },
+    {
+      "id": "orquestador-traza",
+      "from": "orquestador",
+      "to": "observabilidad",
+      "label": "traza",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Decisiones pendientes",
+      "items": [
+        "Framework de la interfaz de chat: sin elegir.",
+        "Índice vectorial: Qdrant o pgvector; decisión abierta.",
+        "Proveedor LLM: DeepSeek API u Ollama local; decisión abierta."
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Recuperación y citas",
+      "items": [
+        "El recuperador no depende del LLM y devuelve fragmentos con su fuente.",
+        "El catálogo de empaques es una rama alternativa del router.",
+        "Índice, corpus y catálogo son de solo lectura para el asistente."
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Operación",
+      "items": [
+        "La configuración (.env) alimenta al orquestador y al proveedor LLM.",
+        "Cada traza registra request_id, ruta elegida y fuentes citadas.",
+        "El corpus gold llega indexado aguas arriba desde el proyecto carvajal."
+      ]
+    }
+  ]
+}
