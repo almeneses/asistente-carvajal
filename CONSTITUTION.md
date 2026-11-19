@@ -19,6 +19,8 @@
 | **Descripción** | Asistente conversacional con RAG sobre el corpus web y la documentación de empaques de Carvajal. |
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
+| **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
+| **Versión** | 0.1.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -77,6 +79,7 @@ de clientes.
 | **Lenguaje** | Python 3.13+ |
 | **Gestor de paquetes y entorno** | [`uv`](https://docs.astral.sh/uv/) |
 | **Modo de proyecto** | Aplicación (`main.py` como punto de entrada, sin paquete instalable) |
+| **Desarrollo dirigido por especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` 1.4.3; integración OpenCode + extensión git) |
 | **Orquestación RAG** | Por definir (candidatos: LangGraph / cadena propia) |
 | **Índice vectorial** | Por definir (candidatos: Qdrant / pgvector) |
 | **Proveedor LLM** | Por definir (candidatos: DeepSeek API / Ollama local) |
@@ -102,11 +105,14 @@ de clientes.
 asistente-carvajal/
 ├── main.py                  # punto de entrada de la aplicación
 ├── tests/                   # pruebas (pytest, patrón AAA)
+├── specs/                   # especificaciones por feature (Spec Kit)
+│   └── README.md            # índice de specs
 ├── docs/                    # documentación, ADRs e investigación
 │   ├── arquitectura.json    # fuente tipada del mapa de arquitectura (Archify)
 │   └── arquitectura.html    # diagrama interactivo autocontenido
+├── .specify/                # motor de Spec Kit (templates, scripts, memoria)
+├── .opencode/               # comandos /speckit.* y reglas para agentes (tgrep)
 ├── .github/                 # gobernanza (PR/issue templates, CI, Dependabot, labels)
-├── .opencode/rules/         # reglas para agentes (tgrep)
 ├── AGENTS.md                # contexto para agentes LLM
 ├── CONSTITUTION.md          # este archivo — verdad central
 ├── README.md                # puerta de entrada pública
@@ -143,6 +149,17 @@ asistente-carvajal/
     (título, URL, tipo de fuente, fecha) e índice JSONL; cualquier cambio incompatible
     se documenta en esta constitución.
 
+### Spec-Driven Development (Spec Kit)
+
+- Toda capacidad nueva entra por `/speckit.specify` → `clarify` → `plan` → `tasks` →
+  `analyze` → `implement`; los artefactos se versionan en `specs/NNN-slug/`.
+- El `plan.md` incluye un *Constitution Check* contra `.specify/memory/constitution.md`.
+- `.specify/memory/constitution.md` es una **proyección** de este documento (la raíz
+  manda) y se sincroniza en el mismo commit que cualquier enmienda.
+- Las specs no contradicen esta constitución; ante conflicto se corrige la spec o se
+  enmienda la constitución, nunca ambas a medias.
+- Toda spec nueva se numera de forma secuencial y se registra en `specs/README.md`.
+
 ## 6. Calidad y automatización
 
 | Herramienta | Rol | Comando |
@@ -167,6 +184,8 @@ asistente-carvajal/
 - **Protección de `main`:** Pull Request obligatorio, check **`Calidad`** (CI) en verde y
   conversaciones resueltas; sin *force-push* ni borrado de la rama.
 - **Estrategia de ramas:** `feat/...`, `fix/...`, `docs/...`, `refactor/...`, `test/...`, `chore/...`; integración vía Pull Request.
+  Las features de Spec Kit usan `feat/NNN-slug` (la extensión git la crea con
+  `branch_prefix: feat` y numeración secuencial).
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org/) —
   `feat:`, `fix:`, `docs:`, `refactor:`, `style:`, `test:`, `chore:`.
 - **Identidad git:** se resuelve con la configuración global (`user.name` /
@@ -202,11 +221,14 @@ git push
 | 2026-11-19 | Diferir framework de UI, índice vectorial y proveedor de LLM | Evitar dependencias prematuras; se deciden en la fase 1 con evidencia |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
 | 2026-11-19 | Publicar el repositorio como público | GitHub Free no permite proteger `main` en repos privados; la protección se habilita al hacerlo público |
+| 2026-11-19 | Adoptar Spec Kit (specs versionadas por feature) | Trazabilidad requisito → plan → tareas y *Constitution Check* en cada plan |
+| 2026-11-19 | Integración OpenCode + extensión git con `branch_prefix: feat` | Mantener la convención `feat/NNN-slug` y el flujo PR sin fricción |
 
 ## 10. Notas y tareas pendientes
 
 - [x] Completar las secciones marcadas de este documento.
 - [x] Configurar el remoto y proteger `main`.
+- [ ] Redactar la spec de fase 1 con `/speckit.specify` (contrato del corpus y decisiones de stack).
 - [ ] Decidir framework de UI, índice vectorial y proveedor de LLM (fase 1).
 - [ ] Definir el contrato de consumo del corpus (rutas, *front matter*, índice JSONL).
 - [ ] Implementar el módulo de recuperación y sus pruebas (fase 2).
@@ -256,3 +278,5 @@ repare, se puede volver a SSH con:
 ```bash
 git remote set-url origin git@github.com:almeneses/asistente-carvajal.git
 ```
+
+Herramientas locales: `specify 1.4.3.dev0` (GitHub Spec Kit) y Node.js 24 para Archify.

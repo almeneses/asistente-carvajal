@@ -14,6 +14,7 @@ La documentación central del proyecto vive en [`CONSTITUTION.md`](./CONSTITUTIO
 - [Requisitos previos](#-requisitos-previos)
 - [Configuración del entorno](#-configuración-del-entorno)
 - [Flujo de trabajo con Git](#-flujo-de-trabajo-con-git)
+- [Especificaciones con Spec Kit](#-especificaciones-con-spec-kit)
 - [Estándares de código](#-estándares-de-código)
 - [Mensajes de commit](#-mensajes-de-commit)
 - [Pull Requests](#-pull-requests)
@@ -37,7 +38,7 @@ La documentación central del proyecto vive en [`CONSTITUTION.md`](./CONSTITUTIO
 ## ⚙️ Configuración del entorno
 
 ```bash
-git clone git@github.com:almeneses/asistente-carvajal.git
+git clone https://github.com/almeneses/asistente-carvajal.git
 cd asistente-carvajal
 
 uv sync
@@ -70,6 +71,21 @@ La rama **`main`** es la rama estable: **no se trabaja directamente sobre ella**
 
 > 💡 **Regla de oro:** nunca hagas `push` a `main` "para ver si funciona". Verifica
 > localmente con `make check` antes de integrar.
+
+### Especificaciones con Spec Kit
+
+Las capacidades nuevas se especifican **antes** de implementarse. El flujo
+(comandos `/speckit.*` de GitHub Spec Kit):
+
+1. `/speckit.specify` → rama `feat/NNN-slug` y `specs/NNN-slug/spec.md`.
+2. `/speckit.clarify` → resuelve ambigüedades.
+3. `/speckit.plan` → `plan.md` con *Constitution Check*.
+4. `/speckit.tasks` → `tasks.md`.
+5. `/speckit.analyze` → coherencia entre spec, plan y tareas.
+6. `/speckit.implement` → código y pruebas; cierra con `make check`.
+
+Registra la spec en [`specs/README.md`](./specs/README.md). Si el cambio es pequeño
+(fix, docs, chore) no necesita spec; usa una rama con el prefijo correspondiente.
 
 ## 🧹 Estándares de código
 
