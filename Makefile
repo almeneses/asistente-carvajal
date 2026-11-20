@@ -50,16 +50,21 @@ acceptance: ## Ejecuta el set de preguntas de aceptación
 
 gt-propose: ## Propone el ground truth de evaluación para revisión humana
 	uv run python scripts/propose_ground_truth.py \
+		--questions ../carvajal/data/questions.json \
 		--output specs/002-evaluacion-recuperacion/evaluation/questions.candidate.json \
 		--review specs/002-evaluacion-recuperacion/evaluation/review.md
 
 eval: ## Matriz de recuperación (8 variantes, sin LLM)
-	uv run python scripts/run_evaluation.py --mode retrieval --variants all \
+	uv run python scripts/run_evaluation.py \
+		--set specs/002-evaluacion-recuperacion/evaluation/questions.json \
+		--mode retrieval --variants all \
 		--json-out specs/002-evaluacion-recuperacion/reports/baseline.json \
 		--markdown-out specs/002-evaluacion-recuperacion/reports/baseline.md
 
 eval-e2e: ## Evaluación end-to-end de una variante (VARIANTS=<id>)
-	uv run python scripts/run_evaluation.py --mode e2e --variants $(or $(VARIANTS),nomic-1000-hybrid) \
+	uv run python scripts/run_evaluation.py \
+		--set specs/002-evaluacion-recuperacion/evaluation/questions.json \
+		--mode e2e --variants $(or $(VARIANTS),bge-m3-500-hybrid) \
 		--json-out specs/002-evaluacion-recuperacion/reports/ganadora.json \
 		--markdown-out specs/002-evaluacion-recuperacion/reports/ganadora.md
 

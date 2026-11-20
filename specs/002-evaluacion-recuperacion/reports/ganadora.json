@@ -1,0 +1,1022 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-20T20:51:14.148528+00:00",
+  "mode": "e2e",
+  "corpus_fingerprint": "9952ecc5758b3672114216cf8ba4a5ad8aeb547bad73badad6f075752e998ee6",
+  "index_jsonl_sha256": "f074aec174b5c9d2c210064df18fed76bf2dd2abd6b63349dd2d13db8d21c83f",
+  "indexed_fragments": {
+    "eval_bge_m3_500": 237
+  },
+  "provider": "deepseek",
+  "variants": [
+    {
+      "config": {
+        "id": "bge-m3-500-hybrid",
+        "embedding_model": "bge-m3",
+        "embedding_dim": 1024,
+        "chunk_size": 500,
+        "overlap": 100,
+        "cosine_weight": 0.6,
+        "lexical_weight": 0.4,
+        "collection": "eval_bge_m3_500",
+        "min_score": 0.2
+      },
+      "metrics": {
+        "abstention_accuracy": 1.0,
+        "citation_precision": 1.0,
+        "expected_citation_coverage": 0.9615384615384616,
+        "false_abstention_rate": 0.10344827586206896,
+        "hit_at_1": 0.4827586206896552,
+        "hit_at_10": 0.9655172413793104,
+        "hit_at_3": 0.7931034482758621,
+        "hit_at_5": 0.9655172413793104,
+        "latency_p50_ms": 1570,
+        "latency_p95_ms": 2370,
+        "mrr": 0.6620689655172414,
+        "questions_evaluated": 33,
+        "recall_at_1": 0.339080459770115,
+        "recall_at_10": 0.8103448275862069,
+        "recall_at_3": 0.6091954022988506,
+        "recall_at_5": 0.764367816091954
+      },
+      "rows": [
+        {
+          "id": "q01",
+          "question": "¿Qué es Carvajal y a qué sectores se dedica?",
+          "expected_slugs": [
+            "quienes_somos",
+            "home",
+            "pulpa_y_papel"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "historia",
+            "gobierno_corporativo",
+            "quienes_somos",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "compromiso_etico",
+            "relacionamiento_con_grupos_de_interes"
+          ],
+          "rank_first_expected": 4,
+          "status": "answered",
+          "sources": [
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.carvajal.com/historia/",
+            "https://www.carvajal.com/gobierno-corporativo/",
+            "https://www.carvajal.com/quienes-somos/"
+          ],
+          "source_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "historia",
+            "gobierno_corporativo",
+            "quienes_somos"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1959,
+          "error": null
+        },
+        {
+          "id": "q02",
+          "question": "¿En qué año y ciudad fue fundada Carvajal?",
+          "expected_slugs": [
+            "historia",
+            "quienes_somos"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "historia",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "home"
+          ],
+          "rank_first_expected": 1,
+          "status": "no_evidence",
+          "sources": [],
+          "source_slugs": [],
+          "citations_invalid": 0,
+          "latency_ms": 905,
+          "error": null
+        },
+        {
+          "id": "q03",
+          "question": "¿En cuántos países tiene presencia Carvajal?",
+          "expected_slugs": [
+            "pulpa_y_papel",
+            "quienes_somos"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "pulpa_y_papel",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "gobierno_corporativo",
+            "historia",
+            "empaques"
+          ],
+          "rank_first_expected": 2,
+          "status": "answered",
+          "sources": [
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.carvajal.com/pulpa-y-papel/",
+            "https://www.elpais.com.co/economia/carvajal-y-sus-empresas-reportan-resultados-0239.html"
+          ],
+          "source_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "pulpa_y_papel",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1050,
+          "error": null
+        },
+        {
+          "id": "q04",
+          "question": "¿Cuáles son los cuatro sectores en los que opera Carvajal?",
+          "expected_slugs": [
+            "home",
+            "empaques",
+            "pulpa_y_papel",
+            "educacion",
+            "tecnologia"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "gobierno_corporativo",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "quienes_somos",
+            "historia",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "rank_first_expected": null,
+          "status": "no_evidence",
+          "sources": [],
+          "source_slugs": [],
+          "citations_invalid": 0,
+          "latency_ms": 1536,
+          "error": null
+        },
+        {
+          "id": "q05",
+          "question": "¿Cuál es el propósito superior de Carvajal?",
+          "expected_slugs": [
+            "proposito_superior"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "home",
+            "historia",
+            "politica_de_innovacion",
+            "proposito_superior",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "pulpa_y_papel"
+          ],
+          "rank_first_expected": 4,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/",
+            "https://www.carvajal.com/historia/",
+            "https://www.carvajal.com/politica-de-innovacion/",
+            "https://www.carvajal.com/proposito-superior/"
+          ],
+          "source_slugs": [
+            "home",
+            "historia",
+            "politica_de_innovacion",
+            "proposito_superior"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1472,
+          "error": null
+        },
+        {
+          "id": "q06",
+          "question": "¿Qué empresas conforman el sector de Papel y Empaques?",
+          "expected_slugs": [
+            "pulpa_y_papel",
+            "empaques"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "historia",
+            "quienes_somos",
+            "gobierno_corporativo",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "pulpa_y_papel",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales"
+          ],
+          "rank_first_expected": 5,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/historia/",
+            "https://www.carvajal.com/quienes-somos/",
+            "https://www.carvajal.com/gobierno-corporativo/",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-58-billones-a-septiembre-de-2025-4269762"
+          ],
+          "source_slugs": [
+            "historia",
+            "quienes_somos",
+            "gobierno_corporativo",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1710,
+          "error": null
+        },
+        {
+          "id": "q07",
+          "question": "¿Qué es Bioform y a qué industria está dirigido?",
+          "expected_slugs": [
+            "quienes_somos"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "quienes_somos",
+            "gobierno_corporativo",
+            "empaques",
+            "pulpa_y_papel",
+            "propiedades_e_inversiones",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "compromiso_etico",
+            "relacionamiento_con_grupos_de_interes"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/quienes-somos/",
+            "https://www.carvajal.com/gobierno-corporativo/",
+            "https://www.carvajal.com/empaques/"
+          ],
+          "source_slugs": [
+            "quienes_somos",
+            "gobierno_corporativo",
+            "empaques"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 868,
+          "error": null
+        },
+        {
+          "id": "q08",
+          "question": "¿Qué marca de educación tiene Carvajal y a quién se dirige?",
+          "expected_slugs": [
+            "educacion"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "historia",
+            "educacion",
+            "quienes_somos",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "home"
+          ],
+          "rank_first_expected": 3,
+          "status": "answered",
+          "sources": [
+            "https://www.elpais.com.co/economia/carvajal-y-sus-empresas-reportan-resultados-0239.html",
+            "https://www.carvajal.com/historia/",
+            "https://www.carvajal.com/educacion/",
+            "https://www.carvajal.com/quienes-somos/"
+          ],
+          "source_slugs": [
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "historia",
+            "educacion",
+            "quienes_somos"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1471,
+          "error": null
+        },
+        {
+          "id": "q09",
+          "question": "¿Qué soluciones ofrece Carvajal Tecnología y Servicios?",
+          "expected_slugs": [
+            "tecnologia"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "home",
+            "tecnologia",
+            "comunicacion",
+            "quienes_somos",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "gobierno_corporativo",
+            "historia"
+          ],
+          "rank_first_expected": 2,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/",
+            "https://www.carvajal.com/tecnologia/",
+            "https://www.carvajal.com/comunicacion/",
+            "https://www.carvajal.com/quienes-somos/"
+          ],
+          "source_slugs": [
+            "home",
+            "tecnologia",
+            "comunicacion",
+            "quienes_somos"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1223,
+          "error": null
+        },
+        {
+          "id": "q10",
+          "question": "¿Qué es Mepal y a qué sector pertenece?",
+          "expected_slugs": [
+            "espacios"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "quienes_somos",
+            "historia",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "espacios",
+            "gobierno_corporativo"
+          ],
+          "rank_first_expected": 4,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/quienes-somos/",
+            "https://www.carvajal.com/historia/",
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.carvajal.com/espacios/"
+          ],
+          "source_slugs": [
+            "quienes_somos",
+            "historia",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "espacios"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1599,
+          "error": null
+        },
+        {
+          "id": "q11",
+          "question": "¿Qué hace Carvajal Espacios?",
+          "expected_slugs": [
+            "espacios"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "espacios",
+            "home",
+            "historia",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "quienes_somos"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/espacios/",
+            "https://www.carvajal.com/",
+            "https://www.carvajal.com/historia/",
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales"
+          ],
+          "source_slugs": [
+            "espacios",
+            "home",
+            "historia",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 2137,
+          "error": null
+        },
+        {
+          "id": "q12",
+          "question": "¿Qué es LiquidezYa?",
+          "expected_slugs": [
+            "quienes_somos"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "quienes_somos",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "historia",
+            "gobierno_corporativo",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/quienes-somos/",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-1-9-billones-a-junio-un-decrecimiento-de-14-anual-3928992",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-8-billones-con-corte-al-tercer-trimestre-3999096",
+            "https://www.carvajal.com/historia/"
+          ],
+          "source_slugs": [
+            "quienes_somos",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "historia"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 863,
+          "error": null
+        },
+        {
+          "id": "q13",
+          "question": "¿En qué consiste el negocio de Propiedades e Inversiones?",
+          "expected_slugs": [
+            "propiedades_e_inversiones"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "propiedades_e_inversiones",
+            "compromiso_etico",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "historia",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "gobierno_corporativo",
+            "home"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/propiedades-e-inversiones/",
+            "https://www.carvajal.com/compromiso-etico/",
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.carvajal.com/historia/",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-58-billones-a-septiembre-de-2025-4269762"
+          ],
+          "source_slugs": [
+            "propiedades_e_inversiones",
+            "compromiso_etico",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "historia",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1314,
+          "error": null
+        },
+        {
+          "id": "q14",
+          "question": "¿Cómo está conformado el gobierno corporativo de Carvajal?",
+          "expected_slugs": [
+            "gobierno_corporativo"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "gobierno_corporativo"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/gobierno-corporativo/"
+          ],
+          "source_slugs": [
+            "gobierno_corporativo"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1904,
+          "error": null
+        },
+        {
+          "id": "q15",
+          "question": "¿Qué compromisos éticos declara la empresa?",
+          "expected_slugs": [
+            "compromiso_etico",
+            "relacionamiento_con_grupos_de_interes"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "compromiso_etico",
+            "historia"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/compromiso-etico/"
+          ],
+          "source_slugs": [
+            "compromiso_etico"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1939,
+          "error": null
+        },
+        {
+          "id": "q16",
+          "question": "¿Qué iniciativas de sostenibilidad adelanta Carvajal?",
+          "expected_slugs": [
+            "empaques",
+            "comunicacion",
+            "pulpa_y_papel"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "noticias",
+            "historia",
+            "comunicacion",
+            "home",
+            "empaques",
+            "compromiso_etico",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales"
+          ],
+          "rank_first_expected": 3,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/noticias/",
+            "https://www.carvajal.com/historia/",
+            "https://www.carvajal.com/comunicacion/",
+            "https://www.carvajal.com/"
+          ],
+          "source_slugs": [
+            "noticias",
+            "historia",
+            "comunicacion",
+            "home"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 2031,
+          "error": null
+        },
+        {
+          "id": "q17",
+          "question": "¿Qué noticias recientes publica Carvajal en su sitio web?",
+          "expected_slugs": [
+            "noticias"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "noticias",
+            "historia",
+            "inicio"
+          ],
+          "rank_first_expected": 3,
+          "status": "answered",
+          "sources": [
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.elpais.com.co/economia/carvajal-y-sus-empresas-reportan-resultados-0239.html",
+            "https://www.carvajal.com/noticias/",
+            "https://www.carvajal.com/historia/"
+          ],
+          "source_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "noticias",
+            "historia"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1706,
+          "error": null
+        },
+        {
+          "id": "q18",
+          "question": "¿Cuál es la historia de Carvajal desde su fundación?",
+          "expected_slugs": [
+            "historia",
+            "quienes_somos"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "historia",
+            "home"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/historia/"
+          ],
+          "source_slugs": [
+            "historia"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 3008,
+          "error": null
+        },
+        {
+          "id": "q19",
+          "question": "¿Qué información ofrece el portal de inversionistas?",
+          "expected_slugs": [
+            "inicio",
+            "gobierno_corporativo"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "compromiso_etico",
+            "inicio",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "gobierno_corporativo",
+            "educacion",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "historia",
+            "tecnologia"
+          ],
+          "rank_first_expected": 2,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/compromiso-etico/",
+            "https://www.carvajal.com/inversionistas/inicio/",
+            "https://www.elpais.com.co/economia/carvajal-y-sus-empresas-reportan-resultados-0239.html",
+            "https://www.carvajal.com/gobierno-corporativo/",
+            "https://www.carvajal.com/educacion/"
+          ],
+          "source_slugs": [
+            "compromiso_etico",
+            "inicio",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "gobierno_corporativo",
+            "educacion"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1465,
+          "error": null
+        },
+        {
+          "id": "q20",
+          "question": "¿Qué fundaciones están vinculadas a Carvajal?",
+          "expected_slugs": [
+            "home",
+            "historia"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "compromiso_etico",
+            "home",
+            "historia"
+          ],
+          "rank_first_expected": 2,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/compromiso-etico/",
+            "https://www.carvajal.com/",
+            "https://www.carvajal.com/historia/"
+          ],
+          "source_slugs": [
+            "compromiso_etico",
+            "home",
+            "historia"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1570,
+          "error": null
+        },
+        {
+          "id": "q21",
+          "question": "¿Cómo puedo contactar a Carvajal o solicitar información?",
+          "expected_slugs": [],
+          "expected_status": "not_sustainable",
+          "retrieved_slugs": [
+            "compromiso_etico",
+            "historia",
+            "tecnologia",
+            "comunicacion",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "rank_first_expected": null,
+          "status": "no_evidence",
+          "sources": [],
+          "source_slugs": [],
+          "citations_invalid": 0,
+          "latency_ms": 739,
+          "error": null
+        },
+        {
+          "id": "q22",
+          "question": "¿Qué es la línea ética de Carvajal?",
+          "expected_slugs": [
+            "compromiso_etico"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "compromiso_etico",
+            "relacionamiento_con_grupos_de_interes",
+            "historia"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/compromiso-etico/"
+          ],
+          "source_slugs": [
+            "compromiso_etico"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1648,
+          "error": null
+        },
+        {
+          "id": "q23",
+          "question": "¿Qué productos o servicios ofrece Carvajal en comunicación?",
+          "expected_slugs": [
+            "comunicacion"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "home",
+            "comunicacion",
+            "quienes_somos",
+            "gobierno_corporativo",
+            "historia",
+            "compromiso_etico"
+          ],
+          "rank_first_expected": 2,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/",
+            "https://www.carvajal.com/comunicacion/",
+            "https://www.carvajal.com/quienes-somos/",
+            "https://www.carvajal.com/gobierno-corporativo/"
+          ],
+          "source_slugs": [
+            "home",
+            "comunicacion",
+            "quienes_somos",
+            "gobierno_corporativo"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1639,
+          "error": null
+        },
+        {
+          "id": "q24",
+          "question": "¿Qué presencia tiene Carvajal en Colombia?",
+          "expected_slugs": [
+            "quienes_somos",
+            "pulpa_y_papel"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "pulpa_y_papel",
+            "empaques",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "comunicacion",
+            "historia"
+          ],
+          "rank_first_expected": 2,
+          "status": "answered",
+          "sources": [
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.carvajal.com/pulpa-y-papel/",
+            "https://www.carvajal.com/empaques/"
+          ],
+          "source_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "pulpa_y_papel",
+            "empaques"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1704,
+          "error": null
+        },
+        {
+          "id": "q25",
+          "question": "¿Cuáles son los valores o principios que guían a Carvajal?",
+          "expected_slugs": [
+            "proposito_superior",
+            "compromiso_etico"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "compromiso_etico",
+            "historia",
+            "home"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.carvajal.com/compromiso-etico/"
+          ],
+          "source_slugs": [
+            "compromiso_etico"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 2332,
+          "error": null
+        },
+        {
+          "id": "q26",
+          "question": "¿Cuáles fueron los ingresos consolidados de Carvajal en 2024?",
+          "expected_slugs": [
+            "resultados_empresariales_2024_de_carvajal_4099828",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "resultados_empresariales_2024_de_carvajal_4099828",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "rank_first_expected": 4,
+          "status": "answered",
+          "sources": [
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-8-billones-con-corte-al-tercer-trimestre-3999096",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-1-9-billones-a-junio-un-decrecimiento-de-14-anual-3928992",
+            "https://www.larepublica.co/empresas/resultados-empresariales-2024-de-carvajal-4099828"
+          ],
+          "source_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "resultados_empresariales_2024_de_carvajal_4099828"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1737,
+          "error": null
+        },
+        {
+          "id": "q27",
+          "question": "¿Cuál fue el EBITDA consolidado de Carvajal a septiembre de 2025 y qué margen EBITDA reportó?",
+          "expected_slugs": [
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "resultados_empresariales_2024_de_carvajal_4099828"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-58-billones-a-septiembre-de-2025-4269762",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-8-billones-con-corte-al-tercer-trimestre-3999096"
+          ],
+          "source_slugs": [
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1396,
+          "error": null
+        },
+        {
+          "id": "q28",
+          "question": "¿Qué utilidad o pérdida neta reportó Carvajal en 2024 y a qué filial se atribuye?",
+          "expected_slugs": [
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "resultados_empresariales_2024_de_carvajal_4099828",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "resultados_empresariales_2024_de_carvajal_4099828",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://www.elpais.com.co/economia/carvajal-y-sus-empresas-reportan-resultados-0239.html",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-58-billones-a-septiembre-de-2025-4269762",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-1-9-billones-a-junio-un-decrecimiento-de-14-anual-3928992",
+            "https://www.larepublica.co/empresas/resultados-empresariales-2024-de-carvajal-4099828"
+          ],
+          "source_slugs": [
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "resultados_empresariales_2024_de_carvajal_4099828"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 1363,
+          "error": null
+        },
+        {
+          "id": "q29",
+          "question": "¿Cuáles son los activos, pasivos y patrimonio consolidados de Carvajal al cierre de 2024?",
+          "expected_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "resultados_empresariales_2024_de_carvajal_4099828",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "rank_first_expected": 1,
+          "status": "no_evidence",
+          "sources": [],
+          "source_slugs": [],
+          "citations_invalid": 0,
+          "latency_ms": 2426,
+          "error": null
+        },
+        {
+          "id": "q30",
+          "question": "¿Cuántos empleados tiene Carvajal y qué fuente lo reporta?",
+          "expected_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992"
+          ],
+          "expected_status": "sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "historia",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "compromiso_etico"
+          ],
+          "rank_first_expected": 1,
+          "status": "answered",
+          "sources": [
+            "https://caliescribe.com/2025/04/16/carvajal-s-a-futuro-consolidado-ante-desafios-globales",
+            "https://www.carvajal.com/historia/",
+            "https://www.elpais.com.co/economia/carvajal-y-sus-empresas-reportan-resultados-0239.html",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-8-billones-con-corte-al-tercer-trimestre-3999096",
+            "https://www.larepublica.co/empresas/carvajal-reporto-ingresos-por-2-58-billones-a-septiembre-de-2025-4269762"
+          ],
+          "source_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "historia",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762"
+          ],
+          "citations_invalid": 0,
+          "latency_ms": 2033,
+          "error": null
+        },
+        {
+          "id": "q31",
+          "question": "¿Cuál es el precio actual de la caja de vasos de 12 oz?",
+          "expected_slugs": [],
+          "expected_status": "not_sustainable",
+          "retrieved_slugs": [
+            "carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096",
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html",
+            "carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992"
+          ],
+          "rank_first_expected": null,
+          "status": "no_evidence",
+          "sources": [],
+          "source_slugs": [],
+          "citations_invalid": 0,
+          "latency_ms": 983,
+          "error": null
+        },
+        {
+          "id": "q32",
+          "question": "¿Cuál es el correo electrónico de atención al cliente de Carvajal?",
+          "expected_slugs": [],
+          "expected_status": "not_sustainable",
+          "retrieved_slugs": [
+            "comunicacion",
+            "compromiso_etico",
+            "home",
+            "tecnologia",
+            "historia",
+            "relacionamiento_con_grupos_de_interes"
+          ],
+          "rank_first_expected": null,
+          "status": "no_evidence",
+          "sources": [],
+          "source_slugs": [],
+          "citations_invalid": 0,
+          "latency_ms": 957,
+          "error": null
+        },
+        {
+          "id": "q33",
+          "question": "¿Cuántos empleados tendrá Carvajal en 2027?",
+          "expected_slugs": [],
+          "expected_status": "not_sustainable",
+          "retrieved_slugs": [
+            "carvajal_s_a_futuro_consolidado_ante_desafios_globales",
+            "historia",
+            "carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992",
+            "carvajal_y_sus_empresas_reportan_resultados_0239html"
+          ],
+          "rank_first_expected": null,
+          "status": "no_evidence",
+          "sources": [],
+          "source_slugs": [],
+          "citations_invalid": 0,
+          "latency_ms": 825,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "winner": "bge-m3-500-hybrid",
+  "not_comparable_with": null,
+  "omitted": [],
+  "migration_recommendation": null
+}

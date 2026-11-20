@@ -73,6 +73,18 @@ Resultado esperado: umbrales `recall@5 ≥ 0.95`, `citation_precision == 1.0`,
   escribir el ADR.
 - Si no: ADR con “mantener `nomic`” y evidencia del reporte.
 
+## Evidencia de la fase (2026-11-20)
+
+- Set congelado: **30 preguntas + 3 controles de abstención** (33), revisado en sesión
+  asistida; fingerprint `9952ecc5…`.
+- Matriz de 8 variantes: ganadora **`bge-m3-500-hybrid`** con `hit@5 = 0,966`
+  (`nomic` mejor: 0,862 → **+10,3 pp**); `recall@5` secundario 0,764.
+- E2E de la ganadora: citas **1,0**, abstención **1,0**, cobertura esperada 0,962,
+  latencia p50 1,57 s / p95 2,37 s; **umbrales cumplidos**.
+- Decisión: migrar a `bge-m3` (ADR 0001); `EMBEDDING_DIM=1024` y reconstrucción del
+  índice de la app.
+- Reportes versionados: `reports/baseline.json/md` y `reports/ganadora.json/md`.
+
 ## Problemas frecuentes
 
 - **`model "bge-m3" not found`**: `ollama pull bge-m3`.

@@ -133,8 +133,8 @@ en `specs/002-evaluacion-recuperacion/`.
 ### Implementation for User Story 4
 
 - [X] T034 [US4] Ordenar filas y variantes de forma determinista y excluir latencias de la comparación en `assistant/evaluation/reports.py` (SC-006)
-- [ ] T035 [US4] Versionar el set congelado en `specs/002-evaluacion-recuperacion/evaluation/questions.json` y `review.md` tras la revisión humana (FR-012)
-- [ ] T036 [US4] Versionar `reports/baseline.json/md` y `reports/ganadora.json/md` con fecha y fingerprint (FR-006)
+- [X] T035 [US4] Versionar el set congelado en `specs/002-evaluacion-recuperacion/evaluation/questions.json` y `review.md` tras la revisión humana (FR-012)
+- [X] T036 [US4] Versionar `reports/baseline.json/md` y `reports/ganadora.json/md` con fecha y fingerprint (FR-006)
 
 **Checkpoint**: evaluación auditable y repetible
 
@@ -142,11 +142,11 @@ en `specs/002-evaluacion-recuperacion/`.
 
 ## Phase 7: Polish & Cross-Cutting Concerns
 
-- [ ] T037 [P] Añadir `EMBEDDING_DIM`/`EVAL_QDRANT_PATH` a `README.md` y `quickstart.md`; documentar `make eval`
-- [ ] T038 Ejecutar `make check` y corregir lint, tipos y pruebas hasta verde
-- [ ] T039 Ejecutar la matriz real y el e2e de la ganadora; registrar resultados en `reports/` y `quickstart.md` (SC-001..SC-006)
-- [ ] T040 Actualizar `specs/README.md` (✅) y abrir PR con CI `Calidad` en verde
-- [ ] T041 [P] Si la migración cumple el umbral: actualizar `CONSTITUTION.md` §3/§9 y proyección, cambiar el defecto de `EMBEDDING_DIM` y reconstruir el índice de la app (condicional a T031; si no aplica, se omite con nota en el ADR)
+- [X] T037 [P] Añadir `EMBEDDING_DIM`/`EVAL_QDRANT_PATH` a `README.md` y `quickstart.md`; documentar `make eval`
+- [X] T038 Ejecutar `make check` y corregir lint, tipos y pruebas hasta verde
+- [X] T039 Ejecutar la matriz real y el e2e de la ganadora; registrar resultados en `reports/` y `quickstart.md` (SC-001..SC-006)
+- [X] T040 Actualizar `specs/README.md` (✅) y abrir PR con CI `Calidad` en verde
+- [X] T041 [P] Si la migración cumple el umbral: actualizar `CONSTITUTION.md` §3/§9 y proyección, cambiar el defecto de `EMBEDDING_DIM` y reconstruir el índice de la app (condicional a T031; si no aplica, se omite con nota en el ADR)
 
 ---
 
