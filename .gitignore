@@ -61,6 +61,7 @@ docs/arquitectura.browser-check.json
 # Entorno local del asistente
 .cache/
 .qdrant/
+.qdrant-eval/
 *.log
 aceptacion*.json
 reporte*.json
