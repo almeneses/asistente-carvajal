@@ -8,6 +8,15 @@
 
 **Input**: User description: "Evaluación de recuperación y métricas de calidad. Medir la calidad del corte vertical con evidencia esperada por pregunta, comparar variantes de recuperación y dejar una decisión registrada."
 
+## Clarifications
+
+### Session 2026-11-20
+
+- Q: ¿La fase puede cambiar el modelo de embeddings o se limita a ajustar la recuperación actual? → A: Se evalúa `bge-m3` (1024 dims, multilingüe) y solo se migra si mejora al menos 5 puntos porcentuales; implica reconstruir el índice y enmendar la constitución.
+- Q: ¿Cómo se construye la evidencia esperada de las 30 preguntas? → A: El LLM propone evidencia y estado esperado; una persona revisa y corrige las 30 antes de usarlas como ground truth.
+- Q: ¿Qué parte de la evaluación corre en CI? → A: Solo las pruebas del harness con fixtures; la evaluación real se ejecuta a mano con servicios.
+- Q: ¿Qué umbrales de salida se fijan? → A: `recall@5 ≥ 95 %`, precisión de citas 100 % y abstención correcta ≥ 90 %, recalibrables contra el baseline con registro en el ADR.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Ejecutar la evaluación y leer un reporte por pregunta (Priority: P1)
@@ -136,12 +145,18 @@ métricas agregadas coinciden; el reporte registra el fingerprint del corpus.
 - **FR-007**: El sistema DEBE devolver código de salida 0 si se cumplen los umbrales de la
   fase y 1 si no, informando cuál falló.
 - **FR-008**: Las pruebas unitarias DEBEN usar fixtures y no depender de red ni de
-  servicios externos; la evaluación real DEBE ser una ejecución explícita.
+  servicios externos; CI ejecuta solo esas pruebas y la evaluación real es una ejecución
+  explícita.
 - **FR-009**: La evaluación NO DEBE modificar el corpus ni el índice usado por la
   aplicación.
 - **FR-010**: Al cerrar la fase, la decisión DEBE registrarse en `CONSTITUTION.md` §9 y en
-  un ADR; si cambia el modelo de embeddings, DEBE incluir el plan de reconstrucción del
-  índice y la actualización de la proyección de Spec Kit.
+  un ADR. Solo se migra a `bge-m3` si la mejora en `recall@5` es de al menos 5 puntos
+  porcentuales; en ese caso, DEBE incluir la reconstrucción del índice y la actualización
+  de la proyección de Spec Kit.
+- **FR-012**: El ground truth DEBE generarse con una propuesta asistida por LLM y una
+  revisión humana registrada de las 30 preguntas (quién revisó, fecha y cambios).
+- **FR-013**: La evaluación DEBE separar la medición de recuperación (sin generación) de
+  la medición end-to-end (con generación), para no gastar LLM en cada variante.
 - **FR-011**: El set de evaluación DEBE cubrir las 30 preguntas actuales y marcar
   explícitamente cuáles son sustentables y cuáles no.
 
@@ -183,6 +198,8 @@ métricas agregadas coinciden; el reporte registra el fingerprint del corpus.
   lectura.
 - La evaluación se ejecuta con el proveedor configurado (DeepSeek para velocidad o Ollama
   para operación local); las métricas de recuperación no dependen del proveedor.
+- La propuesta inicial de evidencia esperada la genera el LLM a partir del corpus y la
+  revisa una persona antes de congelar el set; el archivo de revisión queda versionado.
 - Cambiar el modelo de embeddings implica reconstruir el índice y enmendar la constitución;
   la fase incluye esa migración solo si la evidencia la justifica.
 - No se implementan capacidades nuevas de producto (catálogo, UI, despliegue); solo
