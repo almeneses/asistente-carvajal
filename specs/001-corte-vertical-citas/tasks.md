@@ -33,7 +33,7 @@ en la raíz del repositorio.
 
 - [ ] T001 Añadir dependencias de runtime con `uv add fastapi uvicorn jinja2 httpx qdrant-client` y actualizar `pyproject.toml` (`[tool.ruff] src = ["assistant", "tests", "scripts"]`)
 - [ ] T002 [P] Crear la estructura `assistant/` (con `__init__.py`), `assistant/templates/`, `assistant/static/`, `scripts/` y `tests/`
-- [ ] T003 [P] Crear `.env.example` con las variables de `data-model.md` `Configuración` (sin valores reales) y añadir `.qdrant/`, `.env` a `.gitignore`
+- [ ] T003 [P] Crear `.env.example` con las variables de `data-model.md` `Configuración` (sin valores reales) y añadir `.qdrant/`, `.env` a `.gitignore` (FR-011)
 - [ ] T004 [P] Vendorizar HTMX en `assistant/static/htmx.min.js` (descarga única, sin CDN en runtime)
 - [ ] T005 [P] Añadir objetivos `make run`, `make index` y `make acceptance` en `Makefile`
 
@@ -45,14 +45,14 @@ en la raíz del repositorio.
 
 **⚠️ CRITICAL**: sin esta fase no se puede implementar ninguna historia
 
-- [ ] T006 Implementar la carga y validación de configuración en `assistant/config.py` según `data-model.md` `Configuración` (fallo con variable/ruta exacta; sin registrar secretos)
-- [ ] T007 Implementar la carga del corpus en `assistant/corpus.py` con validación de `data-model.md` `Documento del corpus` (`slug`, `url`, `title`, `section`, `source_type`, `hash`, `chars`) contra `index.jsonl`
-- [ ] T008 [P] Implementar la fragmentación 1000/200 en `assistant/chunking.py` según `data-model.md` `Fragmento` (`text` 1..1000, `chunk_index`, `char_start`)
+- [ ] T006 Implementar la carga y validación de configuración en `assistant/config.py` según `data-model.md` `Configuración` (fallo con variable/ruta exacta; sin registrar secretos; FR-007, FR-008)
+- [ ] T007 Implementar la carga del corpus en `assistant/corpus.py` en modo solo lectura (sin escrituras en el directorio) con validación de `data-model.md` `Documento del corpus` (`Documento.slug`, `Documento.url`, `Documento.title`, `Documento.section`, `Documento.source_type`, `Documento.captured_at`, `Documento.hash`, `Documento.chars`, `Documento.body`) contra `index.jsonl` (FR-009)
+- [ ] T008 [P] Implementar la fragmentación 1000/200 en `assistant/chunking.py` según `data-model.md` `Fragmento` (`Fragmento.slug`, `Fragmento.url`, `Fragmento.title`, `Fragmento.source_type`, `Fragmento.section`, `Fragmento.chunk_index`, `Fragmento.text` 1..1000, `Fragmento.char_start`)
 - [ ] T009 [P] Implementar el embedder Ollama en `assistant/embeddings.py` (`/api/embed`, 768 dims, lote)
-- [ ] T010 Implementar el índice Qdrant en `assistant/index.py` (crear colección, upsert idempotente, búsqueda coseno) según el esquema de `data-model.md` `Esquema del índice Qdrant`
+- [ ] T010 Implementar el índice Qdrant en `assistant/index.py` (crear colección, upsert idempotente, búsqueda coseno) según el esquema de `data-model.md` `Esquema del índice Qdrant` (`slug`, `url`, `title`, `source_type`, `section`, `chunk_index`, `text`, `char_start`, `doc_hash`; 768 dims, coseno)
 - [ ] T011 Implementar los adaptadores LLM en `assistant/llm.py` (DeepSeek `/chat/completions`, Ollama `/api/chat`, timeouts y fallback de `research.md` R4)
-- [ ] T012 Implementar el prompt de sistema/usuario y el formato `[n]` en `assistant/prompting.py` (contexto delimitado como datos, prohibido conocimiento externo)
-- [ ] T013 Implementar la cadena RAG en `assistant/rag.py` (`Embedder`, `Retriever`, `LLM` como protocolos; recuperar → generar → citar/abstenerse)
+- [ ] T012 Implementar el prompt de sistema/usuario y el formato `[n]` en `assistant/prompting.py` (contexto delimitado como datos, prohibido conocimiento externo; FR-002, FR-012)
+- [ ] T013 Implementar la cadena RAG en `assistant/rag.py` con los protocolos de `data-model.md` `Protocolos internos` (`Embedder.embed`, `Retriever.search`, `LLM.generate`; recuperar → generar → citar/abstenerse; FR-002)
 - [ ] T014 Implementar la app FastAPI en `assistant/web.py` (`GET /`, `POST /ask`, `GET /healthz`) y el entrypoint `main.py` (Uvicorn), con página y parcial HTMX en `assistant/templates/`
 - [ ] T015 Implementar `scripts/index_corpus.py` (carga corpus, fragmenta, embebe e indexa; `--recreate`)
 - [ ] T016 Crear fixtures y dobles de prueba en `tests/conftest.py` (documentos sintéticos, `FakeEmbedder`, `FakeLLM`, `FakeRetriever`)
@@ -75,9 +75,9 @@ en la raíz del repositorio.
 
 ### Implementation for User Story 1
 
-- [ ] T020 [US1] Construir las fuentes citadas desde los fragmentos recuperados en `assistant/rag.py` (FR-003, FR-015; `data-model.md` `Cita`)
+- [ ] T020 [US1] Construir las fuentes citadas desde los fragmentos recuperados en `assistant/rag.py` (FR-003, FR-015; `data-model.md` `Cita.title`, `Cita.source_type`, `Cita.url`, `Cita.slug`)
 - [ ] T021 [US1] Renderizar la respuesta y las fuentes en `assistant/templates/index.html` y `assistant/templates/_exchange.html` (escapado de HTML)
-- [ ] T022 [US1] Conectar `POST /ask` al flujo respondido en `assistant/web.py` y mostrar el historial en el DOM con `hx-swap="beforeend"` (FR-001, FR-016)
+- [ ] T022 [US1] Conectar `POST /ask` al flujo respondido en `assistant/web.py` y mostrar el historial en el DOM con `hx-swap="beforeend"` (FR-001, FR-016; `data-model.md` `Pregunta.text` 1..2000, `Respuesta.text`, `Respuesta.request_id`)
 
 **Checkpoint**: pregunta cubierta → respuesta citada visible en el navegador
 
@@ -97,7 +97,7 @@ en la raíz del repositorio.
 
 ### Implementation for User Story 2
 
-- [ ] T026 [US2] Implementar la política de abstención y el umbral de relevancia en `assistant/rag.py` (FR-004; `data-model.md` `Respuesta.status`, `Respuesta.sources`)
+- [ ] T026 [US2] Implementar la política de abstención y el umbral de relevancia en `assistant/rag.py` (FR-004; `data-model.md` `Respuesta.status`, `Respuesta.text`, `Respuesta.sources`, `Respuesta.provider`, `Respuesta.latency_ms`)
 - [ ] T027 [US2] Implementar la instrucción de contradicciones y de alcance (catálogo fuera) en `assistant/prompting.py` (FR-005, FR-013)
 - [ ] T028 [US2] Renderizar el parcial de abstención en `assistant/templates/_exchange.html`
 
@@ -119,9 +119,9 @@ en la raíz del repositorio.
 
 ### Implementation for User Story 3
 
-- [ ] T032 [US3] Validar corpus, colección Qdrant y proveedor al arrancar en `assistant/web.py` (FR-008; `data-model.md` `Configuración`)
-- [ ] T033 [US3] Implementar la degradación y el error accionable en `assistant/llm.py` y `assistant/rag.py` (FR-006, `Respuesta.status="error"`)
-- [ ] T034 [US3] Implementar `GET /healthz` y la traza `request_id` en `assistant/web.py` según `contracts/http-api.md`
+- [ ] T032 [US3] Validar corpus, colección Qdrant y proveedor al arrancar en `assistant/web.py` (FR-008; `data-model.md` `Configuración.CORPUS_GOLD_DIR`, `Configuración.QDRANT_PATH`, `Configuración.QDRANT_URL`, `Configuración.LLM_PROVIDER`)
+- [ ] T033 [US3] Implementar la degradación y el error accionable en `assistant/llm.py` y `assistant/rag.py` (FR-006; `data-model.md` `Respuesta.status`, `Respuesta.provider`, `Respuesta.latency_ms`, `Respuesta.request_id`)
+- [ ] T034 [US3] Implementar `GET /healthz` y la traza `request_id` en `assistant/web.py` según `contracts/http-api.md` (FR-010; `data-model.md` `Pregunta.request_id`, `Respuesta.request_id`)
 
 **Checkpoint**: configuración incorrecta falla temprano; proveedor caído no rompe la respuesta
 
@@ -135,12 +135,12 @@ en la raíz del repositorio.
 
 ### Tests for User Story 4
 
-- [ ] T035 [P] [US4] Prueba del reporte en `tests/test_acceptance.py` (esquema `data-model.md` `Reporte de aceptación`, exit codes 0/1/2)
+- [ ] T035 [P] [US4] Prueba del reporte en `tests/test_acceptance.py` (esquema `data-model.md` `Reporte de aceptación.generated_at`, `.questions_total`, `.answered_with_valid_citation`, `.no_evidence`, `.invalid_citations`, `.rows`; exit codes 0/1/2)
 - [ ] T036 [P] [US4] Prueba de validación de citas en `tests/test_acceptance.py` (`Cita` válida solo con metadatos coincidentes)
 
 ### Implementation for User Story 4
 
-- [ ] T037 [US4] Implementar `scripts/run_acceptance.py` (entrada JSON, cadena en proceso, reporte JSON + resumen, exit codes de `contracts/http-api.md`)
+- [ ] T037 [US4] Implementar `scripts/run_acceptance.py` (entrada JSON, cadena en proceso, reporte JSON + resumen, exit codes de `contracts/http-api.md`; `data-model.md` `Row.question`, `.status`, `.provider`, `.latency_ms`, `.sources`, `.citations_valid`, `.expected_out_of_scope`)
 - [ ] T038 [US4] Implementar la validación de citas contra metadatos del corpus en `scripts/run_acceptance.py` (FR-015)
 - [ ] T039 [US4] Documentar el uso en `quickstart.md` y `README.md` (sección de aceptación)
 
@@ -155,7 +155,7 @@ en la raíz del repositorio.
 - [ ] T040 [P] Añadir `.qdrant/` y artefactos de reporte a `.gitignore` y revisar `.env.example`
 - [ ] T041 [P] Actualizar `README.md` (estado del corte, comandos nuevos) y `CONSTITUTION.md` §9 si la implementación revela decisiones nuevas
 - [ ] T042 Ejecutar `make check` y corregir lint/tipos/pruebas hasta verde
-- [ ] T043 Ejecutar la validación de `quickstart.md` con el corpus real y Ollama; registrar evidencia en `specs/001-corte-vertical-citas/quickstart.md`
+- [ ] T043 Ejecutar la validación de `quickstart.md` con el corpus real y Ollama; registrar evidencia en `specs/001-corte-vertical-citas/quickstart.md` (SC-005, SC-006)
 - [ ] T044 Actualizar `specs/README.md` (estado ✅) y abrir PR con CI `Calidad` en verde
 
 ---
