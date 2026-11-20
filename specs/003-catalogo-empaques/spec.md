@@ -8,6 +8,15 @@
 
 **Input**: User description: "Consulta del catálogo de empaques con precios y validación técnica. El asistente debe responder preguntas sobre referencias, precios y distribuidores del catálogo de Carvajal Empaques, validar que el material sea apto para el uso y citar la fuente, sin inventar precios ni disponibilidad."
 
+## Clarifications
+
+### Session 2026-11-20
+
+- Q: ¿Qué cobertura de países incluimos? → A: México y Colombia, cada uno con su moneda y sin mezclar precios entre países.
+- Q: ¿Qué hacemos con un precio vencido? → A: Se muestra el monto marcado como vencido, con su fecha y fuente; nunca como precio actual.
+- Q: ¿Cómo respondemos una pregunta mixta? → A: Primero con el catálogo; se añade el corpus solo si el catálogo no cubre la parte documental, con citas separadas.
+- Q: ¿Qué nivel de validación técnica aplicamos? → A: Material y temperatura contra el uso; si falta un dato crítico, se pide antes de recomendar.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Recibir referencias técnicamente válidas (Priority: P1)
@@ -107,8 +116,9 @@ comprobar que la ruta elegida es la correcta y que ninguna pierde sus citas.
    mezcla precios del catálogo.
 2. **Given** una pregunta comercial, **When** se responde, **Then** usa el catálogo y no
    responde con el corpus.
-3. **Given** una pregunta mixta, **When** se responde, **Then** presenta las dos partes con
-   citas separadas.
+3. **Given** una pregunta mixta, **When** se responde, **Then** responde primero con el
+   catálogo y añade el corpus solo si hace falta para la parte documental, con citas
+   separadas.
 4. **Given** una pregunta ambigua, **When** se responde, **Then** pide una aclaración breve
    en lugar de adivinar la fuente.
 
@@ -152,7 +162,8 @@ comprobar que la ruta elegida es la correcta y que ninguna pierde sus citas.
   temperatura y país.
 - **FR-009**: El sistema DEBE responder consultas de distribuidores por ciudad o país con
   nombre, dirección, teléfono y fuente.
-- **FR-010**: Las preguntas mixtas DEBEN responderse con las dos secciones y sus citas
+- **FR-010**: Las preguntas mixtas DEBEN responderse primero con el catálogo y añadir la
+  sección documental del corpus solo si el catálogo no cubre esa parte, con citas
   separadas.
 - **FR-011**: Cuando no haya coincidencias, el sistema DEBE decir qué restricciones no
   pudo cumplir y no DEBE proponer alternativas que las violen.
@@ -193,8 +204,8 @@ comprobar que la ruta elegida es la correcta y que ninguna pierde sus citas.
   como actual.
 - **SC-006**: El 100 % de las consultas sin coincidencia recibe una respuesta explícita sin
   alternativas inválidas.
-- **SC-007**: Las preguntas mixtas incluyen las dos secciones con citas válidas en al menos
-  el 90 % de los casos.
+- **SC-007**: Las preguntas mixtas responden con el catálogo y, cuando el catálogo no cubre
+  la parte documental, añaden el corpus con citas válidas en al menos el 90 % de los casos.
 - **SC-008**: El 100 % de las citas del catálogo apunta a una fuente existente y a un SKU o
   distribuidor presente en los datos.
 

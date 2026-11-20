@@ -31,5 +31,6 @@
 
 ## Notes
 
-- Pendiente confirmar en `/speckit-clarify`: alcance de países, comportamiento con precios
-  vencidos, resolución de preguntas mixtas y nivel de validación técnica.
+- Clarificado: México + Colombia; precio vencido se muestra con advertencia; preguntas
+  mixtas con catálogo primero y corpus solo si aporta la parte documental; validación de
+  material y temperatura.
