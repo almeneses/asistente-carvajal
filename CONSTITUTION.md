@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 0.3.0 |
+| **Versión** | 0.4.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -82,7 +82,7 @@ de clientes.
 | **Desarrollo dirigido por especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` 1.4.3; integración OpenCode + extensión git) |
 | **Orquestación RAG** | Cadena propia en `assistant/rag.py` (sin framework de agentes) |
 | **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side, sin SPA) |
-| **Índice vectorial** | Qdrant (768 dims, coseno) |
+| **Índice vectorial** | Qdrant (768 dims, coseno; embebido local por defecto, remoto por `QDRANT_URL`) |
 | **Embeddings** | `nomic-embed-text` vía Ollama (768 dims) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura |
@@ -227,6 +227,9 @@ git push
 | 2026-11-19 | LLM DeepSeek API con fallback a Ollama local | Calidad con red/clave; operación offline y sin coste con modelos locales |
 | 2026-11-19 | Consumo de corpus y catálogo por ruta configurable de solo lectura | No duplicar ni envejecer los datos; fixtures sintéticos en pruebas |
 | 2026-11-19 | Orquestación RAG con cadena propia (`assistant/rag.py`), sin LangGraph | Flujo lineal de 4 pasos; menos dependencias y depuración directa. LangGraph se reevalúa en fase 3 o si aparecen ramas y reintentos |
+| 2026-11-19 | Qdrant en modo embebido local (`.qdrant/`) por defecto; `QDRANT_URL` opcional | Desarrollo y CI sin servicio externo; el mismo cliente cubre el despliegue remoto |
+| 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
+| 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
 | 2026-11-19 | Publicar el repositorio como público | GitHub Free no permite proteger `main` en repos privados; la protección se habilita al hacerlo público |
 | 2026-11-19 | Adoptar Spec Kit (specs versionadas por feature) | Trazabilidad requisito → plan → tareas y *Constitution Check* en cada plan |
@@ -236,7 +239,7 @@ git push
 
 - [x] Completar las secciones marcadas de este documento.
 - [x] Configurar el remoto y proteger `main`.
-- [ ] Redactar la spec de fase 1 con `/speckit.specify` (contrato del corpus y decisiones de stack).
+- [x] Redactar la spec de fase 1 con `/speckit.specify` (spec, plan, tareas, análisis e implementación en `specs/001-corte-vertical-citas/`).
 - [x] Decidir framework de UI, índice vectorial, embeddings y proveedor de LLM (fase 1).
 - [x] Decidir la orquestación RAG: cadena propia (ver `specs/001-corte-vertical-citas/plan.md`).
 - [ ] Definir el contrato de consumo del corpus (rutas, *front matter*, índice JSONL).

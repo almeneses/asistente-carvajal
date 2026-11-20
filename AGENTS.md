@@ -101,6 +101,8 @@ En OpenCode la preferencia se aplica automáticamente mediante la regla
 ## Estructura y convenciones
 
 - `main.py` — punto de entrada de la aplicación.
+- `assistant/` — configuración, corpus, índice Qdrant, recuperación, LLM y web.
+- `scripts/` — indexación del corpus (`index_corpus.py`) y aceptación (`run_acceptance.py`).
 - `tests/` — pruebas con `pytest` (patrón AAA).
 - `specs/` — especificaciones por feature (Spec Kit), indexadas en `specs/README.md`.
 - `.specify/` — motor de Spec Kit (templates, scripts, memoria, extensiones).

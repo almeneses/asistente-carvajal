@@ -6,7 +6,7 @@
 
 # Artefactos generados por Archify: se regeneran con la herramienta, no se
 # normalizan a mano (el HTML lleva provenance sha256 y tocarlo invalida el recibo).
-exclude: ^(docs/arquitectura.*\.html|\.specify/|\.opencode/commands/)
+exclude: ^(docs/arquitectura.*\.html|\.specify/|\.opencode/commands/|assistant/static/)
 
 default_language_version:
   python: python3.13

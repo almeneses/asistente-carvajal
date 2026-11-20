@@ -5,7 +5,7 @@
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := help
-.PHONY: help install dev pre-commit-install pre-commit lint format format-check typecheck test check build clean
+.PHONY: help install dev pre-commit-install pre-commit lint format format-check typecheck test check run index acceptance build clean
 
 help: ## Muestra esta ayuda
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -35,6 +35,15 @@ typecheck: ## Verifica los tipos con ty (Astral)
 
 test: ## Ejecuta las pruebas
 	uv run pytest
+
+run: ## Arranca el asistente web
+	uv run python main.py
+
+index: ## Construye el índice Qdrant desde el corpus
+	uv run python scripts/index_corpus.py --recreate
+
+acceptance: ## Ejecuta el set de preguntas de aceptación
+	uv run python scripts/run_acceptance.py
 
 check: lint format-check typecheck test ## Verificación completa (lint + formato + tipos + pruebas)
 

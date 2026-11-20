@@ -97,6 +97,7 @@ assistant/
 ├── prompting.py             # Prompt de sistema/usuario y formato de citas
 ├── llm.py                   # DeepSeek (OpenAI-compatible) + fallback Ollama
 ├── rag.py                   # Cadena: recuperar → prompt → generar → citar/abstenerse
+├── acceptance.py            # Set de aceptación y validación de citas
 ├── web.py                   # FastAPI, rutas y plantillas
 ├── templates/index.html     # Chat (Jinja2)
 ├── templates/_exchange.html # Parcial HTMX: respuesta + fuentes

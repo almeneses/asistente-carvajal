@@ -22,11 +22,12 @@ Unidad curada del corpus web. Se carga desde `CORPUS_GOLD_DIR/*.md` y se valida 
 | `source_type` | `"oficial"` \| `"tercero"` | front matter | obligatorio |
 | `captured_at` | str ISO-8601 | front matter | obligatorio |
 | `hash` | str hex | front matter | 64 caracteres |
-| `chars` | int | front matter | > 0 |
-| `body` | str | cuerpo Markdown | no vacío |
+| `chars` | int | front matter | ≥ 0 (puede ser 0 en documentos vacíos) |
+| `body` | str | cuerpo Markdown | puede estar vacío; los documentos vacíos se omiten del índice |
 
 - **Validación**: si un documento no tiene front matter completo o no aparece en
-  `index.jsonl`, el arranque falla enumerando los documentos inválidos (FR-008, III).
+  `index.jsonl`, el arranque falla enumerando los documentos inválidos (FR-008, III). Un
+  documento con `chars: 0` es válido y se omite al fragmentar.
 - **Inmutabilidad**: la aplicación nunca escribe en el directorio del corpus.
 
 ### Fragmento (chunk)
@@ -120,7 +121,6 @@ payload:
   chunk_index: integer
   text: text
   char_start: integer
-  doc_hash: keyword
 id: UUID v5 determinista de "slug:chunk_index"
 ```
 

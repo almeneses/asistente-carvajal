@@ -45,8 +45,9 @@ Este documento resuelve las decisiones técnicas del plan. No quedan
 
 - **Decisión**: cliente único `assistant/llm.py` con dos adaptadores HTTP
   OpenAI-compatibles: DeepSeek `POST /chat/completions` (primario) y Ollama
-  `POST /api/chat` (respaldo). `temperature=0`, `max_tokens=800`, timeout primario 10 s y
-  respaldo 15 s; el fallback se activa ante error de red, 5xx o timeout.
+  `POST /api/chat` (respaldo). `temperature=0`, `max_tokens=800`, timeout primario 8 s y
+  respaldo 60 s (incluye la carga en frío del modelo local); el fallback se activa ante
+  error de red, 5xx o timeout.
 - **Rationale**: cumple FR-006 y SC-004; el timeout acota la latencia percibida por
   debajo de los 20 s de SC-005 en el camino normal y en el de respaldo.
 - **Alternativas consideradas**: solo DeepSeek (rompe operación offline), solo Ollama
