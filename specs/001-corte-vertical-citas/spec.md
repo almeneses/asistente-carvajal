@@ -8,6 +8,16 @@
 
 **Input**: User description: "Corte vertical del asistente de preguntas sobre Carvajal, con citas verificables. El corpus web curado ya existe aguas arriba; una persona pregunta en lenguaje natural y el asistente responde usando solo evidencia de ese corpus, citando la fuente. Es la fase 1 del roadmap; el catálogo de empaques no entra todavía."
 
+## Clarifications
+
+### Session 2026-11-19
+
+- Q: ¿Debe la respuesta mostrar un extracto textual de la evidencia, además del título, tipo y enlace de la fuente? → A: Solo cita con enlace; sin extractos textuales en la respuesta.
+- Q: Si el servicio de recuperación del corpus no está disponible, ¿debe la aplicación negarse a arrancar o arrancar degradada? → A: Falla al arrancar, con un mensaje que indica qué revisar.
+- Q: ¿Cuántas preguntas debe tener el set de aceptación de este corte? → A: El set completo del proyecto de corpus (~40 preguntas), adaptado.
+- Q: ¿Qué hace que una cita cuente como válida al evaluar las respuestas? → A: El enlace pertenece a un documento del corpus y coinciden título y tipo de fuente con sus metadatos.
+- Q: Durante una misma sesión de chat, ¿la página debe mostrar los intercambios anteriores o solo la última respuesta? → A: Historial de la sesión en memoria, sin persistir al recargar ni entre sesiones.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Preguntar y recibir una respuesta citada (Priority: P1)
@@ -28,10 +38,12 @@ ese documento y que la cita incluye título, tipo de fuente y enlace.
 1. **Given** una pregunta cubierta por el corpus, **When** la persona la envía desde el
    chat, **Then** recibe una respuesta en español que cita al menos una fuente con
    título, tipo de fuente (oficial o tercero) y enlace.
-2. **Given** una respuesta con varias fuentes, **When** la persona revisa las citas,
+2. **Given** una sesión con intercambios previos, **When** la persona envía otra
+   pregunta, **Then** los intercambios anteriores siguen visibles en la misma página.
+3. **Given** una respuesta con varias fuentes, **When** la persona revisa las citas,
    **Then** cada enlace corresponde a un documento del corpus y el texto citado aparece
    en él.
-3. **Given** una pregunta que menciona dos temas del corpus, **When** el asistente
+4. **Given** una pregunta que menciona dos temas del corpus, **When** el asistente
    responde, **Then** cubre ambos temas o indica cuál no pudo sustentar.
 
 ---
@@ -100,8 +112,9 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 
 **Acceptance Scenarios**:
 
-1. **Given** el set de aceptación, **When** se ejecuta sobre el asistente, **Then** se
-   produce un reporte por pregunta con respuesta, citas y resultado (cita válida o no).
+1. **Given** el set de aceptación (~40 preguntas), **When** se ejecuta sobre el
+   asistente, **Then** se produce un reporte por pregunta con respuesta, citas y
+   resultado (cita válida o no).
 2. **Given** una pregunta del set cuya respuesta no está en el corpus, **When** se
    evalúa, **Then** el reporte la marca como rechazo correcto y no como fallo.
 
@@ -113,8 +126,11 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
   cita la evidencia; si hay dos interpretaciones incompatibles, lo señala.
 - **Fuentes contradictorias**: el asistente presenta las dos versiones, cita ambas y no
   elige un ganador sin base.
-- **Corpus vacío o inaccesible**: el asistente no responde con conocimiento general;
-  informa que no puede consultar el corpus.
+- **Servicio de recuperación no disponible**: al arrancar, la aplicación falla con un
+  mensaje accionable; si deja de responder durante la operación, la pregunta informa
+  que no puede consultar el corpus en ese momento.
+- **Corpus vacío**: el asistente no responde con conocimiento general; informa que no
+  hay evidencia disponible.
 - **Pregunta en otro idioma**: se responde en español y se aclara la limitación.
 - **Pregunta sobre catálogo o precios**: se informa que esa información no está
   disponible en este corte (llega en la fase 3).
@@ -132,7 +148,8 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 - **FR-002**: El sistema DEBE buscar la evidencia únicamente en el corpus curado de
   Carvajal configurado; no DEBE usar conocimiento general del modelo como fuente.
 - **FR-003**: El sistema DEBE acompañar cada respuesta con las fuentes consultadas: al
-  menos título, tipo de fuente (oficial o tercero) y enlace al documento original.
+  menos título, tipo de fuente (oficial o tercero) y enlace al documento original. Las
+  citas NO incluyen extractos textuales: enlazan al documento para su verificación.
 - **FR-004**: El sistema DEBE negarse explícitamente a responder cuando la evidencia
   recuperada no sustente la pregunta, sin inventar cifras, fechas ni nombres.
 - **FR-005**: El sistema DEBE señalar las contradicciones entre fuentes en lugar de
@@ -143,7 +160,8 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
   proveedores desde configuración externa; no DEBE requerir cambios de código para
   operar en otra máquina.
 - **FR-008**: El sistema DEBE fallar al arrancar con un mensaje accionable cuando falte
-  configuración crítica o una ruta no exista.
+  configuración crítica, una ruta no exista o el servicio de recuperación no esté
+  disponible.
 - **FR-009**: El sistema DEBE tratar el corpus y sus índices como solo lectura.
 - **FR-010**: El sistema DEBE registrar por respuesta la pregunta, las fuentes
   recuperadas y el proveedor usado, sin guardar conversaciones entre sesiones.
@@ -155,6 +173,11 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
   consultas de catálogo o precios DEBEN informarse como no disponibles en este corte.
 - **FR-014**: El sistema DEBE permitir ejecutar un set de preguntas de aceptación y
   producir un reporte por pregunta con el resultado de citación.
+- **FR-015**: Una cita DEBE considerarse válida solo si su enlace corresponde a un
+  documento del corpus y su título y tipo de fuente coinciden con los metadatos de ese
+  documento.
+- **FR-016**: La página DEBE conservar en memoria los intercambios de la sesión actual
+  y NO DEBE persistirlos al recargar la página ni entre sesiones.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -163,7 +186,8 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 - **Respuesta**: texto en español, estado (sustentada o sin evidencia), proveedor usado
   y latencia percibida.
 - **Cita**: referencia a un documento del corpus con título, tipo de fuente y enlace;
-  es la unidad que hace verificable la respuesta.
+  es la unidad que hace verificable la respuesta. Es **válida** cuando enlace, título
+  y tipo de fuente coinciden con los metadatos del documento.
 - **Documento del corpus**: pieza curada del corpus web con título, enlace, tipo de
   fuente, sección y hash de contenido.
 - **Configuración**: conjunto de valores externos (rutas, servicios, proveedores) que
@@ -175,7 +199,7 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 
 ### Measurable Outcomes
 
-- **SC-001**: Al menos el 90 % de las preguntas del set de aceptación reciben una
+- **SC-001**: Al menos el 90 % de las 40 preguntas del set de aceptación reciben una
   respuesta con al menos una cita válida.
 - **SC-002**: Cero respuestas del set de aceptación contienen cifras o hechos sin una
   cita que los sustente.
@@ -188,19 +212,20 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 - **SC-006**: Cualquier configuración crítica ausente se detecta al arrancar y se
   informa con el nombre exacto del valor o la ruta a corregir.
 - **SC-007**: El reporte de aceptación se genera en una sola ejecución y contiene una
-  fila por pregunta con su resultado.
+  fila por cada una de las 40 preguntas con su resultado.
 
 ## Assumptions
 
 - El corpus curado aguas arriba está disponible en una ruta local de solo lectura; a la
   fecha de esta especificación son 24 documentos con metadatos de título, enlace, tipo
   de fuente, sección y hash.
-- El set de preguntas de aceptación se reutiliza y adapta del proyecto de corpus; no se
-  inventa un set nuevo desde cero.
+- El set de preguntas de aceptación se reutiliza y adapta del proyecto de corpus
+  completo (~40 preguntas); no se inventa un set nuevo desde cero.
 - El idioma de interfaz y de respuesta es español; no se implementa detección de idioma
   en este corte.
-- El uso previsto es local o de una sola persona por instancia; no hay autenticación,
-  multiusuario ni persistencia de conversaciones.
+- El uso previsto es local o de una sola persona por instancia; no hay autenticación
+  ni multiusuario. El historial de la sesión vive en memoria y no se persiste al
+  recargar ni entre sesiones.
 - El stack y las restricciones técnicas ya están decididos en `CONSTITUTION.md` y no se
   reabren en esta especificación; el plan los detalla.
 - La información de catálogo y precios queda fuera de alcance (fase 3).
