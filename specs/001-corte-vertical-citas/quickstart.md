@@ -48,11 +48,11 @@ documentos y fragmentos indexados, y termina con código 0.
 ## Arranque
 
 ```bash
-uv run python main.py
-# o: uv run uvicorn assistant.web:app --reload
+make run                 # puerto 8010 por defecto
+make run PORT=8020       # o el que esté libre
 ```
 
-Abrir `http://127.0.0.1:8000/`.
+Abrir `http://127.0.0.1:8010/`.
 
 ## Validación manual (SC-001 a SC-007)
 
@@ -110,3 +110,7 @@ integración se saltan si faltan corpus/Ollama/Qdrant).
   `--recreate`.
 - **Qdrant remoto inaccesible**: revisar `QDRANT_URL` o quitarla para usar `.qdrant/`.
 - **DeepSeek 401**: clave ausente o inválida; usar `LLM_PROVIDER=ollama` para continuar.
+- **`address already in use`**: otro proceso usa el puerto; `make run PORT=8020`.
+- **`Storage folder .qdrant is already accessed`**: el servidor tiene abierto el índice;
+  detén `make run` antes de `make acceptance` o usa `QDRANT_URL` remoto.
+- **Ollama ya está corriendo**: no lances otro `ollama serve`; comparte el de 11434.

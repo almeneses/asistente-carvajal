@@ -110,7 +110,8 @@ cp .env.example .env         # completar CORPUS_GOLD_DIR (y la clave si se usa D
 
 ```bash
 make index                     # construye el índice Qdrant desde el corpus
-make run                       # arranca el chat en http://127.0.0.1:8000
+make run                       # arranca el chat en http://127.0.0.1:8010
+make run PORT=8020             # o en otro puerto libre
 make acceptance                # ejecuta el set de preguntas de aceptación
 ```
 
@@ -119,6 +120,17 @@ make acceptance                # ejecuta el set de preguntas de aceptación
 ```bash
 make check   # lint + formato + tipos + pruebas
 ```
+
+### Convivencia con otros proyectos
+
+- El chat usa el puerto **8010** por defecto (`make run PORT=...` para cambiarlo);
+  no compite con los puertos de `carvajal` (Qdrant 6333/6334, Postgres 5433).
+- El índice vive en `.qdrant/` (modo embebido, sin puerto). Solo un proceso puede
+  abrirlo a la vez: detén `make run` antes de `make acceptance` y `make index`.
+  Alternativa sin bloquear: apuntar `QDRANT_URL=http://127.0.0.1:6333` y usar una
+  colección propia (`QDRANT_COLLECTION=asistente_carvajal`) en el Qdrant de `carvajal`.
+- Ollama (11434) se comparte: un solo `ollama serve` sirve a ambos proyectos porque
+  los dos usan `nomic-embed-text`. No hace falta levantar otro.
 
 > ⚠️ **Regla del proyecto:** toda gestión de dependencias y entornos pasa por `uv`.
 > Está **prohibido** `pip` y `requirements.txt`.
@@ -140,7 +152,7 @@ make check   # lint + formato + tipos + pruebas
 | `make check` | Verificación completa (lint + formato + tipos + pruebas). |
 | `make lint` / `make format` | Ruff. |
 | `make test` | `pytest`. |
-| `make run` | Arranca el chat web. |
+| `make run` | Arranca el chat web en el puerto `PORT` (8010 por defecto). |
 | `make index` | Reconstruye el índice Qdrant del corpus. |
 | `make acceptance` | Ejecuta las preguntas de aceptación y reporta citas. |
 

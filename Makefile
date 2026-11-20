@@ -4,6 +4,9 @@
 
 SHELL := /bin/bash
 
+# Puerto del chat; se puede sobreescribir: make run PORT=8020
+PORT ?= 8010
+
 .DEFAULT_GOAL := help
 .PHONY: help install dev pre-commit-install pre-commit lint format format-check typecheck test check run index acceptance build clean
 
@@ -36,8 +39,8 @@ typecheck: ## Verifica los tipos con ty (Astral)
 test: ## Ejecuta las pruebas
 	uv run pytest
 
-run: ## Arranca el asistente web
-	uv run python main.py
+run: ## Arranca el asistente web (PORT=8010 por defecto)
+	uv run python main.py --port $(PORT)
 
 index: ## Construye el índice Qdrant desde el corpus
 	uv run python scripts/index_corpus.py --recreate
