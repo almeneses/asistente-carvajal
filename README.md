@@ -57,6 +57,7 @@ entrada de solo lectura.
 | Módulo de recuperación (corpus web) | ✅ |
 | Interfaz de chat con citación | ✅ |
 | Set de evaluación de respuestas | ✅ |
+| Evaluación de recuperación (fase 2) | ✅ |
 | Consulta sobre catálogo de empaques | ⏳ |
 
 > ⚠️ Fase actual: **corte vertical (fase 1)**. El asistente responde preguntas sobre el
@@ -75,7 +76,7 @@ entrada de solo lectura.
 | **Orquestación RAG** | Cadena propia (`assistant/rag.py`), sin framework de agentes |
 | **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side) |
 | **Índice vectorial** | Qdrant (768 dims, coseno) |
-| **Embeddings** | `nomic-embed-text` vía Ollama |
+| **Embeddings** | `bge-m3` vía Ollama (1024 dims) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable, solo lectura |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
@@ -91,7 +92,7 @@ entrada de solo lectura.
 - [Python 3.13+](https://www.python.org/downloads/)
 - [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 - [Git](https://git-scm.com/)
-- [Ollama](https://ollama.com/) con `nomic-embed-text` y un modelo de chat local
+- [Ollama](https://ollama.com/) con `bge-m3` (embeddings) y un modelo de chat local
 - Corpus gold de Carvajal en una ruta local (solo lectura)
 
 ### Instalación

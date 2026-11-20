@@ -64,3 +64,7 @@ docs/arquitectura.browser-check.json
 *.log
 aceptacion*.json
 reporte*.json
+
+# Índice de evaluación y reportes temporales
+.qdrant-eval/
+specs/002-evaluacion-recuperacion/reports/*.tmp.json

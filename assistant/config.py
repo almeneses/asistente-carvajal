@@ -10,7 +10,7 @@ from pathlib import Path
 
 _COLLECTION_RE = re.compile(r"^[a-z0-9_]+$")
 _PROVIDERS = ("deepseek", "ollama")
-EMBEDDING_DIM = 768
+EMBEDDING_DIM = 1024
 
 
 class ConfigError(RuntimeError):
@@ -49,7 +49,8 @@ class Settings:
     qdrant_url: str | None = None
     qdrant_collection: str = "corpus_carvajal"
     ollama_base_url: str = "http://localhost:11434"
-    embedding_model: str = "nomic-embed-text"
+    embedding_model: str = "bge-m3"
+    embedding_dim: int = EMBEDDING_DIM
     llm_provider: str = "deepseek"
     deepseek_api_key: str | None = field(default=None, repr=False)
     deepseek_base_url: str = "https://api.deepseek.com"
@@ -57,6 +58,7 @@ class Settings:
     ollama_model: str = "qwen3:4b-instruct"
     top_k: int = 5
     acceptance_file: Path | None = None
+    eval_qdrant_path: Path = Path(".qdrant-eval")
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> Settings:
@@ -86,7 +88,14 @@ class Settings:
         if ollama_base is None or not ollama_base.startswith(("http://", "https://")):
             errors.append("OLLAMA_BASE_URL debe empezar por http:// o https://.")
 
-        embedding_model = _clean(source, "EMBEDDING_MODEL", "nomic-embed-text")
+        embedding_model = _clean(source, "EMBEDDING_MODEL", "bge-m3")
+        dim_raw = _clean(source, "EMBEDDING_DIM", str(EMBEDDING_DIM)) or str(EMBEDDING_DIM)
+        try:
+            embedding_dim = int(dim_raw)
+        except ValueError:
+            embedding_dim = 0
+        if not 1 <= embedding_dim <= 4096:
+            errors.append("EMBEDDING_DIM debe ser un entero entre 1 y 4096.")
         provider = (_clean(source, "LLM_PROVIDER", "deepseek") or "deepseek").lower()
         if provider not in _PROVIDERS:
             errors.append("LLM_PROVIDER debe ser deepseek u ollama.")
@@ -107,6 +116,10 @@ class Settings:
         if not 1 <= top_k <= 10:
             errors.append("TOP_K debe ser un entero entre 1 y 10.")
 
+        eval_qdrant_path = Path(
+            _clean(source, "EVAL_QDRANT_PATH", ".qdrant-eval") or ".qdrant-eval"
+        ).expanduser()
+
         acceptance_raw = _clean(source, "ACCEPTANCE_FILE")
         acceptance_file = Path(acceptance_raw).expanduser() if acceptance_raw else None
         if acceptance_file is not None and not acceptance_file.is_file():
@@ -126,6 +139,7 @@ class Settings:
             qdrant_collection=collection,
             ollama_base_url=ollama_base,
             embedding_model=embedding_model,
+            embedding_dim=embedding_dim,
             llm_provider=provider,
             deepseek_api_key=api_key,
             deepseek_base_url=deepseek_base,
@@ -133,4 +147,5 @@ class Settings:
             ollama_model=_clean(source, "OLLAMA_MODEL", "qwen3:4b-instruct") or "qwen3:4b-instruct",
             top_k=top_k,
             acceptance_file=acceptance_file,
+            eval_qdrant_path=eval_qdrant_path,
         )

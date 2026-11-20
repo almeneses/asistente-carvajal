@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 0.4.0 |
+| **Versión** | 0.5.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -82,8 +82,8 @@ de clientes.
 | **Desarrollo dirigido por especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` 1.4.3; integración OpenCode + extensión git) |
 | **Orquestación RAG** | Cadena propia en `assistant/rag.py` (sin framework de agentes) |
 | **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side, sin SPA) |
-| **Índice vectorial** | Qdrant (768 dims, coseno; embebido local por defecto, remoto por `QDRANT_URL`) |
-| **Embeddings** | `nomic-embed-text` vía Ollama (768 dims) |
+| **Índice vectorial** | Qdrant (1024 dims, coseno; embebido local por defecto, remoto por `QDRANT_URL`) |
+| **Embeddings** | `bge-m3` vía Ollama (1024 dims; migrado en la fase 2 con evidencia) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
@@ -228,6 +228,7 @@ git push
 | 2026-11-19 | Consumo de corpus y catálogo por ruta configurable de solo lectura | No duplicar ni envejecer los datos; fixtures sintéticos en pruebas |
 | 2026-11-19 | Orquestación RAG con cadena propia (`assistant/rag.py`), sin LangGraph | Flujo lineal de 4 pasos; menos dependencias y depuración directa. LangGraph se reevalúa en fase 3 o si aparecen ramas y reintentos |
 | 2026-11-19 | Qdrant en modo embebido local (`.qdrant/`) por defecto; `QDRANT_URL` opcional | Desarrollo y CI sin servicio externo; el mismo cliente cubre el despliegue remoto |
+| 2026-11-20 | Migrar embeddings a `bge-m3` (1024 dims) tras la fase 2 | Mejora de 10,3 pp en acierto@5 (0,966 vs. 0,862) en la matriz de 8 variantes; `bge-m3-500-hybrid` ganadora |
 | 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
 | 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
@@ -246,12 +247,12 @@ git push
 - [x] Implementar el módulo de recuperación y sus pruebas (fase 2): corte vertical de la spec 001.
 - [x] Construir la interfaz de chat con citación de fuentes (fase 4): versión mínima en la spec 001.
 - [x] Añadir `.env.example` con las variables configurables.
-- [ ] Fase 2: evaluación de recuperación y métricas de calidad (`specs/002-evaluacion-recuperacion/`).
+- [x] Fase 2: evaluación de recuperación y métricas de calidad (`specs/002-evaluacion-recuperacion/`); migración a `bge-m3` aprobada.
 - [ ] Fase 3: consulta sobre el catálogo de empaques.
 - [ ] Fase 4: mejoras de experiencia de chat (streaming, Markdown, accesibilidad).
 - [ ] Fase 5: evaluación ampliada, operación, observabilidad y despliegue.
 - [ ] Decidir el proveedor de LLM por defecto para nuevos usuarios (`deepseek` vs `ollama`).
-- [ ] Evaluar `bge-m3` u otro embedding multilingüe frente a `nomic-embed-text`.
+- [x] Evaluar `bge-m3` frente a `nomic-embed-text` (fase 2: mejora de 10,3 pp en acierto@5).
 - [ ] Registrar ADRs de embeddings, orquestación y modo Qdrant.
 
 ## 11. Configuración local (no trackear)

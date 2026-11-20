@@ -9,10 +9,10 @@ validación manual reproducible.
 ## Prerrequisitos
 
 - Python 3.13 y `uv` instalados.
-- Ollama en marcha con `nomic-embed-text` y un modelo de chat local:
+- Ollama en marcha con `bge-m3` (embeddings) y un modelo de chat local:
   ```bash
-  ollama list                 # debe incluir nomic-embed-text y qwen3:4b-instruct
-  ollama serve                # si no está corriendo como servicio
+  ollama pull bge-m3
+  ollama list                 # debe incluir bge-m3 y qwen3:4b-instruct
   ```
 - Corpus curado en una ruta local (por ejemplo, el repositorio hermano):
   ```bash
@@ -105,8 +105,8 @@ integración se saltan si faltan corpus/Ollama/Qdrant).
 
 ## Problemas frecuentes
 
-- **`nomic-embed-text` no encontrado**: `ollama pull nomic-embed-text`.
-- **Dimensión distinta a 768**: el índice está desactualizado; reconstruir con
+- **`bge-m3` no encontrado**: `ollama pull bge-m3`.
+- **Dimensión distinta a 1024**: el índice está desactualizado; reconstruir con
   `--recreate`.
 - **Qdrant remoto inaccesible**: revisar `QDRANT_URL` o quitarla para usar `.qdrant/`.
 - **DeepSeek 401**: clave ausente o inválida; usar `LLM_PROVIDER=ollama` para continuar.

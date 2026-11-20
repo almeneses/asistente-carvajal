@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 from assistant.chunking import chunk_corpus
+from assistant.config import EMBEDDING_DIM
 from assistant.corpus import CorpusDocument
 from assistant.index import IndexError as QdrantIndexError
 from assistant.index import QdrantIndex, SearchHit
@@ -61,5 +62,5 @@ def test_error_de_indice_se_propaga(tmp_path: Path) -> None:
 
     # Act / Assert
     with pytest.raises(QdrantIndexError):
-        index.search([0.0] * 768, 1)
+        index.search([0.0] * EMBEDDING_DIM, 1)
     index.close()

@@ -28,11 +28,13 @@ class OllamaEmbedder:
         base_url: str,
         model: str,
         *,
+        dim: int = EMBEDDING_DIM,
         client: httpx.Client | None = None,
         timeout: float = 30.0,
     ) -> None:
         self._base_url = base_url.rstrip("/")
         self._model = model
+        self._dim = dim
         self._client = client or httpx.Client(timeout=timeout)
 
     def embed(self, texts: Sequence[str]) -> list[list[float]]:
@@ -54,9 +56,9 @@ class OllamaEmbedder:
             raise EmbeddingError("Ollama devolvió un número de embeddings inesperado.")
         vectors: list[list[float]] = []
         for vector in embeddings:
-            if not isinstance(vector, list) or len(vector) != EMBEDDING_DIM:
+            if not isinstance(vector, list) or len(vector) != self._dim:
                 raise EmbeddingError(
-                    f"El modelo {self._model!r} no devolvió vectores de {EMBEDDING_DIM} dims."
+                    f"El modelo {self._model!r} no devolvió vectores de {self._dim} dims."
                 )
             vectors.append([float(value) for value in vector])
         return vectors
