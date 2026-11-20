@@ -8,6 +8,15 @@
 
 **Input**: User description: "Mejorar la experiencia de la interfaz del asistente: respuestas progresivas, formato legible, estados de carga y error, reinicio y feedback, accesibilidad móvil y rediseño visual con identidad de Carvajal."
 
+## Clarifications
+
+### Session 2026-11-20
+
+- Q: ¿Cómo mostramos la respuesta mientras se genera? → A: Token a token por SSE, con cancelación y estado de conexión.
+- Q: ¿Dónde guardamos el feedback útil/no útil? → A: JSONL local sin PII (etiqueta, pregunta y fecha).
+- Q: ¿Qué nivel de accesibilidad declaramos? → A: WCAG 2.1 AA, con comprobaciones automáticas y manuales.
+- Q: ¿Tenemos activos visuales oficiales? → A: El usuario compartirá un diseño de Google Stitch; la identidad se deriva de ese diseño. Si no llega, se usa una identidad inspirada aprobada y documentada.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Ver la respuesta mientras se construye (Priority: P1)
@@ -202,6 +211,8 @@ foco y que no hay desbordes horizontales.
 - La conversación no se persiste en servidor; el historial vive en el DOM de la sesión.
 - El feedback se guarda en un archivo local (JSONL) sin datos personales; no hay panel de
   administración en esta fase.
+- El rediseño se basará en el diseño que el usuario comparta desde Google Stitch; si no
+  hay activos, se usa una identidad inspirada con origen documentado.
 - La identidad visual usará activos oficiales si están disponibles; si no, una identidad
   inspirada aprobada por el proyecto, documentada en el repositorio.
 - El streaming puede ser token a token o por etapas; el plan técnico decide el mecanismo.

@@ -31,5 +31,6 @@
 
 ## Notes
 
-- Pendiente en `/speckit-clarify`: disponibilidad de activos de marca, mecanismo de
-  streaming, persistencia del feedback y nivel de accesibilidad objetivo.
+- Clarificado: streaming token a token por SSE; feedback en JSONL local sin PII;
+  accesibilidad WCAG 2.1 AA.
+- Pendiente: recibir el diseño de Google Stitch para fijar la identidad visual.
