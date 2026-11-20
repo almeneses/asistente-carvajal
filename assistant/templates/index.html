@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistente Carvajal</title>
+  <style>
+    :root { color-scheme: light dark; --accent: #0b6bcb; --muted: #667085; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f6f7f9; color: #1d2433;
+    }
+    main { max-width: 820px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    h1 { margin: 0 0 .25rem; font-size: 1.6rem; }
+    .subtitle { margin: 0 0 1.5rem; color: var(--muted); }
+    form {
+      display: flex; gap: .5rem; background: #fff; padding: .75rem;
+      border: 1px solid #d7dbe3; border-radius: .75rem;
+    }
+    input[name="question"] {
+      flex: 1; padding: .7rem .8rem; border: 1px solid #c9cfda; border-radius: .5rem;
+      font: inherit;
+    }
+    button {
+      padding: .7rem 1.1rem; border: 0; border-radius: .5rem; cursor: pointer;
+      background: var(--accent); color: #fff; font: inherit; font-weight: 600;
+    }
+    button:disabled { opacity: .6; cursor: wait; }
+    #loading { color: var(--muted); font-size: .9rem; align-self: center; }
+    .htmx-indicator { display: none; }
+    .htmx-request .htmx-indicator { display: inline; }
+    #conversation { margin-top: 1.25rem; display: grid; gap: 1rem; }
+    .exchange {
+      background: #fff; border: 1px solid #d7dbe3; border-radius: .75rem;
+      padding: 1rem 1.1rem;
+    }
+    .exchange[data-status="no_evidence"] { border-left: 4px solid #d97706; }
+    .exchange[data-status="error"] { border-left: 4px solid #dc2626; }
+    .question { margin: 0 0 .5rem; font-weight: 600; }
+    .answer { white-space: pre-wrap; line-height: 1.5; }
+    .sources { margin: .75rem 0 0; padding-left: 1.2rem; font-size: .92rem; }
+    .sources li { margin: .2rem 0; }
+    .source-type {
+      color: var(--muted); font-size: .8rem; text-transform: uppercase;
+      letter-spacing: .03em; margin-left: .35rem;
+    }
+    .request-id { color: var(--muted); font-size: .8rem; margin: .5rem 0 0; }
+    footer { margin-top: 2rem; color: var(--muted); font-size: .85rem; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #12151c; color: #e6e8ee; }
+      form, .exchange { background: #1a1f29; border-color: #2c3442; }
+      input[name="question"] { background: #12151c; color: inherit; border-color: #3a4354; }
+    }
+  </style>
+  <script src="/static/htmx.min.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Asistente Carvajal</h1>
+    <p class="subtitle">
+      Preguntas sobre el corpus web de Carvajal, con las fuentes citadas.
+      Proveedor: {{ provider }}.
+    </p>
+
+    <form hx-post="/ask" hx-target="#conversation" hx-swap="beforeend"
+          hx-indicator="#loading" hx-disabled-elt="button, input">
+      <input type="text" name="question" maxlength="2000" required
+             placeholder="¿Qué es Carvajal y a qué sectores se dedica?"
+             aria-label="Pregunta">
+      <button type="submit">Preguntar</button>
+      <span id="loading" class="htmx-indicator" role="status">Buscando…</span>
+    </form>
+
+    <section id="conversation" aria-live="polite"></section>
+
+    <footer>
+      Las respuestas se basan solo en el corpus curado y citan su fuente.
+      Si no hay evidencia, el asistente lo dice.
+    </footer>
+  </main>
+</body>
+</html>

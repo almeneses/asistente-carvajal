@@ -15,7 +15,14 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.13",
 ]
-dependencies = []
+dependencies = [
+    "fastapi>=0.165.0",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "python-multipart>=0.0.34",
+    "qdrant-client>=1.20.0",
+    "uvicorn>=0.54.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/almeneses/asistente-carvajal"
@@ -33,13 +40,17 @@ dev = [
 [tool.ruff]
 line-length = 100
 target-version = "py313"
-src = ["src", "tests"]
+src = ["assistant", "tests", "scripts"]
+extend-exclude = [".specify"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "RUF", "C4"]
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.ty.src]
+exclude = [".specify"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -27,8 +27,7 @@
       "id": "interfaz",
       "type": "frontend",
       "label": "Interfaz de chat",
-      "sublabel": "Framework · pendiente",
-      "tag": "decisión pendiente: framework",
+      "sublabel": "FastAPI + HTMX",
       "pos": [
         230,
         320
@@ -85,8 +84,7 @@
       "id": "indice",
       "type": "database",
       "label": "Índice vectorial",
-      "sublabel": "Qdrant / pgvector · pendiente",
-      "tag": "decisión pendiente: Qdrant / pgvector",
+      "sublabel": "Qdrant · 768 dims",
       "pos": [
         990,
         540
@@ -128,8 +126,7 @@
       "id": "llm",
       "type": "cloud",
       "label": "Proveedor LLM",
-      "sublabel": "DeepSeek / Ollama · pendiente",
-      "tag": "decisión pendiente: DeepSeek API / Ollama local",
+      "sublabel": "DeepSeek + Ollama local",
       "pos": [
         460,
         110
@@ -282,11 +279,13 @@
   "cards": [
     {
       "dot": "amber",
-      "title": "Decisiones pendientes",
+      "title": "Decisiones de stack (fase 1)",
       "items": [
-        "Framework de la interfaz de chat: sin elegir.",
-        "Índice vectorial: Qdrant o pgvector; decisión abierta.",
-        "Proveedor LLM: DeepSeek API u Ollama local; decisión abierta."
+        "Interfaz: FastAPI + HTMX (Jinja2 server-side).",
+        "Índice: Qdrant 768 dims con nomic-embed-text.",
+        "LLM: DeepSeek API con fallback a Ollama local.",
+        "Datos: corpus y catálogo por ruta configurable de solo lectura.",
+        "Orquestación RAG: se decide en el plan de fase 1."
       ]
     },
     {
@@ -304,7 +303,7 @@
       "items": [
         "La configuración (.env) alimenta al orquestador y al proveedor LLM.",
         "Cada traza registra request_id, ruta elegida y fuentes citadas.",
-        "El corpus gold llega indexado aguas arriba desde el proyecto carvajal."
+        "El corpus gold y el catálogo se leen por ruta configurable desde el proyecto carvajal."
       ]
     }
   ]

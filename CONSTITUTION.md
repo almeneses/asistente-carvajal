@@ -19,6 +19,8 @@
 | **Descripción** | Asistente conversacional con RAG sobre el corpus web y la documentación de empaques de Carvajal. |
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
+| **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
+| **Versión** | 0.4.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -77,10 +79,13 @@ de clientes.
 | **Lenguaje** | Python 3.13+ |
 | **Gestor de paquetes y entorno** | [`uv`](https://docs.astral.sh/uv/) |
 | **Modo de proyecto** | Aplicación (`main.py` como punto de entrada, sin paquete instalable) |
-| **Orquestación RAG** | Por definir (candidatos: LangGraph / cadena propia) |
-| **Índice vectorial** | Por definir (candidatos: Qdrant / pgvector) |
-| **Proveedor LLM** | Por definir (candidatos: DeepSeek API / Ollama local) |
-| **Interfaz de chat** | Por definir (candidatos: FastAPI + HTMX / Streamlit) |
+| **Desarrollo dirigido por especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` 1.4.3; integración OpenCode + extensión git) |
+| **Orquestación RAG** | Cadena propia en `assistant/rag.py` (sin framework de agentes) |
+| **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side, sin SPA) |
+| **Índice vectorial** | Qdrant (768 dims, coseno; embebido local por defecto, remoto por `QDRANT_URL`) |
+| **Embeddings** | `nomic-embed-text` vía Ollama (768 dims) |
+| **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
+| **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
 | **Testing** | [`pytest`](https://docs.pytest.org/) |
 | **Linting / Formato** | [Ruff](https://docs.astral.sh/ruff/) |
@@ -92,9 +97,10 @@ de clientes.
 > ⚠️ **Regla dura:** toda gestión de dependencias y entornos pasa por `uv`. Está
 > **prohibido** `pip` y `requirements.txt`.
 
-> 📝 **Decisiones pendientes (fase 1):** la elección de framework de UI, índice
-> vectorial y proveedor de LLM se registra en §9 cuando se tome. Mientras tanto, no se
-> añaden dependencias de runtime: la primera entrega es la arquitectura y el contrato.
+> 📝 **Decisiones de fase 1 (2026-11-19):** interfaz **FastAPI + HTMX**, índice
+> **Qdrant** con `nomic-embed-text`, LLM **DeepSeek con fallback Ollama** y orquestación
+> RAG con **cadena propia** (sin framework de agentes). El detalle está en
+> `specs/001-corte-vertical-citas/plan.md`.
 
 ## 4. Estructura del repositorio
 
@@ -102,11 +108,14 @@ de clientes.
 asistente-carvajal/
 ├── main.py                  # punto de entrada de la aplicación
 ├── tests/                   # pruebas (pytest, patrón AAA)
+├── specs/                   # especificaciones por feature (Spec Kit)
+│   └── README.md            # índice de specs
 ├── docs/                    # documentación, ADRs e investigación
 │   ├── arquitectura.json    # fuente tipada del mapa de arquitectura (Archify)
 │   └── arquitectura.html    # diagrama interactivo autocontenido
+├── .specify/                # motor de Spec Kit (templates, scripts, memoria)
+├── .opencode/               # comandos /speckit.* y reglas para agentes (tgrep)
 ├── .github/                 # gobernanza (PR/issue templates, CI, Dependabot, labels)
-├── .opencode/rules/         # reglas para agentes (tgrep)
 ├── AGENTS.md                # contexto para agentes LLM
 ├── CONSTITUTION.md          # este archivo — verdad central
 ├── README.md                # puerta de entrada pública
@@ -143,6 +152,17 @@ asistente-carvajal/
     (título, URL, tipo de fuente, fecha) e índice JSONL; cualquier cambio incompatible
     se documenta en esta constitución.
 
+### Spec-Driven Development (Spec Kit)
+
+- Toda capacidad nueva entra por `/speckit.specify` → `clarify` → `plan` → `tasks` →
+  `analyze` → `implement`; los artefactos se versionan en `specs/NNN-slug/`.
+- El `plan.md` incluye un *Constitution Check* contra `.specify/memory/constitution.md`.
+- `.specify/memory/constitution.md` es una **proyección** de este documento (la raíz
+  manda) y se sincroniza en el mismo commit que cualquier enmienda.
+- Las specs no contradicen esta constitución; ante conflicto se corrige la spec o se
+  enmienda la constitución, nunca ambas a medias.
+- Toda spec nueva se numera de forma secuencial y se registra en `specs/README.md`.
+
 ## 6. Calidad y automatización
 
 | Herramienta | Rol | Comando |
@@ -167,6 +187,8 @@ asistente-carvajal/
 - **Protección de `main`:** Pull Request obligatorio, check **`Calidad`** (CI) en verde y
   conversaciones resueltas; sin *force-push* ni borrado de la rama.
 - **Estrategia de ramas:** `feat/...`, `fix/...`, `docs/...`, `refactor/...`, `test/...`, `chore/...`; integración vía Pull Request.
+  Las features de Spec Kit usan `feat/NNN-slug` (la extensión git la crea con
+  `branch_prefix: feat` y numeración secuencial).
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org/) —
   `feat:`, `fix:`, `docs:`, `refactor:`, `style:`, `test:`, `chore:`.
 - **Identidad git:** se resuelve con la configuración global (`user.name` /
@@ -200,14 +222,26 @@ git push
 | 2026-11-19 | Arrancar como aplicación (`--app`, `main.py`) y no como paquete instalable | Es un servicio/producto, no una librería; simplifica el entrypoint |
 | 2026-11-19 | Documentar la arquitectura objetivo con Archify y versionar el JSON fuente | Mapa de runtime legible antes de escribir código |
 | 2026-11-19 | Diferir framework de UI, índice vectorial y proveedor de LLM | Evitar dependencias prematuras; se deciden en la fase 1 con evidencia |
+| 2026-11-19 | Interfaz de chat con FastAPI + HTMX (Jinja2 server-side) | Coherencia con `carvajal`; UI sin SPA, fácil de probar |
+| 2026-11-19 | Índice vectorial Qdrant con `nomic-embed-text` (768 dims, coseno) | Mismo stack del corpus; filtros por `source_type` y margen de crecimiento |
+| 2026-11-19 | LLM DeepSeek API con fallback a Ollama local | Calidad con red/clave; operación offline y sin coste con modelos locales |
+| 2026-11-19 | Consumo de corpus y catálogo por ruta configurable de solo lectura | No duplicar ni envejecer los datos; fixtures sintéticos en pruebas |
+| 2026-11-19 | Orquestación RAG con cadena propia (`assistant/rag.py`), sin LangGraph | Flujo lineal de 4 pasos; menos dependencias y depuración directa. LangGraph se reevalúa en fase 3 o si aparecen ramas y reintentos |
+| 2026-11-19 | Qdrant en modo embebido local (`.qdrant/`) por defecto; `QDRANT_URL` opcional | Desarrollo y CI sin servicio externo; el mismo cliente cubre el despliegue remoto |
+| 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
+| 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
 | 2026-11-19 | Publicar el repositorio como público | GitHub Free no permite proteger `main` en repos privados; la protección se habilita al hacerlo público |
+| 2026-11-19 | Adoptar Spec Kit (specs versionadas por feature) | Trazabilidad requisito → plan → tareas y *Constitution Check* en cada plan |
+| 2026-11-19 | Integración OpenCode + extensión git con `branch_prefix: feat` | Mantener la convención `feat/NNN-slug` y el flujo PR sin fricción |
 
 ## 10. Notas y tareas pendientes
 
 - [x] Completar las secciones marcadas de este documento.
 - [x] Configurar el remoto y proteger `main`.
-- [ ] Decidir framework de UI, índice vectorial y proveedor de LLM (fase 1).
+- [x] Redactar la spec de fase 1 con `/speckit.specify` (spec, plan, tareas, análisis e implementación en `specs/001-corte-vertical-citas/`).
+- [x] Decidir framework de UI, índice vectorial, embeddings y proveedor de LLM (fase 1).
+- [x] Decidir la orquestación RAG: cadena propia (ver `specs/001-corte-vertical-citas/plan.md`).
 - [ ] Definir el contrato de consumo del corpus (rutas, *front matter*, índice JSONL).
 - [ ] Implementar el módulo de recuperación y sus pruebas (fase 2).
 - [ ] Implementar la consulta sobre el catálogo de empaques (fase 3).
@@ -256,3 +290,5 @@ repare, se puede volver a SSH con:
 ```bash
 git remote set-url origin git@github.com:almeneses/asistente-carvajal.git
 ```
+
+Herramientas locales: `specify 1.4.3.dev0` (GitHub Spec Kit) y Node.js 24 para Archify.
