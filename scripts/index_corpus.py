@@ -39,7 +39,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         settings = Settings.from_env()
         documents = load_corpus(settings.corpus_gold_dir)
         fragments = chunk_corpus(documents)
-        embedder = OllamaEmbedder(settings.ollama_base_url, settings.embedding_model)
+        embedder = OllamaEmbedder(
+            settings.ollama_base_url, settings.embedding_model, dim=settings.embedding_dim
+        )
         index = QdrantIndex.open(settings)
         try:
             index.ensure_collection(recreate=args.recreate)

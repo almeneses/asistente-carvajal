@@ -130,9 +130,18 @@ def _lexical_overlap(question_stems: set[str], text: str, title: str) -> float:
 class CorpusRetriever:
     """Recuperador híbrido sobre el índice Qdrant del corpus."""
 
-    def __init__(self, embedder: Embedder, index: SearchIndex) -> None:
+    def __init__(
+        self,
+        embedder: Embedder,
+        index: SearchIndex,
+        *,
+        cosine_weight: float = EMBEDDING_WEIGHT,
+        lexical_weight: float = LEXICAL_WEIGHT,
+    ) -> None:
         self._embedder = embedder
         self._index = index
+        self._cosine_weight = cosine_weight
+        self._lexical_weight = lexical_weight
 
     def search(self, question: str, limit: int) -> list[RetrievedFragment]:
         vectors = self._embedder.embed([question])
@@ -165,7 +174,7 @@ class CorpusRetriever:
             except (KeyError, TypeError, ValueError) as error:
                 raise RetrievalError("El índice devolvió un fragmento sin metadatos.") from error
             lexical = _lexical_overlap(question_stems, fragment.text, fragment.title)
-            combined = EMBEDDING_WEIGHT * fragment.score + LEXICAL_WEIGHT * lexical
+            combined = self._cosine_weight * fragment.score + self._lexical_weight * lexical
             fragments.append(
                 RetrievedFragment(
                     score=combined,

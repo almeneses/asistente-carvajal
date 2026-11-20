@@ -72,6 +72,8 @@ validaciones. Es la fuente para `contracts/`, `tasks.md` y las pruebas.
 | `provider` | str \| null | `deepseek`/`ollama` solo en `e2e` |
 | `variants` | list[VariantReport] | ≥1 |
 | `winner` | str \| null | id ganadora por `recall@5` (desempate MRR) |
+| `omitted` | list[dict[id, reason]] | variantes no ejecutables (modelo o índice no disponible) |
+| `migration_recommendation` | str \| null | “migrar a bge-m3 (X pp)” o “mantener nomic (X pp)” |
 
 - **Comparabilidad**: dos reportes solo se comparan si `corpus_fingerprint` y
   `index_jsonl_sha256` coinciden; si no, el reporte lo declara en `not_comparable_with`.
@@ -109,7 +111,9 @@ validaciones. Es la fuente para `contracts/`, `tasks.md` y las pruebas.
 | `rank_first_expected` | int \| null | 1-based; null si no aparece |
 | `status` | enum | `answered` \| `no_evidence` \| `error` (solo `e2e`) |
 | `sources` | list[str] | URLs citadas (`e2e`) |
+| `source_slugs` | list[str] | slugs citados (`e2e`), para cobertura |
 | `citations_valid` | bool | todas las citas coinciden con el corpus |
+| `citations_invalid` | int | número de citas que no coinciden |
 | `latency_ms` | int | por pregunta |
 | `error` | str \| null | causa si `status="error"` |
 

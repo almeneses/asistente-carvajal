@@ -48,6 +48,21 @@ index: ## Construye el índice Qdrant desde el corpus
 acceptance: ## Ejecuta el set de preguntas de aceptación
 	uv run python scripts/run_acceptance.py
 
+gt-propose: ## Propone el ground truth de evaluación para revisión humana
+	uv run python scripts/propose_ground_truth.py \
+		--output specs/002-evaluacion-recuperacion/evaluation/questions.candidate.json \
+		--review specs/002-evaluacion-recuperacion/evaluation/review.md
+
+eval: ## Matriz de recuperación (8 variantes, sin LLM)
+	uv run python scripts/run_evaluation.py --mode retrieval --variants all \
+		--json-out specs/002-evaluacion-recuperacion/reports/baseline.json \
+		--markdown-out specs/002-evaluacion-recuperacion/reports/baseline.md
+
+eval-e2e: ## Evaluación end-to-end de una variante (VARIANTS=<id>)
+	uv run python scripts/run_evaluation.py --mode e2e --variants $(or $(VARIANTS),nomic-1000-hybrid) \
+		--json-out specs/002-evaluacion-recuperacion/reports/ganadora.json \
+		--markdown-out specs/002-evaluacion-recuperacion/reports/ganadora.md
+
 check: lint format-check typecheck test ## Verificación completa (lint + formato + tipos + pruebas)
 
 clean: ## Limpia cachés y artefactos

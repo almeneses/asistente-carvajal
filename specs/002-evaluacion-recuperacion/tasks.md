@@ -28,10 +28,10 @@ en `specs/002-evaluacion-recuperacion/`.
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-- [ ] T001 Añadir `EMBEDDING_DIM` y `EVAL_QDRANT_PATH` a `.env.example`; ignorar `.qdrant-eval/` y `specs/002-evaluacion-recuperacion/reports/*.tmp.json` en `.gitignore` (`data-model.md` `Configuración de la app afectada.EMBEDDING_DIM`, `.EVAL_QDRANT_PATH`)
-- [ ] T002 [P] Crear `assistant/evaluation/__init__.py`, `specs/002-evaluacion-recuperacion/evaluation/` y `specs/002-evaluacion-recuperacion/reports/`
-- [ ] T003 Añadir `embedding_dim` a `assistant/config.py` (defecto 768, rango 1..4096) y usarlo en `assistant/embeddings.py` y `assistant/index.py` (`data-model.md` `VariantConfig.embedding_dim`)
-- [ ] T004 [P] Añadir objetivos `gt-propose`, `eval` y `eval-e2e` en `Makefile`
+- [X] T001 Añadir `EMBEDDING_DIM` y `EVAL_QDRANT_PATH` a `.env.example`; ignorar `.qdrant-eval/` y `specs/002-evaluacion-recuperacion/reports/*.tmp.json` en `.gitignore` (`data-model.md` `Configuración de la app afectada.EMBEDDING_DIM`, `.EVAL_QDRANT_PATH`)
+- [X] T002 [P] Crear `assistant/evaluation/__init__.py`, `specs/002-evaluacion-recuperacion/evaluation/` y `specs/002-evaluacion-recuperacion/reports/`
+- [X] T003 Añadir `embedding_dim` a `assistant/config.py` (defecto 768, rango 1..4096) y usarlo en `assistant/embeddings.py` y `assistant/index.py` (`data-model.md` `VariantConfig.embedding_dim`)
+- [X] T004 [P] Añadir objetivos `gt-propose`, `eval` y `eval-e2e` en `Makefile`
 
 ---
 
@@ -39,14 +39,14 @@ en `specs/002-evaluacion-recuperacion/`.
 
 **⚠️ CRITICAL**: sin esta fase no se ejecuta ninguna historia
 
-- [ ] T005 Implementar el fingerprint en `assistant/evaluation/fingerprint.py` (`data-model.md` `Fingerprint.corpus_fingerprint`, `.index_jsonl_sha256`)
-- [ ] T006 [P] Implementar métricas puras en `assistant/evaluation/metrics.py` (`data-model.md` `Metrics.recall_at_1/3/5/10`, `.mrr`, `.citation_precision`, `.expected_citation_coverage`, `.abstention_accuracy`, `.false_abstention_rate`, `.latency_p50_ms`, `.latency_p95_ms`, `.questions_evaluated`)
-- [ ] T007 [P] Implementar la matriz de variantes en `assistant/evaluation/variants.py` (`data-model.md` `VariantConfig.id`, `.embedding_model`, `.chunk_size`, `.overlap`, `.cosine_weight`, `.lexical_weight`, `.collection`, `.min_score`)
-- [ ] T008 Implementar carga y validación del set en `assistant/evaluation/dataset.py` (`data-model.md` `EvaluationSet.version`, `.corpus_fingerprint`, `.reviewed_by`, `.reviewed_at`, `.questions`; `EvaluationQuestion.id`, `.question`, `.expected_slugs`, `.expected_status`, `.key_facts`, `.notes`)
-- [ ] T009 Implementar serialización de reportes en `assistant/evaluation/reports.py` (`data-model.md` `RunReport.schema_version`, `.generated_at`, `.mode`, `.corpus_fingerprint`, `.index_jsonl_sha256`, `.indexed_fragments`, `.provider`, `.variants`, `.winner`; `VariantReport.config`, `.metrics`, `.rows`)
-- [ ] T010 Implementar el runner de recuperación en `assistant/evaluation/runner.py` (construye colecciones por variante en `EVAL_QDRANT_PATH`, busca y arma filas; FR-009, no toca el índice de la app)
-- [ ] T011 Crear fixtures de evaluación en `tests/eval_fixtures.py` (set sintético de 3 preguntas, corpus de 2 documentos y dobles de embedder/LLM)
-- [ ] T012 [P] Pruebas de fingerprint, dataset y métricas en `tests/test_eval_fingerprint.py`, `tests/test_eval_dataset.py` y `tests/test_eval_metrics.py`
+- [X] T005 Implementar el fingerprint en `assistant/evaluation/fingerprint.py` (`data-model.md` `Fingerprint.corpus_fingerprint`, `.index_jsonl_sha256`)
+- [X] T006 [P] Implementar métricas puras en `assistant/evaluation/metrics.py` (`data-model.md` `Metrics.recall_at_1/3/5/10`, `.mrr`, `.citation_precision`, `.expected_citation_coverage`, `.abstention_accuracy`, `.false_abstention_rate`, `.latency_p50_ms`, `.latency_p95_ms`, `.questions_evaluated`)
+- [X] T007 [P] Implementar la matriz de variantes en `assistant/evaluation/variants.py` (`data-model.md` `VariantConfig.id`, `.embedding_model`, `.chunk_size`, `.overlap`, `.cosine_weight`, `.lexical_weight`, `.collection`, `.min_score`)
+- [X] T008 Implementar carga y validación del set en `assistant/evaluation/dataset.py` (`data-model.md` `EvaluationSet.version`, `.corpus_fingerprint`, `.reviewed_by`, `.reviewed_at`, `.questions`; `EvaluationQuestion.id`, `.question`, `.expected_slugs`, `.expected_status`, `.key_facts`, `.notes`)
+- [X] T009 Implementar serialización de reportes en `assistant/evaluation/reports.py` (`data-model.md` `RunReport.schema_version`, `.generated_at`, `.mode`, `.corpus_fingerprint`, `.index_jsonl_sha256`, `.indexed_fragments`, `.provider`, `.variants`, `.winner`; `VariantReport.config`, `.metrics`, `.rows`)
+- [X] T010 Implementar el runner de recuperación en `assistant/evaluation/runner.py` (construye colecciones por variante en `EVAL_QDRANT_PATH`, busca y arma filas; FR-009, no toca el índice de la app)
+- [X] T011 Crear fixtures de evaluación en `tests/eval_fixtures.py` (set sintético de 3 preguntas, corpus de 2 documentos y dobles de embedder/LLM)
+- [X] T012 [P] Pruebas de fingerprint, dataset y métricas en `tests/test_eval_fingerprint.py`, `tests/test_eval_dataset.py` y `tests/test_eval_metrics.py`
 
 **Checkpoint**: métricas y validaciones probadas; runner listo para historias
 
@@ -60,16 +60,16 @@ en `specs/002-evaluacion-recuperacion/`.
 
 ### Tests for User Story 1
 
-- [ ] T013 [P] [US1] Prueba de validación del set en `tests/test_eval_dataset.py` (campo faltante, id duplicado, slug inexistente, estado inválido)
-- [ ] T014 [P] [US1] Prueba de filas de recuperación en `tests/test_eval_runner.py` (`data-model.md` `QuestionRow.id`, `.retrieved_slugs`, `.rank_first_expected`, `.latency_ms`)
+- [X] T013 [P] [US1] Prueba de validación del set en `tests/test_eval_dataset.py` (campo faltante, id duplicado, slug inexistente, estado inválido)
+- [X] T014 [P] [US1] Prueba de filas de recuperación en `tests/test_eval_runner.py` (`data-model.md` `QuestionRow.id`, `.retrieved_slugs`, `.rank_first_expected`, `.latency_ms`)
 
 ### Implementation for User Story 1
 
-- [ ] T015 [US1] Implementar `--validate-only` y los errores accionables del set en `scripts/run_evaluation.py`
-- [ ] T016 [US1] Implementar `QuestionRow` y agregados de recuperación en `assistant/evaluation/runner.py` (FR-002, FR-003)
-- [ ] T017 [US1] Implementar el reporte Markdown en `assistant/evaluation/reports.py` y conectarlo al CLI (FR-006)
-- [ ] T018 [US1] Implementar `scripts/propose_ground_truth.py` (propuesta LLM + `evaluation/review.md`, `--limit`) según `contracts/evaluation-cli.md`
-- [ ] T019 [P] [US1] Prueba de la propuesta de ground truth en `tests/test_eval_propose.py` (esquema de salida y prompt con LLM falso)
+- [X] T015 [US1] Implementar `--validate-only` y los errores accionables del set en `scripts/run_evaluation.py`
+- [X] T016 [US1] Implementar `QuestionRow` y agregados de recuperación en `assistant/evaluation/runner.py` (FR-002, FR-003)
+- [X] T017 [US1] Implementar el reporte Markdown en `assistant/evaluation/reports.py` y conectarlo al CLI (FR-006)
+- [X] T018 [US1] Implementar `scripts/propose_ground_truth.py` (propuesta LLM + `evaluation/review.md`, `--limit`) según `contracts/evaluation-cli.md`
+- [X] T019 [P] [US1] Prueba de la propuesta de ground truth en `tests/test_eval_propose.py` (esquema de salida y prompt con LLM falso)
 
 **Checkpoint**: set validable y reporte legible por pregunta
 
@@ -83,15 +83,15 @@ en `specs/002-evaluacion-recuperacion/`.
 
 ### Tests for User Story 2
 
-- [ ] T020 [P] [US2] Prueba de la matriz en `tests/test_eval_variants.py` (8 ids únicos, dims coherentes, colecciones únicas)
-- [ ] T021 [P] [US2] Prueba de comparación y desempate en `tests/test_eval_metrics.py` (`data-model.md` `RunReport.winner`)
+- [X] T020 [P] [US2] Prueba de la matriz en `tests/test_eval_variants.py` (8 ids únicos, dims coherentes, colecciones únicas)
+- [X] T021 [P] [US2] Prueba de comparación y desempate en `tests/test_eval_metrics.py` (`data-model.md` `RunReport.winner`)
 
 ### Implementation for User Story 2
 
-- [ ] T022 [US2] Implementar indexación por variante con colecciones compartidas por (modelo, fragmentación) y `--recreate` en `assistant/evaluation/runner.py`
-- [ ] T023 [US2] Implementar comparación, ganadora por `recall_at_5` y desempate por MRR en `assistant/evaluation/runner.py` (SC-005)
-- [ ] T024 [US2] Conectar `--variants`, `--mode retrieval` y `--limit` en `scripts/run_evaluation.py` (FR-013, separación retrieval/e2e)
-- [ ] T025 [US2] Implementar progreso por variante, variantes omitidas con causa y exit codes de `contracts/evaluation-cli.md`
+- [X] T022 [US2] Implementar indexación por variante con colecciones compartidas por (modelo, fragmentación) y `--recreate` en `assistant/evaluation/runner.py`
+- [X] T023 [US2] Implementar comparación, ganadora por `recall_at_5` y desempate por MRR en `assistant/evaluation/runner.py` (SC-005)
+- [X] T024 [US2] Conectar `--variants`, `--mode retrieval` y `--limit` en `scripts/run_evaluation.py` (FR-013, separación retrieval/e2e)
+- [X] T025 [US2] Implementar progreso por variante, variantes omitidas con causa y exit codes de `contracts/evaluation-cli.md`
 
 **Checkpoint**: matriz completa ejecutable y comparable
 
@@ -105,15 +105,15 @@ en `specs/002-evaluacion-recuperacion/`.
 
 ### Tests for User Story 3
 
-- [ ] T026 [P] [US3] Prueba del modo e2e en `tests/test_eval_runner.py` (`data-model.md` `QuestionRow.status`, `.sources`, `.citations_valid`, `.error`; `Metrics.citation_precision`, `.expected_citation_coverage`, `.abstention_accuracy`, `.false_abstention_rate`)
-- [ ] T027 [P] [US3] Prueba de umbrales y exit codes en `tests/test_eval_runner.py` (recall@5, citas, abstención)
+- [X] T026 [P] [US3] Prueba del modo e2e en `tests/test_eval_runner.py` (`data-model.md` `QuestionRow.status`, `.sources`, `.citations_valid`, `.error`; `Metrics.citation_precision`, `.expected_citation_coverage`, `.abstention_accuracy`, `.false_abstention_rate`)
+- [X] T027 [P] [US3] Prueba de umbrales y exit codes en `tests/test_eval_runner.py` (recall@5, citas, abstención)
 
 ### Implementation for User Story 3
 
-- [ ] T028 [US3] Implementar `--mode e2e` sobre `RagService` y las métricas de respuesta en `assistant/evaluation/runner.py` (FR-004; `data-model.md` `QuestionRow.error`, `Metrics.questions_evaluated`)
-- [ ] T029 [US3] Implementar la evaluación de umbrales y exit code 0/1 en `scripts/run_evaluation.py` (FR-007)
-- [ ] T030 [US3] Crear el ADR `docs/adr/0001-embeddings-fase-2.md` con el protocolo de decisión de `research.md` R9 y el umbral de 5 pp (FR-010)
-- [ ] T031 [US3] Implementar la verificación de migración condicionada en `assistant/evaluation/runner.py` (detecta si `bge-m3` supera el umbral y lo declara en el reporte)
+- [X] T028 [US3] Implementar `--mode e2e` sobre `RagService` y las métricas de respuesta en `assistant/evaluation/runner.py` (FR-004; `data-model.md` `QuestionRow.error`, `Metrics.questions_evaluated`)
+- [X] T029 [US3] Implementar la evaluación de umbrales y exit code 0/1 en `scripts/run_evaluation.py` (FR-007)
+- [X] T030 [US3] Crear el ADR `docs/adr/0001-embeddings-fase-2.md` con el protocolo de decisión de `research.md` R9 y el umbral de 5 pp (FR-010)
+- [X] T031 [US3] Implementar la verificación de migración condicionada en `assistant/evaluation/runner.py` (detecta si `bge-m3` supera el umbral y lo declara en el reporte)
 
 **Checkpoint**: decisión soportada por evidencia y registrada
 
@@ -127,12 +127,12 @@ en `specs/002-evaluacion-recuperacion/`.
 
 ### Tests for User Story 4
 
-- [ ] T032 [P] [US4] Prueba de fingerprint desactualizado y `--allow-stale-set` en `tests/test_eval_fingerprint.py`
-- [ ] T033 [P] [US4] Prueba de determinismo (orden estable de filas/variantes y JSON reproducible) en `tests/test_eval_runner.py`
+- [X] T032 [P] [US4] Prueba de fingerprint desactualizado y `--allow-stale-set` en `tests/test_eval_fingerprint.py`
+- [X] T033 [P] [US4] Prueba de determinismo (orden estable de filas/variantes y JSON reproducible) en `tests/test_eval_runner.py`
 
 ### Implementation for User Story 4
 
-- [ ] T034 [US4] Ordenar filas y variantes de forma determinista y excluir latencias de la comparación en `assistant/evaluation/reports.py` (SC-006)
+- [X] T034 [US4] Ordenar filas y variantes de forma determinista y excluir latencias de la comparación en `assistant/evaluation/reports.py` (SC-006)
 - [ ] T035 [US4] Versionar el set congelado en `specs/002-evaluacion-recuperacion/evaluation/questions.json` y `review.md` tras la revisión humana (FR-012)
 - [ ] T036 [US4] Versionar `reports/baseline.json/md` y `reports/ganadora.json/md` con fecha y fingerprint (FR-006)
 

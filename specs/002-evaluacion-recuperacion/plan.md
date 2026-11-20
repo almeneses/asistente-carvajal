@@ -95,6 +95,7 @@ assistant/evaluation/
 ├── fingerprint.py           # Fingerprint del corpus y comparabilidad
 ├── metrics.py               # recall@k, MRR, precisión, abstención, percentiles
 ├── variants.py              # Matriz de variantes y nombres de colección
+├── ground_truth.py          # Propuesta asistida del ground truth
 ├── runner.py                # Indexa variantes, ejecuta retrieval/e2e y agrega
 └── reports.py               # Serializa JSON y Markdown
 scripts/

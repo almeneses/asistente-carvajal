@@ -56,8 +56,13 @@ uv run python scripts/run_evaluation.py \
 | `--json-out` / `--markdown-out` | — | rutas de salida |
 
 - **Progreso**: logs por variante a `stderr`; rutas de reporte y ganadora a `stdout`.
-- **Exit codes**: `0` umbrales cumplidos; `1` umbrales incumplidos (o fingerprint
-  inválido); `2` error de configuración, corpus, modelo o índice.
+- **Exit codes**: `0` reporte generado (retrieval) o umbrales cumplidos (e2e); `1`
+  umbrales incumplidos o fingerprint inválido; `2` error de configuración, corpus, modelo
+  o índice.
+- **Variantes omitidas**: si un modelo o índice no está disponible, la variante se
+  registra en `omitted` con su causa y la corrida continúa.
+- **Recomendación**: el reporte de retrieval incluye `migration_recommendation` con el
+  delta de `recall@5` entre `bge-m3` y `nomic-embed-text` y el umbral de 5 pp.
 - **Umbrales** (solo `e2e` para las métricas de respuesta):
   - `recall_at_5 ≥ 0.95` en sustentables;
   - `citation_precision == 1.0` y `0` citas inválidas;
@@ -87,5 +92,5 @@ uv run python scripts/run_evaluation.py \
 
 - **Markdown**: tabla `variante | recall@1 | recall@5 | MRR | p50 | p95` y, en `e2e`,
   columnas de citas y abstención; una sección final con la ganadora y los umbrales.
-- **No comparable**: si el fingerprint difiere de un reporte previo pasado con
-  `--compare-with`, se declara `"comparable": false`; por defecto no se compara.
+- **No comparable**: si el fingerprint difiere de `corpus_fingerprint`, el reporte se
+  marca con `not_comparable_with` y la corrida falla salvo `--allow-stale-set`.

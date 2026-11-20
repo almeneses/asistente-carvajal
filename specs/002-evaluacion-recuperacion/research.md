@@ -46,8 +46,9 @@ Resuelve las decisiones técnicas del plan; no quedan `NEEDS CLARIFICATION`.
 ## R4. Definición de métricas
 
 - **recall@k** (documento): para cada pregunta sustentable, `|esperados ∩ recuperados| /
-  |esperados|`, donde recuperados son los slugs únicos de los `k` fragmentos; promedio
-  macro sobre preguntas sustentables. `k` ∈ {1, 3, 5, 10}.
+  |esperados|`, donde recuperados son los slugs únicos en orden de primera aparición;
+  promedio macro sobre preguntas sustentables. `k` ∈ {1, 3, 5, 10}. En `e2e` se repite la
+  pasada de recuperación para poder calcular `recall` junto a las métricas de respuesta.
 - **MRR**: inverso del rango (1-based) del primer fragmento cuyo slug está entre los
   esperados; promedio macro.
 - **precisión de citas** (end-to-end): proporción de citas producidas que coinciden en

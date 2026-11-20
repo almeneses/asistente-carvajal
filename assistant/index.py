@@ -48,7 +48,7 @@ class QdrantIndex:
                 client = QdrantClient(path=str(settings.qdrant_path))
         except Exception as error:  # pragma: no cover - depende del entorno
             raise IndexError(f"No se pudo abrir Qdrant: {error}") from error
-        return cls(client, settings.qdrant_collection)
+        return cls(client, settings.qdrant_collection, settings.embedding_dim)
 
     def ensure_collection(self, *, recreate: bool = False) -> None:
         """Crea la colección (o la recrea) y verifica la dimensión."""

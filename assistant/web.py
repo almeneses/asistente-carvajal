@@ -48,7 +48,9 @@ def build_context(settings: Settings) -> AppContext:
     index = QdrantIndex.open(settings)
     if not index.is_ready():
         raise RuntimeError(INDEX_HINT)
-    embedder = OllamaEmbedder(settings.ollama_base_url, settings.embedding_model)
+    embedder = OllamaEmbedder(
+        settings.ollama_base_url, settings.embedding_model, dim=settings.embedding_dim
+    )
     embedder.check()
     retriever = CorpusRetriever(embedder, index)
     llm = build_llm(settings)
