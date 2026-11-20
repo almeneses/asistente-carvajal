@@ -7,6 +7,9 @@
 
 Asistente conversacional con RAG sobre el corpus web y la documentación de empaques de Carvajal.
 
+> Metodología: **Spec-Driven Development** con GitHub Spec Kit. Las capacidades nuevas se
+> especifican en `specs/NNN-slug/` antes de implementarse.
+
 > 📘 La verdad técnica central —propósito, stack, estructura, convenciones, decisiones y
 > flujo de trabajo— vive en [`CONSTITUTION.md`](./CONSTITUTION.md). **Léela antes de
 > operar.** Ante cualquier cambio arquitectónico, tecnológico o de proceso, actualízala
@@ -60,6 +63,22 @@ uv run python main.py   # ejecuta la aplicación
 
 ---
 
+## Spec-Driven Development (Spec Kit)
+
+Flujo para una capacidad nueva:
+
+```text
+/speckit.specify → /speckit.clarify → /speckit.plan → /speckit.tasks → /speckit.analyze → /speckit.implement
+```
+
+- Artefactos: `specs/NNN-slug/{spec,plan,tasks}.md`; índice en `specs/README.md`.
+- Rama: `feat/NNN-slug` (la crea la extensión git; numeración secuencial).
+- `plan.md` incluye un *Constitution Check* contra `.specify/memory/constitution.md`.
+- `.specify/memory/constitution.md` es una **proyección**: la fuente única es
+  `CONSTITUTION.md`. Actualiza ambas en el mismo commit.
+
+---
+
 ## Búsqueda de código: `tgrep`
 
 Si [`tgrep`](https://github.com/microsoft/tgrep) está instalado, úsalo para búsquedas de
@@ -82,7 +101,11 @@ En OpenCode la preferencia se aplica automáticamente mediante la regla
 ## Estructura y convenciones
 
 - `main.py` — punto de entrada de la aplicación.
+- `assistant/` — configuración, corpus, índice Qdrant, recuperación, LLM y web.
+- `scripts/` — indexación del corpus (`index_corpus.py`) y aceptación (`run_acceptance.py`).
 - `tests/` — pruebas con `pytest` (patrón AAA).
+- `specs/` — especificaciones por feature (Spec Kit), indexadas en `specs/README.md`.
+- `.specify/` — motor de Spec Kit (templates, scripts, memoria, extensiones).
 - `docs/` — documentación, ADRs y notas de investigación.
 - `CONSTITUTION.md` — fuente única de verdad.
 - Estilo impuesto por **Ruff** (`line-length = 100`, comillas dobles).

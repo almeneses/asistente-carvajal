@@ -39,6 +39,7 @@ entrada de solo lectura.
 - [Stack tecnológico](#-stack-tecnológico)
 - [Primeros pasos](#-primeros-pasos)
 - [Calidad y automatización](#-calidad-y-automatización)
+- [Desarrollo dirigido por especificaciones](#-desarrollo-dirigido-por-especificaciones-spec-kit)
 - [Arquitectura del proyecto](#-arquitectura-del-proyecto)
 - [Estructura del repositorio](#-estructura-del-repositorio)
 - [Flujo de trabajo y contribución](#-flujo-de-trabajo-y-contribución)
@@ -51,13 +52,16 @@ entrada de solo lectura.
 | Estructura del repositorio y entorno (`uv`) | ✅ |
 | Constitución técnica y gobernanza | ✅ |
 | Diagrama de arquitectura objetivo | ✅ |
-| Módulo de recuperación (corpus web) | ⏳ |
+| Spec-Driven Development (Spec Kit) | ✅ |
+| Decisiones de stack de la fase 1 | ✅ |
+| Módulo de recuperación (corpus web) | ✅ |
+| Interfaz de chat con citación | ✅ |
+| Set de evaluación de respuestas | ✅ |
 | Consulta sobre catálogo de empaques | ⏳ |
-| Interfaz de chat con citación | ⏳ |
-| Set de evaluación de respuestas | ⏳ |
 
-> ⚠️ Fase actual: **diseño de la arquitectura**. El entrypoint `main.py` es un esqueleto
-> funcional; el pipeline RAG todavía no está conectado. Roadmap en
+> ⚠️ Fase actual: **corte vertical (fase 1)**. El asistente responde preguntas sobre el
+> corpus con citas verificables y se abstiene sin evidencia; el catálogo de empaques llega
+> en la fase 3. Roadmap en
 > [`CONSTITUTION.md` §10](./CONSTITUTION.md#10-notas-y-tareas-pendientes).
 
 ## 🛠️ Stack tecnológico
@@ -67,10 +71,13 @@ entrada de solo lectura.
 | **Lenguaje** | Python 3.13+ |
 | **Gestor de paquetes** | [`uv`](https://docs.astral.sh/uv/) |
 | **Modo de proyecto** | Aplicación (`main.py` como entrypoint) |
-| **Orquestación RAG** | Por definir (fase 1) |
-| **Índice vectorial** | Por definir (fase 1) |
-| **Proveedor LLM** | Por definir (fase 1) |
-| **Interfaz de chat** | Por definir (fase 1) |
+| **Especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` + integraciones OpenCode y DSH) |
+| **Orquestación RAG** | Cadena propia (`assistant/rag.py`), sin framework de agentes |
+| **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side) |
+| **Índice vectorial** | Qdrant (768 dims, coseno) |
+| **Embeddings** | `nomic-embed-text` vía Ollama |
+| **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
+| **Fuente de datos** | Corpus y catálogo por ruta configurable, solo lectura |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
 | **Testing** | [`pytest`](https://docs.pytest.org/) |
 | **Linting / Formato** | [Ruff](https://docs.astral.sh/ruff/) |
@@ -84,6 +91,8 @@ entrada de solo lectura.
 - [Python 3.13+](https://www.python.org/downloads/)
 - [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 - [Git](https://git-scm.com/)
+- [Ollama](https://ollama.com/) con `nomic-embed-text` y un modelo de chat local
+- Corpus gold de Carvajal en una ruta local (solo lectura)
 
 ### Instalación
 
@@ -93,12 +102,17 @@ cd asistente-carvajal
 
 uv sync
 uv run pre-commit install   # equivalente a: make dev
+
+cp .env.example .env         # completar CORPUS_GOLD_DIR (y la clave si se usa DeepSeek)
 ```
 
-### Ejecución
+### Indexación y ejecución
 
 ```bash
-uv run python main.py
+make index                     # construye el índice Qdrant desde el corpus
+make run                       # arranca el chat en http://127.0.0.1:8010
+make run PORT=8020             # o en otro puerto libre
+make acceptance                # ejecuta el set de preguntas de aceptación
 ```
 
 ### Verificación
@@ -106,6 +120,17 @@ uv run python main.py
 ```bash
 make check   # lint + formato + tipos + pruebas
 ```
+
+### Convivencia con otros proyectos
+
+- El chat usa el puerto **8010** por defecto (`make run PORT=...` para cambiarlo);
+  no compite con los puertos de `carvajal` (Qdrant 6333/6334, Postgres 5433).
+- El índice vive en `.qdrant/` (modo embebido, sin puerto). Solo un proceso puede
+  abrirlo a la vez: detén `make run` antes de `make acceptance` y `make index`.
+  Alternativa sin bloquear: apuntar `QDRANT_URL=http://127.0.0.1:6333` y usar una
+  colección propia (`QDRANT_COLLECTION=asistente_carvajal`) en el Qdrant de `carvajal`.
+- Ollama (11434) se comparte: un solo `ollama serve` sirve a ambos proyectos porque
+  los dos usan `nomic-embed-text`. No hace falta levantar otro.
 
 > ⚠️ **Regla del proyecto:** toda gestión de dependencias y entornos pasa por `uv`.
 > Está **prohibido** `pip` y `requirements.txt`.
@@ -127,6 +152,33 @@ make check   # lint + formato + tipos + pruebas
 | `make check` | Verificación completa (lint + formato + tipos + pruebas). |
 | `make lint` / `make format` | Ruff. |
 | `make test` | `pytest`. |
+| `make run` | Arranca el chat web en el puerto `PORT` (8010 por defecto). |
+| `make index` | Reconstruye el índice Qdrant del corpus. |
+| `make acceptance` | Ejecuta las preguntas de aceptación y reporta citas. |
+
+## 🧪 Desarrollo dirigido por especificaciones (Spec Kit)
+
+Las capacidades nuevas se especifican **antes** de implementarse con
+[GitHub Spec Kit](https://github.com/github/spec-kit). El flujo estándar:
+
+| Paso | Comando | Artefacto |
+|------|---------|-----------|
+| 1 | `/speckit.specify "…"` | rama `feat/NNN-slug` + `specs/NNN-slug/spec.md` |
+| 2 | `/speckit.clarify` | resuelve ambigüedades |
+| 3 | `/speckit.plan` | `plan.md` con *Constitution Check* |
+| 4 | `/speckit.tasks` | `tasks.md` |
+| 5 | `/speckit.analyze` | coherencia entre artefactos |
+| 6 | `/speckit.implement` | código y pruebas |
+
+- El índice de specs vive en [`specs/README.md`](specs/README.md).
+- `.specify/memory/constitution.md` es una **proyección** de `CONSTITUTION.md` (la
+  raíz manda); ambas se actualizan en el mismo commit.
+- Los comandos están en `.opencode/commands/speckit.*.md` y como skills en
+  `.dsh/skills/speckit-*`; la extensión git crea ramas `feat/NNN-slug` con numeración
+  secuencial.
+- Feature 001 (corte vertical con citas): ver
+  [`specs/001-corte-vertical-citas/`](specs/001-corte-vertical-citas/) (`spec.md`,
+  `plan.md`, `tasks.md` y guía `quickstart.md`).
 
 ## 🗺️ Arquitectura del proyecto
 
@@ -146,16 +198,24 @@ consulta.
 ```text
 asistente-carvajal/
 ├── main.py                  # punto de entrada de la aplicación
+├── assistant/               # configuración, corpus, índice, RAG, LLM y web
+│   ├── templates/           # página de chat y parciales HTMX
+│   └── static/htmx.min.js   # HTMX vendorizado (sin CDN)
+├── scripts/                 # indexación del corpus y aceptación
 ├── tests/                   # pruebas (pytest, patrón AAA)
+├── specs/                   # especificaciones por feature (Spec Kit)
+│   └── README.md            # índice de specs
 ├── docs/                    # documentación y arquitectura (JSON + HTML)
+├── .specify/                # motor de Spec Kit (templates, scripts, memoria)
+├── .opencode/               # comandos /speckit.* y reglas para agentes (tgrep)
 ├── .github/                 # gobernanza: PR/issue templates, CI, Dependabot, labels
-├── .opencode/rules/         # reglas para agentes (tgrep)
 ├── AGENTS.md                # contexto para agentes LLM
 ├── CONSTITUTION.md          # verdad central del proyecto
 ├── README.md                # este archivo
 ├── CONTRIBUTING.md          # guía de contribución
 ├── Makefile                 # automatización de tareas
 ├── pyproject.toml           # metadatos y dependencias (uv)
+├── .env.example             # variables de configuración (sin valores reales)
 └── uv.lock                  # lockfile determinista
 ```
 
@@ -163,11 +223,14 @@ asistente-carvajal/
 
 > 📘 La guía completa está en [`CONTRIBUTING.md`](./CONTRIBUTING.md). Resumen:
 
-1. Crea una rama: `git checkout -b feat/nombre-corto`.
+1. Si es una capacidad nueva, espéranla con `/speckit.specify` (crea la rama
+   `feat/NNN-slug` y `specs/NNN-slug/spec.md`) y completa `clarify` → `plan` →
+   `tasks` → `analyze`. Regístrala en [`specs/README.md`](specs/README.md).
 2. Desarrolla y verifica: `make check`.
 3. Commitea con [Conventional Commits](https://www.conventionalcommits.org/): `git commit -m "feat: ..."`.
-4. Abre un Pull Request con la plantilla oficial.
-5. Mantén `CONSTITUTION.md` actualizado ante cambios arquitectónicos o tecnológicos.
+4. Abre un Pull Request con la plantilla oficial (CI `Calidad` en verde).
+5. Mantén `CONSTITUTION.md` y su proyección `.specify/memory/constitution.md`
+   sincronizadas ante cambios arquitectónicos o tecnológicos.
 
 ## 📄 Licencia
 

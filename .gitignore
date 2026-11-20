@@ -52,3 +52,15 @@ node_modules/
 
 # Archify (artefactos de trabajo; la fuente versionada vive en docs/)
 .archify/
+
+# Recibos locales de Archify (el recibo de entrega sí se versiona)
+docs/arquitectura.finalize.json
+docs/arquitectura.finalize-summary.json
+docs/arquitectura.browser-check.json
+
+# Entorno local del asistente
+.cache/
+.qdrant/
+*.log
+aceptacion*.json
+reporte*.json

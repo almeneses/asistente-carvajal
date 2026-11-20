@@ -1,4 +1,4 @@
-"""Asistente Carvajal — pruebas del punto de entrada."""
+"""Pruebas del punto de entrada."""
 
 from __future__ import annotations
 
@@ -10,9 +10,9 @@ def test_main_es_invocable() -> None:
     assert callable(main.main)
 
 
-def test_main_sin_argumentos_devuelve_cero() -> None:
+def test_main_version_devuelve_cero() -> None:
     # Arrange
-    argv: list[str] = []
+    argv: list[str] = ["--version"]
 
     # Act
     exit_code = main.main(argv)

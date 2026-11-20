@@ -10,6 +10,9 @@ Carpeta de documentación del proyecto. Convenciones sugeridas:
 | `arquitectura.json` | Fuente tipada del mapa de arquitectura (Archify). |
 | `arquitectura.html` | Diagrama interactivo autocontenido (generado; no se edita a mano). |
 
+> Las especificaciones de features (Spec Kit) viven en [`specs/`](../specs/README.md);
+> esta carpeta es para documentación transversal.
+
 > El historial de decisiones resumido vive en
 > [`../CONSTITUTION.md`](../CONSTITUTION.md); los ADR entran en detalle cuando la decisión
 > lo amerita.
