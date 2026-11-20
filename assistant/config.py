@@ -10,7 +10,7 @@ from pathlib import Path
 
 _COLLECTION_RE = re.compile(r"^[a-z0-9_]+$")
 _PROVIDERS = ("deepseek", "ollama")
-EMBEDDING_DIM = 768
+EMBEDDING_DIM = 1024
 
 
 class ConfigError(RuntimeError):
@@ -49,7 +49,7 @@ class Settings:
     qdrant_url: str | None = None
     qdrant_collection: str = "corpus_carvajal"
     ollama_base_url: str = "http://localhost:11434"
-    embedding_model: str = "nomic-embed-text"
+    embedding_model: str = "bge-m3"
     embedding_dim: int = EMBEDDING_DIM
     llm_provider: str = "deepseek"
     deepseek_api_key: str | None = field(default=None, repr=False)
@@ -88,7 +88,7 @@ class Settings:
         if ollama_base is None or not ollama_base.startswith(("http://", "https://")):
             errors.append("OLLAMA_BASE_URL debe empezar por http:// o https://.")
 
-        embedding_model = _clean(source, "EMBEDDING_MODEL", "nomic-embed-text")
+        embedding_model = _clean(source, "EMBEDDING_MODEL", "bge-m3")
         dim_raw = _clean(source, "EMBEDDING_DIM", str(EMBEDDING_DIM)) or str(EMBEDDING_DIM)
         try:
             embedding_dim = int(dim_raw)
