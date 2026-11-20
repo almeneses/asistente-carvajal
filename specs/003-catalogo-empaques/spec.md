@@ -72,6 +72,9 @@ comprobar que lo declara.
    declara explícitamente y no estima ni convierte cifras.
 4. **Given** una pregunta que mezcla países o monedas, **When** se responde, **Then** no se
    mezclan precios de un país con referencias de otro.
+5. **Given** una cantidad de unidades y una referencia con presentación por caja, **When**
+   se consulta el precio, **Then** se calculan las cajas necesarias y el total, y se
+   muestran ambos.
 
 ---
 
@@ -130,6 +133,8 @@ comprobar que la ruta elegida es la correcta y que ninguna pierde sus citas.
   como precio actual.
 - **Precio ausente**: se declara la ausencia; no se estima, convierte ni reutiliza el
   precio de otra referencia.
+- **Vigencia no declarada**: se advierte que el precio no trae fecha de vigencia; no se
+  presenta como vigente confirmado.
 - **SKU inexistente**: se responde que no está en el catálogo; no se propone un SKU
   parecido.
 - **Uso o temperatura ambiguos**: se pide aclaración antes de recomendar.
@@ -176,6 +181,11 @@ comprobar que la ruta elegida es la correcta y que ninguna pierde sus citas.
   casos de no coincidencia.
 - **FR-015**: El sistema NO DEBE mezclar referencias de un país con precios de otro ni
   sumar montos de monedas distintas.
+- **FR-016**: Cuando la persona indique una cantidad de unidades, el sistema DEBE calcular
+  las cajas necesarias (redondeando hacia arriba) y el total, mostrando la presentación
+  por caja usada.
+- **FR-017**: Si el precio no declara vigencia, el sistema DEBE advertirlo y no presentarlo
+  como vigente confirmado.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -208,6 +218,8 @@ comprobar que la ruta elegida es la correcta y que ninguna pierde sus citas.
   la parte documental, añaden el corpus con citas válidas en al menos el 90 % de los casos.
 - **SC-008**: El 100 % de las citas del catálogo apunta a una fuente existente y a un SKU o
   distribuidor presente en los datos.
+- **SC-009**: En el 100 % de las consultas con cantidad, el número de cajas y el total
+  coinciden con la presentación por caja y el precio vigente (o se declara la ausencia).
 
 ## Assumptions
 
