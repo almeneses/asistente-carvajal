@@ -110,7 +110,7 @@ en `specs/002-evaluacion-recuperacion/`.
 
 ### Implementation for User Story 3
 
-- [ ] T028 [US3] Implementar `--mode e2e` sobre `RagService` y las métricas de respuesta en `assistant/evaluation/runner.py` (FR-004)
+- [ ] T028 [US3] Implementar `--mode e2e` sobre `RagService` y las métricas de respuesta en `assistant/evaluation/runner.py` (FR-004; `data-model.md` `QuestionRow.error`, `Metrics.questions_evaluated`)
 - [ ] T029 [US3] Implementar la evaluación de umbrales y exit code 0/1 en `scripts/run_evaluation.py` (FR-007)
 - [ ] T030 [US3] Crear el ADR `docs/adr/0001-embeddings-fase-2.md` con el protocolo de decisión de `research.md` R9 y el umbral de 5 pp (FR-010)
 - [ ] T031 [US3] Implementar la verificación de migración condicionada en `assistant/evaluation/runner.py` (detecta si `bge-m3` supera el umbral y lo declara en el reporte)
