@@ -5,7 +5,7 @@
 > repositorio**: este archivo resume sus principios y su estado técnico para que los
 > comandos de Spec Kit (`/speckit.*`) los verifiquen. Si hay discrepancia, manda la raíz.
 >
-> **Sincronizada**: 2026-11-19, con `CONSTITUTION.md` v0.2.0 (decisiones de §9 hasta esa
+> **Sincronizada**: 2026-11-19, con `CONSTITUTION.md` v0.3.0 (decisiones de §9 hasta esa
 > fecha).
 
 ## Principios fundamentales
@@ -32,8 +32,8 @@ documenta en la constitución.
 ### IV. Recuperación separada de la generación
 
 El módulo de recuperación no depende del proveedor de LLM y ambos se prueban por separado.
-La interfaz es FastAPI + HTMX, el índice es Qdrant y el proveedor es DeepSeek con
-fallback a Ollama; la orquestación RAG se decide en el plan de la fase 1.
+La interfaz es FastAPI + HTMX, el índice es Qdrant, el proveedor es DeepSeek con
+fallback a Ollama y la orquestación es una cadena propia en `assistant/rag.py`.
 
 ### V. Cero secretos y cero datos personales
 
@@ -48,6 +48,7 @@ fixtures de prueba son sintéticos.
 - Interfaz: FastAPI + HTMX (Jinja2 server-side, sin SPA).
 - Recuperación: Qdrant 768 dims/coseno con `nomic-embed-text` vía Ollama.
 - LLM: DeepSeek API con fallback a Ollama local; sin claves en el repo.
+- Orquestación: cadena propia (recuperar → prompt → generar → citar), sin framework.
 - Datos: corpus y catálogo por ruta configurable, solo lectura; fixtures sintéticos.
 - Calidad obligatoria: Ruff, `ty`, `pytest`, pre-commit, CI `Calidad` y `make check`.
 - `main` protegida: PR obligatorio, check `Calidad` estricto, sin force-push ni borrado.
@@ -73,4 +74,4 @@ Toda spec nueva se numera de forma secuencial y se registra en el índice `specs
   (actualizando la línea de sincronización).
 - **Cumplimiento:** el plan de cada feature incluye una sección *Constitution Check*; toda
   violación se justifica o se elimina antes de implementar.
-- **Versión:** 0.2.0 — 2026-11-19, sincronizada con `CONSTITUTION.md` de la raíz.
+- **Versión:** 0.3.0 — 2026-11-19, sincronizada con `CONSTITUTION.md` de la raíz.

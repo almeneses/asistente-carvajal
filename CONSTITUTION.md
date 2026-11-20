@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 0.2.0 |
+| **Versión** | 0.3.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -80,7 +80,7 @@ de clientes.
 | **Gestor de paquetes y entorno** | [`uv`](https://docs.astral.sh/uv/) |
 | **Modo de proyecto** | Aplicación (`main.py` como punto de entrada, sin paquete instalable) |
 | **Desarrollo dirigido por especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` 1.4.3; integración OpenCode + extensión git) |
-| **Orquestación RAG** | Por definir en el plan de la fase 1 (candidatos: cadena propia / LangGraph) |
+| **Orquestación RAG** | Cadena propia en `assistant/rag.py` (sin framework de agentes) |
 | **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side, sin SPA) |
 | **Índice vectorial** | Qdrant (768 dims, coseno) |
 | **Embeddings** | `nomic-embed-text` vía Ollama (768 dims) |
@@ -98,9 +98,9 @@ de clientes.
 > **prohibido** `pip` y `requirements.txt`.
 
 > 📝 **Decisiones de fase 1 (2026-11-19):** interfaz **FastAPI + HTMX**, índice
-> **Qdrant** con `nomic-embed-text` y LLM **DeepSeek con fallback Ollama**. La
-> orquestación RAG (cadena propia vs. LangGraph) se decide en el `/speckit.plan` de la
-> fase 1, con la evidencia del corte vertical.
+> **Qdrant** con `nomic-embed-text`, LLM **DeepSeek con fallback Ollama** y orquestación
+> RAG con **cadena propia** (sin framework de agentes). El detalle está en
+> `specs/001-corte-vertical-citas/plan.md`.
 
 ## 4. Estructura del repositorio
 
@@ -226,6 +226,7 @@ git push
 | 2026-11-19 | Índice vectorial Qdrant con `nomic-embed-text` (768 dims, coseno) | Mismo stack del corpus; filtros por `source_type` y margen de crecimiento |
 | 2026-11-19 | LLM DeepSeek API con fallback a Ollama local | Calidad con red/clave; operación offline y sin coste con modelos locales |
 | 2026-11-19 | Consumo de corpus y catálogo por ruta configurable de solo lectura | No duplicar ni envejecer los datos; fixtures sintéticos en pruebas |
+| 2026-11-19 | Orquestación RAG con cadena propia (`assistant/rag.py`), sin LangGraph | Flujo lineal de 4 pasos; menos dependencias y depuración directa. LangGraph se reevalúa en fase 3 o si aparecen ramas y reintentos |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
 | 2026-11-19 | Publicar el repositorio como público | GitHub Free no permite proteger `main` en repos privados; la protección se habilita al hacerlo público |
 | 2026-11-19 | Adoptar Spec Kit (specs versionadas por feature) | Trazabilidad requisito → plan → tareas y *Constitution Check* en cada plan |
@@ -237,7 +238,7 @@ git push
 - [x] Configurar el remoto y proteger `main`.
 - [ ] Redactar la spec de fase 1 con `/speckit.specify` (contrato del corpus y decisiones de stack).
 - [x] Decidir framework de UI, índice vectorial, embeddings y proveedor de LLM (fase 1).
-- [ ] Decidir la orquestación RAG (cadena propia vs. LangGraph) en el plan de fase 1.
+- [x] Decidir la orquestación RAG: cadena propia (ver `specs/001-corte-vertical-citas/plan.md`).
 - [ ] Definir el contrato de consumo del corpus (rutas, *front matter*, índice JSONL).
 - [ ] Implementar el módulo de recuperación y sus pruebas (fase 2).
 - [ ] Implementar la consulta sobre el catálogo de empaques (fase 3).
