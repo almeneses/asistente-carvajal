@@ -5,7 +5,7 @@
 > repositorio**: este archivo resume sus principios y su estado técnico para que los
 > comandos de Spec Kit (`/speckit.*`) los verifiquen. Si hay discrepancia, manda la raíz.
 >
-> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v0.5.0 (decisiones de §9 hasta esa
+> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v0.6.0 (decisiones de §9 hasta esa
 > fecha).
 
 ## Principios fundamentales
@@ -52,6 +52,8 @@ fixtures de prueba son sintéticos.
   no sustenta la respuesta, se normaliza a `no_evidence` sin fuentes.
 - Orquestación: cadena propia (recuperar → prompt → generar → citar), sin framework.
 - Datos: corpus y catálogo por ruta configurable, solo lectura; fixtures sintéticos.
+- Catálogo: rama determinista (sin LLM) con router de reglas; precios con vigencia y sin
+  conversión de moneda.
 - Calidad obligatoria: Ruff, `ty`, `pytest`, pre-commit, CI `Calidad` y `make check`.
 - `main` protegida: PR obligatorio, check `Calidad` estricto, sin force-push ni borrado.
 - Arquitectura objetivo versionada con Archify en `docs/arquitectura.json` (fuente) y
@@ -76,4 +78,4 @@ Toda spec nueva se numera de forma secuencial y se registra en el índice `specs
   (actualizando la línea de sincronización).
 - **Cumplimiento:** el plan de cada feature incluye una sección *Constitution Check*; toda
   violación se justifica o se elimina antes de implementar.
-- **Versión:** 0.5.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.
+- **Versión:** 0.6.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.

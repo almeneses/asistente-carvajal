@@ -1,0 +1,3856 @@
+{
+  "generated_at": "2026-11-20T22:28:51.104041+00:00",
+  "catalog_fingerprint": "8b0e45bbfc2f73933a4193f801e54d8c068feceff83a6498223ee220f37ffb5b",
+  "total": 130,
+  "route_ok": 130,
+  "route_accuracy": 1.0,
+  "attributes_ok": 130,
+  "attributes_accuracy": 1.0,
+  "forbidden_violations": 0,
+  "quote_ok": 13,
+  "quote_checked": 13,
+  "quote_accuracy": 1.0,
+  "rows": [
+    {
+      "id": "r-q01",
+      "group": "existente",
+      "question": "¿Qué es Carvajal y a qué sectores se dedica?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q02",
+      "group": "existente",
+      "question": "¿En qué año y ciudad fue fundada Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q03",
+      "group": "existente",
+      "question": "¿En cuántos países tiene presencia Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q04",
+      "group": "existente",
+      "question": "¿Cuáles son los cuatro sectores en los que opera Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q05",
+      "group": "existente",
+      "question": "¿Cuál es el propósito superior de Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q06",
+      "group": "existente",
+      "question": "¿Qué empresas conforman el sector de Papel y Empaques?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q07",
+      "group": "existente",
+      "question": "¿Qué es Bioform y a qué industria está dirigido?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q08",
+      "group": "existente",
+      "question": "¿Qué marca de educación tiene Carvajal y a quién se dirige?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q09",
+      "group": "existente",
+      "question": "¿Qué soluciones ofrece Carvajal Tecnología y Servicios?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q10",
+      "group": "existente",
+      "question": "¿Qué es Mepal y a qué sector pertenece?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q11",
+      "group": "existente",
+      "question": "¿Qué hace Carvajal Espacios?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q12",
+      "group": "existente",
+      "question": "¿Qué es LiquidezYa?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q13",
+      "group": "existente",
+      "question": "¿En qué consiste el negocio de Propiedades e Inversiones?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q14",
+      "group": "existente",
+      "question": "¿Cómo está conformado el gobierno corporativo de Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q15",
+      "group": "existente",
+      "question": "¿Qué compromisos éticos declara la empresa?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q16",
+      "group": "existente",
+      "question": "¿Qué iniciativas de sostenibilidad adelanta Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q17",
+      "group": "existente",
+      "question": "¿Qué noticias recientes publica Carvajal en su sitio web?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q18",
+      "group": "existente",
+      "question": "¿Cuál es la historia de Carvajal desde su fundación?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q19",
+      "group": "existente",
+      "question": "¿Qué información ofrece el portal de inversionistas?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q20",
+      "group": "existente",
+      "question": "¿Qué fundaciones están vinculadas a Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q21",
+      "group": "existente",
+      "question": "¿Cómo puedo contactar a Carvajal o solicitar información?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q22",
+      "group": "existente",
+      "question": "¿Qué es la línea ética de Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q23",
+      "group": "existente",
+      "question": "¿Qué productos o servicios ofrece Carvajal en comunicación?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q24",
+      "group": "existente",
+      "question": "¿Qué presencia tiene Carvajal en Colombia?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q25",
+      "group": "existente",
+      "question": "¿Cuáles son los valores o principios que guían a Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q26",
+      "group": "existente",
+      "question": "¿Cuáles fueron los ingresos consolidados de Carvajal en 2024?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q27",
+      "group": "existente",
+      "question": "¿Cuál fue el EBITDA consolidado de Carvajal a septiembre de 2025 y qué margen reportó?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q28",
+      "group": "existente",
+      "question": "¿Qué utilidad o pérdida neta reportó Carvajal en 2024 y a qué filial se atribuye?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q29",
+      "group": "existente",
+      "question": "¿Cuáles son los activos, pasivos y patrimonio consolidados de Carvajal al cierre de 2024?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q30",
+      "group": "existente",
+      "question": "¿Cuántos empleados tiene Carvajal y qué fuente lo reporta?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "r-q31",
+      "group": "existente",
+      "question": "¿Cuál es el número de teléfono de la sede de Carvajal en Tokio?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-01",
+      "group": "existente",
+      "question": "Hola",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-02",
+      "group": "existente",
+      "question": "Buenos días, ¿qué puedes hacer?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-03",
+      "group": "existente",
+      "question": "Muchas gracias",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-04",
+      "group": "existente",
+      "question": "Recuerda que prefiero respuestas cortas",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-05",
+      "group": "existente",
+      "question": "Mi nombre es Laura",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-06",
+      "group": "existente",
+      "question": "¿Cuál fue el EBITDA consolidado a septiembre de 2025?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-07",
+      "group": "existente",
+      "question": "¿Cuáles fueron los ingresos de Carvajal en 2024?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-08",
+      "group": "existente",
+      "question": "¿Cuántos empleados tenía Carvajal en 2024?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-09",
+      "group": "existente",
+      "question": "¿Cuál fue la utilidad neta del primer trimestre de 2025?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-10",
+      "group": "existente",
+      "question": "¿Cuántos empleados tiene Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-11",
+      "group": "existente",
+      "question": "¿Cuál es el EBITDA de Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-12",
+      "group": "existente",
+      "question": "¿Qué vasos fabrica Carvajal Empaques?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": "vaso",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-13",
+      "group": "existente",
+      "question": "¿Carvajal Empaques produce contenedores de pulpa?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-14",
+      "group": "existente",
+      "question": "¿Qué tipo de platos y cubiertos hace Carvajal?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": "plato",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-15",
+      "group": "existente",
+      "question": "¿Qué empresas conforman el sector de Papel y Empaques?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-16",
+      "group": "existente",
+      "question": "¿Qué es Bioform y qué productos tiene?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-17",
+      "group": "existente",
+      "question": "¿Y en qué año fue eso?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "n-18",
+      "group": "existente",
+      "question": "¿Qué presencia tiene Carvajal en Cali?",
+      "expected_route": "documental",
+      "actual_route": "documental",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": "Cali",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-01",
+      "group": "comercial",
+      "question": "necesito vasos para café caliente de 12 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "temperature": "caliente",
+        "capacity_oz": 12.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632054",
+        "2864632106",
+        "2864632164",
+        "2864112370",
+        "2864112631"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-02",
+      "group": "comercial",
+      "question": "vasos para chocolate de 8 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 8.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 8.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632114",
+        "2864632168",
+        "2864632186",
+        "2864108000",
+        "2864108880"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-03",
+      "group": "comercial",
+      "question": "busco vasos de papel para capuchino de 16 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 16.0,
+        "prefers_renewable": true
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 16.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864632165"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-04",
+      "group": "comercial",
+      "question": "¿qué vasos me recomiendas para bebidas calientes?",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864620001",
+        "2864632054",
+        "2864632092"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-05",
+      "group": "comercial",
+      "question": "vasos para jugo de 16 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "temperature": "fria",
+        "capacity_oz": 16.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 16.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632092",
+        "2864513238",
+        "2864916000",
+        "2864916251",
+        "2864916306"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-06",
+      "group": "comercial",
+      "question": "necesito vasos para limonada de 20 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 20.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 20.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864513239"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-07",
+      "group": "comercial",
+      "question": "vasos para café frío de 16 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "temperature": "fria"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 16.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632092",
+        "2864513238",
+        "2864916000",
+        "2864916251",
+        "2864916306"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-08",
+      "group": "comercial",
+      "question": "vasos para smoothies de 500 ml",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 16.91
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 16.91,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632092",
+        "2864513238",
+        "2864916000",
+        "2864916251",
+        "2864916306"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-09",
+      "group": "comercial",
+      "question": "contenedores para sopa que se puedan calentar en microondas",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "sopas",
+        "temperature": "caliente",
+        "microwave": true
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CAZ-12",
+        "CO-CAZ-16",
+        "CO-CAZ-26"
+      ],
+      "forbidden_materials": [
+        "EPS",
+        "PET",
+        "PS"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-10",
+      "group": "comercial",
+      "question": "busco envases para salsas aptos para microondas",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "envase",
+        "use": "salsas",
+        "microwave": true,
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "envase",
+        "use": "salsas",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [
+        "EPS",
+        "PET",
+        "PS"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-11",
+      "group": "comercial",
+      "question": "contenedores para comida caliente para domicilios",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-12",
+      "group": "comercial",
+      "question": "necesito contenedores para almuerzos",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-13",
+      "group": "comercial",
+      "question": "charolas para ensalada de 500 ml",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "charola",
+        "use": "ensaladas",
+        "temperature": "fria",
+        "capacity_oz": 16.91
+      },
+      "attributes_actual": {
+        "family": "charola",
+        "use": "ensaladas",
+        "capacity_oz": 16.91,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-14",
+      "group": "comercial",
+      "question": "bandejas para frutas",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "charola",
+        "use": "frutas",
+        "temperature": "fria"
+      },
+      "attributes_actual": {
+        "family": "charola",
+        "use": "frutas",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632155",
+        "2864632156",
+        "CO-BBIO-01",
+        "CO-BBIO-03",
+        "CO-BBIO-17"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-15",
+      "group": "comercial",
+      "question": "contenedores para papas fritas",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "frituras",
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "frituras",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864193800",
+        "2864193811",
+        "2864495003",
+        "2864632079",
+        "7704918105071"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-16",
+      "group": "comercial",
+      "question": "cubiertos desechables para comida caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "cubierto",
+        "use": "comida_caliente",
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "cubierto",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864900048",
+        "2864900050",
+        "2864900052",
+        "2864980103",
+        "2864980104"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-17",
+      "group": "comercial",
+      "question": "tapas para vasos de bebida caliente de 12 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "tapa",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0
+      },
+      "attributes_actual": {
+        "family": "tapa",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-18",
+      "group": "comercial",
+      "question": "platos para comida caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "plato",
+        "use": "comida_caliente"
+      },
+      "attributes_actual": {
+        "family": "plato",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864321118",
+        "2864321221",
+        "2864331022",
+        "2864360031",
+        "2864380030"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-19",
+      "group": "comercial",
+      "question": "contenedores compostables para comida caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "prefers_renewable": true,
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-20",
+      "group": "comercial",
+      "question": "vasos biodegradables para café",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "prefers_renewable": true,
+        "use": "bebida_caliente"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864620001",
+        "2864632054",
+        "2864632106"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-21",
+      "group": "comercial",
+      "question": "contenedores sin icopor para sopa caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "prefers_renewable": true,
+        "use": "sopas"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CBIO-04",
+        "CO-CBIO-08",
+        "CO-CBIO-12",
+        "CO-CBIO-16",
+        "CO-CBIO-26"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-22",
+      "group": "comercial",
+      "question": "necesito contenedores para comida fría",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "comida_fria",
+        "temperature": "fria"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_fria",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864193800",
+        "2864193811",
+        "2864495003",
+        "2864632079",
+        "7704918105071"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-23",
+      "group": "comercial",
+      "question": "contenedores para comida a temperatura ambiente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "temperature": "ambiente"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-24",
+      "group": "comercial",
+      "question": "charolas para pan caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "charola",
+        "use": "panaderia",
+        "temperature": "caliente"
+      },
+      "attributes_actual": {
+        "family": "charola",
+        "use": "panaderia",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632155",
+        "2864632156",
+        "CO-BBIO-01",
+        "CO-BBIO-03",
+        "CO-BBIO-17"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-25",
+      "group": "comercial",
+      "question": "busco vasos de 16 oz",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "capacity_oz": 16.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": null,
+        "capacity_oz": 16.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864632092",
+        "2864632165",
+        "CO-VBIO-16"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-26",
+      "group": "comercial",
+      "question": "necesito contenedores",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864193800",
+        "2864193811",
+        "2864495003",
+        "2864632079",
+        "7704918105071"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-27",
+      "group": "comercial",
+      "question": "¿cuánto cuestan las tapas?",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "tapa"
+      },
+      "attributes_actual": {
+        "family": "tapa",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864441606",
+        "2864491309",
+        "2864513280",
+        "2864513416",
+        "2864513417"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-28",
+      "group": "comercial",
+      "question": "necesito charolas para panadería",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "charola",
+        "use": "panaderia"
+      },
+      "attributes_actual": {
+        "family": "charola",
+        "use": "panaderia",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632155",
+        "2864632156",
+        "CO-BBIO-01",
+        "CO-BBIO-03",
+        "CO-BBIO-17"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-29",
+      "group": "comercial",
+      "question": "quiero platos desechables",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "plato"
+      },
+      "attributes_actual": {
+        "family": "plato",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632081",
+        "2864321118",
+        "2864321221",
+        "2864331022",
+        "2864360031"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-30",
+      "group": "comercial",
+      "question": "cotízame 500 vasos",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "quantity": 500
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": 500,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864620001",
+        "2864632054",
+        "2864632092"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-31",
+      "group": "comercial",
+      "question": "Necesito 5.000 vasos de 12 oz para café en México",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "quantity": 5000,
+        "country": "MX",
+        "capacity_oz": 12.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": 5000,
+        "city": "Mexico",
+        "country": "MX"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632054",
+        "2864632106",
+        "2864632164",
+        "2864112370",
+        "2864112631"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-32",
+      "group": "comercial",
+      "question": "cotiza 3 mil vasos para café de 8 oz en México",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "quantity": 3000,
+        "country": "MX",
+        "capacity_oz": 8.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 8.0,
+        "quantity": 3000,
+        "city": "Mexico",
+        "country": "MX"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632114",
+        "2864632168",
+        "2864632186",
+        "2864108000",
+        "2864108880"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-33",
+      "group": "comercial",
+      "question": "vasos para café, unas 2000, en Monterrey",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "quantity": 2000,
+        "country": "MX",
+        "city": "Monterrey"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": null,
+        "quantity": 2000,
+        "city": "Monterrey",
+        "country": "MX"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864620001",
+        "2864632054",
+        "2864632106"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-34",
+      "group": "comercial",
+      "question": "200 contenedores para comida caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "quantity": 200
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": 200,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-35",
+      "group": "comercial",
+      "question": "necesito 10.000 vasos para jugo de 16 oz en Guadalajara",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "quantity": 10000,
+        "country": "MX",
+        "city": "Guadalajara"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 16.0,
+        "quantity": 10000,
+        "city": "Guadalajara",
+        "country": "MX"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632092",
+        "2864513238",
+        "2864916000",
+        "2864916251",
+        "2864916306"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-36",
+      "group": "comercial",
+      "question": "precio de 1.500 contenedores para sopa en México",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "quantity": 1500,
+        "country": "MX",
+        "use": "sopas"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": null,
+        "quantity": 1500,
+        "city": "Mexico",
+        "country": "MX"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864193800",
+        "2864193811",
+        "2864495003",
+        "2864632079",
+        "2864322146"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-37",
+      "group": "comercial",
+      "question": "¿cuántas cajas necesito para 4500 vasos de café de 12 oz?",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "quantity": 4500,
+        "capacity_oz": 12.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": 4500,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632054",
+        "2864632106",
+        "2864632164",
+        "2864112370",
+        "2864112631"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-38",
+      "group": "comercial",
+      "question": "necesito 150000 vasos para café caliente en México",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "quantity": 150000,
+        "country": "MX"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": null,
+        "quantity": 150000,
+        "city": "Mexico",
+        "country": "MX"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864620001",
+        "2864632054",
+        "2864632106"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-39",
+      "group": "comercial",
+      "question": "vasos para café en Cali",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "country": "CO",
+        "city": "Cali"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": "Cali",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100199",
+        "CO-VRG-13",
+        "CO-VRG-14",
+        "CO-VRG-16",
+        "CO-VRM-10"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-40",
+      "group": "comercial",
+      "question": "necesito vasos para jugo en Bogotá",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100083",
+        "7704918100199",
+        "CO-VBL-035",
+        "CO-VGOLD-09",
+        "CO-VGOLD-12"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-41",
+      "group": "comercial",
+      "question": "contenedores para comida caliente en Medellín, unas 800",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "country": "CO",
+        "city": "Medellín",
+        "quantity": 800
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": 800,
+        "city": "Medellín",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-42",
+      "group": "comercial",
+      "question": "¿dónde compro vasos para café en Barranquilla?",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "country": "CO",
+        "city": "Barranquilla"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": "Barranquilla",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100199",
+        "CO-VRG-13",
+        "CO-VRG-14",
+        "CO-VRG-16",
+        "CO-VRM-10"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-43",
+      "group": "comercial",
+      "question": "necesito vasos para jugo en Tuluá",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "city": "Tuluá"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": "Tulua",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100083",
+        "7704918100199",
+        "CO-VBL-035",
+        "CO-VGOLD-09",
+        "CO-VGOLD-12"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-44",
+      "group": "comercial",
+      "question": "vasos para café en Colombia",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "country": "CO"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100199",
+        "CO-VRG-13",
+        "CO-VRG-14",
+        "CO-VRG-16",
+        "CO-VRM-10"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-45",
+      "group": "comercial",
+      "question": "distribuidores de contenedores para sopa en Pereira",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "country": "CO",
+        "city": "Pereira"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": "Pereira",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CBIO-04",
+        "CO-CBIO-08",
+        "CO-CBIO-12",
+        "CO-CBIO-16",
+        "CO-CBIO-26"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-46",
+      "group": "comercial",
+      "question": "vasos de 12 oz para café de Carvajal en Cali",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "country": "CO",
+        "city": "Cali"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": "Cali",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VRG-13",
+        "CO-VRM-12"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-47",
+      "group": "comercial",
+      "question": "Necesito empaques a la medida para exportar flores",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864193800",
+        "2864193811",
+        "2864195007",
+        "2864495003",
+        "2864616012"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-48",
+      "group": "comercial",
+      "question": "quiero vasos personalizados con mi logo",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864620001",
+        "2864632054",
+        "2864632092"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-49",
+      "group": "comercial",
+      "question": "busco cajas corrugadas para uso industrial",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864193800",
+        "2864193811",
+        "2864195007",
+        "2864495003",
+        "2864616012"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-50",
+      "group": "comercial",
+      "question": "empaques flexibles para producto agroindustrial",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": null,
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864193800",
+        "2864193811",
+        "2864195007",
+        "2864495003",
+        "2864616012"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-51",
+      "group": "comercial",
+      "question": "necesito bolsas industriales de 25 kilos",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {},
+      "attributes_actual": {
+        "family": "bolsa",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-52",
+      "group": "comercial",
+      "question": "Necesito vasos para café de 12 oz. ¿Quién fundó Carvajal?",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "capacity_oz": 12.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632054",
+        "2864632106",
+        "2864632164",
+        "2864112370",
+        "2864112631"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-53",
+      "group": "comercial",
+      "question": "¿Cuál es la historia de Carvajal? Y necesito contenedores para sopa",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "sopas"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CBIO-04",
+        "CO-CBIO-08",
+        "CO-CBIO-12",
+        "CO-CBIO-16",
+        "CO-CBIO-26"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-54",
+      "group": "comercial",
+      "question": "necesito vasos de café de 12 oz y los ingresos de Carvajal en 2024",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632054",
+        "2864632106",
+        "2864632164",
+        "2864112370",
+        "2864112631"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "c-55",
+      "group": "comercial",
+      "question": "Necesito vasos para café de 12 oz. ¿Cuánto cuestan?",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "capacity_oz": 12.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632054",
+        "2864632106",
+        "2864632164",
+        "2864112370",
+        "2864112631"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "s-01",
+      "group": "comercial",
+      "question": "caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "capacity_oz": 16.0,
+        "use": "bebida_caliente"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 16.0,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864616012",
+        "2864616013",
+        "2864632165",
+        "CO-VRG-16"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "s-02",
+      "group": "comercial",
+      "question": "para jugo, unas 3000",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "quantity": 3000
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 16.0,
+        "quantity": 3000,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632092",
+        "2864513238",
+        "2864916000",
+        "2864916251",
+        "2864916306"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "s-03",
+      "group": "comercial",
+      "question": "en México",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "country": "MX",
+        "capacity_oz": 12.0
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": "Mexico",
+        "country": "MX"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "2864632054",
+        "2864632106",
+        "2864632164",
+        "2864112370",
+        "2864112631"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "s-04",
+      "group": "comercial",
+      "question": "en Medellín",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "country": "CO",
+        "city": "Medellín"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": "Medellín",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VRG-13",
+        "CO-VRM-12"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "s-05",
+      "group": "comercial",
+      "question": "para sopa caliente",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "sopas"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": null,
+        "quantity": null,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CBIO-04",
+        "CO-CBIO-08",
+        "CO-CBIO-12",
+        "CO-CBIO-16",
+        "CO-CBIO-26"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "s-06",
+      "group": "comercial",
+      "question": "son 1.200 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "quantity": 1200
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": 1200,
+        "city": null,
+        "country": null
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "co-01",
+      "group": "colombia",
+      "question": "necesito 5.000 vasos de 9 oz para jugos en Bogotá",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 9.0,
+        "quantity": 5000,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 9.0,
+        "quantity": 5000,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100199",
+        "CO-VGOLD-09",
+        "CO-VRM-10",
+        "CO-VTER-08",
+        "CO-VTER-10"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "checked",
+      "quote_ok": true
+    },
+    {
+      "id": "co-02",
+      "group": "colombia",
+      "question": "vasos térmicos de 8 oz para café en Medellín, 3000 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 8.0,
+        "quantity": 3000,
+        "country": "CO",
+        "city": "Medellín"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 8.0,
+        "quantity": 3000,
+        "city": "Medellín",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100199",
+        "CO-VTER-08"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "declared_no_price",
+      "quote_ok": true
+    },
+    {
+      "id": "co-03",
+      "group": "colombia",
+      "question": "cuánto me cuestan 2.000 vasos de 14 oz para limonadas en Bogotá",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 14.0,
+        "quantity": 2000,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 14.0,
+        "quantity": 2000,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VGOLD-14",
+        "CO-VRG-13",
+        "CO-VRG-14"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "skipped_unknown_sku",
+      "quote_ok": null
+    },
+    {
+      "id": "co-04",
+      "group": "colombia",
+      "question": "quiero 1.000 vasos de 7 oz para jugos en Cali",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 7.0,
+        "quantity": 1000,
+        "country": "CO",
+        "city": "Cali"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 7.0,
+        "quantity": 1000,
+        "city": "Cali",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VRP-07",
+        "CO-VTER-06",
+        "CO-VTER-08"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "skipped_unknown_sku",
+      "quote_ok": null
+    },
+    {
+      "id": "co-05",
+      "group": "colombia",
+      "question": "necesito 400 portacomidas para almuerzos en Bogotá",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "quantity": 400,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": 400,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "checked",
+      "quote_ok": true
+    },
+    {
+      "id": "co-06",
+      "group": "colombia",
+      "question": "contenedores para sopa de 12 oz en Barranquilla, 960 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": 12.0,
+        "quantity": 960,
+        "country": "CO",
+        "city": "Barranquilla"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "sopas",
+        "capacity_oz": 12.0,
+        "quantity": 960,
+        "city": "Barranquilla",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CBIO-12",
+        "7704918101110",
+        "CO-CAZ-12",
+        "CO-CTER-12"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "checked",
+      "quote_ok": true
+    },
+    {
+      "id": "co-07",
+      "group": "colombia",
+      "question": "busco platos hondos de 12 oz para sopas en Bogotá, 480 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "plato",
+        "use": "sopas",
+        "capacity_oz": 12.0,
+        "quantity": 480,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "plato",
+        "use": "sopas",
+        "capacity_oz": 12.0,
+        "quantity": 480,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918101288"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "checked",
+      "quote_ok": true
+    },
+    {
+      "id": "co-08",
+      "group": "colombia",
+      "question": "tapas para vasos pequeños en Bogotá, 4.500 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "tapa",
+        "quantity": 4500,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "tapa",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": 4500,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100816",
+        "CO-DB17-3",
+        "CO-DB17-6",
+        "CO-DGOLD-PE",
+        "CO-DGOLD-SP"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "co-09",
+      "group": "colombia",
+      "question": "contenedores que se puedan calentar en microondas en Cali, 500 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "microwave": true,
+        "quantity": 500,
+        "country": "CO",
+        "city": "Cali"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "microondas",
+        "capacity_oz": null,
+        "quantity": 500,
+        "city": "Cali",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CAZ-12",
+        "CO-CAZ-16",
+        "CO-CAZ-26",
+        "CO-CRIG-06",
+        "CO-CRIG-08"
+      ],
+      "forbidden_materials": [
+        "EPS",
+        "PS",
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "declared_no_price",
+      "quote_ok": true
+    },
+    {
+      "id": "co-10",
+      "group": "colombia",
+      "question": "vasos de 16 oz para café caliente en Pereira",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 16.0,
+        "country": "CO",
+        "city": "Pereira"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 16.0,
+        "quantity": null,
+        "city": "Pereira",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VRG-16"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "declared_no_price",
+      "quote_ok": true
+    },
+    {
+      "id": "co-11",
+      "group": "colombia",
+      "question": "necesito 1.000 vasos de cartón de 9 oz en Bogotá",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "capacity_oz": 9.0,
+        "quantity": 1000,
+        "country": "CO",
+        "city": "Bogotá",
+        "prefers_renewable": true
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": null,
+        "capacity_oz": 9.0,
+        "quantity": 1000,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VCAN-09",
+        "7704918100199",
+        "CO-VGOLD-09",
+        "CO-VRM-10",
+        "CO-VTER-08"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "co-12",
+      "group": "colombia",
+      "question": "vasos para malteadas de 14 oz en Manizales, 1.000 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 14.0,
+        "quantity": 1000,
+        "country": "CO",
+        "city": "Manizales"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 14.0,
+        "quantity": 1000,
+        "city": "Manizales",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VGOLD-14",
+        "CO-VRG-13",
+        "CO-VRG-14"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "skipped_unknown_sku",
+      "quote_ok": null
+    },
+    {
+      "id": "co-13",
+      "group": "colombia",
+      "question": "portacomidas biodegradables para domicilios en Medellín, 500 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "quantity": 500,
+        "country": "CO",
+        "city": "Medellín",
+        "prefers_renewable": true
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": 500,
+        "city": "Medellín",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "co-14",
+      "group": "colombia",
+      "question": "necesito vasos de 12 oz para café en Colombia",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "country": "CO"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_caliente",
+        "capacity_oz": 12.0,
+        "quantity": null,
+        "city": null,
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VRG-13",
+        "CO-VRM-12"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "declared_no_price",
+      "quote_ok": true
+    },
+    {
+      "id": "co-15",
+      "group": "colombia",
+      "question": "platos para eventos en Bogotá, 2.000 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "plato",
+        "quantity": 2000,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "plato",
+        "use": null,
+        "capacity_oz": null,
+        "quantity": 2000,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918101288",
+        "CO-P3DIV",
+        "CO-PHON-05",
+        "CO-PHON-16",
+        "CO-PHON-25"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "not_applicable",
+      "quote_ok": null
+    },
+    {
+      "id": "co-16",
+      "group": "colombia",
+      "question": "contenedores térmicos de 16 oz para comida caliente en Bucaramanga, 800 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": 16.0,
+        "quantity": 800,
+        "country": "CO",
+        "city": "Bucaramanga"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": 16.0,
+        "quantity": 800,
+        "city": "Bucaramanga",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-CAZ-16",
+        "CO-CRIG-16",
+        "CO-CTER-16",
+        "CO-CTT-16"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "declared_no_price",
+      "quote_ok": true
+    },
+    {
+      "id": "co-17",
+      "group": "colombia",
+      "question": "vasos de 3.5 oz para muestras de jugo en Bogotá, 500 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 3.5,
+        "quantity": 500,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 3.5,
+        "quantity": 500,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918100083",
+        "CO-VBL-035",
+        "CO-VTER-04"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "checked",
+      "quote_ok": true
+    },
+    {
+      "id": "co-18",
+      "group": "colombia",
+      "question": "cazuelas para almuerzos calientes en Cali, 200 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "quantity": 200,
+        "country": "CO",
+        "city": "Cali"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "comida_caliente",
+        "capacity_oz": null,
+        "quantity": 200,
+        "city": "Cali",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-PPUL-C1"
+      ],
+      "forbidden_materials": [
+        "PET"
+      ],
+      "violations": [],
+      "quote_status": "checked",
+      "quote_ok": true
+    },
+    {
+      "id": "co-19",
+      "group": "colombia",
+      "question": "vasos de 12 oz para gaseosa en Bogotá, 2.500 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 12.0,
+        "quantity": 2500,
+        "country": "CO",
+        "city": "Bogotá"
+      },
+      "attributes_actual": {
+        "family": "vaso",
+        "use": "bebida_fria",
+        "capacity_oz": 12.0,
+        "quantity": 2500,
+        "city": "Bogotá",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "CO-VGOLD-12",
+        "CO-VRG-13",
+        "CO-VRM-12"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "declared_no_price",
+      "quote_ok": true
+    },
+    {
+      "id": "co-20",
+      "group": "colombia",
+      "question": "bowls para ensaladas en Medellín, 600 unidades",
+      "expected_route": "commercial",
+      "actual_route": "commercial",
+      "route_ok": true,
+      "attributes_expected": {
+        "family": "contenedor",
+        "use": "ensaladas",
+        "quantity": 600,
+        "country": "CO",
+        "city": "Medellín"
+      },
+      "attributes_actual": {
+        "family": "contenedor",
+        "use": "ensaladas",
+        "capacity_oz": null,
+        "quantity": 600,
+        "city": "Medellín",
+        "country": "CO"
+      },
+      "attributes_ok": true,
+      "recommended_skus": [
+        "7704918105071",
+        "CO-BOWL-26",
+        "CO-BOWL-32",
+        "CO-BOWL-44",
+        "CO-CBIO-04"
+      ],
+      "forbidden_materials": [],
+      "violations": [],
+      "quote_status": "checked",
+      "quote_ok": true
+    }
+  ]
+}

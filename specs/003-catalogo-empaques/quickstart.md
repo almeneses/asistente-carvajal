@@ -61,6 +61,17 @@ Resultado esperado:
 - `route_accuracy ≥ 0,90`; `forbidden_violations == 0`; `quote_accuracy ≥ 0,90`.
 - Exit code `0` si cumple; `1` si no; `2` si catálogo/set no cargan.
 
+## Evidencia de la fase (2026-11-20)
+
+- Catálogo cargado: **200 referencias** (98 MX, 102 CO), 29 precios COP, 5 materiales y
+  29 distribuidores; PAPEL/PULPA se validan con el rango de su ficha (materiales sin regla
+  declarados en el manifiesto).
+- Aceptación de las **130 preguntas**: ruta **130/130 (100 %)**, atributos **130/130
+  (100 %)**, materiales prohibidos recomendados **0**, cotizaciones **13/13 (100 %)**;
+  exit code 0.
+- Respuestas comerciales deterministas, sin LLM; preguntas documentales sin regresión.
+- Reportes versionados en `reports/acceptance.json/md`.
+
 ## Problemas frecuentes
 
 - **`CATALOG_DIR` ausente o inválido**: el arranque falla con la ruta exacta a corregir.

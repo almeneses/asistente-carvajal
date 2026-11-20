@@ -97,6 +97,7 @@ fuente para `contracts/` y `tasks.md`.
 | `material` | str \| None | PET/PP/EPS/PS/PAPEL/PULPA/ALUMINIO |
 | `prefers_renewable` | bool | papel/pulpa/fibra/sostenible |
 | `asks_price` / `asks_distributor` | bool | señales léxicas |
+| `microwave` / `freezing` | bool | necesidad declarada en la pregunta |
 | `residual_documental` | bool | parte documental detectada en pregunta mixta |
 
 - **Validación**: si `intent="commercial"` y falta `family` o un criterio de uso, la

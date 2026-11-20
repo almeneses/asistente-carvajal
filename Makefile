@@ -61,6 +61,12 @@ eval: ## Matriz de recuperación (8 variantes, sin LLM)
 		--json-out specs/002-evaluacion-recuperacion/reports/baseline.json \
 		--markdown-out specs/002-evaluacion-recuperacion/reports/baseline.md
 
+catalog-acceptance: ## Aceptación del catálogo (130 preguntas de enrutamiento)
+	uv run python scripts/run_catalog_acceptance.py \
+		--routing-file ../carvajal/data/eval/routing_questions.json \
+		--json-out specs/003-catalogo-empaques/reports/acceptance.json \
+		--markdown-out specs/003-catalogo-empaques/reports/acceptance.md
+
 eval-e2e: ## Evaluación end-to-end de una variante (VARIANTS=<id>)
 	uv run python scripts/run_evaluation.py \
 		--set specs/002-evaluacion-recuperacion/evaluation/questions.json \
