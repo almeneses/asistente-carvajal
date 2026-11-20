@@ -69,3 +69,4 @@ reporte*.json
 # Índice de evaluación y reportes temporales
 .qdrant-eval/
 specs/002-evaluacion-recuperacion/reports/*.tmp.json
+specs/003-catalogo-empaques/reports/*.tmp.json

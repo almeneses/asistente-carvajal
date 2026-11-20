@@ -58,6 +58,7 @@ entrada de solo lectura.
 | Interfaz de chat con citación | ✅ |
 | Set de evaluación de respuestas | ✅ |
 | Evaluación de recuperación (fase 2) | ✅ |
+| Consulta del catálogo de empaques (fase 3) | ✅ |
 | Consulta sobre catálogo de empaques | ⏳ |
 
 > ⚠️ Fase actual: **corte vertical (fase 1)**. El asistente responde preguntas sobre el
@@ -79,6 +80,7 @@ entrada de solo lectura.
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable, solo lectura |
+| **Catálogo de empaques** | CSV read-only (200 referencias, 29 precios COP, 29 distribuidores); rama determinista sin LLM |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
 | **Testing** | [`pytest`](https://docs.pytest.org/) |
 | **Linting / Formato** | [Ruff](https://docs.astral.sh/ruff/) |
@@ -93,7 +95,7 @@ entrada de solo lectura.
 - [`uv`](https://docs.astral.sh/uv/getting-started/installation/)
 - [Git](https://git-scm.com/)
 - [Ollama](https://ollama.com/) con `bge-m3` (embeddings) y un modelo de chat local
-- Corpus gold de Carvajal en una ruta local (solo lectura)
+- Corpus gold y catálogo de empaques en rutas locales (solo lectura)
 
 ### Instalación
 
@@ -156,6 +158,7 @@ make check   # lint + formato + tipos + pruebas
 | `make run` | Arranca el chat web en el puerto `PORT` (8010 por defecto). |
 | `make index` | Reconstruye el índice Qdrant del corpus. |
 | `make acceptance` | Ejecuta las preguntas de aceptación y reporta citas. |
+| `make catalog-acceptance` | Aceptación del catálogo (130 preguntas de enrutamiento). |
 
 ## 🧪 Desarrollo dirigido por especificaciones (Spec Kit)
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 from uuid import uuid4
 
@@ -12,6 +13,10 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from assistant.catalog.answers import build_catalog_answer, city_names
+from assistant.catalog.loader import load_catalog
+from assistant.catalog.models import CatalogSnapshot
+from assistant.catalog.router import classify
 from assistant.config import Settings, load_dotenv
 from assistant.corpus import CorpusDocument, load_corpus
 from assistant.embeddings import OllamaEmbedder
@@ -40,6 +45,7 @@ class AppContext:
     documents: list[CorpusDocument]
     index_ready: bool
     provider: str
+    catalog: CatalogSnapshot | None = None
 
 
 def build_context(settings: Settings) -> AppContext:
@@ -55,12 +61,19 @@ def build_context(settings: Settings) -> AppContext:
     retriever = CorpusRetriever(embedder, index)
     llm = build_llm(settings)
     rag = RagService(retriever, llm, top_k=settings.top_k)
+    if settings.catalog_dir is None:
+        raise RuntimeError(
+            "Define CATALOG_DIR con el directorio del catálogo de empaques "
+            "(referencias.csv, precios.csv, materiales.csv, distribuidores.csv)."
+        )
+    catalog = load_catalog(settings.catalog_dir)
     return AppContext(
         settings=settings,
         rag=rag,
         documents=documents,
         index_ready=True,
         provider=settings.llm_provider,
+        catalog=catalog,
     )
 
 
@@ -91,6 +104,45 @@ def create_app(
     @app.post("/ask", response_class=HTMLResponse)
     def ask(request: Request, question: str = Form("")) -> HTMLResponse:
         trace_id = uuid4().hex
+        if not question.strip() or len(question) > 2000:
+            return templates.TemplateResponse(
+                request=request,
+                name="_exchange.html",
+                context={
+                    "error": "La pregunta debe tener entre 1 y 2000 caracteres.",
+                    "request_id": trace_id,
+                    "question": question,
+                },
+                status_code=422,
+            )
+
+        catalog = context.catalog
+        cities = city_names(catalog) if catalog is not None else ()
+        query = classify(question, cities=cities)
+        if catalog is not None and query.intent in {"commercial", "mixed", "ambiguous"}:
+            today = date.today()
+            if context.settings.catalog_price_today:
+                today = date.fromisoformat(context.settings.catalog_price_today)
+            catalog_answer = build_catalog_answer(query, snapshot=catalog, today=today)
+            if not (
+                query.intent == "mixed"
+                and catalog_answer.section is not None
+                and catalog_answer.section.kind == "no_match"
+            ):
+                logger.info(
+                    "respuesta_catalogo",
+                    extra={
+                        "request_id": trace_id,
+                        "intent": query.intent,
+                        "kind": catalog_answer.section.kind if catalog_answer.section else None,
+                    },
+                )
+                return templates.TemplateResponse(
+                    request=request,
+                    name="_catalog_exchange.html",
+                    context={"answer": catalog_answer, "question": question},
+                )
+
         try:
             answer = context.rag.answer(question, request_id=trace_id)
         except ValueError as error:
@@ -139,6 +191,13 @@ def create_app(
             "collection": context.settings.qdrant_collection,
             "provider": context.provider,
         }
+        if context.catalog is not None:
+            payload["catalog"] = {
+                "references": context.catalog.references_count,
+                "prices": context.catalog.prices_count,
+                "distributors": context.catalog.distributors_count,
+                "fingerprint": context.catalog.fingerprint,
+            }
         return JSONResponse(payload, status_code=200 if context.index_ready else 503)
 
     return app

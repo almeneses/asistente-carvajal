@@ -6,6 +6,7 @@ import os
 import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 
 _COLLECTION_RE = re.compile(r"^[a-z0-9_]+$")
@@ -59,6 +60,9 @@ class Settings:
     top_k: int = 5
     acceptance_file: Path | None = None
     eval_qdrant_path: Path = Path(".qdrant-eval")
+    catalog_dir: Path | None = None
+    catalog_routing_file: Path | None = None
+    catalog_price_today: str | None = None
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> Settings:
@@ -120,6 +124,35 @@ class Settings:
             _clean(source, "EVAL_QDRANT_PATH", ".qdrant-eval") or ".qdrant-eval"
         ).expanduser()
 
+        catalog_raw = _clean(source, "CATALOG_DIR")
+        catalog_dir = Path(catalog_raw).expanduser() if catalog_raw else None
+        if catalog_dir is not None:
+            required = (
+                "referencias.csv",
+                "precios.csv",
+                "materiales.csv",
+                "distribuidores.csv",
+                "manifest.json",
+            )
+            if not catalog_dir.is_dir():
+                errors.append(f"CATALOG_DIR no existe: {catalog_dir}")
+            else:
+                missing = [name for name in required if not (catalog_dir / name).is_file()]
+                if missing:
+                    errors.append(f"CATALOG_DIR no contiene: {', '.join(missing)}")
+
+        routing_raw = _clean(source, "CATALOG_ROUTING_FILE")
+        catalog_routing_file = Path(routing_raw).expanduser() if routing_raw else None
+        if catalog_routing_file is not None and not catalog_routing_file.is_file():
+            errors.append(f"CATALOG_ROUTING_FILE no existe: {catalog_routing_file}")
+
+        price_today = _clean(source, "CATALOG_PRICE_TODAY")
+        if price_today is not None:
+            try:
+                date.fromisoformat(price_today)
+            except ValueError:
+                errors.append("CATALOG_PRICE_TODAY debe ser una fecha ISO (AAAA-MM-DD).")
+
         acceptance_raw = _clean(source, "ACCEPTANCE_FILE")
         acceptance_file = Path(acceptance_raw).expanduser() if acceptance_raw else None
         if acceptance_file is not None and not acceptance_file.is_file():
@@ -148,4 +181,7 @@ class Settings:
             top_k=top_k,
             acceptance_file=acceptance_file,
             eval_qdrant_path=eval_qdrant_path,
+            catalog_dir=catalog_dir,
+            catalog_routing_file=catalog_routing_file,
+            catalog_price_today=price_today,
         )
