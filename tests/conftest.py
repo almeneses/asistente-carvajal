@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 from assistant.chunking import Fragment
+from assistant.config import EMBEDDING_DIM
 from assistant.corpus import CorpusDocument, load_corpus
 from assistant.llm import Message
 from assistant.retrieval import RetrievedFragment
@@ -95,11 +96,14 @@ def fragments(documents: list[CorpusDocument]) -> list[Fragment]:
 class FakeEmbedder:
     """Embedder determinista: un eje por tema, sin red."""
 
+    def __init__(self, dim: int = EMBEDDING_DIM) -> None:
+        self._dim = dim
+
     def embed(self, texts: Sequence[str]) -> list[list[float]]:
         vectors: list[list[float]] = []
         for text in texts:
             lower = text.lower()
-            vector = [0.0] * 768
+            vector = [0.0] * self._dim
             if "carvajal" in lower or "sectores" in lower:
                 vector[0] = 1.0
             elif "empaques" in lower or "precio" in lower:

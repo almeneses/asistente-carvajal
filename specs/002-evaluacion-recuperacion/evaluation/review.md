@@ -1,38 +1,40 @@
 # Revisión del ground truth
 
-- Fingerprint del corpus: `9952ecc5758b3672114216cf8ba4a5ad8aeb547bad73badad6f075752e998ee6`
-- Revisado por: _(completar)_
-- Fecha: _(completar)_
+- Fingerprint: `9952ecc5758b3672114216cf8ba4a5ad8aeb547bad73badad6f075752e998ee6`
+- Revisado por: almeneses (sesión asistida, 2026-11-20)
+- Correcciones: q07 Bioform, q12 LiquidezYa, q20 Fundación, q22 línea ética, q27 EBITDA, q28 pérdida neta, q29 balance 2024 y q30 empleados pasan a sustentables; q16 excluye `sostenibilidad` (documento vacío).
 
-| id | pregunta | evidencia | estado | hechos | decisión | cambios |
-|---|---|---|---|---|---|---|
-| q01 | ¿Qué es Carvajal y a qué sectores se dedica? | quienes_somos, home, pulpa_y_papel | sustainable | Carvajal es una empresa multilatina colombiana con más de un siglo de historia, fundada en Cali en 1904.; Su portafolio incluye empaques para alimentos, papel (Pulpa y Papel), educación y tecnología y servicios.; Opera en sectores como empaques, pulpa y papel, educación, tecnología y servicios, espacios y comunicaciones. | _(ok/corregir)_ | _(describir)_ |
-| q02 | ¿En qué año y ciudad fue fundada Carvajal? | historia, quienes_somos | sustainable | Carvajal nace el sábado 29 de octubre de 1904 con la impresión del semanario El Día.; El origen fue en Cali, Colombia, por iniciativa de la Familia Carvajal. | _(ok/corregir)_ | _(describir)_ |
-| q03 | ¿En cuántos países tiene presencia Carvajal? | pulpa_y_papel, quienes_somos | sustainable | Carvajal es una multinacional colombiana presente en más de 7 países.; Se describe como una empresa multilatina con presencia en varios mercados del continente. | _(ok/corregir)_ | _(describir)_ |
-| q04 | ¿Cuáles son los cuatro sectores en los que opera Carvajal? | home, empaques, pulpa_y_papel, educacion, tecnologia | sustainable | Los sectores destacados en la página principal son Empaques, Pulpa y Papel, Educación y Tecnología y Servicios.; Carvajal Empaques se enfoca en empaques para alimentos; Carvajal Pulpa y Papel en papeles y cartulinas; Carvajal Educación en cuadernos y material educativo; Carvajal Tecnología y Servicios en soluciones digitales. | _(ok/corregir)_ | _(describir)_ |
-| q05 | ¿Cuál es el propósito superior de Carvajal? | proposito_superior | sustainable | El propósito superior fue construido con la participación de más de 1.500 personas entre colaboradores, clientes y proveedores.; Se orienta en cuatro capacidades, entre ellas la creación de valor.; Está respaldado por más de un siglo de historia y los valores organizacionales. | _(ok/corregir)_ | _(describir)_ |
-| q06 | ¿Qué empresas conforman el sector de Papel y Empaques? | pulpa_y_papel, empaques | sustainable | Carvajal Pulpa y Papel (PROPAL) desarrolla papeles y cartulinas usando bagazo de caña como materia prima.; Carvajal Empaques desarrolla empaques para alimentos con enfoque en sostenibilidad e innovación. | _(ok/corregir)_ | _(describir)_ |
-| q07 | ¿Qué es Bioform y a qué industria está dirigido? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q08 | ¿Qué marca de educación tiene Carvajal y a quién se dirige? | educacion | sustainable | Carvajal Educación facilita el aprendizaje y la educación en todas las etapas de la vida.; Sus mercados incluyen cuadernos, arte, maletería y oficina, con presencia en Panamá y Puerto Rico. | _(ok/corregir)_ | _(describir)_ |
-| q09 | ¿Qué soluciones ofrece Carvajal Tecnología y Servicios? | tecnologia | sustainable | Carvajal Tecnología y Servicios crea sistemas de intercambio de información.; Conecta a ciudadanos con el Estado y a empresas con clientes y proveedores para reducir costos de transacción. | _(ok/corregir)_ | _(describir)_ |
-| q10 | ¿Qué es Mepal y a qué sector pertenece? | espacios | sustainable | Mepal es la marca de Carvajal Espacios con más de 65 años de trayectoria.; Se enfoca en diseño y fabricación de mobiliario corporativo para espacios de bienestar y productividad. | _(ok/corregir)_ | _(describir)_ |
-| q11 | ¿Qué hace Carvajal Espacios? | espacios | sustainable | Carvajal Espacios crea espacios de bienestar integral que impulsan la productividad y fomentan la colaboración en las organizaciones.; Opera bajo la marca Mepal Carvajal Espacios con más de 65 años de trayectoria.; Se enfoca en el diseño y fabricación de mobiliario corporativo. | _(ok/corregir)_ | _(describir)_ |
-| q12 | ¿Qué es LiquidezYa? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q13 | ¿En qué consiste el negocio de Propiedades e Inversiones? | propiedades_e_inversiones | sustainable | Genera experiencias confortables mediante la administración de inmuebles a la medida para espacios productivos y de vivienda.; Transforma inmuebles que prestan servicios inmobiliarios a diferentes compañías.; Su oferta incluye personalización de diseño acorde a la identidad de marca y espacios que propician el trabajo colaborativo. | _(ok/corregir)_ | _(describir)_ |
-| q14 | ¿Cómo está conformado el gobierno corporativo de Carvajal? | gobierno_corporativo | sustainable | La Junta Directiva está compuesta por 9 miembros principales elegidos por la asamblea general de accionistas para un período de un año.; Al menos tres de los miembros de la Junta Directiva deben ser personas independientes.; La composición se rige por el Artículo 29 de los estatutos de la sociedad. | _(ok/corregir)_ | _(describir)_ |
-| q15 | ¿Qué compromisos éticos declara la empresa? | compromiso_etico, relacionamiento_con_grupos_de_interes | sustainable | La Organización Carvajal se compromete en el marco de los Derechos Humanos a generar un ambiente de trabajo seguro.; Su compromiso ético se basa en la adhesión y cumplimiento al Pacto Global de las Naciones Unidas y sus principios rectores.; Define descripciones de las relaciones con grupos de interés externos como clientes, accionistas, proveedores y acreedores. | _(ok/corregir)_ | _(describir)_ |
-| q16 | ¿Qué iniciativas de sostenibilidad adelanta Carvajal? | sostenibilidad, empaques, comunicacion, pulpa_y_papel | sustainable | Carvajal Empaques desarrolla empaques para alimentos con enfoque de economía circular y sostenibilidad.; Carvajal Soluciones de Comunicación es empresa BIC comprometida con el desarrollo sostenible.; Carvajal Pulpa y Papel propone alternativas sostenibles usando bagazo de caña como materia prima. | _(ok/corregir)_ | _(describir)_ |
-| q17 | ¿Qué noticias recientes publica Carvajal en su sitio web? | noticias | sustainable | El archivo de noticias incluye 'UNIDOS PARA RECUPERAR Y REVITALIZAR A FICO' de julio de 2026.; Incluye 'Pedro Felipe Carvajal: Continuaremos con nuestra apuesta decidida por Colombia' de mayo de 2025.; Incluye 'Carvajal Empaques, reconocida como Empresa Socialmente Responsable en México' de mayo de 2025. | _(ok/corregir)_ | _(describir)_ |
-| q18 | ¿Cuál es la historia de Carvajal desde su fundación? | historia, quienes_somos | sustainable | El 29 de octubre de 1904 nace el sueño de la Familia Carvajal con la impresión del semanario El Día.; Manuel Carvajal Valencia inició el proyecto con participación de toda su familia.; En 1904 en Cali, Colombia, inicia un sueño familiar que evolucionó a una empresa multilatina. | _(ok/corregir)_ | _(describir)_ |
-| q19 | ¿Qué información ofrece el portal de inversionistas? | inicio, gobierno_corporativo | sustainable | Carvajal S.A. informa sobre modificación al prospecto de emisión de bonos ordinarios en el Segundo Mercado No. 202312.; Se informa sobre decisiones de la Asamblea General de Tenedores de Bonos de la emisión 202312.; El gobierno corporativo detalla la composición de la Junta Directiva con 9 miembros principales. | _(ok/corregir)_ | _(describir)_ |
-| q20 | ¿Qué fundaciones están vinculadas a Carvajal? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q21 | ¿Cómo puedo contactar a Carvajal o solicitar información? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q22 | ¿Qué es la línea ética de Carvajal? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q23 | ¿Qué productos o servicios ofrece Carvajal en comunicación? | comunicacion | sustainable | Carvajal Soluciones de Comunicación impulsa tecnologías renovables para servicios de comunicación impresa y digital; Es una empresa BIC líder en el mercado de impresión digital en Colombia; Fomenta el respeto por el medio ambiente y el desarrollo sostenible con tecnología de punta | _(ok/corregir)_ | _(describir)_ |
-| q24 | ¿Qué presencia tiene Carvajal en Colombia? | quienes_somos, pulpa_y_papel | sustainable | Carvajal nació en 1904 en Cali, Colombia; Es una empresa multilatina con presencia en más de 7 países; Propal tiene plantas de producción en Yumbo, Valle del Cauca, y Guachené, Cauca | _(ok/corregir)_ | _(describir)_ |
-| q25 | ¿Cuáles son los valores o principios que guían a Carvajal? | proposito_superior, compromiso_etico | sustainable | El propósito superior fue construido con la participación de más de 1.500 personas entre colaboradores, clientes y proveedores; Se orienta en cuatro capacidades, entre ellas la creación de valor; La Organización Carvajal se compromete con el respeto y protección de los Derechos Humanos conforme al Pacto Global de las Naciones Unidas | _(ok/corregir)_ | _(describir)_ |
-| q26 | ¿Cuáles fueron los ingresos consolidados de Carvajal en 2024? | resultados_empresariales_2024_de_carvajal_4099828, carvajal_y_sus_empresas_reportan_resultados_0239html | sustainable | Carvajal reportó ingresos por $3,9 billones en 2024; La utilidad bruta fue de $1,07 billones; Se destacó la inversión en el proceso de transformación tecnológica | _(ok/corregir)_ | _(describir)_ |
-| q27 | ¿Cuál fue el EBITDA consolidado de Carvajal a septiembre de 2025 y qué margen EBITDA reportó? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q28 | ¿Qué utilidad o pérdida neta reportó Carvajal en 2024 y a qué filial se atribuye? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q29 | ¿Cuáles son los activos, pasivos y patrimonio consolidados de Carvajal al cierre de 2024? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
-| q30 | ¿Cuántos empleados tiene Carvajal y qué fuente lo reporta? | — | not_sustainable | (revisar: sin hechos propuestos) | _(ok/corregir)_ | _(describir)_ |
+| id | pregunta | evidencia | estado | decisión |
+|---|---|---|---|---|
+| q01 | ¿Qué es Carvajal y a qué sectores se dedica? | quienes_somos, home, pulpa_y_papel | sustainable | ok |
+| q02 | ¿En qué año y ciudad fue fundada Carvajal? | historia, quienes_somos | sustainable | ok |
+| q03 | ¿En cuántos países tiene presencia Carvajal? | pulpa_y_papel, quienes_somos | sustainable | ok |
+| q04 | ¿Cuáles son los cuatro sectores en los que opera Carvajal? | home, empaques, pulpa_y_papel, educacion, tecnologia | sustainable | ok |
+| q05 | ¿Cuál es el propósito superior de Carvajal? | proposito_superior | sustainable | ok |
+| q06 | ¿Qué empresas conforman el sector de Papel y Empaques? | pulpa_y_papel, empaques | sustainable | ok |
+| q07 | ¿Qué es Bioform y a qué industria está dirigido? | quienes_somos | sustainable | corregido |
+| q08 | ¿Qué marca de educación tiene Carvajal y a quién se dirige? | educacion | sustainable | ok |
+| q09 | ¿Qué soluciones ofrece Carvajal Tecnología y Servicios? | tecnologia | sustainable | ok |
+| q10 | ¿Qué es Mepal y a qué sector pertenece? | espacios | sustainable | ok |
+| q11 | ¿Qué hace Carvajal Espacios? | espacios | sustainable | ok |
+| q12 | ¿Qué es LiquidezYa? | quienes_somos | sustainable | corregido |
+| q13 | ¿En qué consiste el negocio de Propiedades e Inversiones? | propiedades_e_inversiones | sustainable | ok |
+| q14 | ¿Cómo está conformado el gobierno corporativo de Carvajal? | gobierno_corporativo | sustainable | ok |
+| q15 | ¿Qué compromisos éticos declara la empresa? | compromiso_etico, relacionamiento_con_grupos_de_interes | sustainable | ok |
+| q16 | ¿Qué iniciativas de sostenibilidad adelanta Carvajal? | empaques, comunicacion, pulpa_y_papel | sustainable | corregido |
+| q17 | ¿Qué noticias recientes publica Carvajal en su sitio web? | noticias | sustainable | ok |
+| q18 | ¿Cuál es la historia de Carvajal desde su fundación? | historia, quienes_somos | sustainable | ok |
+| q19 | ¿Qué información ofrece el portal de inversionistas? | inicio, gobierno_corporativo | sustainable | ok |
+| q20 | ¿Qué fundaciones están vinculadas a Carvajal? | home, historia | sustainable | corregido |
+| q21 | ¿Cómo puedo contactar a Carvajal o solicitar información? | — | not_sustainable | ok |
+| q22 | ¿Qué es la línea ética de Carvajal? | compromiso_etico | sustainable | corregido |
+| q23 | ¿Qué productos o servicios ofrece Carvajal en comunicación? | comunicacion | sustainable | ok |
+| q24 | ¿Qué presencia tiene Carvajal en Colombia? | quienes_somos, pulpa_y_papel | sustainable | ok |
+| q25 | ¿Cuáles son los valores o principios que guían a Carvajal? | proposito_superior, compromiso_etico | sustainable | ok |
+| q26 | ¿Cuáles fueron los ingresos consolidados de Carvajal en 2024? | resultados_empresariales_2024_de_carvajal_4099828, carvajal_y_sus_empresas_reportan_resultados_0239html | sustainable | ok |
+| q27 | ¿Cuál fue el EBITDA consolidado de Carvajal a septiembre de 2025 y qué margen EBITDA reportó? | carvajal_reporto_ingresos_por_2_58_billones_a_septiembre_de_2025_4269762, carvajal_reporto_ingresos_por_2_8_billones_con_corte_al_tercer_trimestre_3999096 | sustainable | corregido |
+| q28 | ¿Qué utilidad o pérdida neta reportó Carvajal en 2024 y a qué filial se atribuye? | carvajal_y_sus_empresas_reportan_resultados_0239html, resultados_empresariales_2024_de_carvajal_4099828, carvajal_s_a_futuro_consolidado_ante_desafios_globales | sustainable | corregido |
+| q29 | ¿Cuáles son los activos, pasivos y patrimonio consolidados de Carvajal al cierre de 2024? | carvajal_s_a_futuro_consolidado_ante_desafios_globales, carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992 | sustainable | corregido |
+| q30 | ¿Cuántos empleados tiene Carvajal y qué fuente lo reporta? | carvajal_s_a_futuro_consolidado_ante_desafios_globales, carvajal_reporto_ingresos_por_1_9_billones_a_junio_un_decrecimiento_de_14_anual_3928992 | sustainable | corregido |
+
+Controles de abstención añadidos: q31 (precio), q32 (correo), q33 (cifra futura).

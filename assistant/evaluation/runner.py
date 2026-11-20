@@ -133,14 +133,14 @@ def _migration_recommendation(variants: Sequence[VariantReport]) -> str | None:
     by_model: dict[str, float] = {}
     for variant in variants:
         model = variant.config.embedding_model
-        recall = float(variant.metrics.get("recall_at_5") or 0.0)
+        recall = float(variant.metrics.get("hit_at_5") or 0.0)
         by_model[model] = max(by_model.get(model, 0.0), recall)
     if "nomic-embed-text" not in by_model or "bge-m3" not in by_model:
         return None
     delta = by_model["bge-m3"] - by_model["nomic-embed-text"]
     if delta >= 0.05:
-        return f"migrar a bge-m3 (mejora de {delta * 100:.1f} pp en recall@5)"
-    return f"mantener nomic-embed-text (mejora de bge-m3: {delta * 100:.1f} pp)"
+        return f"migrar a bge-m3 (mejora de {delta * 100:.1f} pp en acierto@5)"
+    return f"mantener nomic-embed-text (mejora de bge-m3: {delta * 100:.1f} pp en acierto@5)"
 
 
 def _base_report(

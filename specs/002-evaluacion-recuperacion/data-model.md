@@ -90,7 +90,8 @@ validaciones. Es la fuente para `contracts/`, `tasks.md` y las pruebas.
 
 | Campo | Tipo | Regla |
 |---|---|---|
-| `recall_at_1/3/5/10` | float 0..1 | macro sobre sustentables |
+| `hit_at_1/3/5/10` | float 0..1 | acierto: alguna evidencia esperada en el top k |
+| `recall_at_1/3/5/10` | float 0..1 | cobertura completa, macro sobre sustentables |
 | `mrr` | float 0..1 | macro sobre sustentables |
 | `citation_precision` | float 0..1 | solo `e2e`; 1.0 esperado |
 | `expected_citation_coverage` | float 0..1 | respuestas que citan un slug esperado |

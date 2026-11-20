@@ -15,7 +15,8 @@
 - Q: ¿La fase puede cambiar el modelo de embeddings o se limita a ajustar la recuperación actual? → A: Se evalúa `bge-m3` (1024 dims, multilingüe) y solo se migra si mejora al menos 5 puntos porcentuales; implica reconstruir el índice y enmendar la constitución.
 - Q: ¿Cómo se construye la evidencia esperada de las 30 preguntas? → A: El LLM propone evidencia y estado esperado; una persona revisa y corrige las 30 antes de usarlas como ground truth.
 - Q: ¿Qué parte de la evaluación corre en CI? → A: Solo las pruebas del harness con fixtures; la evaluación real se ejecuta a mano con servicios.
-- Q: ¿Qué umbrales de salida se fijan? → A: `recall@5 ≥ 95 %`, precisión de citas 100 % y abstención correcta ≥ 90 %, recalibrables contra el baseline con registro en el ADR.
+- Q: ¿Qué umbrales de salida se fijan? → A: `hit@5 ≥ 95 %`, precisión de citas 100 % y abstención correcta ≥ 90 %, recalibrables contra el baseline con registro en el ADR.
+- Q: ¿Cómo se mide SC-002 cuando hay varias fuentes válidas? → A: `hit@5` (al menos una evidencia esperada en el top 5) es la métrica primaria; `recall@5` completo queda como secundaria.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -177,8 +178,9 @@ métricas agregadas coinciden; el reporte registra el fingerprint del corpus.
 
 - **SC-001**: El 100 % de las 30 preguntas del set queda anotado con evidencia y estado
   esperado.
-- **SC-002**: `recall@5 ≥ 95 %` en las preguntas sustentables (baseline medido al inicio
-  de la fase).
+- **SC-002**: `hit@5 ≥ 95 %` en las preguntas sustentables: al menos una evidencia
+  esperada aparece en el top 5 (baseline medido al inicio de la fase). La cobertura
+  completa (`recall@5`) se reporta como métrica secundaria.
 - **SC-003**: La precisión de citas es del 100 %: ninguna cita producida apunta a un
   documento fuera del corpus o con metadatos alterados.
 - **SC-004**: La abstención es correcta en al menos el 90 % de las preguntas marcadas como

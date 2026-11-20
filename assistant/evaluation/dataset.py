@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 VALID_STATUS = ("sustainable", "not_sustainable")
-DEFAULT_QUESTION_COUNT = 30
+DEFAULT_QUESTION_COUNT = 33
 
 
 class DatasetError(RuntimeError):

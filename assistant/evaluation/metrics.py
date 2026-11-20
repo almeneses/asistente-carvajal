@@ -75,6 +75,19 @@ def recall_at_k(rows: Sequence[RowLike], k: int) -> float:
     return sum(values) / len(values) if values else 0.0
 
 
+def hit_at_k(rows: Sequence[RowLike], k: int) -> float:
+    """Acierto: alguna evidencia esperada aparece dentro del top k."""
+    sustainable = _sustainable(rows)
+    if not sustainable:
+        return 0.0
+    hits = sum(
+        1
+        for row in sustainable
+        if row.rank_first_expected is not None and row.rank_first_expected <= k
+    )
+    return hits / len(sustainable)
+
+
 def mrr(rows: Sequence[RowLike]) -> float:
     """Mean reciprocal rank del primer documento esperado."""
     sustainable = _sustainable(rows)
@@ -135,6 +148,10 @@ def compute_metrics(rows: Sequence[RowLike], mode: str) -> dict[str, Any]:
     p50, p95 = latency_percentiles(rows)
     metrics: dict[str, Any] = {
         "questions_evaluated": len(rows),
+        "hit_at_1": hit_at_k(rows, 1),
+        "hit_at_3": hit_at_k(rows, 3),
+        "hit_at_5": hit_at_k(rows, 5),
+        "hit_at_10": hit_at_k(rows, 10),
         "recall_at_1": recall_at_k(rows, 1),
         "recall_at_3": recall_at_k(rows, 3),
         "recall_at_5": recall_at_k(rows, 5),
@@ -161,16 +178,20 @@ def pick_winner(variants: Sequence[tuple[str, dict[str, Any]]]) -> str | None:
         return None
     return max(
         variants,
-        key=lambda item: (item[1].get("recall_at_5", 0.0), item[1].get("mrr", 0.0)),
+        key=lambda item: (
+            item[1].get("hit_at_5", 0.0),
+            item[1].get("recall_at_5", 0.0),
+            item[1].get("mrr", 0.0),
+        ),
     )[0]
 
 
 def meets_thresholds(metrics: dict[str, Any], mode: str) -> list[str]:
     """Devuelve las métricas que incumplen los umbrales de la fase."""
     failures: list[str] = []
-    recall = metrics.get("recall_at_5")
-    if recall is None or recall < 0.95:
-        failures.append(f"recall_at_5={recall}")
+    hit = metrics.get("hit_at_5")
+    if hit is None or hit < 0.95:
+        failures.append(f"hit_at_5={hit}")
     if mode == "e2e":
         precision = metrics.get("citation_precision")
         if precision is None or precision < 1.0:

@@ -64,7 +64,7 @@ uv run python scripts/run_evaluation.py \
 - **Recomendación**: el reporte de retrieval incluye `migration_recommendation` con el
   delta de `recall@5` entre `bge-m3` y `nomic-embed-text` y el umbral de 5 pp.
 - **Umbrales** (solo `e2e` para las métricas de respuesta):
-  - `recall_at_5 ≥ 0.95` en sustentables;
+  - `hit_at_5 ≥ 0.95` en sustentables (al menos una evidencia esperada en el top 5);
   - `citation_precision == 1.0` y `0` citas inválidas;
   - `abstention_accuracy ≥ 0.90`.
 

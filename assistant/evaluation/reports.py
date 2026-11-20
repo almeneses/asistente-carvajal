@@ -134,15 +134,16 @@ def render_markdown(report: RunReport) -> str:
         f"- Fingerprint de index.jsonl: `{report.index_jsonl_sha256[:16]}…`",
         f"- Proveedor: {report.provider or '—'}",
         "",
-        "| Variante | recall@1 | recall@5 | MRR | p50 ms | p95 ms |"
+        "| Variante | hit@1 | hit@5 | recall@5 | MRR | p50 ms | p95 ms |"
         + (" Citas | Abstención | Cobertura |" if e2e else ""),
-        "|---|---|---|---|---|---|" + ("---|---|---|" if e2e else ""),
+        "|---|---|---|---|---|---|---|---|" + ("---|---|---|" if e2e else ""),
     ]
     for variant in report.variants:
         metrics = variant.metrics
         row = (
             f"| {variant.config.id} | "
-            f"{_format_metric(metrics.get('recall_at_1'))} | "
+            f"{_format_metric(metrics.get('hit_at_1'))} | "
+            f"{_format_metric(metrics.get('hit_at_5'))} | "
             f"{_format_metric(metrics.get('recall_at_5'))} | "
             f"{_format_metric(metrics.get('mrr'))} | "
             f"{_format_metric(metrics.get('latency_p50_ms'))} | "

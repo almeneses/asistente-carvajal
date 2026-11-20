@@ -25,6 +25,19 @@ def test_recall_y_mrr() -> None:
     assert metrics.mrr(rows) == 0.75
 
 
+def test_hit_at_k() -> None:
+    # Arrange
+    rows = [
+        make_row(row_id="q01", rank_first_expected=1),
+        make_row(row_id="q02", expected_slugs=("empaques",), rank_first_expected=4),
+        make_row(row_id="q03", rank_first_expected=None),
+    ]
+
+    # Act / Assert
+    assert metrics.hit_at_k(rows, 1) == 1 / 3
+    assert metrics.hit_at_k(rows, 5) == 2 / 3
+
+
 def test_recall_sin_preguntas_sustentables() -> None:
     # Arrange
     rows = [make_row(expected_status="not_sustainable", expected_slugs=())]
@@ -131,11 +144,11 @@ def test_metricas_e2e_incluyen_respuesta() -> None:
 
 def test_umbrales() -> None:
     # Arrange
-    failing = {"recall_at_5": 0.9, "citation_precision": 1.0, "abstention_accuracy": 0.8}
+    failing = {"hit_at_5": 0.9, "citation_precision": 1.0, "abstention_accuracy": 0.8}
 
     # Act
     failures = metrics.meets_thresholds(failing, "e2e")
 
     # Assert
-    assert any("recall_at_5" in failure for failure in failures)
+    assert any("hit_at_5" in failure for failure in failures)
     assert any("abstention_accuracy" in failure for failure in failures)
