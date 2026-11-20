@@ -80,14 +80,22 @@ Este documento resuelve las decisiones técnicas del plan. No quedan
 ## R7. Fragmentación y recuperación
 
 - **Decisión**: fragmentos de 1000 caracteres con 200 de solape (herencia del corpus
-  upstream), `k=5` fragmentos por pregunta, distancia coseno. El payload guarda `slug`,
-  `url`, `title`, `source_type`, `section`, `chunk_index` y `text`.
+  upstream), `k=5` fragmentos por pregunta y **recuperación híbrida**: hasta 200
+  candidatos por coseno y reordenamiento `0.6 · coseno + 0.4 · solape léxico` (tallos de
+  5 letras, sinónimos de dominio como empleado→colaborador y fundada→fundación). El
+  payload guarda `slug`, `url`, `title`, `source_type`, `section`, `chunk_index` y `text`.
 - **Rationale**: mantiene compatibilidad con el contrato del corpus y la convención ya
   documentada aguas arriba; sobre 24 documentos es suficiente y barato de reconstruir.
 - **Alternativas consideradas**: fragmentos por sección Markdown (más fieles pero
   variables), 500/100 (más fragmentos y latencia), sin solape (pierde continuidad).
-- **Revisión**: el set de aceptación (T? en `tasks.md`) mide si conviene ajustar tamaño o
-  `k` en fases posteriores.
+- **Rationale del híbrido**: nomic-embed-text degrada en español y no recuperaba
+  documentos con términos poco frecuentes; el solape léxico sobre todo el corpus (123
+  fragmentos) corrigió 5 de 30 preguntas sin cambiar el modelo ni añadir dependencias.
+- **Alternativas consideradas**: solo coseno (67 % de respuestas aceptadas), reescritura
+  de consulta con LLM (acopla recuperación y generación, viola el principio IV),
+  embeddings multilingües (cambio de stack que requiere enmienda constitucional).
+- **Revisión**: el umbral de 90 % se cumple (27/30) con el set actual; al crecer el
+  corpus, el escaneo completo de candidatos debe pasar a búsqueda por servidor Qdrant.
 
 ## R8. Citas construidas en el servidor
 

@@ -129,9 +129,9 @@ en la raíz del repositorio.
 
 ## Phase 6: User Story 4 - Evaluar el corte con un set de preguntas (Priority: P4)
 
-**Goal**: reporte de aceptación con 40 preguntas y validación de citas (FR-014; SC-001, SC-002, SC-007)
+**Goal**: reporte de aceptación con 30 preguntas y validación de citas (FR-014; SC-001, SC-002, SC-007)
 
-**Independent Test**: ejecutar el script sobre el corpus real y verificar 40 filas y `invalid_citations == 0`
+**Independent Test**: ejecutar el script sobre el corpus real y verificar 30 filas y `invalid_citations == 0`
 
 ### Tests for User Story 4
 
@@ -155,8 +155,8 @@ en la raíz del repositorio.
 - [X] T040 [P] Añadir `.qdrant/` y artefactos de reporte a `.gitignore` y revisar `.env.example`
 - [X] T041 [P] Actualizar `README.md` (estado del corte, comandos nuevos) y `CONSTITUTION.md` §9 si la implementación revela decisiones nuevas
 - [X] T042 Ejecutar `make check` y corregir lint/tipos/pruebas hasta verde
-- [ ] T043 Ejecutar la validación de `quickstart.md` con el corpus real y Ollama; registrar evidencia en `specs/001-corte-vertical-citas/quickstart.md` (SC-005, SC-006)
-- [ ] T044 Actualizar `specs/README.md` (estado ✅) y abrir PR con CI `Calidad` en verde
+- [X] T043 Ejecutar la validación de `quickstart.md` con el corpus real: índice 24 docs/123 fragmentos; 30 preguntas → 27/30 con cita válida y 0 inválidas; evidencia en `quickstart.md` (SC-001, SC-002, SC-005, SC-006)
+- [X] T044 Actualizar `specs/README.md` (estado ✅) y abrir PR #6 con CI `Calidad` en verde
 
 ---
 

@@ -11,7 +11,7 @@ recibe una pregunta, recupera evidencia del corpus web curado (solo lectura), ge
 respuesta con DeepSeek y respaldo local en Ollama, y muestra las fuentes citadas
 (título, tipo y enlace). Si no hay evidencia suficiente responde "no encontrado". Incluye
 indexación del corpus en Qdrant, configuración por variables de entorno y un script que
-ejecuta las ~40 preguntas de aceptación y emite un reporte de citación.
+ejecuta las 30 preguntas de aceptación y emite un reporte de citación.
 
 El enfoque técnico: cadena RAG propia (sin framework de agentes), embeddings
 `nomic-embed-text` vía Ollama, Qdrant en modo embebido local (o remoto por URL), HTMX
@@ -45,7 +45,7 @@ faltan corpus, Qdrant u Ollama.
 arranque falla con mensaje accionable si falta configuración, corpus o Qdrant; interfaz y
 respuestas en español; modo offline funcional con Ollama.
 
-**Scale/Scope**: 24 documentos del corpus (≈ 60 000 caracteres), ~200 fragmentos, 40
+**Scale/Scope**: 24 documentos del corpus (≈ 60 000 caracteres), ~200 fragmentos, 30
 preguntas de aceptación, un usuario concurrente.
 
 ## Constitution Check

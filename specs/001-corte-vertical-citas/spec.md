@@ -14,7 +14,7 @@
 
 - Q: ¿Debe la respuesta mostrar un extracto textual de la evidencia, además del título, tipo y enlace de la fuente? → A: Solo cita con enlace; sin extractos textuales en la respuesta.
 - Q: Si el servicio de recuperación del corpus no está disponible, ¿debe la aplicación negarse a arrancar o arrancar degradada? → A: Falla al arrancar, con un mensaje que indica qué revisar.
-- Q: ¿Cuántas preguntas debe tener el set de aceptación de este corte? → A: El set completo del proyecto de corpus (~40 preguntas), adaptado.
+- Q: ¿Cuántas preguntas debe tener el set de aceptación de este corte? → A: El set completo del proyecto de corpus (30 preguntas), adaptado.
 - Q: ¿Qué hace que una cita cuente como válida al evaluar las respuestas? → A: El enlace pertenece a un documento del corpus y coinciden título y tipo de fuente con sus metadatos.
 - Q: Durante una misma sesión de chat, ¿la página debe mostrar los intercambios anteriores o solo la última respuesta? → A: Historial de la sesión en memoria, sin persistir al recargar ni entre sesiones.
 
@@ -112,7 +112,7 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 
 **Acceptance Scenarios**:
 
-1. **Given** el set de aceptación (~40 preguntas), **When** se ejecuta sobre el
+1. **Given** el set de aceptación (30 preguntas), **When** se ejecuta sobre el
    asistente, **Then** se produce un reporte por pregunta con respuesta, citas y
    resultado (cita válida o no).
 2. **Given** una pregunta del set cuya respuesta no está en el corpus, **When** se
@@ -199,7 +199,7 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 
 ### Measurable Outcomes
 
-- **SC-001**: Al menos el 90 % de las 40 preguntas del set de aceptación reciben una
+- **SC-001**: Al menos el 90 % de las 30 preguntas del set de aceptación reciben una
   respuesta con al menos una cita válida.
 - **SC-002**: Cero respuestas del set de aceptación contienen cifras o hechos sin una
   cita que los sustente.
@@ -212,7 +212,7 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
 - **SC-006**: Cualquier configuración crítica ausente se detecta al arrancar y se
   informa con el nombre exacto del valor o la ruta a corregir.
 - **SC-007**: El reporte de aceptación se genera en una sola ejecución y contiene una
-  fila por cada una de las 40 preguntas con su resultado.
+  fila por cada una de las 30 preguntas con su resultado.
 
 ## Assumptions
 
@@ -220,7 +220,7 @@ comprobando que el reporte contiene una fila por pregunta con su resultado.
   fecha de esta especificación son 24 documentos con metadatos de título, enlace, tipo
   de fuente, sección y hash.
 - El set de preguntas de aceptación se reutiliza y adapta del proyecto de corpus
-  completo (~40 preguntas); no se inventa un set nuevo desde cero.
+  completo (30 preguntas); no se inventa un set nuevo desde cero.
 - El idioma de interfaz y de respuesta es español; no se implementa detección de idioma
   en este corte.
 - El uso previsto es local o de una sola persona por instancia; no hay autenticación

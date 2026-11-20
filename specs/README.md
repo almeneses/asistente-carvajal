@@ -20,6 +20,6 @@ convenciones y decisiones) vive en [`CONSTITUTION.md`](../CONSTITUTION.md); aqu�
 
 | Nº | Feature | Estado | Spec |
 |----|---------|--------|------|
-| 001 | Corte vertical del asistente con citas del corpus | ⚙️ en implementación | [spec.md](001-corte-vertical-citas/spec.md) |
+| 001 | Corte vertical del asistente con citas del corpus | ✅ fusionada | [spec.md](001-corte-vertical-citas/spec.md) |
 
 > Estados: 📝 borrador · 🔎 en clarificación · 📐 planeada · ⚙️ en implementación · ✅ fusionada.

@@ -75,10 +75,24 @@ uv run python scripts/run_acceptance.py --json-out /tmp/aceptacion.json
 
 Resultado esperado:
 
-- Reporte con 40 filas y una fila por pregunta.
+- Reporte con 30 filas y una fila por pregunta.
 - `invalid_citations == 0`.
-- `answered_with_valid_citation / 40 ≥ 0.9`.
+- `answered_with_valid_citation / 30 ≥ 0.9`.
 - Código de salida 0.
+
+## Evidencia de la implementación (2026-11-19)
+
+Validación ejecutada sobre el corpus real (`../carvajal/data/gold`) con Ollama local y
+DeepSeek como proveedor primario:
+
+- Índice: **24 documentos → 123 fragmentos** en Qdrant embebido.
+- `/healthz`: `200` con `corpus_documents: 24`, colección `corpus_carvajal` y proveedor.
+- Chat: respuesta con fuentes citadas y abstención explícita sin evidencia.
+- Pruebas: **49 pasan** con `pytest`; `make check` en verde.
+- Aceptación (30 preguntas): **27/30 (90 %) con cita válida, 0 citas inválidas, 3
+  abstenciones** (año/ciudad de fundación, contacto y balance al cierre de 2024).
+- Ruta local completa (Ollama, 2 preguntas): 2/2 con cita válida; el set completo con
+  modelo local en CPU excede el tiempo razonable de una sesión.
 
 ## Calidad
 

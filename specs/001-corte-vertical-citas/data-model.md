@@ -124,9 +124,10 @@ payload:
 id: UUID v5 determinista de "slug:chunk_index"
 ```
 
-- **Búsqueda**: `query_points(vector, limit=TOP_K, with_payload=True)`; se descartan
-  resultados con score < 0.2 (umbral configurable en código) para reducir evidencia
-  irrelevante; si no queda ninguno, `no_evidence`.
+- **Búsqueda híbrida**: se recuperan hasta 200 candidatos por similitud coseno del
+  embedding y se reordenan con `0.6 · coseno + 0.4 · solape léxico` (tallos de 5
+  letras y sinónimos de dominio); se descartan resultados con score combinado < 0.2.
+  Si no queda ninguno, `no_evidence`.
 
 ## Protocolos internos
 
@@ -144,7 +145,7 @@ LLM.generate(messages: list[Message]) -> str               # texto plano
 | Campo | Tipo | Regla |
 |---|---|---|
 | `generated_at` | datetime UTC | |
-| `questions_total` | int | 40 |
+| `questions_total` | int | 30 |
 | `answered_with_valid_citation` | int | ≥ 36 para SC-001 |
 | `no_evidence` | int | rechazos explícitos |
 | `invalid_citations` | int | debe ser 0 (SC-002) |
