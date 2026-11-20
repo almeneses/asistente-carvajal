@@ -242,12 +242,17 @@ git push
 - [x] Redactar la spec de fase 1 con `/speckit.specify` (spec, plan, tareas, análisis e implementación en `specs/001-corte-vertical-citas/`).
 - [x] Decidir framework de UI, índice vectorial, embeddings y proveedor de LLM (fase 1).
 - [x] Decidir la orquestación RAG: cadena propia (ver `specs/001-corte-vertical-citas/plan.md`).
-- [ ] Definir el contrato de consumo del corpus (rutas, *front matter*, índice JSONL).
-- [ ] Implementar el módulo de recuperación y sus pruebas (fase 2).
-- [ ] Implementar la consulta sobre el catálogo de empaques (fase 3).
-- [ ] Construir la interfaz de chat con citación de fuentes (fase 4).
-- [ ] Definir un set de preguntas de evaluación y métricas de calidad (fase 5).
-- [ ] Añadir `.env.example` cuando existan variables configurables.
+- [x] Definir el contrato de consumo del corpus (rutas, *front matter*, índice JSONL): `specs/001-corte-vertical-citas/data-model.md` y `assistant/corpus.py`.
+- [x] Implementar el módulo de recuperación y sus pruebas (fase 2): corte vertical de la spec 001.
+- [x] Construir la interfaz de chat con citación de fuentes (fase 4): versión mínima en la spec 001.
+- [x] Añadir `.env.example` con las variables configurables.
+- [ ] Fase 2: evaluación de recuperación y métricas de calidad (`specs/002-evaluacion-recuperacion/`).
+- [ ] Fase 3: consulta sobre el catálogo de empaques.
+- [ ] Fase 4: mejoras de experiencia de chat (streaming, Markdown, accesibilidad).
+- [ ] Fase 5: evaluación ampliada, operación, observabilidad y despliegue.
+- [ ] Decidir el proveedor de LLM por defecto para nuevos usuarios (`deepseek` vs `ollama`).
+- [ ] Evaluar `bge-m3` u otro embedding multilingüe frente a `nomic-embed-text`.
+- [ ] Registrar ADRs de embeddings, orquestación y modo Qdrant.
 
 ## 11. Configuración local (no trackear)
 
