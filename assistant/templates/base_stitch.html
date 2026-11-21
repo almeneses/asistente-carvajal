@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Asistente Carvajal{% endblock %}</title>
+  <meta name="description" content="Asistente accesible de Carvajal para consultas, catálogo y solicitudes de cotización.">
+  <link rel="stylesheet" href="/static/stitch/stitch.css">
+  <script src="/static/stitch/tailwind.js"></script>
+  <script src="/static/stitch/tailwind-config.js"></script>
+</head>
+<body class="bg-[#F3F6F8] text-[#072B46] font-[DM_Sans] min-h-screen flex flex-col">
+  <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:z-50">
+    Saltar al contenido
+  </a>
+  {% include "_stitch_header.html" %}
+  <main id="contenido" class="flex-1 w-full">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "_stitch_footer.html" %}
+  <p id="voice-status" class="sr-only" role="status" aria-live="polite"></p>
+  <script src="/static/stitch/stitch.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

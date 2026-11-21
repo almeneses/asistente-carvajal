@@ -6,21 +6,21 @@
 
 ## Phase 1: Setup
 
-- [ ] T001 Vendorizar `tailwindcss` y su configuración en `assistant/static/stitch/tailwind.js`
-- [ ] T002 [P] Descargar Material Symbols woff2 y DM Sans faltante a `assistant/static/stitch/`
+- [X] T001 Vendorizar `tailwindcss` y su configuración en `assistant/static/stitch/tailwind.js`
+- [X] T002 [P] Descargar Material Symbols woff2 y DM Sans faltante a `assistant/static/stitch/`
 - [ ] T003 [P] Descargar activos del prototipo (Carva, producto, logo) a `assistant/static/stitch/assets/`
-- [ ] T004 [P] Extraer `@keyframes`, estilos y funciones JS de los HTML de Stitch a `stitch.css` y `stitch.js`
-- [ ] T005 Añadir `QUOTES_LOG_PATH` a `.env.example` y `Settings` (`data-model.md`, `Configuración añadida`)
+- [X] T004 [P] Extraer `@keyframes`, estilos y funciones JS de los HTML de Stitch a `stitch.css` y `stitch.js`
+- [X] T005 Añadir `QUOTES_LOG_PATH` a `.env.example` y `Settings` (`data-model.md`, `Configuración añadida`)
 
 ## Phase 2: Foundational
 
-- [ ] T006 Implementar `assistant/quotes/models.py` (`QuoteRequest`, `QuoteRecord`, validación)
-- [ ] T007 Implementar `assistant/quotes/store.py` (JSONL append, lectura, código `OC-AAAA-MMDD-XXXX` único)
-- [ ] T008 Implementar `assistant/quotes/service.py` (recalcular total desde catálogo y registrar)
-- [ ] T009 [P] Pruebas de modelos/store/código en `tests/test_quotes.py`
-- [ ] T010 Implementar `stitch.js` con `minimizeToChat`, `expandFullCard`, `startCountdown`, `toggleFullCard` y `prefers-reduced-motion`
-- [ ] T011 Crear la plantilla base Stitch (`base_stitch.html`) con cabecera, footer y carga local de Tailwind/fuentes/iconos
-- [ ] T012 [P] Pruebas de contrato de animación en `tests/test_stitch_animation.py` (IDs, funciones, reduced motion)
+- [X] T006 Implementar `assistant/quotes/models.py` (`QuoteRequest`, `QuoteRecord`, validación)
+- [X] T007 Implementar `assistant/quotes/store.py` (JSONL append, lectura, código `OC-AAAA-MMDD-XXXX` único)
+- [X] T008 Implementar `assistant/quotes/service.py` (recalcular total desde catálogo y registrar)
+- [X] T009 [P] Pruebas de modelos/store/código en `tests/test_quotes.py`
+- [X] T010 Implementar `stitch.js` con `minimizeToChat`, `expandFullCard`, `startCountdown`, `toggleFullCard` y `prefers-reduced-motion`
+- [X] T011 Crear la plantilla base Stitch (`base_stitch.html`) con cabecera, footer y carga local de Tailwind/fuentes/iconos
+- [X] T012 [P] Pruebas de contrato de animación en `tests/test_stitch_animation.py` (IDs, funciones, reduced motion)
 
 **Checkpoint**: store, endpoint base y JS de animación listos.
 
