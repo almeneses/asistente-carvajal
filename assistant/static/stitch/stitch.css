@@ -124,3 +124,34 @@ body.carvajal-bg::before {
 @media (prefers-reduced-motion: reduce) {
   .carva-presence, .chat-presence-row, .carva-halo { transition: none !important; }
 }
+
+/* Animación de Carva: central → avatar */
+.carva-avatar.is-hidden { opacity: 0; }
+.carva-fly { will-change: transform; filter: drop-shadow(0 10px 18px rgba(7,43,70,.18)); }
+
+@media (max-width: 480px) {
+  .chat-panel { height: calc(100vh - 120px); min-height: 420px; border-radius: 18px; }
+  .chat-toolbar { padding: 8px 10px; gap: 4px; }
+  .chat-toolbar p { font-size: 15px; }
+  .chat-presence-row { padding: 8px 12px; gap: 10px; }
+  .chat-presence-row .carva-presence { width: 84px; height: 84px; }
+  .chat-panel.has-started .chat-presence-row .carva-presence { width: 48px; height: 48px; }
+  .chat-messages { padding: 12px; gap: 10px; }
+  .chat-composer { padding: 8px 10px 10px; }
+  .chat-composer .flex.items-center { gap: 6px; }
+  .chat-composer input { height: 56px; padding: 0 14px; font-size: 16px; }
+  .chat-composer button[type="submit"] { height: 56px; padding: 0 14px; font-size: 16px; }
+  .chat-composer button[type="submit"] .material-symbols-outlined { display: none; }
+  .chat-composer [data-voice] { width: 56px; height: 56px; }
+}
+
+@media (max-width: 600px) {
+  .chat-toolbar { justify-content: space-between; }
+  .chat-toolbar > p { display: none; }
+  .toolbar-label { display: none; }
+  .chat-composer input { min-width: 0; flex: 1 1 auto; }
+  .chat-composer form > div { flex-wrap: nowrap; }
+  .chat-composer button[type="submit"] { padding: 0 12px; min-width: 56px; }
+  .chat-composer button[type="submit"] { font-size: 0; gap: 0; }
+  .chat-composer button[type="submit"] .material-symbols-outlined { display: inline-block; font-size: 24px; }
+}

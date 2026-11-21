@@ -51,3 +51,26 @@ def test_base_usa_activos_locales() -> None:
     assert "/static/stitch/stitch.js" in text
     assert "https://cdn.tailwindcss.com" not in text
     assert "fonts.googleapis.com" not in text
+
+
+def test_animacion_de_vuelo_de_carva() -> None:
+    # Arrange / Act
+    text = (ROOT / "assistant/static/chat.js").read_text(encoding="utf-8")
+
+    # Assert
+    assert "function animateCarvaToAvatar" in text
+    assert "carva-avatar" in text
+    assert "carva-fly" in text
+    assert "prefers-reduced-motion" in text
+
+
+def test_chat_unificado_con_presencia_y_panel() -> None:
+    # Arrange
+    chat = (ROOT / "assistant/templates/chat.html").read_text(encoding="utf-8")
+    css = (ROOT / "assistant/static/stitch/stitch.css").read_text(encoding="utf-8")
+
+    # Assert
+    assert 'id="carva-presence"' in chat
+    assert 'class="chat-panel"' in chat
+    assert "width: 70vw" in css
+    assert "max-width: 480px" in css
