@@ -30,6 +30,11 @@ from assistant.corpus import CorpusDocument, load_corpus
 from assistant.embeddings import OllamaEmbedder
 from assistant.index import QdrantIndex
 from assistant.llm import build_llm
+from assistant.observability import (
+    METRICS,
+    configure_logging,
+    observability_middleware,
+)
 from assistant.quotes.models import QuoteError, QuoteRequest
 from assistant.quotes.service import create_quote
 from assistant.rag import Rag, RagService, StreamOutcome
@@ -120,6 +125,8 @@ def _stream_events(context: AppContext, question: str) -> Iterator[str]:
     catalog = context.catalog
     cities = city_names(catalog) if catalog is not None else ()
     query = classify(question, cities=cities)
+    METRICS.inc("sse_streams")
+    logger.info("sse_start", extra={"request_id": trace_id, "route": "/ask/stream"})
     yield encode_event(StreamEvent("start", {"request_id": trace_id, "intent": query.intent}))
 
     if catalog is not None and query.intent in {"commercial", "mixed", "ambiguous"}:
@@ -203,6 +210,14 @@ def _stream_events(context: AppContext, question: str) -> Iterator[str]:
                 {"count": len(answer.sources), "html": _sources_html(answer.sources)},
             )
         )
+    logger.info(
+        "sse_done",
+        extra={
+            "request_id": trace_id,
+            "status": answer.status,
+            "provider": answer.provider,
+        },
+    )
     yield encode_event(
         StreamEvent(
             "done",
@@ -229,7 +244,9 @@ def create_app(
             settings = Settings.from_env()
         context = build_context(settings)
 
-    app = FastAPI(title="Asistente Carvajal", version="0.1.0")
+    app = FastAPI(title="Asistente Carvajal", version="0.2.0")
+    configure_logging(context.settings.log_level, context.settings.log_format)
+    app.middleware("http")(observability_middleware)
     app.state.context = context
     app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 
@@ -368,6 +385,8 @@ def create_app(
             )
         except QuoteError as error:
             return JSONResponse({"detail": str(error)}, status_code=422)
+        METRICS.inc("quotes_registered")
+        logger.info("quote_registered", extra={"count": 1})
         return JSONResponse({"ok": True, "quote": record.__dict__})
 
     @app.post("/feedback")
@@ -385,7 +404,31 @@ def create_app(
             )
         except FeedbackError as error:
             return JSONResponse({"detail": str(error)}, status_code=422)
+        METRICS.inc("feedback_registered")
+        logger.info("feedback_registered", extra={"count": 1})
         return JSONResponse({"ok": True, "message_id": entry.message_id, "rating": entry.rating})
+
+    @app.get("/readyz")
+    def readyz() -> JSONResponse:
+        checks = {"index": context.index_ready, "catalog": context.catalog is not None}
+        ok = all(checks.values())
+        return JSONResponse(
+            {"status": "ok" if ok else "degraded", "checks": checks, "provider": context.provider},
+            status_code=200 if ok else 503,
+        )
+
+    @app.get("/metrics")
+    def metrics() -> Response:
+        gauges = {
+            "asistente_index_ready": 1 if context.index_ready else 0,
+            "asistente_catalog_loaded": 1 if context.catalog is not None else 0,
+        }
+        if context.catalog is not None:
+            gauges["asistente_catalog_references"] = float(context.catalog.references_count)
+        return Response(
+            METRICS.render(gauges),
+            media_type="text/plain; version=0.0.4; charset=utf-8",
+        )
 
     @app.get("/healthz")
     def healthz() -> JSONResponse:

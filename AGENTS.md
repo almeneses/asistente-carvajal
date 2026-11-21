@@ -53,6 +53,7 @@ make help      # lista los objetivos disponibles
 make dev       # entornos + hooks de pre-commit
 make check     # lint + formato + pruebas
 make ui-check  # pruebas de interfaz (streaming, Markdown, feedback, contraste)
+make smoke     # health, readiness y métricas del servidor local
 make lint      # Ruff (lint)
 make format    # Ruff (formato)
 make test      # pytest
@@ -110,9 +111,11 @@ En OpenCode la preferencia se aplica automáticamente mediante la regla
   - `catalog/` — rama determinista de catálogo (loader, router, precios, materiales).
   - `ui/` — Markdown seguro, SSE, feedback y tokens visuales.
   - `quotes/` — solicitudes de cotización en JSONL (recálculo desde catálogo, sin PII).
+  - `observability.py` — logs JSON, request_id, métricas y cabeceras.
   - `templates/` y `static/` — Jinja/HTMX, tema, `chat.js`, DM Sans y logo.
 - `scripts/` — indexación, aceptación, propuesta de ground truth y evaluación.
 - `docs/design/DESIGN.md` — fuente de verdad visual (proyecto Stitch de Carvajal).
+- `docs/operacion.md` — runbook: salud, logs, métricas, Docker, backup y rollback.
 - `assistant/static/stitch/` — Tailwind, iconos, CSS/JS y activos copiados del prototipo.
 - `tests/` — pruebas con `pytest` (patrón AAA).
 - `specs/` — especificaciones por feature (Spec Kit), indexadas en `specs/README.md`.

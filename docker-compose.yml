@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8010:8010"
+    environment:
+      CORPUS_GOLD_DIR: /data/carvajal/data/gold
+      CATALOG_DIR: /data/carvajal/data/catalog/empaques
+      CATALOG_ROUTING_FILE: /data/carvajal/data/eval/routing_questions.json
+      QDRANT_PATH: /app/.cache/qdrant
+      OLLAMA_BASE_URL: http://ollama:11434
+      FEEDBACK_LOG_PATH: /app/.cache/feedback.jsonl
+      QUOTES_LOG_PATH: /app/.cache/solicitudes.jsonl
+    volumes:
+      - ../carvajal/data:/data/carvajal:ro
+      - app-cache:/app/.cache
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  app-cache:
+  ollama-models:
