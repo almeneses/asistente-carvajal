@@ -65,16 +65,16 @@
 - [X] T037 Implementar validación del SKU/cajas contra el catálogo y recálculo de total
 - [X] T038 Verificar ausencia de PII y append-only en el JSONL
 - [X] T039 [P] Pruebas del endpoint (éxito, 422, colisión de código, error de escritura)
-- [ ] T040 Documentar `QUOTES_LOG_PATH` y el contrato en README
+- [X] T040 Documentar `QUOTES_LOG_PATH` y el contrato en README
 
 ## Phase 8: Polish
 
-- [ ] T041 Checklist de fidelidad de las 4 pantallas contra capturas (≥20 puntos por pantalla)
-- [ ] T042 Verificar 0 peticiones a CDN y assets locales
+- [X] T041 Checklist de fidelidad de las 4 pantallas contra capturas (≥20 puntos por pantalla)
+- [X] T042 Verificar 0 peticiones a CDN y assets locales
 - [ ] T043 axe/Lighthouse, teclado, foco y contraste en las 4 pantallas
-- [ ] T044 Ejecutar `make check` y suites 1–4; corregir regresiones
-- [ ] T045 Actualizar README/AGENTS/CONSTITUTION (0.8.0) y `specs/README.md`
-- [ ] T046 Ejecutar quickstart y registrar evidencia; abrir PR y merge con CI verde
+- [X] T044 Ejecutar `make check` y suites 1–4; corregir regresiones
+- [X] T045 Actualizar README/AGENTS/CONSTITUTION (0.8.0) y `specs/README.md`
+- [X] T046 Ejecutar quickstart y registrar evidencia; abrir PR y merge con CI verde
 
 ## Dependencies
 

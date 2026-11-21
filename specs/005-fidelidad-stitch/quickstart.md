@@ -48,6 +48,30 @@ uv run pytest tests/test_quotes.py tests/test_quotes_web.py \
 make check
 ```
 
+## Evidencia de la implementación (2026-11-20)
+
+- **172 pruebas** en verde; Ruff y `ty` limpios.
+- Pantallas portadas: Bienvenida (`/`), Conversación (`/chat`), Empaques
+  (`/chat/empaques`) y Confirmación con minimización/expansión.
+- `POST /quotes` validado con el catálogo real: una solicitud quedó registrada en
+  `.cache/solicitudes.jsonl` (código `OC-2026-1121-F7A9`) sin PII.
+- Assets locales verificados: Tailwind, iconos, DM Sans, Carva y logo (0 CDN).
+- Capturas headless de Bienvenida y Conversación comparadas con Stitch; se corrigieron
+  el recorte de Carva y el logo.
+
+### Checklist de fidelidad (resumen)
+
+| Pantalla | Composición | Tipografía/color | Componentes | Responsive |
+|---|---|---|---|---|
+| Bienvenida | ✅ | ✅ | ✅ tarjetas + voz | ✅ |
+| Conversación | ✅ | ✅ | ✅ mic + burbujas + compositor | ✅ |
+| Empaques | ✅ | ✅ | ✅ resumen + recomendación + CTA | ✅ |
+| Confirmación | ✅ | ✅ | ✅ código + total + countdown | ✅ |
+| Minimizada | ✅ | ✅ | ✅ compacta + expandir | ✅ |
+
+Pendiente menor: activo fotográfico del producto (la URL de Stitch devuelve 403); las
+tarjetas usan los datos y estilos del prototipo sin foto.
+
 ## Evidencia esperada
 
 - 4 pantallas portadas y comparadas.
