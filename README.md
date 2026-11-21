@@ -62,6 +62,7 @@ entrada de solo lectura.
 | Experiencia de chat (fase 4) | ✅ |
 | Fidelidad visual Stitch + solicitudes (fase 5) | ✅ |
 | Asistente único y transición de Carva (fase 6) | ✅ |
+| Pulido intermedio de interfaz (fase 6.1) | ✅ |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).

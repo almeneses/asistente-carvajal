@@ -3,16 +3,16 @@
 
 {% block content %}
 <div class="max-w-[1400px] mx-auto px-5 py-6">
-  <div id="chat-panel" class="chat-panel{% if initial_question %} has-started{% endif %}">
+  <div id="chat-panel" class="chat-panel">
     <div class="chat-toolbar">
       <a href="/" class="chat-toolbar__link" aria-label="Volver al inicio">
         <span aria-hidden="true" class="material-symbols-outlined text-[24px]">arrow_back</span>
-        Inicio
+        <span class="toolbar-label">Inicio</span>
       </a>
       <p class="font-bold text-[#003A5D] text-[18px]">Conversación con Carva</p>
       <button id="new-conversation" type="button" class="chat-toolbar__link">
         <span aria-hidden="true" class="material-symbols-outlined text-[24px]">refresh</span>
-        Nueva conversación
+        <span class="toolbar-label">Nueva conversación</span>
       </button>
     </div>
 

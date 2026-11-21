@@ -44,7 +44,7 @@
     carvaRow.className = "flex items-start gap-3 w-full";
     const avatar = document.createElement("div");
     avatar.className =
-      "w-[64px] h-[64px] rounded-full overflow-hidden bg-tertiary-fixed shrink-0 border-2 border-border shadow-sm";
+      "carva-avatar w-[64px] h-[64px] rounded-full overflow-hidden bg-tertiary-fixed shrink-0 border-2 border-border shadow-sm";
     const avatarImg = document.createElement("img");
     avatarImg.src = "/static/stitch/assets/carva-saludando-transparente.png";
     avatarImg.alt = "Carva, tu asistente de Carvajal";
@@ -213,6 +213,54 @@
     }
   }
 
+
+  function animateCarvaToAvatar(exchange) {
+    const panel = document.getElementById("chat-panel");
+    const presence = document.getElementById("carva-presence");
+    const avatar = exchange.article.querySelector(".carva-avatar");
+    if (!panel || !presence || !avatar) return;
+    const from = presence.getBoundingClientRect();
+    avatar.classList.add("is-hidden");
+    panel.classList.add("has-started");
+    const target = avatar.getBoundingClientRect();
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      presence.style.display = "none";
+      avatar.classList.remove("is-hidden");
+      return;
+    }
+    const fly = document.createElement("img");
+    fly.src = "/static/stitch/assets/carva-saludando-transparente.png";
+    fly.alt = "";
+    fly.className = "carva-fly";
+    Object.assign(fly.style, {
+      position: "fixed",
+      left: `${from.left}px`,
+      top: `${from.top}px`,
+      width: `${from.width}px`,
+      height: `${from.height}px`,
+      objectFit: "contain",
+      pointerEvents: "none",
+      zIndex: "60",
+    });
+    document.body.append(fly);
+    presence.style.visibility = "hidden";
+    const dx = target.left + target.width / 2 - (from.left + from.width / 2);
+    const dy = target.top + target.height / 2 - (from.top + from.height / 2);
+    const scale = target.width / from.width;
+    const motion = fly.animate(
+      [
+        { transform: "translate(0, 0) scale(1)", opacity: 1 },
+        { transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: 0.95 },
+      ],
+      { duration: 450, easing: "cubic-bezier(.22,.61,.36,1)", fill: "forwards" },
+    );
+    motion.onfinish = () => {
+      fly.remove();
+      avatar.classList.remove("is-hidden");
+      presence.style.display = "none";
+    };
+  }
+
   async function sendQuestion(question) {
     const cleaned = question.trim();
     if (!cleaned) {
@@ -220,7 +268,9 @@
       return;
     }
     setStatus("");
+    const firstExchange = conversation.querySelector(".exchange") === null;
     const exchange = makeExchange(cleaned);
+    if (firstExchange) animateCarvaToAvatar(exchange);
     controller = new AbortController();
     let firstToken = false;
     let messageId = null;
@@ -354,7 +404,6 @@
     event.preventDefault();
     const question = input.value;
     input.value = "";
-    chatPanel?.classList.add("has-started");
     compactCatalog();
     await sendQuestion(question);
     input.focus();
@@ -384,6 +433,8 @@
     conversation.replaceChildren();
     conversation.setAttribute("aria-busy", "false");
     chatPanel?.classList.remove("has-started");
+    const presence = document.getElementById("carva-presence");
+    if (presence) { presence.style.display = ""; presence.style.visibility = ""; }
     const confirmation = document.getElementById("confirmation");
     if (confirmation) confirmation.hidden = true;
     setStatus("");

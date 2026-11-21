@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 0.9.0 |
+| **Versión** | 0.10.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -72,6 +72,7 @@ de clientes.
 | 4. Experiencia de chat | ✅ Hecha | Spec 004: streaming, Markdown, feedback e identidad |
 | 5. Fidelidad visual Stitch y solicitudes | ✅ Hecha | Spec 005: pantallas copiadas, animación y `POST /quotes` |
 | 6. Asistente único y transición de Carva | ✅ Hecha | Spec 006: un solo flujo, chat al 70% y fondo Carvajal |
+| 6.1 Pulido intermedio de interfaz | ✅ Hecha | Spec 007: animación de Carva, móvil y accesibilidad |
 | 7. Operación y endurecimiento | 🚧 Siguiente | Observabilidad, despliegue y evaluación ampliada |
 
 ## 3. Stack técnico
@@ -243,6 +244,7 @@ git push
 | 2026-11-20 | Copiar el flujo Stitch (pantallas y animaciones) con Tailwind vendorizado | Fidelidad real al prototipo sin CDN; se portan HTML/CSS/JS y se conectan a los datos |
 | 2026-11-20 | Solicitudes de cotización en JSONL con recálculo del total desde el catálogo | Evita totales manipulados y datos personales; código único `OC-AAAA-MMDD-XXXX` |
 | 2026-11-20 | Asistente único sin modos “Conversar/Empaques”; panel al 70% y Carva central→avatar | El router decide el tipo de solicitud; la UI no obliga a elegir y reduce fricción |
+| 2026-11-21 | Animación de Carva con Web Animations API y pulido móvil | Vuelo central→avatar con fallback de movimiento reducido y layout 390 px sin desbordes |
 | 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
 | 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
@@ -266,6 +268,7 @@ git push
 - [x] Fase 4: experiencia de chat con streaming, Markdown, feedback e identidad (`specs/004-experiencia-chat/`); 154 pruebas.
 - [x] Fase 5: fidelidad visual del flujo Stitch y solicitudes reales (`specs/005-fidelidad-stitch/`); 172 pruebas.
 - [x] Fase 6: asistente único, chat al 70%, transición de Carva y fondo Carvajal (`specs/006-asistente-unificado/`); 172 pruebas.
+- [x] Fase 6.1: pulido intermedio de interfaz y animación de Carva (`specs/007-pulido-interfaz/`); 174 pruebas.
 - [ ] Fase 5: evaluación ampliada, operación, observabilidad y despliegue.
 - [ ] Decidir el proveedor de LLM por defecto para nuevos usuarios (`deepseek` vs `ollama`).
 - [x] Evaluar `bge-m3` frente a `nomic-embed-text` (fase 2: mejora de 10,3 pp en acierto@5).
