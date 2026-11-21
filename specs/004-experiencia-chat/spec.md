@@ -15,7 +15,8 @@
 - Q: ¿Cómo mostramos la respuesta mientras se genera? → A: Token a token por SSE, con cancelación y estado de conexión.
 - Q: ¿Dónde guardamos el feedback útil/no útil? → A: JSONL local sin PII (etiqueta, pregunta y fecha).
 - Q: ¿Qué nivel de accesibilidad declaramos? → A: WCAG 2.1 AA, con comprobaciones automáticas y manuales.
-- Q: ¿Tenemos activos visuales oficiales? → A: El usuario compartirá un diseño de Google Stitch; la identidad se deriva de ese diseño. Si no llega, se usa una identidad inspirada aprobada y documentada.
+- Q: ¿Tenemos activos visuales oficiales? → A: Sí: el proyecto de Stitch “Asistente Carvajal Accessible Web App” (`18086611055013390157`) con `designMd`, paleta azul Carvajal/cian, DM Sans y objetivo AAA. Se documenta en [`docs/design/DESIGN.md`](../../docs/design/DESIGN.md) y el logo se versiona en `assistant/static/carvajal-logo.svg`.
+- Q: ¿Entran voz, avatar Carva y flujo de cotización del diseño? → A: No en esta fase; se adopta la identidad y los componentes de chat. Voz, mascota y cotización se retoman en fases posteriores.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -169,8 +170,8 @@ foco y que no hay desbordes horizontales.
   Shift+Enter.
 - **FR-010**: El sistema DEBE permitir marcar cada respuesta como útil o no útil y un
   comentario opcional, sin datos personales, con registro persistente local.
-- **FR-011**: La interfaz DEBE aplicar la identidad visual de Carvajal (logo, colores y
-  tipografía aprobados) a la página y a los estados.
+- **FR-011**: La interfaz DEBE aplicar la identidad visual de Carvajal documentada en
+  `docs/design/DESIGN.md` (logo, paleta, tipografía, radios y elevación).
 - **FR-012**: La interfaz DEBE ser usable en 360 px, sin scroll horizontal, con objetivos
   táctiles de al menos 44 px.
 - **FR-013**: La interfaz DEBE cumplir WCAG 2.1 AA: contraste, foco visible, etiquetas y
@@ -211,8 +212,9 @@ foco y que no hay desbordes horizontales.
 - La conversación no se persiste en servidor; el historial vive en el DOM de la sesión.
 - El feedback se guarda en un archivo local (JSONL) sin datos personales; no hay panel de
   administración en esta fase.
-- El rediseño se basará en el diseño que el usuario comparta desde Google Stitch; si no
-  hay activos, se usa una identidad inspirada con origen documentado.
+- El rediseño usa el sistema visual de `docs/design/DESIGN.md` (paleta, tipografía,
+  radios, elevación y componentes), con el logo extraído del proyecto de Stitch.
+- El diseño de Stitch apunta a AAA; esta fase garantiza AA y aplica AAA donde sea viable.
 - La identidad visual usará activos oficiales si están disponibles; si no, una identidad
   inspirada aprobada por el proyecto, documentada en el repositorio.
 - El streaming puede ser token a token o por etapas; el plan técnico decide el mecanismo.
