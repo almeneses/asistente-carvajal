@@ -8,7 +8,7 @@ SHELL := /bin/bash
 PORT ?= 8010
 
 .DEFAULT_GOAL := help
-.PHONY: help install dev pre-commit-install pre-commit lint format format-check typecheck test ui-check smoke check run index acceptance catalog-acceptance gt-propose eval eval-e2e build clean
+.PHONY: help install dev pre-commit-install pre-commit lint format format-check typecheck test ui-check smoke quality-gates check run index acceptance catalog-acceptance gt-propose eval eval-e2e build clean
 
 help: ## Muestra esta ayuda
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -41,6 +41,9 @@ test: ## Ejecuta las pruebas
 
 ui-check: ## Pruebas de la interfaz (streaming, Markdown, feedback, tokens)
 	uv run pytest tests/test_ui_*.py
+
+quality-gates: ## Gates de calidad sobre los reportes de evaluación
+	uv run python scripts/check_quality.py
 
 smoke: ## Verifica health, readiness y métricas del servidor local
 	curl -fsS http://127.0.0.1:$(PORT)/healthz >/dev/null
