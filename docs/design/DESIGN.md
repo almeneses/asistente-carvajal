@@ -334,3 +334,9 @@ cotización con selección de empaque (se retoman en fases posteriores).
 | `a771fb6a2d4f477a95e3ccf3bdf370d7` | Avatar Carva Neutral - Chat | sí |
 | `cb7848c9a20f4446b141e03e3c80152a` | Asistente de Empaques - Asistente Carvajal | sí |
 | `3537640230418053753` | carvajal.com-design.md | sí |
+
+## Nota de implementación (2026-11-20)
+
+- El token `warning` de texto se implementa como `#8A5415` sobre superficies claras
+  para alcanzar AA (el `#A86A1F` del tema queda para acentos no textuales).
+- El tema oscuro se deriva de la misma paleta con variables CSS.

@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 0.6.0 |
+| **Versión** | 0.7.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -86,6 +86,8 @@ de clientes.
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims; migrado en la fase 2 con evidencia) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura (`CORPUS_GOLD_DIR`, `CATALOG_DIR`) |
+| **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
+| **Identidad visual** | Tokens de `docs/design/DESIGN.md` (Stitch), DM Sans vendored y logo Carvajal |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
 | **Testing** | [`pytest`](https://docs.pytest.org/) |
 | **Linting / Formato** | [Ruff](https://docs.astral.sh/ruff/) |
@@ -231,6 +233,10 @@ git push
 | 2026-11-20 | Migrar embeddings a `bge-m3` (1024 dims) tras la fase 2 | Mejora de 10,3 pp en acierto@5 (0,966 vs. 0,862) en la matriz de 8 variantes; `bge-m3-500-hybrid` ganadora |
 | 2026-11-20 | Rama de catálogo determinista (plantillas, sin LLM) y router por reglas | Cero precios/SKU inventados por construcción; router medido en 130 preguntas con 100 % de acierto |
 | 2026-11-20 | `CATALOG_DIR` obligatorio para la app (solo lectura) | El catálogo se valida al arrancar; sin él la rama comercial no puede responder con fuentes |
+| 2026-11-20 | Streaming por SSE con `POST` y `fetch`, no `EventSource` | La pregunta viaja en el cuerpo, se puede abortar y se conserva `/ask` síncrono |
+| 2026-11-20 | Markdown seguro con `markdown-it-py` (HTML deshabilitado) | Evita XSS; el HTML final se renderiza en el servidor |
+| 2026-11-20 | Feedback JSONL local sin PII | Permite mejorar sin base de datos ni datos personales |
+| 2026-11-20 | Identidad visual basada en el proyecto Stitch `18086611055013390157` | Paleta azul/cian, DM Sans y accesibilidad AA/AAA; warning de texto oscurecido a `#8A5415` por contraste |
 | 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
 | 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
@@ -251,7 +257,7 @@ git push
 - [x] Añadir `.env.example` con las variables configurables.
 - [x] Fase 2: evaluación de recuperación y métricas de calidad (`specs/002-evaluacion-recuperacion/`); migración a `bge-m3` aprobada.
 - [x] Fase 3: consulta del catálogo de empaques con precios y validación técnica (`specs/003-catalogo-empaques/`); aceptación 130/130.
-- [ ] Fase 4: mejoras de experiencia de chat (streaming, Markdown, accesibilidad).
+- [x] Fase 4: experiencia de chat con streaming, Markdown, feedback e identidad (`specs/004-experiencia-chat/`); 154 pruebas.
 - [ ] Fase 5: evaluación ampliada, operación, observabilidad y despliegue.
 - [ ] Decidir el proveedor de LLM por defecto para nuevos usuarios (`deepseek` vs `ollama`).
 - [x] Evaluar `bge-m3` frente a `nomic-embed-text` (fase 2: mejora de 10,3 pp en acierto@5).

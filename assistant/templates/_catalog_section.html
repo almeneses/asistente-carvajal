@@ -1,0 +1,35 @@
+{% if section %}
+<div class="catalog-section" data-section="catalog">
+  <h3>{{ section.title }}</h3>
+  {% if section.message %}
+  <div class="answer-text"><p>{{ section.message }}</p></div>
+  {% endif %}
+  {% if section.items %}
+  <ul class="catalog-items">
+    {% for item in section.items %}
+    <li{% if item.sku %} data-sku="{{ item.sku }}"{% endif %}>
+      <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+      {% if item.details %}
+      <span class="catalog-details">{{ item.details | join(' · ') }}</span>
+      {% endif %}
+      {% if item.price and item.price.validity != 'vigente' %}
+      <span class="warning" data-validity="{{ item.price.validity }}">
+        {{ item.price.warnings | join('; ') if item.price.warnings else 'revisar vigencia' }}
+      </span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if section.citations %}
+  <ul class="sources">
+    {% for citation in section.citations %}
+    <li><a href="{{ citation.url }}" target="_blank" rel="noopener noreferrer">{{ citation.label }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if warnings %}
+  <p class="warning">{{ warnings | join('; ') }}</p>
+  {% endif %}
+</div>
+{% endif %}

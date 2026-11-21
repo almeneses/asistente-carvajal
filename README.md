@@ -59,7 +59,7 @@ entrada de solo lectura.
 | Set de evaluación de respuestas | ✅ |
 | Evaluación de recuperación (fase 2) | ✅ |
 | Consulta del catálogo de empaques (fase 3) | ✅ |
-| Consulta sobre catálogo de empaques | ⏳ |
+| Experiencia de chat (fase 4) | ✅ |
 
 > ⚠️ Fase actual: **corte vertical (fase 1)**. El asistente responde preguntas sobre el
 > corpus con citas verificables y se abstiene sin evidencia; el catálogo de empaques llega
@@ -75,8 +75,10 @@ entrada de solo lectura.
 | **Modo de proyecto** | Aplicación (`main.py` como entrypoint) |
 | **Especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` + integraciones OpenCode y DSH) |
 | **Orquestación RAG** | Cadena propia (`assistant/rag.py`), sin framework de agentes |
-| **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side) |
-| **Índice vectorial** | Qdrant (768 dims, coseno) |
+| **Interfaz de chat** | FastAPI + Jinja2 + HTMX (sin SPA); DM Sans y tokens de `docs/design/DESIGN.md` |
+| **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
+| **Feedback** | JSONL local sin PII (`.cache/feedback.jsonl`) |
+| **Índice vectorial** | Qdrant (1024 dims, coseno) |
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable, solo lectura |
@@ -159,6 +161,7 @@ make check   # lint + formato + tipos + pruebas
 | `make index` | Reconstruye el índice Qdrant del corpus. |
 | `make acceptance` | Ejecuta las preguntas de aceptación y reporta citas. |
 | `make catalog-acceptance` | Aceptación del catálogo (130 preguntas de enrutamiento). |
+| `make ui-check` | Pruebas de streaming, Markdown, feedback y contraste. |
 
 ## 🧪 Desarrollo dirigido por especificaciones (Spec Kit)
 
@@ -203,8 +206,10 @@ consulta.
 asistente-carvajal/
 ├── main.py                  # punto de entrada de la aplicación
 ├── assistant/               # configuración, corpus, índice, RAG, LLM y web
-│   ├── templates/           # página de chat y parciales HTMX
-│   └── static/htmx.min.js   # HTMX vendorizado (sin CDN)
+│   ├── catalog/             # rama determinista del catálogo
+│   ├── ui/                  # Markdown seguro, SSE, feedback y tokens
+│   ├── templates/           # página de chat y parciales
+│   └── static/              # tema, chat.js, fuentes y logo
 ├── scripts/                 # indexación del corpus y aceptación
 ├── tests/                   # pruebas (pytest, patrón AAA)
 ├── specs/                   # especificaciones por feature (Spec Kit)

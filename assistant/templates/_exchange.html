@@ -1,24 +1,26 @@
 {% if error %}
-<section class="exchange" data-status="error" data-request-id="{{ request_id }}">
-  <p class="question">{{ question }}</p>
-  <div class="answer">{{ error }}</div>
-  <p class="request-id">Referencia: {{ request_id }}</p>
-</section>
+<article class="exchange" data-status="error" data-request-id="{{ request_id }}">
+  <div class="msg user"><div class="bubble"><p>{{ question }}</p></div></div>
+  <div class="msg carva">
+    <div class="avatar" aria-hidden="true">Carva</div>
+    <div class="bubble">
+      <div class="answer-text"><p>{{ error }}</p></div>
+      <p class="hint">Referencia: {{ request_id }}</p>
+    </div>
+  </div>
+</article>
 {% else %}
-<section class="exchange" data-status="{{ answer.status }}"
-         {% if answer.provider %}data-provider="{{ answer.provider }}"{% endif %}
-         data-request-id="{{ answer.request_id }}">
-  <p class="question">{{ question }}</p>
-  <div class="answer">{{ answer.text }}</div>
-  {% if answer.sources %}
-  <ul class="sources">
-    {% for source in answer.sources %}
-    <li>
-      <a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.title }}</a>
-      <span class="source-type">{{ source.source_type }}</span>
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</section>
+<article class="exchange" data-status="{{ answer.status }}" data-request-id="{{ answer.request_id }}"
+         data-provider="{{ answer.provider or '' }}">
+  <div class="msg user"><div class="bubble"><p>{{ question }}</p></div></div>
+  <div class="msg carva">
+    <div class="avatar" aria-hidden="true">Carva</div>
+    <div class="bubble">
+      <div class="answer-text">{{ answer.text | markdown | safe }}</div>
+      {% if answer.sources %}
+      {% with sources = answer.sources %}{% include "_sources.html" %}{% endwith %}
+      {% endif %}
+    </div>
+  </div>
+</article>
 {% endif %}

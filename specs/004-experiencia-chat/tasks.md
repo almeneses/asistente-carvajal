@@ -28,11 +28,11 @@ Proyecto único (ver `plan.md`): `assistant/ui/`, `assistant/templates/`,
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-- [ ] T001 Añadir `FEEDBACK_LOG_PATH` a `.env.example` y usar `.cache/feedback.jsonl` por defecto (`data-model.md` `Configuración añadida.FEEDBACK_LOG_PATH`)
-- [ ] T002 Instalar con `uv add markdown-it-py mdit-py-plugins` y actualizar `uv.lock`
-- [ ] T003 [P] Vendorizar DM Sans variable woff2 y su licencia OFL en `assistant/static/fonts/`
-- [ ] T004 [P] Crear `assistant/ui/__init__.py` y la estructura de pruebas `tests/test_ui_*.py`
-- [ ] T005 [P] Añadir objetivo `make ui-check` (pruebas de UI) en `Makefile`
+- [X] T001 Añadir `FEEDBACK_LOG_PATH` a `.env.example` y usar `.cache/feedback.jsonl` por defecto (`data-model.md` `Configuración añadida.FEEDBACK_LOG_PATH`)
+- [X] T002 Instalar con `uv add markdown-it-py mdit-py-plugins` y actualizar `uv.lock`
+- [X] T003 [P] Vendorizar DM Sans variable woff2 y su licencia OFL en `assistant/static/fonts/`
+- [X] T004 [P] Crear `assistant/ui/__init__.py` y la estructura de pruebas `tests/test_ui_*.py`
+- [X] T005 [P] Añadir objetivo `make ui-check` (pruebas de UI) en `Makefile`
 
 ---
 
@@ -40,16 +40,16 @@ Proyecto único (ver `plan.md`): `assistant/ui/`, `assistant/templates/`,
 
 **⚠️ CRITICAL**: sin esta fase no se implementa ninguna historia
 
-- [ ] T006 Implementar `assistant/ui/tokens.py` con los tokens de `docs/design/DESIGN.md` (`DesignTokens.primary`, `.secondary`, `.tertiary`, `.ink`, `.background`, `.surface`, `.border`, `.radii`, `.spacing`) y la fórmula de contraste WCAG
-- [ ] T007 Implementar `assistant/ui/markdown.py` (MarkdownIt GFM, `html=False`, `.render_safe()` con enlaces `target="_blank"` y `rel="noopener noreferrer"`) según `research.md` R3
-- [ ] T008 Implementar `assistant/ui/feedback.py` (validación y append JSONL, last-wins por `message_id`) según `data-model.md` `FeedbackEntry`
-- [ ] T009 Implementar `assistant/ui/streaming.py` (codificación SSE `event:`/`data:`, heartbeat y `StreamEvent` de `data-model.md` `StreamEvent`)
-- [ ] T010 Implementar el estado de conversación del cliente en `assistant/static/chat.js` (`ChatMessage.message_id`, `.status`, `.provider`, `.feedback`) según `data-model.md` `ChatMessage`
-- [ ] T011 Extender `assistant/llm.py` con `stream()` en DeepSeek, Ollama y `FallbackLLM` (`research.md` R2)
-- [ ] T012 Implementar `RagService.answer_stream()` en `assistant/rag.py` reutilizando recuperación y citas
-- [ ] T013 Implementar los fixtures de streaming en `tests/streaming_fixtures.py` (LLM falso, eventos, HTML esperado)
-- [ ] T014 [P] Pruebas de tokens y contraste en `tests/test_ui_tokens.py` (AA ≥4.5:1; objetivo AAA ≥7:1)
-- [ ] T015 [P] Pruebas de Markdown/XSS en `tests/test_ui_markdown.py` (HTML crudo, `javascript:`, enlaces seguros)
+- [X] T006 Implementar `assistant/ui/tokens.py` con los tokens de `docs/design/DESIGN.md` (`DesignTokens.primary`, `.secondary`, `.tertiary`, `.ink`, `.background`, `.surface`, `.border`, `.radii`, `.spacing`) y la fórmula de contraste WCAG
+- [X] T007 Implementar `assistant/ui/markdown.py` (MarkdownIt GFM, `html=False`, `.render_safe()` con enlaces `target="_blank"` y `rel="noopener noreferrer"`) según `research.md` R3
+- [X] T008 Implementar `assistant/ui/feedback.py` (validación y append JSONL, last-wins por `message_id`) según `data-model.md` `FeedbackEntry`
+- [X] T009 Implementar `assistant/ui/streaming.py` (codificación SSE `event:`/`data:`, heartbeat y `StreamEvent` de `data-model.md` `StreamEvent`)
+- [X] T010 Implementar el estado de conversación del cliente en `assistant/static/chat.js` (`ChatMessage.message_id`, `.status`, `.provider`, `.feedback`) según `data-model.md` `ChatMessage`
+- [X] T011 Extender `assistant/llm.py` con `stream()` en DeepSeek, Ollama y `FallbackLLM` (`research.md` R2)
+- [X] T012 Implementar `RagService.answer_stream()` en `assistant/rag.py` reutilizando recuperación y citas
+- [X] T013 Implementar los fixtures de streaming en `tests/streaming_fixtures.py` (LLM falso, eventos, HTML esperado)
+- [X] T014 [P] Pruebas de tokens y contraste en `tests/test_ui_tokens.py` (AA ≥4.5:1; objetivo AAA ≥7:1)
+- [X] T015 [P] Pruebas de Markdown/XSS en `tests/test_ui_markdown.py` (HTML crudo, `javascript:`, enlaces seguros)
 
 **Checkpoint**: base de tokens, Markdown, SSE, feedback y streaming de LLM probada
 
@@ -64,16 +64,16 @@ muestra texto mientras llega
 
 ### Tests for User Story 1
 
-- [ ] T016 [P] [US1] Prueba del endpoint SSE en `tests/test_ui_streaming.py` (orden de eventos, `done` único, heartbeat)
-- [ ] T017 [P] [US1] Prueba de pregunta inválida (422 antes del stream) y error a mitad de stream
+- [X] T016 [P] [US1] Prueba del endpoint SSE en `tests/test_ui_streaming.py` (orden de eventos, `done` único, heartbeat)
+- [X] T017 [P] [US1] Prueba de pregunta inválida (422 antes del stream) y error a mitad de stream
 
 ### Implementation for User Story 1
 
-- [ ] T018 [US1] Implementar `POST /ask/stream` en `assistant/web.py` con `StreamingResponse` y cancelación al desconectar
-- [ ] T019 [US1] Implementar el parser SSE y el render incremental en `assistant/static/chat.js` (`fetch` + `ReadableStream`; tokens con `textContent`)
-- [ ] T020 [US1] Implementar los estados `retrieving`/`generating` visibles en `assistant/templates/index.html`
-- [ ] T021 [US1] Implementar el evento `error` con `retryable` y `request_id` en servidor y cliente
-- [ ] T022 [US1] Conservar `POST /ask` síncrono como fallback y mantener sus pruebas verdes
+- [X] T018 [US1] Implementar `POST /ask/stream` en `assistant/web.py` con `StreamingResponse` y cancelación al desconectar
+- [X] T019 [US1] Implementar el parser SSE y el render incremental en `assistant/static/chat.js` (`fetch` + `ReadableStream`; tokens con `textContent`)
+- [X] T020 [US1] Implementar los estados `retrieving`/`generating` visibles en `assistant/templates/index.html`
+- [X] T021 [US1] Implementar el evento `error` con `retryable` y `request_id` en servidor y cliente
+- [X] T022 [US1] Conservar `POST /ask` síncrono como fallback y mantener sus pruebas verdes
 
 **Checkpoint**: streaming funcional y con fallback; tests de fases 1–3 verdes
 
@@ -87,15 +87,15 @@ muestra texto mientras llega
 
 ### Tests for User Story 2
 
-- [ ] T023 [P] [US2] Prueba de `final_html` en el evento `done` y de que los `token` son texto plano
-- [ ] T024 [P] [US2] Prueba de render de secciones mixtas y fuentes en `tests/test_ui_web.py`
+- [X] T023 [P] [US2] Prueba de `final_html` en el evento `done` y de que los `token` son texto plano
+- [X] T024 [P] [US2] Prueba de render de secciones mixtas y fuentes en `tests/test_ui_web.py`
 
 ### Implementation for User Story 2
 
-- [ ] T025 [US2] Enviar `final_html` renderizado de forma segura en el evento `done` (`assistant/web.py` + `markdown.py`)
-- [ ] T026 [US2] Renderizar las fuentes como HTML seguro en el evento `sources` y en el parcial `_exchange.html`
-- [ ] T027 [US2] Actualizar `_catalog_exchange.html` a las tarjetas del sistema visual (precio/vigencia/fuente)
-- [ ] T028 [US2] Reemplazar el texto plano por `final_html` al terminar el stream en `chat.js`
+- [X] T025 [US2] Enviar `final_html` renderizado de forma segura en el evento `done` (`assistant/web.py` + `markdown.py`)
+- [X] T026 [US2] Renderizar las fuentes como HTML seguro en el evento `sources` y en el parcial `_exchange.html`
+- [X] T027 [US2] Actualizar `_catalog_exchange.html` a las tarjetas del sistema visual (precio/vigencia/fuente)
+- [X] T028 [US2] Reemplazar el texto plano por `final_html` al terminar el stream en `chat.js`
 
 **Checkpoint**: Markdown seguro y secciones separadas en la UI
 
@@ -110,14 +110,14 @@ conversación vacía; copiar confirma
 
 ### Tests for User Story 3
 
-- [ ] T029 [P] [US3] Pruebas de los controles en `tests/test_ui_web.py` (estructura de botones y `data-question`)
-- [ ] T030 [P] [US3] Prueba unitaria del helper de reintento/copia en `tests/test_ui_streaming.py`
+- [X] T029 [P] [US3] Pruebas de los controles en `tests/test_ui_web.py` (estructura de botones y `data-question`)
+- [X] T030 [P] [US3] Prueba unitaria del helper de reintento/copia en `tests/test_ui_streaming.py`
 
 ### Implementation for User Story 3
 
-- [ ] T031 [US3] Implementar “Nueva conversación” con `AbortController` y foco en el campo
-- [ ] T032 [US3] Implementar “Reintentar” con la pregunta guardada en `data-question`
-- [ ] T033 [US3] Implementar “Copiar” con `navigator.clipboard` y confirmación; Enter/Shift+Enter
+- [X] T031 [US3] Implementar “Nueva conversación” con `AbortController` y foco en el campo
+- [X] T032 [US3] Implementar “Reintentar” con la pregunta guardada en `data-question`
+- [X] T033 [US3] Implementar “Copiar” con `navigator.clipboard` y confirmación; Enter/Shift+Enter
 
 **Checkpoint**: controles operativos sin recargar
 
@@ -131,14 +131,14 @@ conversación vacía; copiar confirma
 
 ### Tests for User Story 4
 
-- [ ] T034 [P] [US4] Prueba del endpoint y validaciones en `tests/test_ui_feedback.py` (422, comentario largo)
-- [ ] T035 [P] [US4] Prueba de append/last-wins y ausencia de PII en el archivo
+- [X] T034 [P] [US4] Prueba del endpoint y validaciones en `tests/test_ui_feedback.py` (422, comentario largo)
+- [X] T035 [P] [US4] Prueba de append/last-wins y ausencia de PII en el archivo
 
 ### Implementation for User Story 4
 
-- [ ] T036 [US4] Implementar `POST /feedback` en `assistant/web.py` y conectar `feedback.py`
-- [ ] T037 [US4] Implementar los botones y el comentario en `_exchange.html` y `chat.js`
-- [ ] T038 [US4] Mostrar confirmación y bloquear doble envío; revertir si falla
+- [X] T036 [US4] Implementar `POST /feedback` en `assistant/web.py` y conectar `feedback.py`
+- [X] T037 [US4] Implementar los botones y el comentario en `_exchange.html` y `chat.js`
+- [X] T038 [US4] Mostrar confirmación y bloquear doble envío; revertir si falla
 
 **Checkpoint**: feedback registrado y visible
 
@@ -152,15 +152,15 @@ conversación vacía; copiar confirma
 
 ### Tests for User Story 5
 
-- [ ] T039 [P] [US5] Prueba de estructura accesible en `tests/test_ui_web.py` (landmarks, `aria-live`, labels, foco)
-- [ ] T040 [P] [US5] Prueba de contraste de los pares de tokens en `tests/test_ui_tokens.py`
+- [X] T039 [P] [US5] Prueba de estructura accesible en `tests/test_ui_web.py` (landmarks, `aria-live`, labels, foco)
+- [X] T040 [P] [US5] Prueba de contraste de los pares de tokens en `tests/test_ui_tokens.py`
 
 ### Implementation for User Story 5
 
-- [ ] T041 [US5] Crear `assistant/static/theme.css` con variables, tipografía, tarjetas, botones, inputs y estados desde `DESIGN.md`
-- [ ] T042 [US5] Rediseñar `index.html` (cabecera con logo, chat, footer de accesibilidad) y `_exchange.html` (burbujas Carva/usuario + acciones)
-- [ ] T043 [US5] Cargar DM Sans vendorizada, logo y `prefers-color-scheme`/`prefers-reduced-motion`
-- [ ] T044 [US5] Aplicar foco visible, targets ≥64 px, `aria-live="polite"` y navegación por teclado; verificar 360/768/1280 px
+- [X] T041 [US5] Crear `assistant/static/theme.css` con variables, tipografía, tarjetas, botones, inputs y estados desde `DESIGN.md`
+- [X] T042 [US5] Rediseñar `index.html` (cabecera con logo, chat, footer de accesibilidad) y `_exchange.html` (burbujas Carva/usuario + acciones)
+- [X] T043 [US5] Cargar DM Sans vendorizada, logo y `prefers-color-scheme`/`prefers-reduced-motion`
+- [X] T044 [US5] Aplicar foco visible, targets ≥64 px, `aria-live="polite"` y navegación por teclado; verificar 360/768/1280 px
 
 **Checkpoint**: identidad aplicada y accesibilidad verificada
 
@@ -168,10 +168,10 @@ conversación vacía; copiar confirma
 
 ## Phase 8: Polish & Cross-Cutting Concerns
 
-- [ ] T045 [P] Actualizar `README.md` (nueva UI, feedback y variables) y `CONSTITUTION.md` §9 si aplica
-- [ ] T046 Ejecutar `make check` y `make ui-check`; corregir hasta verde
-- [ ] T047 Ejecutar la validación de `quickstart.md` (streaming, catálogo, feedback, teclado, móvil) y registrar evidencia
-- [ ] T048 Actualizar `specs/README.md` (✅) y abrir PR con CI `Calidad` en verde
+- [X] T045 [P] Actualizar `README.md` (nueva UI, feedback y variables) y `CONSTITUTION.md` §9 si aplica
+- [X] T046 Ejecutar `make check` y `make ui-check`; corregir hasta verde
+- [X] T047 Ejecutar la validación de `quickstart.md` (streaming, catálogo, feedback, teclado, móvil) y registrar evidencia
+- [X] T048 Actualizar `specs/README.md` (✅) y abrir PR con CI `Calidad` en verde
 
 ---
 

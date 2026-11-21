@@ -67,6 +67,18 @@ uv run pytest tests/test_ui_markdown.py tests/test_ui_feedback.py \
 make check
 ```
 
+## Evidencia de la fase (2026-11-20)
+
+- **154 pruebas** en verde (`make check`) y **22** de interfaz (`make ui-check`).
+- App real: `/healthz` con corpus y catálogo; `POST /ask/stream` emitió
+  `start → status → token… → sources → done` con Ollama local.
+- Catálogo por SSE: `start → catalog → done` con SKU y tarjetas.
+- Feedback: `POST /feedback` escribió `.cache/feedback.jsonl` sin PII.
+- Contraste: texto principal 14,55:1 (AAA); pares usados ≥ AA; warning de texto
+  oscurecido a `#8A5415` para cumplir AA sobre blanco.
+- Identidad: logo extraído de Stitch, DM Sans vendorizada, tema claro/oscuro y
+  `prefers-reduced-motion`.
+
 ## Problemas frecuentes
 
 - **No hay streaming**: revisar que el navegador no bloquee `text/event-stream`; el

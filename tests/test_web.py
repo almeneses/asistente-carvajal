@@ -62,8 +62,9 @@ def test_pagina_de_chat(tmp_path: Path) -> None:
     # Assert
     assert response.status_code == 200
     assert "Asistente Carvajal" in response.text
-    assert 'hx-post="/ask"' in response.text
-    assert "htmx.min.js" in response.text
+    assert 'action="/ask"' in response.text
+    assert "chat.js" in response.text
+    assert "Nueva conversación" in response.text
 
 
 def test_respuesta_citada(tmp_path: Path) -> None:
