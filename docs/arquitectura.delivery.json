@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "receiptId": "6f298c87-6ec1-46d6-a360-d774dcaf1352",
+  "receiptId": "1bdde84f-b804-48f9-ba26-77aa79074585",
   "status": "current",
   "command": "deliver",
   "type": "architecture",
   "input": "/home/alejo/projects/DataScience/tecnicas_avanzadas/asistente-carvajal/docs/arquitectura.json",
   "output": "/home/alejo/projects/DataScience/tecnicas_avanzadas/asistente-carvajal/docs/arquitectura.html",
   "specification": {
-    "sha256": "f6b9ef7d850d394866e13cfc36d4f35a66067adba00f1366e619a3eb857bcfb9",
-    "bytes": 6268
+    "sha256": "89eaef703208d54c04652bda127482690cdbd0ba9e24367f8765f0f166063cb7",
+    "bytes": 6567
   },
   "artifact": {
-    "sha256": "312ce546755c6048054ee00cae7651e73bc3168f35c88817037d913cc9586043",
-    "bytes": 857469
+    "sha256": "090a6e203e17e82c98d85f6c5755b14b19ef90dd2202a8fe500e7852afef7588",
+    "bytes": 858052
   }
 }
