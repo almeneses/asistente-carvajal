@@ -66,11 +66,11 @@ de clientes.
 | Fase | Estado | Entregable |
 |------|--------|------------|
 | 0. Estándar del repositorio (constitución, CI, gobernanza) | ✅ Hecha | Repo conforme a `jan-project-standard` |
-| 1. Arquitectura objetivo y contrato del corpus | 🚧 En curso | `docs/arquitectura.*` + contrato en §5 |
-| 2. Recuperación sobre el corpus web | ⬜ Pendiente | Módulo de recuperación + pruebas |
-| 3. Consulta sobre documentación de empaques | ⬜ Pendiente | Índice del catálogo + pruebas |
-| 4. Interfaz de chat y citación | ⬜ Pendiente | UI + respuestas con fuentes |
-| 5. Evaluación y endurecimiento | ⬜ Pendiente | Set de preguntas, métricas y límites |
+| 1. Corte vertical y contrato del corpus | ✅ Hecha | Spec 001 + `docs/arquitectura.*` |
+| 2. Evaluación de recuperación | ✅ Hecha | Spec 002: métricas y migración a `bge-m3` |
+| 3. Catálogo de empaques | ✅ Hecha | Spec 003: precios, materiales y distribuidores |
+| 4. Experiencia de chat | ✅ Hecha | Spec 004: streaming, Markdown, feedback e identidad |
+| 5. Operación y endurecimiento | 🚧 Siguiente | Observabilidad, despliegue y evaluación ampliada |
 
 ## 3. Stack técnico
 

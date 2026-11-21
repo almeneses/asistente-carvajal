@@ -52,10 +52,15 @@ git push
 make help      # lista los objetivos disponibles
 make dev       # entornos + hooks de pre-commit
 make check     # lint + formato + pruebas
+make ui-check  # pruebas de interfaz (streaming, Markdown, feedback, contraste)
 make lint      # Ruff (lint)
 make format    # Ruff (formato)
 make test      # pytest
-uv run python main.py   # ejecuta la aplicación
+make run       # chat web en http://127.0.0.1:8010
+make index     # índice Qdrant del corpus
+make acceptance        # aceptación de citas
+make catalog-acceptance # aceptación del catálogo (130 preguntas)
+make eval / make eval-e2e # evaluación de recuperación de la fase 2
 ```
 
 > ⚠️ **Regla dura:** toda gestión de dependencias y entornos pasa por `uv`. Está
@@ -102,7 +107,11 @@ En OpenCode la preferencia se aplica automáticamente mediante la regla
 
 - `main.py` — punto de entrada de la aplicación.
 - `assistant/` — configuración, corpus, índice Qdrant, recuperación, LLM y web.
-- `scripts/` — indexación del corpus (`index_corpus.py`) y aceptación (`run_acceptance.py`).
+  - `catalog/` — rama determinista de catálogo (loader, router, precios, materiales).
+  - `ui/` — Markdown seguro, SSE, feedback y tokens visuales.
+  - `templates/` y `static/` — Jinja/HTMX, tema, `chat.js`, DM Sans y logo.
+- `scripts/` — indexación, aceptación, propuesta de ground truth y evaluación.
+- `docs/design/DESIGN.md` — fuente de verdad visual (proyecto Stitch de Carvajal).
 - `tests/` — pruebas con `pytest` (patrón AAA).
 - `specs/` — especificaciones por feature (Spec Kit), indexadas en `specs/README.md`.
 - `.specify/` — motor de Spec Kit (templates, scripts, memoria, extensiones).

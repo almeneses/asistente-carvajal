@@ -51,7 +51,7 @@ entrada de solo lectura.
 |------|:------:|
 | Estructura del repositorio y entorno (`uv`) | ✅ |
 | Constitución técnica y gobernanza | ✅ |
-| Diagrama de arquitectura objetivo | ✅ |
+| Diagrama de arquitectura del runtime | ✅ |
 | Spec-Driven Development (Spec Kit) | ✅ |
 | Decisiones de stack de la fase 1 | ✅ |
 | Módulo de recuperación (corpus web) | ✅ |
@@ -61,10 +61,9 @@ entrada de solo lectura.
 | Consulta del catálogo de empaques (fase 3) | ✅ |
 | Experiencia de chat (fase 4) | ✅ |
 
-> ⚠️ Fase actual: **corte vertical (fase 1)**. El asistente responde preguntas sobre el
-> corpus con citas verificables y se abstiene sin evidencia; el catálogo de empaques llega
-> en la fase 3. Roadmap en
-> [`CONSTITUTION.md` §10](./CONSTITUTION.md#10-notas-y-tareas-pendientes).
+> ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
+> y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
+> Roadmap en [`CONSTITUTION.md` §10](./CONSTITUTION.md#10-notas-y-tareas-pendientes).
 
 ## 🛠️ Stack tecnológico
 
@@ -162,6 +161,9 @@ make check   # lint + formato + tipos + pruebas
 | `make acceptance` | Ejecuta las preguntas de aceptación y reporta citas. |
 | `make catalog-acceptance` | Aceptación del catálogo (130 preguntas de enrutamiento). |
 | `make ui-check` | Pruebas de streaming, Markdown, feedback y contraste. |
+| `make gt-propose` | Propone el ground truth de evaluación para revisión. |
+| `make eval` | Matriz de recuperación de la fase 2. |
+| `make eval-e2e` | Evaluación end-to-end de la variante ganadora. |
 
 ## 🧪 Desarrollo dirigido por especificaciones (Spec Kit)
 
@@ -189,7 +191,7 @@ Las capacidades nuevas se especifican **antes** de implementarse con
 
 ## 🗺️ Arquitectura del proyecto
 
-Mapa de arquitectura **objetivo** (runtime) generado con
+Mapa de arquitectura **del runtime** generado con
 [Archify](https://github.com/tt-a1i/archify): componentes, límites y flujo principal de una
 consulta.
 

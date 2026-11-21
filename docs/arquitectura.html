@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="archify 3.2.0">
   <meta name="archify-reader-contract" content="declared-wide-v1">
-  <title>Asistente Carvajal — Arquitectura objetivo v0.1 · Diagrama</title>
+  <title>Asistente Carvajal — Arquitectura runtime v0.3 · Diagrama</title>
   <script>
     // Resolve the theme before first paint so light-preference users don't
     // see a dark flash. The toolbar script below re-applies with UI state.
@@ -5194,7 +5194,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
            data-preset-badge-blueprint="PLANO / REV 01"
            data-preset-badge-editorial="EDITORIAL / NOTA DE CAMPO">
         <div class="pulse-dot"></div>
-        <h1>Asistente Carvajal — Arquitectura objetivo v0.1</h1>
+        <h1>Asistente Carvajal — Arquitectura runtime v0.3</h1>
       </div>
     </div>
 
@@ -5204,7 +5204,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / LÁMINA 04">
       <svg viewBox="0 0 1200 860" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="" data-reader-fit="intrinsic-height" data-reader-min-text="7.5" data-reader-primary-text="14">
-        <title id="archify-diagram-title">Asistente Carvajal — Arquitectura objetivo v0.1</title>
+        <title id="archify-diagram-title">Asistente Carvajal — Arquitectura runtime v0.3</title>
         <desc id="archify-diagram-description">Un diagrama de arquitectura generado por Archify.</desc>
         <!-- Definitions -->
         <defs>
@@ -5259,49 +5259,49 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         </g>
         <g data-graph-role="automatic-crossover" style="--step:1">
           <path data-graph-role="automatic-crossover-underlay" d="M 380 366.05 L 460 366.05" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="interfaz" data-edge-to="orquestador" data-edge-label="consulta" data-edge-key="1" data-edge-id="interfaz-consulta" data-composition-points="380,366.05;460,366.05" data-composition-crossover="halo" data-composition-independent="true" d="M 380 366.05 L 460 366.05" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-edge-from="interfaz" data-edge-to="orquestador" data-edge-label="consulta · SSE" data-edge-key="1" data-edge-id="interfaz-consulta" data-composition-points="380,366.05;460,366.05" data-composition-crossover="halo" data-composition-independent="true" d="M 380 366.05 L 460 366.05" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:2">
           <path data-graph-role="automatic-crossover-underlay" d="M 550 396 L 550 540" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
           <path data-edge-from="orquestador" data-edge-to="router" data-edge-label="clasifica" data-edge-key="2" data-edge-id="orquestador-clasifica" data-composition-points="550,396;550,540" data-composition-crossover="halo" data-composition-independent="true" d="M 550 396 L 550 540" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:3">
-          <path data-graph-role="automatic-crossover-underlay" d="M 620 576 L 725 576" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="router" data-edge-to="recuperador" data-edge-label="plan de ruta" data-edge-key="3" data-edge-id="router-plan" data-composition-points="620,576;725,576" data-composition-crossover="halo" data-composition-independent="true" d="M 620 576 L 725 576" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 620 569 L 725 569" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="router" data-edge-to="recuperador" data-edge-label="plan de ruta" data-edge-key="3" data-edge-id="router-plan" data-composition-points="620,569;725,569" data-composition-crossover="halo" data-composition-independent="true" d="M 620 569 L 725 569" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:4">
           <path data-graph-role="automatic-crossover-underlay" d="M 885 576 L 990 576" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
           <path data-edge-from="recuperador" data-edge-to="indice" data-edge-label="top-k" data-edge-key="4" data-edge-id="recuperador-topk" data-composition-points="885,576;990,576" data-composition-crossover="halo" data-composition-independent="true" d="M 885 576 L 990 576" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:5">
-          <path data-graph-role="automatic-crossover-underlay" d="M 805 612 L 805 720" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="recuperador" data-edge-to="catalogo" data-edge-label="rama empaques" data-edge-key="5" data-edge-id="recuperador-catalogo" data-composition-points="805,612;805,720" data-composition-crossover="halo" data-composition-independent="true" d="M 805 612 L 805 720" class="a-dashed" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
-        </g>
-        <g data-graph-role="automatic-crossover" style="--step:6">
           <path data-graph-role="automatic-crossover-underlay" d="M 1070 720 L 1070 612" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="corpus" data-edge-to="indice" data-edge-label="indexado (batch)" data-edge-key="6" data-edge-id="corpus-indexado" data-composition-points="1070,720;1070,612" data-composition-crossover="halo" data-composition-independent="true" d="M 1070 720 L 1070 612" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-edge-from="corpus" data-edge-to="indice" data-edge-label="indexado (batch)" data-edge-key="5" data-edge-id="corpus-indexado" data-composition-points="1070,720;1070,612" data-composition-crossover="halo" data-composition-independent="true" d="M 1070 720 L 1070 612" class="a-dashed" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
-        <path data-edge-from="recuperador" data-edge-to="orquestador" data-edge-label="contexto + citas" data-edge-key="7" data-edge-id="recuperador-contexto" data-composition-points="805,540;805,358;640,358" d="M 805 540 L 805 366 Q 805 358 797 358 L 640 358" class="a-default" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <g data-graph-role="automatic-crossover" style="--step:8">
+        <path data-edge-from="recuperador" data-edge-to="orquestador" data-edge-label="contexto + citas" data-edge-key="6" data-edge-id="recuperador-contexto" data-composition-points="805,540;805,358;640,358" d="M 805 540 L 805 366 Q 805 358 797 358 L 640 358" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <g data-graph-role="automatic-crossover" style="--step:7">
           <path data-graph-role="automatic-crossover-underlay" d="M 550 320 L 550 257 Q 550 249 558 249 L 559 249 Q 567 249 567 241 L 567 178" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="orquestador" data-edge-to="llm" data-edge-label="prompt + contexto" data-edge-key="8" data-edge-id="orquestador-prompt" data-composition-points="550,320;550,249;567,249;567,178" data-composition-crossover="halo" data-composition-independent="true" d="M 550 320 L 550 257 Q 550 249 558 249 L 559 249 Q 567 249 567 241 L 567 178" class="a-default" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-edge-from="orquestador" data-edge-to="llm" data-edge-label="prompt + contexto" data-edge-key="7" data-edge-id="orquestador-prompt" data-composition-points="550,320;550,249;567,249;567,178" data-composition-crossover="halo" data-composition-independent="true" d="M 550 320 L 550 257 Q 550 249 558 249 L 559 249 Q 567 249 567 241 L 567 178" class="a-default" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:8">
+          <path data-graph-role="automatic-crossover-underlay" d="M 553 178 L 553 241 Q 553 249 545 249 L 544 249 Q 536 249 536 257 L 536 320" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="llm" data-edge-to="orquestador" data-edge-label="respuesta con citas" data-edge-key="8" data-edge-id="llm-respuesta" data-composition-points="553,178;553,249;536,249;536,320" data-composition-crossover="halo" data-composition-independent="true" d="M 553 178 L 553 241 Q 553 249 545 249 L 544 249 Q 536 249 536 257 L 536 320" class="a-default" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:9">
-          <path data-graph-role="automatic-crossover-underlay" d="M 553 178 L 553 241 Q 553 249 545 249 L 544 249 Q 536 249 536 257 L 536 320" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="llm" data-edge-to="orquestador" data-edge-label="respuesta con citas" data-edge-key="9" data-edge-id="llm-respuesta" data-composition-points="553,178;553,249;536,249;536,320" data-composition-crossover="halo" data-composition-independent="true" d="M 553 178 L 553 241 Q 553 249 545 249 L 544 249 Q 536 249 536 257 L 536 320" class="a-default" data-animate="edge" style="--step:9" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        </g>
-        <g data-graph-role="automatic-crossover" style="--step:10">
           <path data-graph-role="automatic-crossover-underlay" d="M 520.95 320 L 520.95 304 Q 520.95 296 512.95 296 L 103 296 Q 95 296 95 304 L 95 320" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="orquestador" data-edge-to="usuario" data-edge-label="respuesta con citas" data-edge-key="10" data-edge-id="orquestador-respuesta" data-composition-points="520.95,320;520.95,296;95,296;95,320" data-composition-crossover="halo" data-composition-independent="true" d="M 520.95 320 L 520.95 304 Q 520.95 296 512.95 296 L 103 296 Q 95 296 95 304 L 95 320" class="a-emphasis" data-animate="edge" style="--step:10" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+          <path data-edge-from="orquestador" data-edge-to="usuario" data-edge-label="respuesta con citas" data-edge-key="9" data-edge-id="orquestador-respuesta" data-composition-points="520.95,320;520.95,296;95,296;95,320" data-composition-crossover="halo" data-composition-independent="true" d="M 520.95 320 L 520.95 304 Q 520.95 296 512.95 296 L 103 296 Q 95 296 95 304 L 95 320" class="a-emphasis" data-animate="edge" style="--step:9" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
-        <path data-edge-from="config" data-edge-to="orquestador" data-edge-label="llaves y rutas" data-edge-key="11" data-edge-id="config-orquestador" data-composition-points="265,178;265,250;550,250;550,320" d="M 265 178 L 265 242 Q 265 250 273 250 L 542 250 Q 550 250 550 258 L 550 320" class="a-default" data-animate="edge" style="--step:11" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <g data-graph-role="automatic-crossover" style="--step:12">
+        <path data-edge-from="config" data-edge-to="orquestador" data-edge-label="llaves y rutas" data-edge-key="10" data-edge-id="config-orquestador" data-composition-points="265,178;265,250;550,250;550,320" d="M 265 178 L 265 242 Q 265 250 273 250 L 542 250 Q 550 250 550 258 L 550 320" class="a-default" data-animate="edge" style="--step:10" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <g data-graph-role="automatic-crossover" style="--step:11">
           <path data-graph-role="automatic-crossover-underlay" d="M 350 144 L 460 144" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="config" data-edge-to="llm" data-edge-label="credenciales" data-edge-key="12" data-edge-id="config-llm" data-composition-points="350,144;460,144" data-composition-crossover="halo" data-composition-independent="true" d="M 350 144 L 460 144" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-edge-from="config" data-edge-to="llm" data-edge-label="credenciales" data-edge-key="11" data-edge-id="config-llm" data-composition-points="350,144;460,144" data-composition-crossover="halo" data-composition-independent="true" d="M 350 144 L 460 144" class="a-default" data-animate="edge" style="--step:11" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:12">
+          <path data-graph-role="automatic-crossover-underlay" d="M 640 380 L 768 380 Q 776 380 776 372 L 776 178" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="orquestador" data-edge-to="observabilidad" data-edge-label="traza" data-edge-key="12" data-edge-id="orquestador-traza" data-composition-points="640,380;776,380;776,178" data-composition-crossover="halo" data-composition-independent="true" d="M 640 380 L 768 380 Q 776 380 776 372 L 776 178" class="a-dashed" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:13">
-          <path data-graph-role="automatic-crossover-underlay" d="M 640 380 L 768 380 Q 776 380 776 372 L 776 178" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="orquestador" data-edge-to="observabilidad" data-edge-label="traza" data-edge-key="13" data-edge-id="orquestador-traza" data-composition-points="640,380;776,380;776,178" data-composition-crossover="halo" data-composition-independent="true" d="M 640 380 L 768 380 Q 776 380 776 372 L 776 178" class="a-dashed" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 604 612 L 604 728 Q 604 736 612 736 L 725 736" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="router" data-edge-to="catalogo" data-edge-label="lookup comercial" data-edge-key="13" data-composition-points="604,612;604,736;725,736" data-composition-crossover="halo" data-composition-independent="true" d="M 604 612 L 604 728 Q 604 736 612 736 L 725 736" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
 
         <!-- Components -->
@@ -5316,8 +5316,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="95" y="366" class="t-muted" font-size="8.5" text-anchor="middle">Navegador / terminal</text>
         </g>
 
-        <g id="node-interfaz" data-node-id="interfaz" data-node-label="Interfaz de chat" tabindex="0" role="button" aria-label="Enfocar Interfaz de chat, FastAPI + HTMX, Componente de arquitectura" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="FastAPI + HTMX" data-node-context="Componente de arquitectura">
-          <title>Interfaz de chat · FastAPI + HTMX · Componente de arquitectura</title>
+        <g id="node-interfaz" data-node-id="interfaz" data-node-label="Interfaz de chat" tabindex="0" role="button" aria-label="Enfocar Interfaz de chat, FastAPI + Jinja2/HTMX · SSE, Componente de arquitectura" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="FastAPI + Jinja2/HTMX · SSE" data-node-context="Componente de arquitectura">
+          <title>Interfaz de chat · FastAPI + Jinja2/HTMX · SSE · Componente de arquitectura</title>
           <rect x="230" y="320" width="150" height="72" rx="8" class="c-mask"/>
           <rect x="230" y="320" width="150" height="72" rx="8" class="c-frontend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(236 326) scale(0.6875)">
@@ -5327,29 +5327,29 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="305" y="354" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Interfaz de chat</text>
-        <text data-detail="context" x="305" y="370" class="t-muted" font-size="9" text-anchor="middle">FastAPI + HTMX</text>
+        <text data-detail="context" x="305" y="370" class="t-muted" font-size="8.7" text-anchor="middle">FastAPI + Jinja2/HTMX · SSE</text>
         </g>
 
-        <g id="node-orquestador" data-node-id="orquestador" data-node-label="Orquestador RAG" tabindex="0" role="button" aria-label="Enfocar Orquestador RAG, Enruta y arma el prompt, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Enruta y arma el prompt" data-node-context="Componente de arquitectura">
-          <title>Orquestador RAG · Enruta y arma el prompt · Componente de arquitectura</title>
+        <g id="node-orquestador" data-node-id="orquestador" data-node-label="Orquestador RAG" tabindex="0" role="button" aria-label="Enfocar Orquestador RAG, Enruta, arma prompt y compone, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Enruta, arma prompt y compone" data-node-context="Componente de arquitectura">
+          <title>Orquestador RAG · Enruta, arma prompt y compone · Componente de arquitectura</title>
           <rect x="460" y="320" width="180" height="76" rx="8" class="c-mask"/>
           <rect x="460" y="320" width="180" height="76" rx="8" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(466 326) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="550" y="356" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Orquestador RAG</text>
-        <text data-detail="context" x="550" y="372" class="t-muted" font-size="9" text-anchor="middle">Enruta y arma el prompt</text>
+        <text data-detail="context" x="550" y="372" class="t-muted" font-size="9" text-anchor="middle">Enruta, arma prompt y compone</text>
         </g>
 
-        <g id="node-router" data-node-id="router" data-node-label="Router de consulta" tabindex="0" role="button" aria-label="Enfocar Router de consulta, Directo · corpus · catálogo, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Directo · corpus · catálogo" data-node-context="Componente de arquitectura">
-          <title>Router de consulta · Directo · corpus · catálogo · Componente de arquitectura</title>
+        <g id="node-router" data-node-id="router" data-node-label="Router de consulta" tabindex="0" role="button" aria-label="Enfocar Router de consulta, Documental · comercial · mixto, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Documental · comercial · mixto" data-node-context="Componente de arquitectura">
+          <title>Router de consulta · Documental · comercial · mixto · Componente de arquitectura</title>
           <rect x="460" y="540" width="160" height="72" rx="8" class="c-mask"/>
           <rect x="460" y="540" width="160" height="72" rx="8" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="decision" class="semantic-sigil s-backend" transform="translate(466 546) scale(0.6875)">
             <path d="M8 2.2 13.8 8 8 13.8 2.2 8Z"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="540" y="574" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Router de consulta</text>
-        <text data-detail="context" x="540" y="590" class="t-muted" font-size="9" text-anchor="middle">Directo · corpus · catálogo</text>
+        <text data-detail="context" x="540" y="590" class="t-muted" font-size="8.4" text-anchor="middle">Documental · comercial · mixto</text>
         </g>
 
         <g id="node-recuperador" data-node-id="recuperador" data-node-label="Recuperador" tabindex="0" role="button" aria-label="Enfocar Recuperador, Búsqueda sin LLM, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Búsqueda sin LLM" data-node-context="Componente de arquitectura">
@@ -5363,8 +5363,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="805" y="590" class="t-muted" font-size="9" text-anchor="middle">Búsqueda sin LLM</text>
         </g>
 
-        <g id="node-indice" data-node-id="indice" data-node-label="Índice vectorial" tabindex="0" role="button" aria-label="Enfocar Índice vectorial, Qdrant · 768 dims, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="Qdrant · 768 dims" data-node-context="Componente de arquitectura">
-          <title>Índice vectorial · Qdrant · 768 dims · Componente de arquitectura</title>
+        <g id="node-indice" data-node-id="indice" data-node-label="Índice vectorial" tabindex="0" role="button" aria-label="Enfocar Índice vectorial, Qdrant · 1024 dims · bge-m3, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="Qdrant · 1024 dims · bge-m3" data-node-context="Componente de arquitectura">
+          <title>Índice vectorial · Qdrant · 1024 dims · bge-m3 · Componente de arquitectura</title>
           <rect x="990" y="540" width="170" height="72" rx="8" class="c-mask"/>
           <rect x="990" y="540" width="170" height="72" rx="8" class="c-database" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(996 546) scale(0.6875)">
@@ -5372,25 +5372,25 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="1075" y="574" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Índice vectorial</text>
-        <text data-detail="context" x="1075" y="590" class="t-muted" font-size="9" text-anchor="middle">Qdrant · 768 dims</text>
+        <text data-detail="context" x="1075" y="590" class="t-muted" font-size="9" text-anchor="middle">Qdrant · 1024 dims · bge-m3</text>
         </g>
 
-        <g id="node-catalogo" data-node-id="catalogo" data-node-label="Catálogo de empaques" tabindex="0" role="button" aria-label="Enfocar Catálogo de empaques, Doc. interna · solo lectura, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="Doc. interna · solo lectura" data-node-context="Componente de arquitectura">
-          <title>Catálogo de empaques · Doc. interna · solo lectura · Componente de arquitectura</title>
+        <g id="node-catalogo" data-node-id="catalogo" data-node-label="Catálogo de empaques" tabindex="0" role="button" aria-label="Enfocar Catálogo de empaques, CSV read-only · determinista, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="CSV read-only · determinista" data-node-context="Componente de arquitectura">
+          <title>Catálogo de empaques · CSV read-only · determinista · Componente de arquitectura</title>
           <rect x="725" y="720" width="170" height="72" rx="8" class="c-mask"/>
-          <rect x="725" y="720" width="170" height="72" rx="8" class="c-database" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <rect x="725" y="720" width="170" height="72" rx="8" class="c-database" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(731 726) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="810" y="754" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Catálogo de empaques</text>
-        <text data-detail="context" x="810" y="770" class="t-muted" font-size="9" text-anchor="middle">Doc. interna · solo lectura</text>
+        <text data-detail="context" x="810" y="770" class="t-muted" font-size="9" text-anchor="middle">CSV read-only · determinista</text>
         </g>
 
         <g id="node-corpus" data-node-id="corpus" data-node-label="Corpus web Carvajal" tabindex="0" role="button" aria-label="Enfocar Corpus web Carvajal, Capa gold · solo lectura, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="Capa gold · solo lectura" data-node-context="Componente de arquitectura">
           <title>Corpus web Carvajal · Capa gold · solo lectura · Componente de arquitectura</title>
           <rect x="990" y="720" width="160" height="72" rx="8" class="c-mask"/>
-          <rect x="990" y="720" width="160" height="72" rx="8" class="c-database" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <rect x="990" y="720" width="160" height="72" rx="8" class="c-database" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(996 726) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
@@ -5402,7 +5402,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-llm" data-node-id="llm" data-node-label="Proveedor LLM" tabindex="0" role="button" aria-label="Enfocar Proveedor LLM, DeepSeek + Ollama local, Componente de arquitectura" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="DeepSeek + Ollama local" data-node-context="Componente de arquitectura">
           <title>Proveedor LLM · DeepSeek + Ollama local · Componente de arquitectura</title>
           <rect x="460" y="110" width="200" height="68" rx="8" class="c-mask"/>
-          <rect x="460" y="110" width="200" height="68" rx="8" class="c-cloud" data-animate="node" style="--step:9" stroke-width="1.5"/>
+          <rect x="460" y="110" width="200" height="68" rx="8" class="c-cloud" data-animate="node" style="--step:8" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(466 116) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
@@ -5413,7 +5413,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-config" data-node-id="config" data-node-label="Configuración" tabindex="0" role="button" aria-label="Enfocar Configuración, .env · llaves y rutas, Componente de arquitectura" aria-pressed="false" data-node-kind="security" data-node-sublabel=".env · llaves y rutas" data-node-context="Componente de arquitectura">
           <title>Configuración · .env · llaves y rutas · Componente de arquitectura</title>
           <rect x="180" y="110" width="170" height="68" rx="8" class="c-mask"/>
-          <rect x="180" y="110" width="170" height="68" rx="8" class="c-security" data-animate="node" style="--step:11" stroke-width="1.5"/>
+          <rect x="180" y="110" width="170" height="68" rx="8" class="c-security" data-animate="node" style="--step:10" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(186 116) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
@@ -5441,57 +5441,57 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <rect x="165.8" y="322.9" width="48.4" height="14" rx="3" class="c-mask"/>
           <text x="190" y="332.9" class="t-edge-emphasis" font-size="8" text-anchor="middle">pregunta</text>
         </g>
-        <g data-detail="context" data-edge-from="interfaz" data-edge-to="orquestador" data-edge-label="consulta" data-edge-key="1" data-edge-id="interfaz-consulta">
-          <rect x="395.8" y="346.05" width="48.4" height="14" rx="3" class="c-mask"/>
-          <text x="420" y="356.05" class="t-edge-default" font-size="8" text-anchor="middle">consulta</text>
+        <g data-detail="context" data-edge-from="interfaz" data-edge-to="orquestador" data-edge-label="consulta · SSE" data-edge-key="1" data-edge-id="interfaz-consulta">
+          <rect x="381.4" y="346.05" width="77.2" height="14" rx="3" class="c-mask"/>
+          <text x="420" y="356.05" class="t-edge-default" font-size="8" text-anchor="middle">consulta · SSE</text>
         </g>
         <g data-detail="context" data-edge-from="orquestador" data-edge-to="router" data-edge-label="clasifica" data-edge-key="2" data-edge-id="orquestador-clasifica">
           <rect x="490.79999999999995" y="461" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
           <text x="517.4" y="471" class="t-edge-default" font-size="8" text-anchor="middle">clasifica</text>
         </g>
         <g data-detail="context" data-edge-from="router" data-edge-to="recuperador" data-edge-label="plan de ruta" data-edge-key="3" data-edge-id="router-plan">
-          <rect x="638.7" y="556" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="672.5" y="566" class="t-edge-default" font-size="8" text-anchor="middle">plan de ruta</text>
+          <rect x="638.7" y="549" width="67.6" height="14" rx="3" class="c-mask"/>
+          <text x="672.5" y="559" class="t-edge-default" font-size="8" text-anchor="middle">plan de ruta</text>
         </g>
         <g data-detail="context" data-edge-from="recuperador" data-edge-to="indice" data-edge-label="top-k" data-edge-key="4" data-edge-id="recuperador-topk">
           <rect x="920.5" y="556" width="34" height="14" rx="3" class="c-mask"/>
           <text x="937.5" y="566" class="t-edge-default" font-size="8" text-anchor="middle">top-k</text>
         </g>
-        <g data-detail="context" data-edge-from="recuperador" data-edge-to="catalogo" data-edge-label="rama empaques" data-edge-key="5" data-edge-id="recuperador-catalogo">
-          <rect x="726.5999999999999" y="659" width="72.4" height="14" rx="3" class="c-mask"/>
-          <text x="762.8" y="669" class="t-edge-dashed" font-size="8" text-anchor="middle">rama empaques</text>
-        </g>
-        <g data-detail="context" data-edge-from="corpus" data-edge-to="indice" data-edge-label="indexado (batch)" data-edge-key="6" data-edge-id="corpus-indexado">
+        <g data-detail="context" data-edge-from="corpus" data-edge-to="indice" data-edge-label="indexado (batch)" data-edge-key="5" data-edge-id="corpus-indexado">
           <rect x="1026.6" y="700" width="86.8" height="14" rx="3" class="c-mask"/>
           <text x="1070" y="710" class="t-edge-dashed" font-size="8" text-anchor="middle">indexado (batch)</text>
         </g>
-        <g data-detail="context" data-edge-from="recuperador" data-edge-to="orquestador" data-edge-label="contexto + citas" data-edge-key="7" data-edge-id="recuperador-contexto">
+        <g data-detail="context" data-edge-from="recuperador" data-edge-to="orquestador" data-edge-label="contexto + citas" data-edge-key="6" data-edge-id="recuperador-contexto">
           <rect x="679.1" y="338" width="86.8" height="14" rx="3" class="c-mask"/>
           <text x="722.5" y="348" class="t-edge-default" font-size="8" text-anchor="middle">contexto + citas</text>
         </g>
-        <g data-detail="context" data-edge-from="orquestador" data-edge-to="llm" data-edge-label="prompt + contexto" data-edge-key="8" data-edge-id="orquestador-prompt">
+        <g data-detail="context" data-edge-from="orquestador" data-edge-to="llm" data-edge-label="prompt + contexto" data-edge-key="7" data-edge-id="orquestador-prompt">
           <rect x="556" y="277.5" width="91.6" height="14" rx="3" class="c-mask"/>
           <text x="601.8" y="287.5" class="t-edge-default" font-size="8" text-anchor="middle">prompt + contexto</text>
         </g>
-        <g data-detail="context" data-edge-from="llm" data-edge-to="orquestador" data-edge-label="respuesta con citas" data-edge-key="9" data-edge-id="llm-respuesta">
+        <g data-detail="context" data-edge-from="llm" data-edge-to="orquestador" data-edge-label="respuesta con citas" data-edge-key="8" data-edge-id="llm-respuesta">
           <rect x="445.79999999999995" y="206.5" width="101.2" height="14" rx="3" class="c-mask"/>
           <text x="496.4" y="216.5" class="t-edge-default" font-size="8" text-anchor="middle">respuesta con citas</text>
         </g>
-        <g data-detail="context" data-edge-from="orquestador" data-edge-to="usuario" data-edge-label="respuesta con citas" data-edge-key="10" data-edge-id="orquestador-respuesta">
+        <g data-detail="context" data-edge-from="orquestador" data-edge-to="usuario" data-edge-label="respuesta con citas" data-edge-key="9" data-edge-id="orquestador-respuesta">
           <rect x="257.375" y="276" width="101.2" height="14" rx="3" class="c-mask"/>
           <text x="307.975" y="286" class="t-edge-emphasis" font-size="8" text-anchor="middle">respuesta con citas</text>
         </g>
-        <g data-detail="context" data-edge-from="config" data-edge-to="orquestador" data-edge-label="llaves y rutas" data-edge-key="11" data-edge-id="config-orquestador">
+        <g data-detail="context" data-edge-from="config" data-edge-to="orquestador" data-edge-label="llaves y rutas" data-edge-key="10" data-edge-id="config-orquestador">
           <rect x="368.9" y="230" width="77.2" height="14" rx="3" class="c-mask"/>
           <text x="407.5" y="240" class="t-edge-default" font-size="8" text-anchor="middle">llaves y rutas</text>
         </g>
-        <g data-detail="context" data-edge-from="config" data-edge-to="llm" data-edge-label="credenciales" data-edge-key="12" data-edge-id="config-llm">
+        <g data-detail="context" data-edge-from="config" data-edge-to="llm" data-edge-label="credenciales" data-edge-key="11" data-edge-id="config-llm">
           <rect x="371.2" y="124" width="67.6" height="14" rx="3" class="c-mask"/>
           <text x="405" y="134" class="t-edge-default" font-size="8" text-anchor="middle">credenciales</text>
         </g>
-        <g data-detail="context" data-edge-from="orquestador" data-edge-to="observabilidad" data-edge-label="traza" data-edge-key="13" data-edge-id="orquestador-traza">
+        <g data-detail="context" data-edge-from="orquestador" data-edge-to="observabilidad" data-edge-label="traza" data-edge-key="12" data-edge-id="orquestador-traza">
           <rect x="759" y="259" width="34" height="14" rx="3" class="c-mask"/>
           <text x="776" y="269" class="t-edge-dashed" font-size="8" text-anchor="middle">traza</text>
+        </g>
+        <g data-detail="context" data-edge-from="router" data-edge-to="catalogo" data-edge-label="lookup comercial" data-edge-key="13">
+          <rect x="621.1" y="716" width="86.8" height="14" rx="3" class="c-mask"/>
+          <text x="664.5" y="726" class="t-edge-default" font-size="8" text-anchor="middle">lookup comercial</text>
         </g>
 
         <!-- Boundary labels (foreground masks keep routes out of titles) -->
@@ -5708,27 +5708,39 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <div class="cards">
       <div class="card">
         <div class="card-header">
-          <div class="card-dot amber"></div>
-          <h3>Decisiones de stack (fase 1)</h3>
+          <div class="card-dot cyan"></div>
+          <h3>Stack y decisiones vigentes</h3>
         </div>
         <ul>
-          <li>Interfaz: FastAPI + HTMX (Jinja2 server-side).</li>
-          <li>Índice: Qdrant 768 dims con nomic-embed-text.</li>
+          <li>Interfaz: FastAPI + Jinja2/HTMX con streaming SSE.</li>
+          <li>Índice: Qdrant 1024 dims con bge-m3 vía Ollama.</li>
           <li>LLM: DeepSeek API con fallback a Ollama local.</li>
-          <li>Datos: corpus y catálogo por ruta configurable de solo lectura.</li>
-          <li>Orquestación RAG: se decide en el plan de fase 1.</li>
+          <li>Catálogo: CSV de solo lectura, rama determinista sin LLM.</li>
+          <li>Feedback: JSONL local sin PII.</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <div class="card-dot cyan"></div>
-          <h3>Recuperación y citas</h3>
+          <div class="card-dot slate"></div>
+          <h3>Recuperación, catálogo y citas</h3>
         </div>
         <ul>
           <li>El recuperador no depende del LLM y devuelve fragmentos con su fuente.</li>
-          <li>El catálogo de empaques es una rama alternativa del router.</li>
+          <li>El catálogo responde precios y materiales con vigencia y fuente.</li>
           <li>Índice, corpus y catálogo son de solo lectura para el asistente.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot amber"></div>
+          <h3>Experiencia y accesibilidad</h3>
+        </div>
+        <ul>
+          <li>Tokens visuales de docs/design/DESIGN.md (Stitch) y DM Sans vendorizada.</li>
+          <li>Streaming token a token con Markdown seguro y citas.</li>
+          <li>WCAG AA mínimo y objetivo AAA; targets de 64 px y aria-live.</li>
         </ul>
       </div>
 
@@ -5738,9 +5750,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <h3>Operación</h3>
         </div>
         <ul>
-          <li>La configuración (.env) alimenta al orquestador y al proveedor LLM.</li>
+          <li>La configuración (.env) alimenta al orquestador, al catálogo y al proveedor LLM.</li>
           <li>Cada traza registra request_id, ruta elegida y fuentes citadas.</li>
-          <li>El corpus gold y el catálogo se leen por ruta configurable desde el proyecto carvajal.</li>
+          <li>El corpus gold y el catálogo se leen por ruta configurable desde carvajal.</li>
         </ul>
       </div>
     </div>

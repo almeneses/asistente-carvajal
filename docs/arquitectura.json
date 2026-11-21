@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "Asistente Carvajal — Arquitectura objetivo v0.1",
+    "title": "Asistente Carvajal — Arquitectura runtime v0.3",
     "locale": "es",
     "output": "docs/arquitectura.html",
     "quality_profile": "showcase"
@@ -27,7 +27,7 @@
       "id": "interfaz",
       "type": "frontend",
       "label": "Interfaz de chat",
-      "sublabel": "FastAPI + HTMX",
+      "sublabel": "FastAPI + Jinja2/HTMX · SSE",
       "pos": [
         230,
         320
@@ -41,7 +41,7 @@
       "id": "orquestador",
       "type": "backend",
       "label": "Orquestador RAG",
-      "sublabel": "Enruta y arma el prompt",
+      "sublabel": "Enruta, arma prompt y compone",
       "pos": [
         460,
         320
@@ -55,7 +55,7 @@
       "id": "router",
       "type": "backend",
       "label": "Router de consulta",
-      "sublabel": "Directo · corpus · catálogo",
+      "sublabel": "Documental · comercial · mixto",
       "icon": "decision",
       "pos": [
         460,
@@ -84,7 +84,7 @@
       "id": "indice",
       "type": "database",
       "label": "Índice vectorial",
-      "sublabel": "Qdrant · 768 dims",
+      "sublabel": "Qdrant · 1024 dims · bge-m3",
       "pos": [
         990,
         540
@@ -98,7 +98,7 @@
       "id": "catalogo",
       "type": "database",
       "label": "Catálogo de empaques",
-      "sublabel": "Doc. interna · solo lectura",
+      "sublabel": "CSV read-only · determinista",
       "pos": [
         725,
         720
@@ -177,7 +177,7 @@
       "id": "interfaz-consulta",
       "from": "interfaz",
       "to": "orquestador",
-      "label": "consulta"
+      "label": "consulta · SSE"
     },
     {
       "id": "orquestador-clasifica",
@@ -196,13 +196,6 @@
       "from": "recuperador",
       "to": "indice",
       "label": "top-k"
-    },
-    {
-      "id": "recuperador-catalogo",
-      "from": "recuperador",
-      "to": "catalogo",
-      "label": "rama empaques",
-      "variant": "dashed"
     },
     {
       "id": "corpus-indexado",
@@ -274,36 +267,50 @@
       "to": "observabilidad",
       "label": "traza",
       "variant": "dashed"
+    },
+    {
+      "from": "router",
+      "to": "catalogo",
+      "label": "lookup comercial"
     }
   ],
   "cards": [
     {
-      "dot": "amber",
-      "title": "Decisiones de stack (fase 1)",
+      "dot": "cyan",
+      "title": "Stack y decisiones vigentes",
       "items": [
-        "Interfaz: FastAPI + HTMX (Jinja2 server-side).",
-        "Índice: Qdrant 768 dims con nomic-embed-text.",
+        "Interfaz: FastAPI + Jinja2/HTMX con streaming SSE.",
+        "Índice: Qdrant 1024 dims con bge-m3 vía Ollama.",
         "LLM: DeepSeek API con fallback a Ollama local.",
-        "Datos: corpus y catálogo por ruta configurable de solo lectura.",
-        "Orquestación RAG: se decide en el plan de fase 1."
+        "Catálogo: CSV de solo lectura, rama determinista sin LLM.",
+        "Feedback: JSONL local sin PII."
       ]
     },
     {
-      "dot": "cyan",
-      "title": "Recuperación y citas",
+      "dot": "slate",
+      "title": "Recuperación, catálogo y citas",
       "items": [
         "El recuperador no depende del LLM y devuelve fragmentos con su fuente.",
-        "El catálogo de empaques es una rama alternativa del router.",
+        "El catálogo responde precios y materiales con vigencia y fuente.",
         "Índice, corpus y catálogo son de solo lectura para el asistente."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Experiencia y accesibilidad",
+      "items": [
+        "Tokens visuales de docs/design/DESIGN.md (Stitch) y DM Sans vendorizada.",
+        "Streaming token a token con Markdown seguro y citas.",
+        "WCAG AA mínimo y objetivo AAA; targets de 64 px y aria-live."
       ]
     },
     {
       "dot": "slate",
       "title": "Operación",
       "items": [
-        "La configuración (.env) alimenta al orquestador y al proveedor LLM.",
+        "La configuración (.env) alimenta al orquestador, al catálogo y al proveedor LLM.",
         "Cada traza registra request_id, ruta elegida y fuentes citadas.",
-        "El corpus gold y el catálogo se leen por ruta configurable desde el proyecto carvajal."
+        "El corpus gold y el catálogo se leen por ruta configurable desde carvajal."
       ]
     }
   ]
