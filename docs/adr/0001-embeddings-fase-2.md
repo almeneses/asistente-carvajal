@@ -13,8 +13,8 @@
 - **Consecuencias si se migra**: `EMBEDDING_DIM=1024`, reconstrucción del índice de la
   app con `--recreate`, actualización de `CONSTITUTION.md` §3/§9 y de la proyección de
   Spec Kit en el mismo commit.
-- **Evidencia**: `reports/baseline.json` (matriz de 8 variantes) y
-  `reports/ganadora.json` (e2e: `hit@5 0,966`, citas 1,0, abstención 1,0; umbrales
+- **Evidencia**: `specs/002-evaluacion-recuperacion/reports/baseline.json`
+  (matriz de 8 variantes) y `specs/002-evaluacion-recuperacion/reports/ganadora.json` (e2e: `hit@5 0,966`, citas 1,0, abstención 1,0; umbrales
   cumplidos). Fingerprint del corpus `9952ecc5…`.
 - **Consecuencias aplicadas**: `EMBEDDING_MODEL=bge-m3`, `EMBEDDING_DIM=1024`,
   constitución 0.5.0 y proyección sincronizada; el índice de la app se reconstruye con

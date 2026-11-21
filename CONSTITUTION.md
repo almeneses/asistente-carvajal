@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 1.1.0 |
+| **Versión** | 1.2.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -89,7 +89,7 @@ de clientes.
 | **Interfaz de chat** | FastAPI + HTMX (Jinja2 server-side, sin SPA) |
 | **Índice vectorial** | Qdrant (1024 dims, coseno; embebido local por defecto, remoto por `QDRANT_URL`) |
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims; migrado en la fase 2 con evidencia) |
-| **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
+| **Proveedor LLM** | Ollama local por defecto; DeepSeek opcional con fallback a Ollama |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura (`CORPUS_GOLD_DIR`, `CATALOG_DIR`) |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
 | **Solicitudes de cotización** | `POST /quotes` con recálculo desde catálogo y JSONL local sin PII |
@@ -251,6 +251,8 @@ git push
 | 2026-11-21 | Animación de Carva con Web Animations API y pulido móvil | Vuelo central→avatar con fallback de movimiento reducido y layout 390 px sin desbordes |
 | 2026-11-21 | Observabilidad sin dependencias: logs JSON, métricas en memoria y `/readyz` | Suficiente para una instancia; sin PII ni cardinalidad alta; Docker + runbook |
 | 2026-11-21 | Gates de calidad en CI y despliegue con Caddy/TLS | Evita regresiones medibles y expone solo el reverse proxy; CSP estricta |
+| 2026-11-21 | Ollama local como proveedor LLM por defecto; DeepSeek opt-in | Arranque sin claves y offline; DeepSeek para calidad en producción (ADR 0004) |
+| 2026-11-21 | ADRs 0002–0005: orquestación propia, Qdrant embebido, proveedor y activos/voz | Decisiones grandes documentadas con contexto y consecuencias |
 | 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
 | 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
@@ -277,10 +279,9 @@ git push
 - [x] Fase 6.1: pulido intermedio de interfaz y animación de Carva (`specs/007-pulido-interfaz/`); 174 pruebas.
 - [x] Fase 7: operación, observabilidad y despliegue (`specs/008-operacion/`); 179 pruebas.
 - [x] Fase 8: evaluación continua y despliegue productivo (`specs/009-evaluacion-despliegue/`); 182 pruebas.
-- [ ] Fase 5: evaluación ampliada, operación, observabilidad y despliegue.
-- [ ] Decidir el proveedor de LLM por defecto para nuevos usuarios (`deepseek` vs `ollama`).
+- [x] Decidir el proveedor de LLM por defecto para nuevos usuarios: **Ollama** (DeepSeek opt-in, ADR 0004).
 - [x] Evaluar `bge-m3` frente a `nomic-embed-text` (fase 2: mejora de 10,3 pp en acierto@5).
-- [ ] Registrar ADRs de embeddings, orquestación y modo Qdrant.
+- [x] Registrar ADRs de embeddings, orquestación, Qdrant, proveedor y activos (0001–0005).
 
 ## 11. Configuración local (no trackear)
 
