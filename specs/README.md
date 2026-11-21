@@ -23,5 +23,6 @@ convenciones y decisiones) vive en [`CONSTITUTION.md`](../CONSTITUTION.md); aqu�
 | 001 | Corte vertical del asistente con citas del corpus | ✅ fusionada | [spec.md](001-corte-vertical-citas/spec.md) |
 | 002 | Evaluación de recuperación y métricas de calidad | ✅ fusionada | [spec.md](002-evaluacion-recuperacion/spec.md) |
 | 003 | Consulta del catálogo de empaques con precios y validación técnica | ✅ fusionada | [spec.md](003-catalogo-empaques/spec.md) |
+| 004 | Experiencia de chat con identidad Carvajal | ✅ fusionada | [spec.md](004-experiencia-chat/spec.md) |
 
 > Estados: 📝 borrador · 🔎 en clarificación · 📐 planeada · ⚙️ en implementación · ✅ fusionada.

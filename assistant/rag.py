@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass
 from time import perf_counter
 from typing import Protocol
@@ -43,6 +44,13 @@ class Answer:
     provider: str | None = None
     latency_ms: int = 0
     request_id: str = ""
+
+
+@dataclass
+class StreamOutcome:
+    """Resultado final de un stream (lo completa `stream_tokens`)."""
+
+    answer: Answer | None = None
 
 
 def _unique_sources(fragments: list[RetrievedFragment]) -> tuple[Source, ...]:
@@ -119,6 +127,59 @@ class RagService:
             provider=self._llm.provider,
             latency_ms=_elapsed_ms(started),
             request_id=trace_id,
+        )
+
+    def stream_tokens(
+        self, question: str, request_id: str, outcome: StreamOutcome
+    ) -> Iterator[str]:
+        """Genera tokens y deja la respuesta final en `outcome`."""
+        cleaned = question.strip()
+        if not 1 <= len(cleaned) <= MAX_QUESTION_CHARS:
+            raise ValueError(f"La pregunta debe tener entre 1 y {MAX_QUESTION_CHARS} caracteres.")
+        started = perf_counter()
+        fragments = [
+            fragment
+            for fragment in self._retriever.search(cleaned, self._top_k)
+            if fragment.score >= self._min_score
+        ]
+        if not fragments:
+            outcome.answer = Answer(
+                status="no_evidence",
+                text=NO_EVIDENCE_TEXT,
+                provider=None,
+                latency_ms=_elapsed_ms(started),
+                request_id=request_id,
+            )
+            return
+        messages = build_messages(cleaned, fragments)
+        parts: list[str] = []
+        stream = getattr(self._llm, "stream", None)
+        if callable(stream):
+            for token in stream(messages):
+                if token:
+                    parts.append(token)
+                    yield token
+        else:
+            text = self._llm.generate(messages)
+            parts.append(text)
+            yield text
+        text = "".join(parts).strip()
+        if not text or REFUSAL_MARKER in text.lower():
+            outcome.answer = Answer(
+                status="no_evidence",
+                text=NO_EVIDENCE_TEXT,
+                provider=self._llm.provider,
+                latency_ms=_elapsed_ms(started),
+                request_id=request_id,
+            )
+            return
+        outcome.answer = Answer(
+            status="answered",
+            text=text,
+            sources=_unique_sources(fragments),
+            provider=self._llm.provider,
+            latency_ms=_elapsed_ms(started),
+            request_id=request_id,
         )
 
 

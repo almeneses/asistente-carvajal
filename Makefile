@@ -8,7 +8,7 @@ SHELL := /bin/bash
 PORT ?= 8010
 
 .DEFAULT_GOAL := help
-.PHONY: help install dev pre-commit-install pre-commit lint format format-check typecheck test check run index acceptance build clean
+.PHONY: help install dev pre-commit-install pre-commit lint format format-check typecheck test ui-check check run index acceptance catalog-acceptance gt-propose eval eval-e2e build clean
 
 help: ## Muestra esta ayuda
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -38,6 +38,9 @@ typecheck: ## Verifica los tipos con ty (Astral)
 
 test: ## Ejecuta las pruebas
 	uv run pytest
+
+ui-check: ## Pruebas de la interfaz (streaming, Markdown, feedback, tokens)
+	uv run pytest tests/test_ui_*.py
 
 run: ## Arranca el asistente web (PORT=8010 por defecto)
 	uv run python main.py --port $(PORT)

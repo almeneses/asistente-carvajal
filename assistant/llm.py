@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from collections.abc import Sequence
+import json
+from collections.abc import Iterator, Sequence
 from dataclasses import dataclass
 from typing import Protocol
 
@@ -82,6 +83,39 @@ class DeepSeekLLM:
             raise LLMError("DeepSeek devolvió una respuesta vacía.")
         return content.strip()
 
+    def stream(self, messages: Sequence[Message]) -> Iterator[str]:
+        try:
+            with self._client.stream(
+                "POST",
+                f"{self._base_url}/chat/completions",
+                headers={"Authorization": f"Bearer {self._api_key}"},
+                json={
+                    "model": self._model,
+                    "messages": _as_json_messages(messages),
+                    "temperature": 0,
+                    "max_tokens": MAX_TOKENS,
+                    "stream": True,
+                },
+            ) as response:
+                response.raise_for_status()
+                for line in response.iter_lines():
+                    if not line or not line.startswith("data:"):
+                        continue
+                    payload = line[5:].strip()
+                    if payload == "[DONE]":
+                        break
+                    try:
+                        data = json.loads(payload)
+                    except json.JSONDecodeError:
+                        continue
+                    choices = data.get("choices") or []
+                    delta = choices[0].get("delta", {}) if choices else {}
+                    content = delta.get("content")
+                    if isinstance(content, str) and content:
+                        yield content
+        except httpx.HTTPError as error:
+            raise LLMError(f"DeepSeek no respondió: {error}") from error
+
     def close(self) -> None:
         self._client.close()
 
@@ -124,6 +158,34 @@ class OllamaLLM:
             raise LLMError("Ollama devolvió una respuesta vacía.")
         return content.strip()
 
+    def stream(self, messages: Sequence[Message]) -> Iterator[str]:
+        try:
+            with self._client.stream(
+                "POST",
+                f"{self._base_url}/api/chat",
+                json={
+                    "model": self._model,
+                    "messages": _as_json_messages(messages),
+                    "stream": True,
+                    "options": {"temperature": 0, "num_predict": MAX_TOKENS},
+                },
+            ) as response:
+                response.raise_for_status()
+                for line in response.iter_lines():
+                    if not line.strip():
+                        continue
+                    try:
+                        data = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+                    content = (data.get("message") or {}).get("content")
+                    if isinstance(content, str) and content:
+                        yield content
+                    if data.get("done"):
+                        break
+        except httpx.HTTPError as error:
+            raise LLMError(f"Ollama no respondió: {error}") from error
+
     def close(self) -> None:
         self._client.close()
 
@@ -147,6 +209,28 @@ class FallbackLLM:
             text = self._fallback.generate(messages)
             self.provider = self._fallback.provider
             return text
+
+    def stream(self, messages: Sequence[Message]) -> Iterator[str]:
+        def _stream(provider: LLM) -> Iterator[str]:
+            stream = getattr(provider, "stream", None)
+            if callable(stream):
+                yield from stream(messages)
+            else:
+                yield provider.generate(messages)
+
+        try:
+            iterator = _stream(self._primary)
+            first = next(iterator)
+        except LLMError:
+            fallback_iterator = _stream(self._fallback)
+            first = next(fallback_iterator)
+            self.provider = self._fallback.provider
+            yield first
+            yield from fallback_iterator
+            return
+        self.provider = self._primary.provider
+        yield first
+        yield from iterator
 
     def close(self) -> None:
         for provider in (self._primary, self._fallback):

@@ -63,6 +63,7 @@ class Settings:
     catalog_dir: Path | None = None
     catalog_routing_file: Path | None = None
     catalog_price_today: str | None = None
+    feedback_log_path: Path = Path(".cache/feedback.jsonl")
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> Settings:
@@ -146,6 +147,9 @@ class Settings:
         if catalog_routing_file is not None and not catalog_routing_file.is_file():
             errors.append(f"CATALOG_ROUTING_FILE no existe: {catalog_routing_file}")
 
+        feedback_raw = _clean(source, "FEEDBACK_LOG_PATH")
+        feedback_log_path = Path(feedback_raw or ".cache/feedback.jsonl").expanduser()
+
         price_today = _clean(source, "CATALOG_PRICE_TODAY")
         if price_today is not None:
             try:
@@ -184,4 +188,5 @@ class Settings:
             catalog_dir=catalog_dir,
             catalog_routing_file=catalog_routing_file,
             catalog_price_today=price_today,
+            feedback_log_path=feedback_log_path,
         )

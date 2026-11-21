@@ -70,3 +70,7 @@ reporte*.json
 .qdrant-eval/
 specs/002-evaluacion-recuperacion/reports/*.tmp.json
 specs/003-catalogo-empaques/reports/*.tmp.json
+
+# Configuración local del MCP de Stitch (no compartir)
+.dsh/stitch.env
+.dsh/mcp-stitch.yml
