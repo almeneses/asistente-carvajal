@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 1.3.0 |
+| **Versión** | 1.4.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -38,8 +38,8 @@ evidencia de dos fuentes curadas —el corpus web y la documentación de empaque
 
 No es el pipeline de captura ni la curaduría del corpus (eso vive en el proyecto
 `carvajal`), no es un motor de búsqueda general, no entrena ni ajusta modelos, no
-sustituye la validación humana en decisiones comerciales y no almacena datos personales
-de clientes.
+sustituye la validación humana en decisiones comerciales. Solo guarda datos de contacto
+mínimos cuando la persona lo consiente explícitamente para una cotización.
 
 ## 2. Alcance
 
@@ -76,7 +76,8 @@ de clientes.
 | 7. Operación y endurecimiento | ✅ Hecha | Spec 008: logs, readiness, métricas, Docker y runbook |
 | 8. Evaluación continua y despliegue productivo | ✅ Hecha | Spec 009: gates, CSP, Caddy/TLS y CI Docker |
 | 9. Operación multiusuario | ✅ Hecha | Spec 010: login, cuotas y resumen admin |
-| 10. Voz funcional (hablar y escuchar) | ⬜ Pendiente | Dictado y lectura en voz alta |
+| 10. Voz funcional (hablar y escuchar) | ⏸️ En standby | Dictado y lectura en voz alta |
+| 11. Refinamiento del cotizador | ✅ Hecha | Spec 011: revisión, contacto, detalle/PDF y correo |
 
 ## 3. Stack técnico
 
@@ -93,7 +94,7 @@ de clientes.
 | **Proveedor LLM** | Ollama local por defecto; DeepSeek opcional con fallback a Ollama |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura (`CORPUS_GOLD_DIR`, `CATALOG_DIR`) |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
-| **Solicitudes de cotización** | `POST /quotes` con recálculo desde catálogo y JSONL local sin PII |
+| **Solicitudes de cotización** | `POST /quotes` con recálculo, revisión previa y contacto opcional consentido |
 | **Observabilidad** | Logs JSON con `request_id`, `/readyz`, `/metrics`, CSP y cabeceras |
 | **Despliegue productivo** | Caddy con TLS, app interna, compose de producción y gates de calidad |
 | **Multiusuario** | Login opcional con sesión firmada, cuotas por usuario y resumen admin |
@@ -256,6 +257,7 @@ git push
 | 2026-11-21 | Ollama local como proveedor LLM por defecto; DeepSeek opt-in | Arranque sin claves y offline; DeepSeek para calidad en producción (ADR 0004) |
 | 2026-11-21 | ADRs 0002–0005: orquestación propia, Qdrant embebido, proveedor y activos/voz | Decisiones grandes documentadas con contexto y consecuencias |
 | 2026-11-21 | Multiusuario opcional con sesión HMAC, cuotas y resumen admin | No rompe el modo local; auth/cuotas se activan por entorno |
+| 2026-11-21 | Cotizador con revisión, contacto consentido, impresión/PDF y correo SMTP | Mejora la conversión sin perder privacidad: consentimiento, retención y sin PII en logs |
 | 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
 | 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
@@ -283,6 +285,7 @@ git push
 - [x] Fase 7: operación, observabilidad y despliegue (`specs/008-operacion/`); 179 pruebas.
 - [x] Fase 8: evaluación continua y despliegue productivo (`specs/009-evaluacion-despliegue/`); 182 pruebas.
 - [x] Fase 9: operación multiusuario (`specs/010-multiusuario/`); 190 pruebas.
+- [x] Fase 11: cotizador refinado con revisión, contacto y correo (`specs/011-cotizador-refinado/`); 198 pruebas.
 - [x] Decidir el proveedor de LLM por defecto para nuevos usuarios: **Ollama** (DeepSeek opt-in, ADR 0004).
 - [x] Evaluar `bge-m3` frente a `nomic-embed-text` (fase 2: mejora de 10,3 pp en acierto@5).
 - [x] Registrar ADRs de embeddings, orquestación, Qdrant, proveedor y activos (0001–0005).

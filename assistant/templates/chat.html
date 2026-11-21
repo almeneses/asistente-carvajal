@@ -28,6 +28,58 @@
 
     <div id="conversation" aria-live="polite" aria-label="Conversación con Carva" class="chat-messages"></div>
 
+    <section id="quote-review" hidden aria-label="Revisar cotización" class="chat-review">
+      <form id="quote-review-form" class="bg-surface border border-border rounded-[20px] p-4 shadow-lg">
+        <input type="hidden" id="review-sku">
+        <div class="flex items-start justify-between gap-3 mb-3">
+          <div>
+            <h2 class="font-bold text-[20px] text-primary">Revisa tu cotización</h2>
+            <p id="review-title" class="text-[16px] text-[#42474e]"></p>
+          </div>
+          <button type="button" id="review-cancel" class="text-[15px] font-bold text-[#003A5D] underline">Cancelar</button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label class="text-[15px] font-bold text-primary">Cajas
+            <input id="review-boxes" name="boxes" type="number" min="1" max="999" value="1" required
+                   class="mt-1 w-full h-[48px] px-3 rounded-[12px] border-2 border-[#DCE5EA] text-[17px]">
+          </label>
+          <label class="text-[15px] font-bold text-primary">Ciudad
+            <input id="review-city" name="city" maxlength="80" placeholder="Ciudad de entrega"
+                   class="mt-1 w-full h-[48px] px-3 rounded-[12px] border-2 border-[#DCE5EA] text-[17px]">
+          </label>
+          <label class="text-[15px] font-bold text-primary">Negocio (opcional)
+            <input id="review-business" name="business" maxlength="80"
+                   class="mt-1 w-full h-[48px] px-3 rounded-[12px] border-2 border-[#DCE5EA] text-[17px]">
+          </label>
+          <label class="text-[15px] font-bold text-primary">Nombre (opcional)
+            <input id="review-name" name="contact_name" maxlength="120"
+                   class="mt-1 w-full h-[48px] px-3 rounded-[12px] border-2 border-[#DCE5EA] text-[17px]">
+          </label>
+          <label class="text-[15px] font-bold text-primary">Correo
+            <input id="review-email" name="contact_email" type="email" maxlength="120" required
+                   class="mt-1 w-full h-[48px] px-3 rounded-[12px] border-2 border-[#DCE5EA] text-[17px]">
+          </label>
+          <label class="text-[15px] font-bold text-primary">Teléfono (opcional)
+            <input id="review-phone" name="contact_phone" maxlength="40"
+                   class="mt-1 w-full h-[48px] px-3 rounded-[12px] border-2 border-[#DCE5EA] text-[17px]">
+          </label>
+        </div>
+        <div class="mt-3 rounded-[12px] bg-[#E3EFFF] p-3 flex items-center justify-between">
+          <span class="text-[15px] text-primary">Total de referencia</span>
+          <strong id="review-total" class="text-[20px] text-primary">—</strong>
+        </div>
+        <label class="mt-3 flex items-start gap-2 text-[14px] text-[#42474e]">
+          <input id="review-consent" name="consent" type="checkbox" required class="mt-1 w-5 h-5">
+          <span>Acepto que Carvajal use estos datos solo para contactarme sobre esta cotización. Puedo pedir su eliminación.</span>
+        </label>
+        <p id="review-error" role="alert" class="mt-2 text-[#93000A] text-[15px]" hidden></p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <button type="submit" class="h-[52px] px-5 rounded-[14px] bg-[#003A5D] text-white font-bold">Confirmar cotización</button>
+          <button type="button" id="review-cancel-2" class="h-[52px] px-5 rounded-[14px] bg-white border border-border text-primary font-bold">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
     <section id="confirmation" hidden aria-live="polite" aria-label="Confirmación de solicitud" class="chat-confirmation">
       <div class="bg-surface border border-border rounded-[18px] p-3 mb-3 flex flex-col sm:flex-row items-center gap-3 shadow-sm">
         <div class="flex items-center gap-2 shrink-0">
@@ -45,12 +97,22 @@
         <p class="font-body-md text-body-md mt-1">Quedó registrada con el código <code id="confirmation-code" class="bg-[#E3EFFF] px-2 py-1 rounded-lg font-bold">OC-…</code>.</p>
         <div class="mt-3 rounded-[14px] bg-[#F3F6F8] border border-border p-3 text-left">
           <p class="font-bold text-primary" id="confirmation-summary">5 cajas · Vaso térmico 12 oz</p>
+          <dl class="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-[15px] text-[#42474e]">
+            <dt>Unidades</dt><dd id="confirmation-units">—</dd>
+            <dt>Precio unitario</dt><dd id="confirmation-unit-price">—</dd>
+            <dt>Ciudad</dt><dd id="confirmation-city">—</dd>
+            <dt>Negocio</dt><dd id="confirmation-business">—</dd>
+          </dl>
           <div class="flex items-center justify-between mt-2 pt-2 border-t border-border">
-            <span class="text-[16px]">Total estimado:</span>
+            <span class="text-[16px]">Total de referencia:</span>
             <span class="font-bold text-[22px] text-primary" id="confirmation-total">$0 MXN</span>
           </div>
         </div>
         <p class="mt-3 rounded-[14px] bg-[#E3EFFF] p-3 text-left text-[16px]">Un asesor de Carvajal te contactará para coordinar la entrega. Sin cobro previo.</p>
+        <p id="confirmation-email-status" class="mt-2 text-[14px] text-[#42474e]" hidden></p>
+        <div class="mt-3 flex flex-wrap justify-center gap-2">
+          <button type="button" data-print-quote class="h-[44px] px-4 rounded-[12px] bg-[#003A5D] text-white font-bold text-[15px] flex items-center gap-2"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">print</span>Imprimir / PDF</button>
+        </div>
       </div>
       <div id="confirmation-compact" hidden class="bg-surface border-2 border-[#3ECCFD] rounded-[16px] p-3 flex flex-col sm:flex-row items-center justify-between gap-2">
         <div>

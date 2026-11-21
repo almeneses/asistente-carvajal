@@ -30,6 +30,16 @@ Cada respuesta incluye `X-Request-ID` (se reutiliza si llega uno válido). Los l
 JSON por defecto (`LOG_FORMAT=text` para texto) y no contienen preguntas, comentarios ni
 secretos.
 
+## Cotizaciones y datos de contacto
+
+- El cotizador permite revisar cajas/ciudad/negocio y dejar nombre, correo o teléfono.
+- El contacto solo se guarda con consentimiento explícito; sin contacto, la solicitud es anónima.
+- Retención recomendada: `QUOTE_RETENTION_DAYS` (90 por defecto). Para borrar, elimina la
+  línea correspondiente de `.cache/solicitudes.jsonl` y documenta la petición.
+- El correo se envía si `SMTP_HOST`/`SMTP_FROM` están configurados; si no, la UI ofrece
+  Imprimir/PDF y la solicitud queda registrada.
+- El contacto no se escribe en logs ni métricas.
+
 ## Multiusuario (opcional)
 
 ```bash

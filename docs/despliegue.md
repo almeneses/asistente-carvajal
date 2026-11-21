@@ -34,6 +34,13 @@ Caddy obtiene y renueva el certificado automáticamente si el DNS apunta al serv
 puertos 80/443 están abiertos. Para pruebas locales usa `DOMAIN=localhost` (Caddy usa TLS
 interno) o accede por HTTP al puerto 80.
 
+## Correo de cotizaciones (opcional)
+
+Configura `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` y
+`SMTP_TLS` para enviar la cotización al correo consentido. Sin `SMTP_HOST`, la app
+funciona y la UI indica que el correo no está configurado. Revisa la retención de
+contacto (`QUOTE_RETENTION_DAYS`) con tu política de privacidad.
+
 ## Multiusuario
 
 Para producción con cuentas, añade al `.env.prod`: `AUTH_ENABLED=true`,

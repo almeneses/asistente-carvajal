@@ -17,7 +17,7 @@
           <span class="font-bold text-[20px] text-primary">{% if item.price.total %}{{ item.price.total | money }} {{ item.price.currency }}{% else %}{{ item.price.amount | money }} {{ item.price.currency }}{% endif %}</span>
         </div>
         <div class="mt-2 flex flex-wrap gap-2">
-          <button type="button" data-quote data-sku="{{ item.sku or '' }}" data-boxes="{{ item.price.boxes or 1 }}" class="h-[48px] px-4 rounded-[14px] bg-primary text-white font-bold text-[16px] flex items-center gap-2">
+          <button type="button" data-quote data-sku="{{ item.sku or '' }}" data-boxes="{{ item.price.boxes or 1 }}" data-title="{{ item.title }}" data-unit-price="{{ item.price.amount }}" data-currency="{{ item.price.currency }}" data-units-per-box="{{ item.price.units_per_box or '' }}" data-city="{{ item.price.source_city if item.price.source_city is defined else '' }}" class="h-[48px] px-4 rounded-[14px] bg-primary text-white font-bold text-[16px] flex items-center gap-2">
             <span aria-hidden="true" class="material-symbols-outlined text-[22px]">request_quote</span> Solicitar cotización
           </button>
           <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="h-[48px] px-4 rounded-[14px] bg-white border border-border text-primary font-bold text-[16px] flex items-center gap-2">

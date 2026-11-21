@@ -133,3 +133,37 @@ def test_logs_no_contienen_pregunta(tmp_path: Path) -> None:
     for record in records:
         serialized = " ".join(str(value) for value in record.__dict__.values())
         assert secreto not in serialized
+
+
+def test_contacto_de_cotizacion_no_aparece_en_logs(tmp_path: Path) -> None:
+    # Arrange
+    client = _client(tmp_path)
+    email = "contacto-secreto@example.com"
+    records: list[logging.LogRecord] = []
+
+    class Capture(logging.Handler):
+        def emit(self, record: logging.LogRecord) -> None:
+            records.append(record)
+
+    handler = Capture()
+    logger = logging.getLogger("asistente")
+    logger.addHandler(handler)
+
+    try:
+        # Act
+        client.post(
+            "/quotes",
+            data={
+                "sku": "MX-VASO-12-PP",
+                "boxes": 1,
+                "contact_email": email,
+                "consent": "true",
+            },
+        )
+    finally:
+        logger.removeHandler(handler)
+
+    # Assert
+    for record in records:
+        serialized = " ".join(str(value) for value in record.__dict__.values())
+        assert email not in serialized

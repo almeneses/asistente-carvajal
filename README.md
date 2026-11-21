@@ -67,6 +67,7 @@ entrada de solo lectura.
 | Evaluación continua y despliegue productivo (fase 8) | ✅ |
 | Decisiones y ADRs de arquitectura | ✅ |
 | Operación multiusuario (fase 9) | ✅ |
+| Cotizador refinado (fase 11) | ✅ |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
@@ -84,7 +85,7 @@ entrada de solo lectura.
 | **Interfaz de chat** | Asistente único texto/voz; Carva central → avatar; chat al 70%; fondo Carvajal; Tailwind/DM Sans/iconos locales |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
 | **Feedback** | JSONL local sin PII (`.cache/feedback.jsonl`) |
-| **Solicitudes** | JSONL local sin PII (`.cache/solicitudes.jsonl`); código `OC-AAAA-MMDD-XXXX` |
+| **Solicitudes** | Revisión, contacto con consentimiento, detalle/PDF y correo opcional; JSONL local |
 | **Observabilidad** | Logs JSON con `request_id`, `/readyz`, `/metrics` y cabeceras de seguridad |
 | **Despliegue** | Dockerfile no-root, compose local/producción, Caddy con TLS y runbooks |
 | **Calidad continua** | Gates sobre reportes de evaluación en CI (`make quality-gates`) |

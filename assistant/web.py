@@ -38,6 +38,7 @@ from assistant.embeddings import OllamaEmbedder
 from assistant.index import QdrantIndex
 from assistant.limits import LIMITS
 from assistant.llm import build_llm
+from assistant.mailer import send_quote_email
 from assistant.observability import (
     METRICS,
     configure_logging,
@@ -405,6 +406,10 @@ def create_app(
         boxes: int = Form(0),
         city: str = Form(""),
         business: str = Form(""),
+        contact_name: str = Form(""),
+        contact_email: str = Form(""),
+        contact_phone: str = Form(""),
+        consent: bool = Form(False),
     ) -> JSONResponse:
         limited = _rate_limit(request, "quotes", context.settings)
         if limited is not None:
@@ -424,14 +429,24 @@ def create_app(
             record = create_quote(
                 context.catalog,
                 context.settings.quotes_log_path,
-                QuoteRequest(sku=sku, boxes=boxes, city=city, business=business),
+                QuoteRequest(
+                    sku=sku,
+                    boxes=boxes,
+                    city=city,
+                    business=business,
+                    contact_name=contact_name,
+                    contact_email=contact_email,
+                    contact_phone=contact_phone,
+                    consent=consent,
+                ),
             )
         except QuoteError as error:
             return JSONResponse({"detail": str(error)}, status_code=422)
         LIMITS.register_quote(username)
+        email_status = send_quote_email(record, context.settings)
         METRICS.inc("quotes_registered")
         logger.info("quote_registered", extra={"count": 1})
-        return JSONResponse({"ok": True, "quote": record.__dict__})
+        return JSONResponse({"ok": True, "quote": record.__dict__, "email_status": email_status})
 
     @app.post("/feedback")
     def feedback(

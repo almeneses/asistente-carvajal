@@ -101,7 +101,7 @@ def test_rechaza_sin_precio(tmp_path: Path) -> None:
         )
 
 
-def test_jsonl_sin_pii(tmp_path: Path) -> None:
+def test_jsonl_sin_contacto_no_guarda_datos_personales(tmp_path: Path) -> None:
     # Arrange
     snapshot = sample_snapshot(tmp_path / "catalog")
     path = tmp_path / "solicitudes.jsonl"
@@ -115,5 +115,43 @@ def test_jsonl_sin_pii(tmp_path: Path) -> None:
 
     # Assert
     raw = path.read_text(encoding="utf-8").lower()
-    for forbidden in ("email", "correo", "teléfono", "telefono", "user-agent", "ip"):
-        assert forbidden not in raw
+    assert '"contact_email": ""' in raw
+    assert '"contact_phone": ""' in raw
+    assert "user-agent" not in raw
+
+
+def test_contacto_requiere_consentimiento(tmp_path: Path) -> None:
+    # Arrange
+    snapshot = sample_snapshot(tmp_path / "catalog")
+
+    # Act / Assert
+    with pytest.raises(QuoteError, match="aviso de privacidad"):
+        create_quote(
+            snapshot,
+            tmp_path / "solicitudes.jsonl",
+            QuoteRequest(sku="MX-VASO-12-PP", boxes=1, contact_email="ana@example.com"),
+        )
+
+
+def test_contacto_requiere_canal_y_correo_valido(tmp_path: Path) -> None:
+    # Arrange
+    snapshot = sample_snapshot(tmp_path / "catalog")
+
+    # Act / Assert
+    with pytest.raises(QuoteError, match="correo o un teléfono"):
+        create_quote(
+            snapshot,
+            tmp_path / "solicitudes.jsonl",
+            QuoteRequest(sku="MX-VASO-12-PP", boxes=1, contact_name="Ana", consent=True),
+        )
+    with pytest.raises(QuoteError, match="formato válido"):
+        create_quote(
+            snapshot,
+            tmp_path / "solicitudes.jsonl",
+            QuoteRequest(
+                sku="MX-VASO-12-PP",
+                boxes=1,
+                contact_email="no-es-correo",
+                consent=True,
+            ),
+        )
