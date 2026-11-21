@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 0.7.0 |
+| **Versión** | 0.8.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -70,7 +70,8 @@ de clientes.
 | 2. Evaluación de recuperación | ✅ Hecha | Spec 002: métricas y migración a `bge-m3` |
 | 3. Catálogo de empaques | ✅ Hecha | Spec 003: precios, materiales y distribuidores |
 | 4. Experiencia de chat | ✅ Hecha | Spec 004: streaming, Markdown, feedback e identidad |
-| 5. Operación y endurecimiento | 🚧 Siguiente | Observabilidad, despliegue y evaluación ampliada |
+| 5. Fidelidad visual Stitch y solicitudes | ✅ Hecha | Spec 005: pantallas copiadas, animación y `POST /quotes` |
+| 6. Operación y endurecimiento | 🚧 Siguiente | Observabilidad, despliegue y evaluación ampliada |
 
 ## 3. Stack técnico
 
@@ -87,7 +88,8 @@ de clientes.
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura (`CORPUS_GOLD_DIR`, `CATALOG_DIR`) |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
-| **Identidad visual** | Tokens de `docs/design/DESIGN.md` (Stitch), DM Sans vendored y logo Carvajal |
+| **Solicitudes de cotización** | `POST /quotes` con recálculo desde catálogo y JSONL local sin PII |
+| **Identidad visual** | Flujo Stitch copiado (HTML/CSS/JS) con Tailwind, DM Sans e iconos locales |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |
 | **Testing** | [`pytest`](https://docs.pytest.org/) |
 | **Linting / Formato** | [Ruff](https://docs.astral.sh/ruff/) |
@@ -237,6 +239,8 @@ git push
 | 2026-11-20 | Markdown seguro con `markdown-it-py` (HTML deshabilitado) | Evita XSS; el HTML final se renderiza en el servidor |
 | 2026-11-20 | Feedback JSONL local sin PII | Permite mejorar sin base de datos ni datos personales |
 | 2026-11-20 | Identidad visual basada en el proyecto Stitch `18086611055013390157` | Paleta azul/cian, DM Sans y accesibilidad AA/AAA; warning de texto oscurecido a `#8A5415` por contraste |
+| 2026-11-20 | Copiar el flujo Stitch (pantallas y animaciones) con Tailwind vendorizado | Fidelidad real al prototipo sin CDN; se portan HTML/CSS/JS y se conectan a los datos |
+| 2026-11-20 | Solicitudes de cotización en JSONL con recálculo del total desde el catálogo | Evita totales manipulados y datos personales; código único `OC-AAAA-MMDD-XXXX` |
 | 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
 | 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
@@ -258,6 +262,7 @@ git push
 - [x] Fase 2: evaluación de recuperación y métricas de calidad (`specs/002-evaluacion-recuperacion/`); migración a `bge-m3` aprobada.
 - [x] Fase 3: consulta del catálogo de empaques con precios y validación técnica (`specs/003-catalogo-empaques/`); aceptación 130/130.
 - [x] Fase 4: experiencia de chat con streaming, Markdown, feedback e identidad (`specs/004-experiencia-chat/`); 154 pruebas.
+- [x] Fase 5: fidelidad visual del flujo Stitch y solicitudes reales (`specs/005-fidelidad-stitch/`); 172 pruebas.
 - [ ] Fase 5: evaluación ampliada, operación, observabilidad y despliegue.
 - [ ] Decidir el proveedor de LLM por defecto para nuevos usuarios (`deepseek` vs `ollama`).
 - [x] Evaluar `bge-m3` frente a `nomic-embed-text` (fase 2: mejora de 10,3 pp en acierto@5).

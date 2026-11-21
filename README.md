@@ -60,6 +60,7 @@ entrada de solo lectura.
 | Evaluación de recuperación (fase 2) | ✅ |
 | Consulta del catálogo de empaques (fase 3) | ✅ |
 | Experiencia de chat (fase 4) | ✅ |
+| Fidelidad visual Stitch + solicitudes (fase 5) | 🚧 en implementación |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
@@ -74,9 +75,10 @@ entrada de solo lectura.
 | **Modo de proyecto** | Aplicación (`main.py` como entrypoint) |
 | **Especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` + integraciones OpenCode y DSH) |
 | **Orquestación RAG** | Cadena propia (`assistant/rag.py`), sin framework de agentes |
-| **Interfaz de chat** | FastAPI + Jinja2 + HTMX (sin SPA); DM Sans y tokens de `docs/design/DESIGN.md` |
+| **Interfaz de chat** | Flujo de Stitch copiado (bienvenida, conversación, empaques y confirmación); Tailwind/DM Sans/iconos locales |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
 | **Feedback** | JSONL local sin PII (`.cache/feedback.jsonl`) |
+| **Solicitudes** | JSONL local sin PII (`.cache/solicitudes.jsonl`); código `OC-AAAA-MMDD-XXXX` |
 | **Índice vectorial** | Qdrant (1024 dims, coseno) |
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
@@ -209,9 +211,10 @@ asistente-carvajal/
 ├── main.py                  # punto de entrada de la aplicación
 ├── assistant/               # configuración, corpus, índice, RAG, LLM y web
 │   ├── catalog/             # rama determinista del catálogo
+│   ├── quotes/              # solicitudes de cotización (JSONL, sin PII)
 │   ├── ui/                  # Markdown seguro, SSE, feedback y tokens
 │   ├── templates/           # página de chat y parciales
-│   └── static/              # tema, chat.js, fuentes y logo
+│   └── static/              # stitch/ (Tailwind, CSS, JS, iconos, assets) y chat.js
 ├── scripts/                 # indexación del corpus y aceptación
 ├── tests/                   # pruebas (pytest, patrón AAA)
 ├── specs/                   # especificaciones por feature (Spec Kit)

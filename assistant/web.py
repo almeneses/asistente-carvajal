@@ -17,12 +17,15 @@ from fastapi.templating import Jinja2Templates
 from assistant.catalog.answers import build_catalog_answer, city_names
 from assistant.catalog.loader import load_catalog
 from assistant.catalog.models import CatalogSnapshot
+from assistant.catalog.money import format_amount
 from assistant.catalog.router import classify
 from assistant.config import Settings, load_dotenv
 from assistant.corpus import CorpusDocument, load_corpus
 from assistant.embeddings import OllamaEmbedder
 from assistant.index import QdrantIndex
 from assistant.llm import build_llm
+from assistant.quotes.models import QuoteError, QuoteRequest
+from assistant.quotes.service import create_quote
 from assistant.rag import Rag, RagService, StreamOutcome
 from assistant.retrieval import CorpusRetriever
 from assistant.ui.feedback import FeedbackError, record_feedback
@@ -34,6 +37,7 @@ logger = logging.getLogger("asistente")
 BASE_DIR = Path(__file__).resolve().parent
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 templates.env.filters["markdown"] = render_safe
+templates.env.filters["money"] = format_amount
 
 INDEX_HINT = (
     "El índice Qdrant está vacío o no existe. "
@@ -88,7 +92,7 @@ def _today(context: AppContext) -> date:
 
 
 def _catalog_html(catalog_answer: object) -> str:
-    template = templates.get_template("_catalog_section.html")
+    template = templates.get_template("_catalog_stitch.html")
     return template.render(
         section=getattr(catalog_answer, "section", None),
         warnings=getattr(catalog_answer, "warnings", ()),
@@ -224,11 +228,20 @@ def create_app(
     app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 
     @app.get("/", response_class=HTMLResponse)
+    def welcome(request: Request) -> HTMLResponse:
+        return templates.TemplateResponse(
+            request=request,
+            name="welcome.html",
+            context={"provider": context.provider},
+        )
+
+    @app.get("/chat", response_class=HTMLResponse)
+    @app.get("/chat/empaques", response_class=HTMLResponse)
     def chat(request: Request) -> HTMLResponse:
         return templates.TemplateResponse(
             request=request,
-            name="index.html",
-            context={"provider": context.provider},
+            name="chat.html",
+            context={"provider": context.provider, "mode": "empaques"},
         )
 
     @app.post("/ask", response_class=HTMLResponse)
@@ -328,6 +341,25 @@ def create_app(
                 "X-Accel-Buffering": "no",
             },
         )
+
+    @app.post("/quotes")
+    def quotes(
+        sku: str = Form(""),
+        boxes: int = Form(0),
+        city: str = Form(""),
+        business: str = Form(""),
+    ) -> JSONResponse:
+        if context.catalog is None:
+            return JSONResponse({"detail": "Catálogo no disponible."}, status_code=503)
+        try:
+            record = create_quote(
+                context.catalog,
+                context.settings.quotes_log_path,
+                QuoteRequest(sku=sku, boxes=boxes, city=city, business=business),
+            )
+        except QuoteError as error:
+            return JSONResponse({"detail": str(error)}, status_code=422)
+        return JSONResponse({"ok": True, "quote": record.__dict__})
 
     @app.post("/feedback")
     def feedback(

@@ -1,4 +1,4 @@
-/* Chat accesible de Carvajal: streaming SSE, controles y feedback. */
+/* Chat accesible de Carvajal: streaming SSE, controles y feedback (diseño Stitch). */
 (() => {
   "use strict";
 
@@ -11,58 +11,97 @@
 
   let controller = null;
 
-  function setStatus(text) {
+  const setStatus = (text) => {
     if (statusLine) statusLine.textContent = text || "";
-  }
+  };
+
+  const timeLabel = () =>
+    new Intl.DateTimeFormat("es", { hour: "2-digit", minute: "2-digit" }).format(new Date());
 
   function makeExchange(question) {
     const article = document.createElement("article");
-    article.className = "exchange";
+    article.className = "flex flex-col gap-4 w-full";
     article.dataset.status = "streaming";
     article.dataset.question = question;
 
-    const user = document.createElement("div");
-    user.className = "msg user";
+    const userRow = document.createElement("div");
+    userRow.className = "flex flex-col gap-1 items-end w-full";
+    const userLabel = document.createElement("div");
+    userLabel.className = "flex items-center gap-2 mb-1 px-2 text-on-surface-variant text-sm";
+    userLabel.innerHTML =
+      '<span aria-hidden="true" class="material-symbols-outlined text-[20px] text-secondary">mic</span><span>Tu mensaje</span><time class="ml-2">' +
+      timeLabel() +
+      "</time>";
     const userBubble = document.createElement("div");
-    userBubble.className = "bubble";
+    userBubble.className = "bg-primary text-white rounded-[24px] p-4 shadow-md max-w-[85%]";
     const userText = document.createElement("p");
+    userText.className = "font-body-lg text-body-lg text-white";
     userText.textContent = question;
     userBubble.append(userText);
-    user.append(userBubble);
+    userRow.append(userLabel, userBubble);
 
-    const carva = document.createElement("div");
-    carva.className = "msg carva";
+    const carvaRow = document.createElement("div");
+    carvaRow.className = "flex items-start gap-3 w-full";
     const avatar = document.createElement("div");
-    avatar.className = "avatar";
-    avatar.setAttribute("aria-hidden", "true");
-    avatar.textContent = "Carva";
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-    const status = document.createElement("p");
-    status.className = "status";
-    status.textContent = "Carva está preparando la respuesta…";
+    avatar.className =
+      "w-[64px] h-[64px] rounded-full overflow-hidden bg-tertiary-fixed shrink-0 border-2 border-border shadow-sm";
+    const avatarImg = document.createElement("img");
+    avatarImg.src = "/static/stitch/assets/carva-saludando-transparente.png";
+    avatarImg.alt = "Carva, tu asistente de Carvajal";
+    avatarImg.className = "w-full h-full object-cover";
+    avatar.append(avatarImg);
+
+    const card = document.createElement("div");
+    card.className = "flex-1 bg-surface border border-border rounded-[24px] p-4 shadow-sm";
+    const header = document.createElement("div");
+    header.className = "flex items-center justify-between pb-2 border-b border-border/70 mb-2";
+    const name = document.createElement("span");
+    name.className = "font-label-md text-label-md text-primary";
+    name.textContent = "Carva";
+    const time = document.createElement("time");
+    time.className = "text-sm text-on-surface-variant";
+    time.textContent = timeLabel();
+    header.append(name, time);
+
     const answer = document.createElement("div");
-    answer.className = "answer-text";
+    answer.className = "answer-text font-body-lg text-body-lg text-on-surface space-y-2";
+    const status = document.createElement("p");
+    status.className = "text-sm text-on-surface-variant mt-2";
+    status.textContent = "Carva está preparando la respuesta…";
     const sources = document.createElement("div");
     sources.className = "sources-container";
     const actions = document.createElement("div");
-    actions.className = "actions";
+    actions.className = "flex flex-wrap items-center gap-3 mt-3";
     actions.hidden = true;
-    bubble.append(status, answer, sources, actions);
-    carva.append(avatar, bubble);
-    article.append(user, carva);
+    card.append(header, status, answer, sources, actions);
+    carvaRow.append(avatar, card);
+    article.append(userRow, carvaRow);
     conversation.append(article);
     conversation.setAttribute("aria-busy", "true");
-    return { article, status, answer, sources, actions, bubble };
+    return { article, status, answer, sources, actions, card };
   }
 
-  function addCopyButton(actions, bubble) {
-    const copy = document.createElement("button");
-    copy.type = "button";
-    copy.textContent = "Copiar respuesta";
+  function actionButton(label, icon) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className =
+      "h-[52px] px-4 bg-background hover:bg-surface-container-low text-primary rounded-[16px] border border-border flex items-center gap-2 text-sm font-bold transition-all focus:outline-none focus:ring-4 focus:ring-[#BCE9FF]";
+    if (icon) {
+      const span = document.createElement("span");
+      span.className = "material-symbols-outlined text-[24px] text-secondary";
+      span.setAttribute("aria-hidden", "true");
+      span.textContent = icon;
+      button.append(span);
+    }
+    button.append(document.createTextNode(label));
+    return button;
+  }
+
+  function addCopyButton(actions, card) {
+    const copy = actionButton("Copiar respuesta", "content_copy");
     copy.addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(bubble.innerText.trim());
+        await navigator.clipboard.writeText(card.innerText.trim());
         copy.textContent = "¡Copiado!";
         setTimeout(() => (copy.textContent = "Copiar respuesta"), 1800);
       } catch {
@@ -73,45 +112,36 @@
   }
 
   function addFeedback(actions, messageId) {
-    const box = document.createElement("div");
-    box.className = "feedback";
-    const up = document.createElement("button");
-    up.type = "button";
-    up.textContent = "Útil";
-    const down = document.createElement("button");
-    down.type = "button";
-    down.textContent = "No útil";
+    const up = actionButton("Útil", "thumb_up");
+    const down = actionButton("No útil", "thumb_down");
     const commentRow = document.createElement("div");
-    commentRow.className = "feedback-comment";
+    commentRow.className = "flex flex-wrap items-center gap-2 w-full mt-2";
     commentRow.hidden = true;
     const comment = document.createElement("input");
     comment.type = "text";
     comment.maxLength = 500;
     comment.placeholder = "Comentario opcional (sin datos personales)";
+    comment.className =
+      "flex-1 min-w-[220px] h-[52px] px-4 rounded-[14px] border-2 border-border bg-surface text-base";
     comment.setAttribute("aria-label", "Comentario opcional sobre la respuesta");
-    const send = document.createElement("button");
-    send.type = "button";
-    send.textContent = "Enviar comentario";
-    commentRow.append(comment, send);
+    const send = actionButton("Enviar comentario", "send");
 
     async function submit(rating) {
-      up.classList.toggle("selected", rating === "up");
-      down.classList.toggle("selected", rating === "down");
+      up.classList.toggle("bg-primary", rating === "up");
+      up.classList.toggle("text-white", rating === "up");
+      down.classList.toggle("bg-primary", rating === "down");
+      down.classList.toggle("text-white", rating === "down");
       commentRow.hidden = false;
       send.dataset.rating = rating;
       try {
-        const body = new URLSearchParams({
-          message_id: messageId,
-          rating,
-          comment: comment.value,
-        });
         const response = await fetch("/feedback", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body,
+          body: new URLSearchParams({ message_id: messageId, rating, comment: comment.value }),
         });
         if (!response.ok) throw new Error("feedback");
-        box.dataset.rating = rating;
+        send.textContent = "Gracias, registrado";
+        setStatus("Feedback registrado.");
       } catch {
         setStatus("No se pudo registrar el feedback; inténtalo de nuevo.");
       }
@@ -120,28 +150,26 @@
     up.addEventListener("click", () => submit("up"));
     down.addEventListener("click", () => submit("down"));
     send.addEventListener("click", () => submit(send.dataset.rating || "up"));
-    box.append(up, down, commentRow);
-    actions.append(box);
+    commentRow.append(comment, send);
+    actions.append(up, down, commentRow);
   }
 
   function showError(exchange, message, requestId) {
     exchange.status.remove();
     exchange.answer.innerHTML = "";
     const paragraph = document.createElement("p");
-    paragraph.className = "warning";
+    paragraph.className = "text-[#8A5415] font-bold";
     paragraph.textContent = message;
     exchange.answer.append(paragraph);
     if (requestId) {
       const reference = document.createElement("p");
-      reference.className = "hint";
+      reference.className = "text-sm text-on-surface-variant";
       reference.textContent = "Referencia: " + requestId;
       exchange.answer.append(reference);
     }
     exchange.article.dataset.status = "error";
     exchange.actions.hidden = false;
-    const retry = document.createElement("button");
-    retry.type = "button";
-    retry.textContent = "Reintentar";
+    const retry = actionButton("Reintentar", "refresh");
     retry.addEventListener("click", async () => {
       const question = exchange.article.dataset.question || "";
       exchange.article.remove();
@@ -211,9 +239,8 @@
       }
       await consume(response, (event) => {
         if (event.event === "status") {
-          const phase = event.data.phase;
           exchange.status.textContent =
-            phase === "retrieving"
+            event.data.phase === "retrieving"
               ? "Buscando en el corpus y el catálogo…"
               : "Escribiendo la respuesta…";
         } else if (event.event === "token") {
@@ -230,16 +257,14 @@
         } else if (event.event === "done") {
           finished = true;
           messageId = event.data.message_id || null;
-          if (event.data.final_html) {
-            exchange.answer.innerHTML = event.data.final_html;
-          }
+          if (event.data.final_html) exchange.answer.innerHTML = event.data.final_html;
           if (exchange.status.isConnected) exchange.status.remove();
           exchange.article.dataset.status = event.data.status || "answered";
           exchange.article.dataset.provider = event.data.provider || "";
           if (messageId) {
             exchange.article.dataset.messageId = messageId;
             exchange.actions.hidden = false;
-            addCopyButton(exchange.actions, exchange.bubble);
+            addCopyButton(exchange.actions, exchange.card);
             addFeedback(exchange.actions, messageId);
           }
           setStatus(event.data.status === "no_evidence" ? "Sin evidencia suficiente." : "Respuesta lista.");
@@ -264,11 +289,63 @@
     }
   }
 
+  document.querySelectorAll("[data-quick]").forEach((button) => {
+    button.addEventListener("click", () => {
+      input.value = button.dataset.quick || "";
+      form.requestSubmit();
+    });
+  });
+
+  function showConfirmation(quote) {
+    const container = document.getElementById("confirmation");
+    if (!container) return;
+    const full = document.getElementById("confirmation-full");
+    const compact = document.getElementById("confirmation-compact");
+    if (!full || !compact) return;
+    const summary = `${quote.boxes} cajas · ${quote.reference} (${quote.units} u.)`;
+    const total = `${quote.total} ${quote.currency}`;
+    document.getElementById("confirmation-code").textContent = quote.code;
+    document.getElementById("confirmation-summary").textContent = summary;
+    document.getElementById("confirmation-total").textContent = total;
+    document.getElementById("compact-code").textContent = quote.code;
+    document.getElementById("compact-summary").textContent = summary;
+    document.getElementById("compact-total").textContent = total;
+    container.hidden = false;
+    compact.hidden = true;
+    full.hidden = false;
+    full.classList.add("max-h-[1400px]", "opacity-100", "scale-100");
+    full.classList.remove("max-h-0", "opacity-0", "scale-95", "overflow-hidden");
+    container.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (window.startCountdown) window.startCountdown(10);
+  }
+
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-quote]");
+    if (!button) return;
+    button.disabled = true;
+    try {
+      const response = await fetch("/quotes", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          sku: button.dataset.sku || "",
+          boxes: button.dataset.boxes || "1",
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.detail || "No se pudo registrar la solicitud.");
+      showConfirmation(payload.quote);
+    } catch (error) {
+      setStatus(error.message || "No se pudo registrar la solicitud.");
+    } finally {
+      button.disabled = false;
+    }
+  });
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const question = input.value;
     input.value = "";
-    input.style.height = "";
     await sendQuestion(question);
     input.focus();
   });
@@ -280,18 +357,12 @@
     }
   });
 
-  input.addEventListener("input", () => {
-    input.style.height = "auto";
-    input.style.height = Math.min(input.scrollHeight, 200) + "px";
-  });
-
   newConversation?.addEventListener("click", () => {
     controller?.abort();
     conversation.replaceChildren();
     conversation.setAttribute("aria-busy", "false");
     setStatus("");
     input.value = "";
-    input.style.height = "";
     input.focus();
   });
 })();

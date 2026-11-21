@@ -109,9 +109,11 @@ En OpenCode la preferencia se aplica automáticamente mediante la regla
 - `assistant/` — configuración, corpus, índice Qdrant, recuperación, LLM y web.
   - `catalog/` — rama determinista de catálogo (loader, router, precios, materiales).
   - `ui/` — Markdown seguro, SSE, feedback y tokens visuales.
+  - `quotes/` — solicitudes de cotización en JSONL (recálculo desde catálogo, sin PII).
   - `templates/` y `static/` — Jinja/HTMX, tema, `chat.js`, DM Sans y logo.
 - `scripts/` — indexación, aceptación, propuesta de ground truth y evaluación.
 - `docs/design/DESIGN.md` — fuente de verdad visual (proyecto Stitch de Carvajal).
+- `assistant/static/stitch/` — Tailwind, iconos, CSS/JS y activos copiados del prototipo.
 - `tests/` — pruebas con `pytest` (patrón AAA).
 - `specs/` — especificaciones por feature (Spec Kit), indexadas en `specs/README.md`.
 - `.specify/` — motor de Spec Kit (templates, scripts, memoria, extensiones).

@@ -1,0 +1,80 @@
+{% extends "base_stitch.html" %}
+{% block title %}Bienvenida · Asistente Carvajal{% endblock %}
+
+{% block content %}
+<section class="max-w-[840px] mx-auto px-5 pt-10 pb-16 flex flex-col items-center text-center relative">
+  <div aria-hidden="true" class="absolute -top-6 w-56 h-56 rounded-full bg-[#BCE9FF]/40 blur-2xl -z-10 pointer-events-none"></div>
+
+  <div class="relative w-[200px] h-[200px] mb-3 flex items-center justify-center select-none">
+    <img alt="Carva, la mascota de Carvajal, saludando"
+         class="w-[200px] h-[200px] object-contain drop-shadow-md transition-transform hover:scale-105 duration-300"
+         height="200" width="200" src="/static/stitch/assets/carva-saludando-transparente.png">
+  </div>
+
+  <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-2">Hola, soy Carva.</h1>
+  <p class="font-headline-sm text-headline-sm text-primary-container font-normal">¿Con qué te ayudo hoy?</p>
+
+  <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-gutter mt-8 mb-8">
+    <a href="/chat" aria-label="Opción Conversar: pregúntame sobre Carvajal hablando o escribiendo"
+       class="group relative bg-surface rounded-[24px] p-space-lg min-h-[220px] flex flex-col justify-between shadow-[0_4px_16px_-2px_rgba(7,43,70,0.06),0_2px_6px_-1px_rgba(7,43,70,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(7,43,70,0.12)] transition-all duration-200 cursor-pointer overflow-hidden focus:outline-none focus:ring-4 focus:ring-secondary/40 text-left">
+      <div class="absolute top-0 left-0 right-0 h-1.5 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div>
+        <div class="flex items-center gap-space-xs mb-space-md">
+          <div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary-container">
+            <span aria-hidden="true" class="material-symbols-outlined text-[36px]">forum</span>
+          </div>
+          <div class="w-11 h-11 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary">
+            <span aria-hidden="true" class="material-symbols-outlined text-[26px]">mic</span>
+          </div>
+        </div>
+        <h2 class="font-headline-sm text-headline-sm text-primary mb-space-xs">Conversar</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Pregúntame sobre Carvajal hablando o escribiendo.
+        </p>
+      </div>
+      <div class="mt-space-md pt-space-sm flex items-center justify-between">
+        <span class="font-label-md text-label-md text-primary group-hover:text-secondary transition-colors">Iniciar conversación</span>
+        <div class="w-12 h-12 rounded-full bg-surface-container group-hover:bg-primary-container group-hover:text-on-primary flex items-center justify-center text-primary-container transition-all">
+          <span aria-hidden="true" class="material-symbols-outlined text-[30px]">arrow_forward</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/chat/empaques" aria-label="Opción Empaques: cuéntame qué necesitas empacar y te ayudo a elegir"
+       class="group relative bg-surface rounded-[24px] p-space-lg min-h-[220px] flex flex-col justify-between shadow-[0_4px_16px_-2px_rgba(7,43,70,0.06),0_2px_6px_-1px_rgba(7,43,70,0.04)] hover:shadow-[0_12px_32px_-4px_rgba(7,43,70,0.12)] transition-all duration-200 cursor-pointer overflow-hidden focus:outline-none focus:ring-4 focus:ring-secondary/40 text-left">
+      <div class="absolute top-0 left-0 right-0 h-1.5 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div>
+        <div class="flex items-center gap-space-xs mb-space-md">
+          <div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-primary-container">
+            <span aria-hidden="true" class="material-symbols-outlined text-[36px]">inventory_2</span>
+          </div>
+          <div class="w-11 h-11 rounded-xl bg-surface-container-low flex items-center justify-center text-secondary">
+            <span aria-hidden="true" class="material-symbols-outlined text-[26px]">mic</span>
+          </div>
+        </div>
+        <h2 class="font-headline-sm text-headline-sm text-primary mb-space-xs">Empaques</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Cuéntame qué necesitas empacar y te ayudo a elegir.
+        </p>
+      </div>
+      <div class="mt-space-md pt-space-sm flex items-center justify-between">
+        <span class="font-label-md text-label-md text-primary group-hover:text-secondary transition-colors">Explorar empaques</span>
+        <div class="w-12 h-12 rounded-full bg-surface-container group-hover:bg-primary-container group-hover:text-on-primary flex items-center justify-center text-primary-container transition-all">
+          <span aria-hidden="true" class="material-symbols-outlined text-[30px]">arrow_forward</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <button type="button" data-voice
+          class="h-[64px] px-6 rounded-full bg-surface border-2 border-border text-primary font-label-md text-label-md inline-flex items-center gap-3 hover:bg-surface-container-low transition-colors shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary/40">
+    <span aria-hidden="true" class="material-symbols-outlined text-[30px] text-secondary">volume_up</span>
+    Escuchar la bienvenida en voz alta
+  </button>
+
+  <p class="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-full bg-surface text-on-surface-variant font-body-md text-body-md shadow-sm">
+    <span aria-hidden="true" class="material-symbols-outlined text-[26px] text-primary">accessibility_new</span>
+    Puedes hablar o escribir. Yo me adapto.
+  </p>
+</section>
+{% endblock %}
