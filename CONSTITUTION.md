@@ -20,7 +20,7 @@
 | **Repositorio** | https://github.com/almeneses/asistente-carvajal |
 | **Visibilidad** | Público 🌐 |
 | **Metodología** | Spec-Driven Development con [GitHub Spec Kit](https://github.com/github/spec-kit) |
-| **Versión** | 1.4.0 |
+| **Versión** | 1.5.0 |
 | **Autoría** | almeneses — almenesesp@gmail.com |
 | **Licencia** | MIT |
 | **Rama principal** | `main` |
@@ -78,6 +78,7 @@ mínimos cuando la persona lo consiente explícitamente para una cotización.
 | 9. Operación multiusuario | ✅ Hecha | Spec 010: login, cuotas y resumen admin |
 | 10. Voz funcional (hablar y escuchar) | ⏸️ En standby | Dictado y lectura en voz alta |
 | 11. Refinamiento del cotizador | ✅ Hecha | Spec 011: revisión, contacto, detalle/PDF y correo |
+| 12. Catálogo enriquecido y streaming | ✅ Hecha | Spec 012: imágenes/specs locales y recomendaciones progresivas |
 
 ## 3. Stack técnico
 
@@ -94,7 +95,7 @@ mínimos cuando la persona lo consiente explícitamente para una cotización.
 | **Proveedor LLM** | Ollama local por defecto; DeepSeek opcional con fallback a Ollama |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable de solo lectura (`CORPUS_GOLD_DIR`, `CATALOG_DIR`) |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
-| **Solicitudes de cotización** | `POST /quotes` con recálculo, revisión previa y contacto opcional consentido |
+| **Solicitudes de cotización** | `POST /quotes` con recálculo, revisión, contacto consentido e imágenes locales |
 | **Observabilidad** | Logs JSON con `request_id`, `/readyz`, `/metrics`, CSP y cabeceras |
 | **Despliegue productivo** | Caddy con TLS, app interna, compose de producción y gates de calidad |
 | **Multiusuario** | Login opcional con sesión firmada, cuotas por usuario y resumen admin |
@@ -258,6 +259,7 @@ git push
 | 2026-11-21 | ADRs 0002–0005: orquestación propia, Qdrant embebido, proveedor y activos/voz | Decisiones grandes documentadas con contexto y consecuencias |
 | 2026-11-21 | Multiusuario opcional con sesión HMAC, cuotas y resumen admin | No rompe el modo local; auth/cuotas se activan por entorno |
 | 2026-11-21 | Cotizador con revisión, contacto consentido, impresión/PDF y correo SMTP | Mejora la conversión sin perder privacidad: consentimiento, retención y sin PII en logs |
+| 2026-11-21 | Catálogo enriquecido con imágenes locales y streaming de recomendaciones | Datos derivados de fichas oficiales, offline y con atribución; mejor opción primero y hasta 2 alternativas |
 | 2026-11-19 | Si el modelo responde sin evidencia, la respuesta se normaliza a `no_evidence` y no se listan fuentes | Garantiza FR-004/SC-003 aunque el modelo local improvise |
 | 2026-11-19 | Timeout de Ollama de 60 s (8 s en DeepSeek) | Cubre la carga en frío del modelo local sin romper la experiencia normal |
 | 2026-11-19 | Usar remoto HTTPS con el credential helper de `gh` en lugar de SSH | La configuración SSH del sistema está rota (symlink de `/etc/ssh/ssh_config.d` con dueño `nobody`); ver §11 |
@@ -286,6 +288,7 @@ git push
 - [x] Fase 8: evaluación continua y despliegue productivo (`specs/009-evaluacion-despliegue/`); 182 pruebas.
 - [x] Fase 9: operación multiusuario (`specs/010-multiusuario/`); 190 pruebas.
 - [x] Fase 11: cotizador refinado con revisión, contacto y correo (`specs/011-cotizador-refinado/`); 198 pruebas.
+- [x] Fase 12: catálogo enriquecido y cotizador streaming (`specs/012-catalogo-enriquecido/`); 200 imágenes, 201 pruebas.
 - [x] Decidir el proveedor de LLM por defecto para nuevos usuarios: **Ollama** (DeepSeek opt-in, ADR 0004).
 - [x] Evaluar `bge-m3` frente a `nomic-embed-text` (fase 2: mejora de 10,3 pp en acierto@5).
 - [x] Registrar ADRs de embeddings, orquestación, Qdrant, proveedor y activos (0001–0005).

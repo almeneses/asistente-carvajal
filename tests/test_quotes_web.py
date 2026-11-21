@@ -145,3 +145,4 @@ def test_chat_incluye_revision_y_impresion(tmp_path: Path) -> None:
     assert "data-print-quote" in chat
     assert "data-unit-price" in stream
     assert "data-units-per-box" in stream
+    assert "data-image=" in stream

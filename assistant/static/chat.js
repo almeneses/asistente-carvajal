@@ -299,6 +299,11 @@
             exchange.status.textContent = "";
           }
           exchange.answer.textContent += event.data.text || "";
+        } else if (event.event === "quote_best") {
+          exchange.status.remove();
+          exchange.answer.innerHTML = event.data.html || "";
+        } else if (event.event === "quote_alternatives") {
+          exchange.answer.insertAdjacentHTML("beforeend", event.data.html || "");
         } else if (event.event === "catalog") {
           exchange.status.remove();
           exchange.answer.innerHTML = event.data.html || "";
@@ -366,12 +371,14 @@
     }
   }
 
-  function showConfirmation(quote, emailStatus) {
+  function showConfirmation(quote, emailStatus, image) {
     const container = document.getElementById("confirmation");
     const full = document.getElementById("confirmation-full");
     const compact = document.getElementById("confirmation-compact");
     if (!container || !full || !compact) return;
     fillConfirmation(quote);
+    const productImage = document.getElementById("confirmation-image");
+    if (productImage && image) productImage.src = image;
     const emailLine = document.getElementById("confirmation-email-status");
     const messages = {
       sent: "Cotización enviada a tu correo.",
@@ -402,6 +409,8 @@
     form.dataset.unitsPerBox = button.dataset.unitsPerBox || "";
     document.getElementById("review-sku").value = button.dataset.sku || "";
     document.getElementById("review-title").textContent = button.dataset.title || "";
+    const reviewImage = document.getElementById("review-image");
+    if (reviewImage) reviewImage.src = button.dataset.image || "/static/stitch/assets/producto-placeholder.svg";
     document.getElementById("review-boxes").value = button.dataset.boxes || "1";
     document.getElementById("review-city").value = button.dataset.city || "";
     document.getElementById("review-error").hidden = true;
@@ -455,7 +464,7 @@
         const payload = await response.json();
         if (!response.ok) throw new Error(payload.detail || "No se pudo registrar la cotización.");
         closeQuoteReview();
-        showConfirmation(payload.quote, payload.email_status);
+        showConfirmation(payload.quote, payload.email_status, payload.image);
       } catch (error) {
         if (errorBox) {
           errorBox.textContent = error.message || "No se pudo registrar la cotización.";

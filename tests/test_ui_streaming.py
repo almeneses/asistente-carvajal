@@ -119,11 +119,15 @@ def test_stream_catalogo(tmp_path: Path) -> None:
 
     # Assert
     assert response.status_code == 200
-    assert "event: catalog" in response.text
-    assert (
-        'data-section=\\"catalog\\"' in response.text or 'data-section="catalog"' in response.text
-    )
-    assert "event: done" in response.text
+    body = response.text
+    assert "event: quote_best" in body
+    assert "Mejor opción" in body
+    assert "Solicitar cotización" in body
+    assert "data-image=" in body
+    assert body.count("Elegir esta opción") <= 2
+    assert "event: done" in body
+    if "event: quote_alternatives" in body:
+        assert body.index("event: quote_best") < body.index("event: quote_alternatives")
 
 
 def test_feedback_http(tmp_path: Path) -> None:
