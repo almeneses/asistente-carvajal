@@ -25,5 +25,6 @@ convenciones y decisiones) vive en [`CONSTITUTION.md`](../CONSTITUTION.md); aqu�
 | 003 | Consulta del catálogo de empaques con precios y validación técnica | ✅ fusionada | [spec.md](003-catalogo-empaques/spec.md) |
 | 004 | Experiencia de chat con identidad Carvajal | ✅ fusionada | [spec.md](004-experiencia-chat/spec.md) |
 | 005 | Fidelidad visual del flujo Stitch y solicitud de cotización | ✅ fusionada | [spec.md](005-fidelidad-stitch/spec.md) |
+| 006 | Asistente único con voz/texto, chat al 70% y transición de Carva | ✅ fusionada | [spec.md](006-asistente-unificado/spec.md) |
 
 > Estados: 📝 borrador · 🔎 en clarificación · 📐 planeada · ⚙️ en implementación · ✅ fusionada.

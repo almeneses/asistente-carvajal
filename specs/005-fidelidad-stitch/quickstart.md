@@ -52,7 +52,7 @@ make check
 
 - **172 pruebas** en verde; Ruff y `ty` limpios.
 - Pantallas portadas: Bienvenida (`/`), Conversación (`/chat`), Empaques
-  (`/chat/empaques`) y Confirmación con minimización/expansión.
+  (hoy `/chat/empaques` redirige a `/chat`) y Confirmación con minimización/expansión.
 - `POST /quotes` validado con el catálogo real: una solicitud quedó registrada en
   `.cache/solicitudes.jsonl` (código `OC-2026-1121-F7A9`) sin PII.
 - Assets locales verificados: Tailwind, iconos, DM Sans, Carva y logo (0 CDN).

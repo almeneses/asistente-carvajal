@@ -342,13 +342,35 @@
     }
   });
 
+  const chatPanel = document.getElementById("chat-panel");
+
+  function compactCatalog() {
+    document.querySelectorAll(".catalog-section:not(.is-compact)").forEach((section) => {
+      section.classList.add("is-compact");
+    });
+  }
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const question = input.value;
     input.value = "";
+    chatPanel?.classList.add("has-started");
+    compactCatalog();
     await sendQuestion(question);
     input.focus();
   });
+
+  document.addEventListener("click", (event) => {
+    const expand = event.target.closest("[data-expand-catalog]");
+    if (!expand) return;
+    expand.closest(".catalog-section")?.classList.remove("is-compact");
+  });
+
+  const initialQuestion = (form.dataset.initial || "").trim();
+  if (initialQuestion) {
+    input.value = initialQuestion;
+    form.requestSubmit();
+  }
 
   input.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -361,6 +383,9 @@
     controller?.abort();
     conversation.replaceChildren();
     conversation.setAttribute("aria-busy", "false");
+    chatPanel?.classList.remove("has-started");
+    const confirmation = document.getElementById("confirmation");
+    if (confirmation) confirmation.hidden = true;
     setStatus("");
     input.value = "";
     input.focus();

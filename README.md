@@ -60,7 +60,8 @@ entrada de solo lectura.
 | Evaluación de recuperación (fase 2) | ✅ |
 | Consulta del catálogo de empaques (fase 3) | ✅ |
 | Experiencia de chat (fase 4) | ✅ |
-| Fidelidad visual Stitch + solicitudes (fase 5) | 🚧 en implementación |
+| Fidelidad visual Stitch + solicitudes (fase 5) | ✅ |
+| Asistente único y transición de Carva (fase 6) | ✅ |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
@@ -75,7 +76,7 @@ entrada de solo lectura.
 | **Modo de proyecto** | Aplicación (`main.py` como entrypoint) |
 | **Especificaciones** | [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify` + integraciones OpenCode y DSH) |
 | **Orquestación RAG** | Cadena propia (`assistant/rag.py`), sin framework de agentes |
-| **Interfaz de chat** | Flujo de Stitch copiado (bienvenida, conversación, empaques y confirmación); Tailwind/DM Sans/iconos locales |
+| **Interfaz de chat** | Asistente único texto/voz; Carva central → avatar; chat al 70%; fondo Carvajal; Tailwind/DM Sans/iconos locales |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
 | **Feedback** | JSONL local sin PII (`.cache/feedback.jsonl`) |
 | **Solicitudes** | JSONL local sin PII (`.cache/solicitudes.jsonl`); código `OC-AAAA-MMDD-XXXX` |

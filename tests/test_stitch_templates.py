@@ -55,10 +55,11 @@ def test_bienvenida(tmp_path: Path) -> None:
     assert response.status_code == 200
     body = response.text
     assert "Hola, soy Carva." in body
-    assert "Conversar" in body and "Empaques" in body
-    assert 'href="/chat"' in body
-    assert 'href="/chat/empaques"' in body
-    assert "Escuchar la bienvenida" in body
+    assert 'action="/chat"' in body
+    assert "Historia Carvajal" in body
+    assert "Necesito empaques" in body
+    assert "Precios y cotización" in body
+    assert 'href="/chat/empaques"' not in body
     assert "/static/stitch/tailwind.js" in body
 
 
@@ -72,11 +73,11 @@ def test_chat_conversacion(tmp_path: Path) -> None:
     # Assert
     assert response.status_code == 200
     body = response.text
-    assert "Micrófono listo y atento" in body
     assert "Conversación con Carva" in body
+    assert 'class="chat-panel' in body
     assert 'action="/ask"' in body
     assert 'id="question"' in body
-    assert "Toca para hablar" in body
+    assert "Habla o escribe" in body
     assert "Nueva conversación" in body
     assert "chat.js" in body
 
@@ -86,11 +87,11 @@ def test_modo_empaques_responde(tmp_path: Path) -> None:
     client = _client(tmp_path)
 
     # Act
-    response = client.get("/chat/empaques")
+    response = client.get("/chat/empaques", follow_redirects=False)
 
     # Assert
-    assert response.status_code == 200
-    assert "Conversación con Carva" in response.text
+    assert response.status_code == 307
+    assert response.headers["location"] == "/chat"
 
 
 def test_pantallas_sin_cdn(tmp_path: Path) -> None:

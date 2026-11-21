@@ -5,7 +5,7 @@
 > repositorio**: este archivo resume sus principios y su estado técnico para que los
 > comandos de Spec Kit (`/speckit.*`) los verifiquen. Si hay discrepancia, manda la raíz.
 >
-> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v0.8.0 (decisiones de §9 hasta esa
+> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v0.9.0 (decisiones de §9 hasta esa
 > fecha).
 
 ## Principios fundamentales
@@ -45,8 +45,8 @@ fixtures de prueba son sintéticos.
 
 - Python 3.13+ gestionado con `uv`; prohibido `pip` y `requirements.txt`.
 - Aplicación (modo `--app`): `main.py` es el entrypoint; sin paquete instalable.
-- Interfaz: FastAPI + Jinja2; flujo Stitch copiado con Tailwind, DM Sans e iconos
-  locales; SSE token a token y confirmación animada.
+- Interfaz: FastAPI + Jinja2; asistente único texto/voz, chat al 70%, Carva central→avatar
+  y fondo Carvajal; Tailwind, DM Sans e iconos locales; SSE y confirmación animada.
 - Recuperación: Qdrant 1024 dims/coseno con `bge-m3` vía Ollama; índice embebido local
   por defecto (`QDRANT_PATH`) o remoto (`QDRANT_URL`).
 - LLM: DeepSeek API con fallback a Ollama local; sin claves en el repo. Si el modelo
@@ -81,4 +81,4 @@ Toda spec nueva se numera de forma secuencial y se registra en el índice `specs
   (actualizando la línea de sincronización).
 - **Cumplimiento:** el plan de cada feature incluye una sección *Constitution Check*; toda
   violación se justifica o se elimina antes de implementar.
-- **Versión:** 0.8.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.
+- **Versión:** 0.9.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.

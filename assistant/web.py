@@ -10,7 +10,13 @@ from pathlib import Path
 from uuid import uuid4
 
 from fastapi import FastAPI, Form, Request
-from fastapi.responses import HTMLResponse, JSONResponse, Response, StreamingResponse
+from fastapi.responses import (
+    HTMLResponse,
+    JSONResponse,
+    RedirectResponse,
+    Response,
+    StreamingResponse,
+)
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -236,13 +242,16 @@ def create_app(
         )
 
     @app.get("/chat", response_class=HTMLResponse)
-    @app.get("/chat/empaques", response_class=HTMLResponse)
-    def chat(request: Request) -> HTMLResponse:
+    def chat(request: Request, q: str = "") -> HTMLResponse:
         return templates.TemplateResponse(
             request=request,
             name="chat.html",
-            context={"provider": context.provider, "mode": "empaques"},
+            context={"provider": context.provider, "initial_question": q.strip()[:2000]},
         )
+
+    @app.get("/chat/empaques")
+    def chat_empaques() -> RedirectResponse:
+        return RedirectResponse("/chat", status_code=307)
 
     @app.post("/ask", response_class=HTMLResponse)
     def ask(request: Request, question: str = Form("")) -> HTMLResponse:

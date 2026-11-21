@@ -84,6 +84,6 @@ def test_chat_incluye_confirmacion_y_cta(tmp_path: Path) -> None:
     # Assert
     assert 'id="confirmation-full"' in chat
     assert 'id="confirmation-compact"' in chat
-    assert "Minimizar ahora" in chat
+    assert "Minimizar" in chat
     assert "Solicitar cotización" in stream
     assert "data-quote" in stream
