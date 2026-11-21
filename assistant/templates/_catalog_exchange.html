@@ -1,11 +1,21 @@
 {% set section = answer.section %}
-<article class="exchange catalog-exchange" data-intent="{{ answer.intent }}"
+<article class="flex flex-col gap-4 w-full catalog-exchange" data-intent="{{ answer.intent }}"
          {% if section %}data-status="{{ section.kind }}"{% endif %}>
-  <div class="msg user"><div class="bubble"><p>{{ question }}</p></div></div>
-  <div class="msg carva">
-    <div class="avatar" aria-hidden="true">Carva</div>
-    <div class="bubble">
-      {% with warnings = answer.warnings %}{% include "_catalog_section.html" %}{% endwith %}
+  <div class="flex flex-col gap-1 items-end w-full">
+    <div class="flex items-center gap-2 mb-1 px-2 text-on-surface-variant text-sm">
+      <span aria-hidden="true" class="material-symbols-outlined text-[20px] text-secondary">mic</span>
+      <span>Tu mensaje</span>
+    </div>
+    <div class="bg-primary text-white rounded-[24px] p-4 shadow-md max-w-[85%]">
+      <p class="font-body-lg text-body-lg text-white">{{ question }}</p>
+    </div>
+  </div>
+  <div class="flex items-start gap-3 w-full">
+    <div class="w-[64px] h-[64px] rounded-full overflow-hidden bg-[#F3E3D3] shrink-0 border-2 border-border shadow-sm">
+      <img src="/static/stitch/assets/carva-saludando-transparente.png" alt="Carva, tu asistente de Carvajal" class="w-full h-full object-cover">
+    </div>
+    <div class="flex-1 bg-surface border border-border rounded-[24px] p-4 shadow-sm">
+      {% with warnings = answer.warnings %}{% include "_catalog_stitch.html" %}{% endwith %}
     </div>
   </div>
 </article>

@@ -296,6 +296,52 @@
     });
   });
 
+  function showConfirmation(quote) {
+    const container = document.getElementById("confirmation");
+    if (!container) return;
+    const full = document.getElementById("confirmation-full");
+    const compact = document.getElementById("confirmation-compact");
+    if (!full || !compact) return;
+    const summary = `${quote.boxes} cajas · ${quote.reference} (${quote.units} u.)`;
+    const total = `${quote.total} ${quote.currency}`;
+    document.getElementById("confirmation-code").textContent = quote.code;
+    document.getElementById("confirmation-summary").textContent = summary;
+    document.getElementById("confirmation-total").textContent = total;
+    document.getElementById("compact-code").textContent = quote.code;
+    document.getElementById("compact-summary").textContent = summary;
+    document.getElementById("compact-total").textContent = total;
+    container.hidden = false;
+    compact.hidden = true;
+    full.hidden = false;
+    full.classList.add("max-h-[1400px]", "opacity-100", "scale-100");
+    full.classList.remove("max-h-0", "opacity-0", "scale-95", "overflow-hidden");
+    container.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (window.startCountdown) window.startCountdown(10);
+  }
+
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-quote]");
+    if (!button) return;
+    button.disabled = true;
+    try {
+      const response = await fetch("/quotes", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          sku: button.dataset.sku || "",
+          boxes: button.dataset.boxes || "1",
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.detail || "No se pudo registrar la solicitud.");
+      showConfirmation(payload.quote);
+    } catch (error) {
+      setStatus(error.message || "No se pudo registrar la solicitud.");
+    } finally {
+      button.disabled = false;
+    }
+  });
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const question = input.value;

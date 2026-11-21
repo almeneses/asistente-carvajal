@@ -113,7 +113,7 @@
     document.querySelectorAll("[data-expand]").forEach((button) => {
       button.addEventListener("click", expandFullCard);
     });
-    if (!container.dataset.static) startCountdown(seconds);
+    // La cuenta atrás la inicia la pantalla cuando la confirmación se muestra.
   }
 
   document.addEventListener("DOMContentLoaded", () => {

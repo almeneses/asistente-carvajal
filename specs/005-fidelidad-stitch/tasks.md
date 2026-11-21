@@ -43,28 +43,28 @@
 
 ## Phase 5: US3 - Empaques (P2)
 
-- [ ] T024 Portar `_catalog_stitch.html` con resumen de atributos y recomendación
-- [ ] T025 Conectar la rama de catálogo del backend a la nueva plantilla
-- [ ] T026 Añadir CTA “Solicitar cotización” con datos de la recomendación
-- [ ] T027 [P] Pruebas de render de recomendación y CTA
+- [X] T024 Portar `_catalog_stitch.html` con resumen de atributos y recomendación
+- [X] T025 Conectar la rama de catálogo del backend a la nueva plantilla
+- [X] T026 Añadir CTA “Solicitar cotización” con datos de la recomendación
+- [X] T027 [P] Pruebas de render de recomendación y CTA
 - [ ] T028 Revisión visual contra `cb7848c9…`
 
 ## Phase 6: US4 - Confirmación animada (P1)
 
-- [ ] T029 Portar `_confirmation.html` (tarjeta completa) y `_compact_quote.html` (compacta)
-- [ ] T030 Implementar `POST /quotes` en `assistant/web.py` conectado al servicio
-- [ ] T031 Conectar “Solicitar cotización” al endpoint y al estado `submitting`
-- [ ] T032 Implementar la transición completa → minimizada con countdown de 10 s
-- [ ] T033 Implementar expandir desde la tarjeta compacta y el foco accesible
-- [ ] T034 Implementar `prefers-reduced-motion` y estados de error/reintento
-- [ ] T035 [P] Pruebas de estructura de confirmación, IDs y flujo sin código falso
+- [X] T029 Portar `_confirmation.html` (tarjeta completa) y `_compact_quote.html` (compacta)
+- [X] T030 Implementar `POST /quotes` en `assistant/web.py` conectado al servicio
+- [X] T031 Conectar “Solicitar cotización” al endpoint y al estado `submitting`
+- [X] T032 Implementar la transición completa → minimizada con countdown de 10 s
+- [X] T033 Implementar expandir desde la tarjeta compacta y el foco accesible
+- [X] T034 Implementar `prefers-reduced-motion` y estados de error/reintento
+- [X] T035 [P] Pruebas de estructura de confirmación, IDs y flujo sin código falso
 - [ ] T036 Revisión visual contra `8045cfc2…` y `194f22dc…`
 
 ## Phase 7: US5 - Registro real (P2)
 
-- [ ] T037 Implementar validación del SKU/cajas contra el catálogo y recálculo de total
-- [ ] T038 Verificar ausencia de PII y append-only en el JSONL
-- [ ] T039 [P] Pruebas del endpoint (éxito, 422, colisión de código, error de escritura)
+- [X] T037 Implementar validación del SKU/cajas contra el catálogo y recálculo de total
+- [X] T038 Verificar ausencia de PII y append-only en el JSONL
+- [X] T039 [P] Pruebas del endpoint (éxito, 422, colisión de código, error de escritura)
 - [ ] T040 Documentar `QUOTES_LOG_PATH` y el contrato en README
 
 ## Phase 8: Polish
