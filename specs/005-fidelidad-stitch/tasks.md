@@ -26,20 +26,20 @@
 
 ## Phase 3: US1 - Bienvenida (P1)
 
-- [ ] T013 Portar la bienvenida de Stitch a `assistant/templates/welcome.html` con Carva y dos tarjetas
-- [ ] T014 Conectar “Conversar” → `/chat` y “Empaques” → `/chat/empaques`
-- [ ] T015 Implementar “Escuchar la bienvenida” como aviso de voz próximamente
-- [ ] T016 [P] Prueba de estructura/composición de la bienvenida
-- [ ] T017 Revisión visual contra la captura `17b56113…` en 1280 y 390 px
+- [X] T013 Portar la bienvenida de Stitch a `assistant/templates/welcome.html` con Carva y dos tarjetas
+- [X] T014 Conectar “Conversar” → `/chat` y “Empaques” → `/chat/empaques`
+- [X] T015 Implementar “Escuchar la bienvenida” como aviso de voz próximamente
+- [X] T016 [P] Prueba de estructura/composición de la bienvenida
+- [X] T017 Revisión visual contra la captura `17b56113…` en 1280 y 390 px
 
 ## Phase 4: US2 - Conversación (P1)
 
-- [ ] T018 Portar cabecera, barra de micrófono, burbujas y quick replies a `chat.html`
-- [ ] T019 Integrar el streaming SSE existente en la nueva burbuja y estado
-- [ ] T020 Portar el campo de entrada con micrófono (visual) y botón Enviar
-- [ ] T021 Mantener citas, Markdown y feedback dentro del nuevo diseño
-- [ ] T022 [P] Pruebas de estructura y de que los tokens SSE siguen renderizando
-- [ ] T023 Revisión visual contra `20ebe791…` en 1280 y 390 px
+- [X] T018 Portar cabecera, barra de micrófono, burbujas y quick replies a `chat.html`
+- [X] T019 Integrar el streaming SSE existente en la nueva burbuja y estado
+- [X] T020 Portar el campo de entrada con micrófono (visual) y botón Enviar
+- [X] T021 Mantener citas, Markdown y feedback dentro del nuevo diseño
+- [X] T022 [P] Pruebas de estructura y de que los tokens SSE siguen renderizando
+- [X] T023 Revisión visual contra `20ebe791…` en 1280 y 390 px
 
 ## Phase 5: US3 - Empaques (P2)
 

@@ -56,3 +56,12 @@
     animation: none !important;
   }
 }
+
+/* Fuentes/estilos de citas y respuestas del chat dinámico */
+.answer-text { overflow-wrap: anywhere; }
+.answer-text h1, .answer-text h2, .answer-text h3 { font-weight: 700; color: #003A5D; margin-top: .75rem; }
+.answer-text ul, .answer-text ol { padding-left: 1.5rem; margin: .5rem 0; list-style: revert; }
+.answer-text a { color: #003A5D; text-decoration: underline; text-underline-offset: 3px; }
+.sources { list-style: disc; padding-left: 1.5rem; font-size: 18px; margin-top: .75rem; }
+.sources li { margin: .35rem 0; }
+.source-type { font-size: 14px; text-transform: uppercase; letter-spacing: .02em; opacity: .75; margin-left: .5rem; }

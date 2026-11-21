@@ -224,11 +224,20 @@ def create_app(
     app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 
     @app.get("/", response_class=HTMLResponse)
+    def welcome(request: Request) -> HTMLResponse:
+        return templates.TemplateResponse(
+            request=request,
+            name="welcome.html",
+            context={"provider": context.provider},
+        )
+
+    @app.get("/chat", response_class=HTMLResponse)
+    @app.get("/chat/empaques", response_class=HTMLResponse)
     def chat(request: Request) -> HTMLResponse:
         return templates.TemplateResponse(
             request=request,
-            name="index.html",
-            context={"provider": context.provider},
+            name="chat.html",
+            context={"provider": context.provider, "mode": "empaques"},
         )
 
     @app.post("/ask", response_class=HTMLResponse)

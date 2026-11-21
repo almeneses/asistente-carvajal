@@ -48,7 +48,7 @@ def test_estructura_accesible(tmp_path: Path) -> None:
     client = _client(tmp_path)
 
     # Act
-    response = client.get("/")
+    response = client.get("/chat")
 
     # Assert
     body = response.text
@@ -56,8 +56,8 @@ def test_estructura_accesible(tmp_path: Path) -> None:
     assert 'role="status"' in body
     assert 'for="question"' in body
     assert 'id="conversation"' in body
-    assert "theme.css" in body
-    assert "carvajal-logo.svg" in body
+    assert "stitch.css" in body
+    assert "Carvajal" in body
     assert "Nueva conversación" in body
 
 
