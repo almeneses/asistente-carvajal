@@ -10,6 +10,14 @@ from assistant.config import ConfigError, Settings
 BASE_ENV: dict[str, str] = {"LLM_PROVIDER": "ollama"}
 
 
+def test_config_proveedor_por_defecto_ollama(gold_dir: Path) -> None:
+    # Arrange / Act
+    settings = Settings.from_env({"CORPUS_GOLD_DIR": str(gold_dir)})
+
+    # Assert
+    assert settings.llm_provider == "ollama"
+
+
 def _env(gold_dir: Path, **overrides: str) -> dict[str, str]:
     env = {**BASE_ENV, "CORPUS_GOLD_DIR": str(gold_dir), **overrides}
     return env

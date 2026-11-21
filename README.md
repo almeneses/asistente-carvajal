@@ -65,6 +65,7 @@ entrada de solo lectura.
 | Pulido intermedio de interfaz (fase 6.1) | ✅ |
 | Operación, observabilidad y despliegue (fase 7) | ✅ |
 | Evaluación continua y despliegue productivo (fase 8) | ✅ |
+| Decisiones y ADRs de arquitectura | ✅ |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
@@ -88,7 +89,7 @@ entrada de solo lectura.
 | **Calidad continua** | Gates sobre reportes de evaluación en CI (`make quality-gates`) |
 | **Índice vectorial** | Qdrant (1024 dims, coseno) |
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims) |
-| **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
+| **Proveedor LLM** | Ollama local por defecto; DeepSeek opcional (mejor calidad, requiere clave) |
 | **Fuente de datos** | Corpus y catálogo por ruta configurable, solo lectura |
 | **Catálogo de empaques** | CSV read-only (200 referencias, 29 precios COP, 29 distribuidores); rama determinista sin LLM |
 | **Tipado estático** | [`ty`](https://github.com/astral-sh/ty) |

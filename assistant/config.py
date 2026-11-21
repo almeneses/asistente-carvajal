@@ -52,7 +52,7 @@ class Settings:
     ollama_base_url: str = "http://localhost:11434"
     embedding_model: str = "bge-m3"
     embedding_dim: int = EMBEDDING_DIM
-    llm_provider: str = "deepseek"
+    llm_provider: str = "ollama"
     deepseek_api_key: str | None = field(default=None, repr=False)
     deepseek_base_url: str = "https://api.deepseek.com"
     deepseek_model: str = "deepseek-chat"
@@ -104,7 +104,7 @@ class Settings:
             embedding_dim = 0
         if not 1 <= embedding_dim <= 4096:
             errors.append("EMBEDDING_DIM debe ser un entero entre 1 y 4096.")
-        provider = (_clean(source, "LLM_PROVIDER", "deepseek") or "deepseek").lower()
+        provider = (_clean(source, "LLM_PROVIDER", "ollama") or "ollama").lower()
         if provider not in _PROVIDERS:
             errors.append("LLM_PROVIDER debe ser deepseek u ollama.")
 

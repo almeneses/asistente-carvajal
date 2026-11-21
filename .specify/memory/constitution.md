@@ -5,7 +5,7 @@
 > repositorio**: este archivo resume sus principios y su estado técnico para que los
 > comandos de Spec Kit (`/speckit.*`) los verifiquen. Si hay discrepancia, manda la raíz.
 >
-> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v1.1.0 (decisiones de §9 hasta esa
+> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v1.2.0 (decisiones de §9 hasta esa
 > fecha).
 
 ## Principios fundamentales
@@ -49,7 +49,8 @@ fixtures de prueba son sintéticos.
   y fondo Carvajal; Tailwind, DM Sans e iconos locales; SSE y confirmación animada.
 - Recuperación: Qdrant 1024 dims/coseno con `bge-m3` vía Ollama; índice embebido local
   por defecto (`QDRANT_PATH`) o remoto (`QDRANT_URL`).
-- LLM: DeepSeek API con fallback a Ollama local; sin claves en el repo. Si el modelo
+- LLM: Ollama local por defecto; DeepSeek opt-in con fallback a Ollama; sin claves en
+  el repo. Si el modelo
   no sustenta la respuesta, se normaliza a `no_evidence` sin fuentes.
 - Orquestación: cadena propia (recuperar → prompt → generar → citar), sin framework.
 - Datos: corpus y catálogo por ruta configurable, solo lectura; fixtures sintéticos.
@@ -81,4 +82,4 @@ Toda spec nueva se numera de forma secuencial y se registra en el índice `specs
   (actualizando la línea de sincronización).
 - **Cumplimiento:** el plan de cada feature incluye una sección *Constitution Check*; toda
   violación se justifica o se elimina antes de implementar.
-- **Versión:** 1.1.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.
+- **Versión:** 1.2.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.
