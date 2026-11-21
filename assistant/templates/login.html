@@ -1,0 +1,23 @@
+{% extends "base_stitch.html" %}
+{% block title %}Ingresar · Asistente Carvajal{% endblock %}
+{% block content %}
+<section class="max-w-[520px] mx-auto px-5 pt-16">
+  <div class="bg-white border border-[#DCE5EA] rounded-[24px] p-8 shadow-lg">
+    <h1 class="font-headline-md text-[32px] text-[#003A5D] mb-2">Ingresar</h1>
+    <p class="text-[18px] text-[#42474e] mb-6">Accede para conversar con Carva y solicitar cotizaciones.</p>
+    {% if error %}
+    <p role="alert" class="mb-4 rounded-[12px] bg-[#FDECEC] text-[#93000A] p-3 text-[16px]">{{ error }}</p>
+    {% endif %}
+    <form action="/login" method="post" class="flex flex-col gap-4">
+      <input type="hidden" name="next" value="{{ next }}">
+      <label class="text-[16px] font-bold text-[#003A5D]" for="username">Usuario</label>
+      <input id="username" name="username" required autocomplete="username"
+             class="h-[56px] px-4 rounded-[14px] border-2 border-[#DCE5EA] text-[18px] focus:outline-none focus:border-[#003A5D] focus:ring-4 focus:ring-[#BCE9FF]/60">
+      <label class="text-[16px] font-bold text-[#003A5D]" for="password">Contraseña</label>
+      <input id="password" name="password" type="password" required autocomplete="current-password"
+             class="h-[56px] px-4 rounded-[14px] border-2 border-[#DCE5EA] text-[18px] focus:outline-none focus:border-[#003A5D] focus:ring-4 focus:ring-[#BCE9FF]/60">
+      <button type="submit" class="h-[64px] mt-2 rounded-[16px] bg-[#003A5D] text-white text-[20px] font-bold">Entrar</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

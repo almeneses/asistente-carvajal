@@ -55,6 +55,7 @@ make check     # lint + formato + pruebas
 make ui-check  # pruebas de interfaz (streaming, Markdown, feedback, contraste)
 make smoke     # health, readiness y métricas del servidor local
 make quality-gates # umbrales de evaluación y catálogo
+uv run python scripts/hash_password.py  # hash para AUTH_USERS
 make lint      # Ruff (lint)
 make format    # Ruff (formato)
 make test      # pytest
@@ -114,11 +115,13 @@ En OpenCode la preferencia se aplica automáticamente mediante la regla
   - `quotes/` — solicitudes de cotización en JSONL (recálculo desde catálogo, sin PII).
   - `observability.py` — logs JSON, request_id, métricas y cabeceras.
   - `quality.py` — gates de calidad sobre los reportes de evaluación.
+  - `auth.py` / `limits.py` — login multiusuario, sesión firmada y cuotas.
   - `templates/` y `static/` — Jinja/HTMX, tema, `chat.js`, DM Sans y logo.
 - `scripts/` — indexación, aceptación, propuesta de ground truth y evaluación.
 - `docs/design/DESIGN.md` — fuente de verdad visual (proyecto Stitch de Carvajal).
 - `docs/operacion.md` — runbook: salud, logs, métricas, Docker, backup y rollback.
 - `docs/despliegue.md` y `docs/evaluacion.md` — producción y evaluación continua.
+- `docs/operacion.md` — incluye autenticación, límites y resumen admin.
 - `assistant/static/stitch/` — Tailwind, iconos, CSS/JS y activos copiados del prototipo.
 - `tests/` — pruebas con `pytest` (patrón AAA).
 - `specs/` — especificaciones por feature (Spec Kit), indexadas en `specs/README.md`.

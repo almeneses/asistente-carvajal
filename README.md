@@ -66,6 +66,7 @@ entrada de solo lectura.
 | Operación, observabilidad y despliegue (fase 7) | ✅ |
 | Evaluación continua y despliegue productivo (fase 8) | ✅ |
 | Decisiones y ADRs de arquitectura | ✅ |
+| Operación multiusuario (fase 9) | ✅ |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
@@ -87,6 +88,7 @@ entrada de solo lectura.
 | **Observabilidad** | Logs JSON con `request_id`, `/readyz`, `/metrics` y cabeceras de seguridad |
 | **Despliegue** | Dockerfile no-root, compose local/producción, Caddy con TLS y runbooks |
 | **Calidad continua** | Gates sobre reportes de evaluación en CI (`make quality-gates`) |
+| **Multiusuario** | Login con sesión firmada, cuotas por usuario y resumen admin (opcional) |
 | **Índice vectorial** | Qdrant (1024 dims, coseno) |
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims) |
 | **Proveedor LLM** | Ollama local por defecto; DeepSeek opcional (mejor calidad, requiere clave) |
@@ -173,6 +175,7 @@ make check   # lint + formato + tipos + pruebas
 | `make ui-check` | Pruebas de streaming, Markdown, feedback y contraste. |
 | `make smoke` | Health, readiness y métricas del servidor local. |
 | `make quality-gates` | Umbrales de recuperación, citas, abstención y catálogo. |
+| `uv run python scripts/hash_password.py` | Genera hashes para `AUTH_USERS`. |
 | `make gt-propose` | Propone el ground truth de evaluación para revisión. |
 | `make eval` | Matriz de recuperación de la fase 2. |
 | `make eval-e2e` | Evaluación end-to-end de la variante ganadora. |

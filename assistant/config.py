@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import re
 from collections.abc import Mapping
@@ -67,6 +68,14 @@ class Settings:
     quotes_log_path: Path = Path(".cache/solicitudes.jsonl")
     log_level: str = "INFO"
     log_format: str = "json"
+    auth_enabled: bool = False
+    auth_secret: str | None = None
+    auth_users: dict[str, str] = field(default_factory=dict)
+    auth_admins: tuple[str, ...] = ()
+    auth_cookie_secure: bool = False
+    session_ttl_seconds: int = 8 * 3600
+    rate_limit_per_minute: int = 30
+    quote_daily_limit: int = 50
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> Settings:
@@ -160,6 +169,46 @@ class Settings:
         log_format = (_clean(source, "LOG_FORMAT") or "json").lower()
         if log_format not in {"json", "text"}:
             errors.append("LOG_FORMAT debe ser json o text.")
+        auth_enabled = (_clean(source, "AUTH_ENABLED") or "false").lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
+        auth_secret = _clean(source, "AUTH_SECRET")
+        auth_users_raw = _clean(source, "AUTH_USERS") or "{}"
+        try:
+            parsed_users = json.loads(auth_users_raw)
+            if not isinstance(parsed_users, dict) or not all(
+                isinstance(k, str) and isinstance(v, str) for k, v in parsed_users.items()
+            ):
+                raise ValueError
+            auth_users = {str(k): str(v) for k, v in parsed_users.items()}
+        except ValueError:
+            auth_users = {}
+            errors.append("AUTH_USERS debe ser un JSON objeto usuario→hash.")
+        auth_admins = tuple(
+            item.strip()
+            for item in (_clean(source, "AUTH_ADMINS") or "").split(",")
+            if item.strip()
+        )
+        auth_cookie_secure = (_clean(source, "AUTH_COOKIE_SECURE") or "false").lower() in {
+            "1",
+            "true",
+            "yes",
+        }
+        if auth_enabled and (not auth_secret or len(auth_secret) < 32):
+            errors.append("AUTH_SECRET debe tener al menos 32 caracteres si AUTH_ENABLED=true.")
+        if auth_enabled and not auth_users:
+            errors.append("Define AUTH_USERS con al menos un usuario si AUTH_ENABLED=true.")
+        try:
+            rate_limit_per_minute = int(_clean(source, "RATE_LIMIT_PER_MINUTE") or "30")
+            quote_daily_limit = int(_clean(source, "QUOTE_DAILY_LIMIT") or "50")
+            if rate_limit_per_minute < 1 or quote_daily_limit < 1:
+                raise ValueError
+        except ValueError:
+            errors.append("RATE_LIMIT_PER_MINUTE y QUOTE_DAILY_LIMIT deben ser enteros ≥ 1.")
+            rate_limit_per_minute, quote_daily_limit = 30, 50
 
         price_today = _clean(source, "CATALOG_PRICE_TODAY")
         if price_today is not None:
@@ -203,4 +252,11 @@ class Settings:
             quotes_log_path=quotes_log_path,
             log_level=log_level,
             log_format=log_format,
+            auth_enabled=auth_enabled,
+            auth_secret=auth_secret,
+            auth_users=auth_users,
+            auth_admins=auth_admins,
+            auth_cookie_secure=auth_cookie_secure,
+            rate_limit_per_minute=rate_limit_per_minute,
+            quote_daily_limit=quote_daily_limit,
         )

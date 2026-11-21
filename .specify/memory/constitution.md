@@ -5,7 +5,7 @@
 > repositorio**: este archivo resume sus principios y su estado técnico para que los
 > comandos de Spec Kit (`/speckit.*`) los verifiquen. Si hay discrepancia, manda la raíz.
 >
-> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v1.2.0 (decisiones de §9 hasta esa
+> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v1.3.0 (decisiones de §9 hasta esa
 > fecha).
 
 ## Principios fundamentales
@@ -82,4 +82,4 @@ Toda spec nueva se numera de forma secuencial y se registra en el índice `specs
   (actualizando la línea de sincronización).
 - **Cumplimiento:** el plan de cada feature incluye una sección *Constitution Check*; toda
   violación se justifica o se elimina antes de implementar.
-- **Versión:** 1.2.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.
+- **Versión:** 1.3.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.
