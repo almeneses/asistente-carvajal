@@ -28,5 +28,6 @@ convenciones y decisiones) vive en [`CONSTITUTION.md`](../CONSTITUTION.md); aqu�
 | 006 | Asistente único con voz/texto, chat al 70% y transición de Carva | ✅ fusionada | [spec.md](006-asistente-unificado/spec.md) |
 | 007 | Pulido intermedio: animación de Carva, móvil y accesibilidad | ✅ fusionada | [spec.md](007-pulido-interfaz/spec.md) |
 | 008 | Operación, observabilidad y despliegue | ✅ fusionada | [spec.md](008-operacion/spec.md) |
+| 009 | Evaluación continua y despliegue productivo | ✅ fusionada | [spec.md](009-evaluacion-despliegue/spec.md) |
 
 > Estados: 📝 borrador · 🔎 en clarificación · 📐 planeada · ⚙️ en implementación · ✅ fusionada.

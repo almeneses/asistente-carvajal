@@ -75,6 +75,7 @@ def test_request_id_y_cabeceras(tmp_path: Path) -> None:
     assert response.headers["X-Content-Type-Options"] == "nosniff"
     assert response.headers["X-Frame-Options"] == "DENY"
     assert "strict-origin" in response.headers["Referrer-Policy"]
+    assert "default-src 'self'" in response.headers["Content-Security-Policy"]
 
 
 def test_readyz_y_healthz(tmp_path: Path) -> None:
