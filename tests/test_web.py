@@ -62,9 +62,9 @@ def test_pagina_de_chat(tmp_path: Path) -> None:
     # Assert
     assert response.status_code == 200
     assert "Hola, soy Carva." in response.text
-    assert "Conversar" in response.text
-    assert "Empaques" in response.text
-    assert 'href="/chat"' in response.text
+    assert "Historia Carvajal" in response.text
+    assert "Necesito empaques" in response.text
+    assert 'action="/chat"' in response.text
 
 
 def test_respuesta_citada(tmp_path: Path) -> None:
