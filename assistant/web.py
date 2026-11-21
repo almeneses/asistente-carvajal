@@ -20,6 +20,13 @@ from fastapi.responses import (
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from assistant.auth import (
+    COOKIE_NAME,
+    User,
+    build_auth_middleware,
+    create_session,
+    verify_password,
+)
 from assistant.catalog.answers import build_catalog_answer, city_names
 from assistant.catalog.loader import load_catalog
 from assistant.catalog.models import CatalogSnapshot
@@ -29,6 +36,7 @@ from assistant.config import Settings, load_dotenv
 from assistant.corpus import CorpusDocument, load_corpus
 from assistant.embeddings import OllamaEmbedder
 from assistant.index import QdrantIndex
+from assistant.limits import LIMITS
 from assistant.llm import build_llm
 from assistant.observability import (
     METRICS,
@@ -37,9 +45,10 @@ from assistant.observability import (
 )
 from assistant.quotes.models import QuoteError, QuoteRequest
 from assistant.quotes.service import create_quote
+from assistant.quotes.store import read_quotes
 from assistant.rag import Rag, RagService, StreamOutcome
 from assistant.retrieval import CorpusRetriever
-from assistant.ui.feedback import FeedbackError, record_feedback
+from assistant.ui.feedback import FeedbackError, read_feedback, record_feedback
 from assistant.ui.markdown import render_safe
 from assistant.ui.streaming import StreamEvent, encode_event
 
@@ -94,6 +103,20 @@ def build_context(settings: Settings) -> AppContext:
         index_ready=True,
         provider=settings.llm_provider,
         catalog=catalog,
+    )
+
+
+def _rate_limit(request: Request, bucket: str, settings: Settings) -> JSONResponse | None:
+    user = getattr(request.state, "user", None)
+    username = getattr(user, "username", "anon")
+    wait = LIMITS.rate_limited(username, bucket, settings.rate_limit_per_minute)
+    if wait is None:
+        return None
+    METRICS.inc("rate_limited")
+    return JSONResponse(
+        {"detail": "Demasiadas solicitudes; espera un momento."},
+        status_code=429,
+        headers={"Retry-After": str(wait)},
     )
 
 
@@ -246,6 +269,7 @@ def create_app(
 
     app = FastAPI(title="Asistente Carvajal", version="0.2.0")
     configure_logging(context.settings.log_level, context.settings.log_format)
+    app.middleware("http")(build_auth_middleware(context.settings))
     app.middleware("http")(observability_middleware)
     app.state.context = context
     app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
@@ -271,7 +295,10 @@ def create_app(
         return RedirectResponse("/chat", status_code=307)
 
     @app.post("/ask", response_class=HTMLResponse)
-    def ask(request: Request, question: str = Form("")) -> HTMLResponse:
+    def ask(request: Request, question: str = Form("")) -> Response:
+        limited = _rate_limit(request, "ask", context.settings)
+        if limited is not None:
+            return limited
         trace_id = uuid4().hex
         if not question.strip() or len(question) > 2000:
             return templates.TemplateResponse(
@@ -353,7 +380,10 @@ def create_app(
         )
 
     @app.post("/ask/stream")
-    def ask_stream(question: str = Form("")) -> Response:
+    def ask_stream(request: Request, question: str = Form("")) -> Response:
+        limited = _rate_limit(request, "ask_stream", context.settings)
+        if limited is not None:
+            return limited
         if not question.strip() or len(question) > 2000:
             return JSONResponse(
                 {"detail": "La pregunta debe tener entre 1 y 2000 caracteres."},
@@ -370,11 +400,24 @@ def create_app(
 
     @app.post("/quotes")
     def quotes(
+        request: Request,
         sku: str = Form(""),
         boxes: int = Form(0),
         city: str = Form(""),
         business: str = Form(""),
     ) -> JSONResponse:
+        limited = _rate_limit(request, "quotes", context.settings)
+        if limited is not None:
+            return limited
+        user = getattr(request.state, "user", None)
+        username = getattr(user, "username", "anon")
+        if LIMITS.quote_quota_exceeded(username, context.settings.quote_daily_limit):
+            METRICS.inc("quota_exceeded")
+            return JSONResponse(
+                {"detail": "Cuota diaria de cotizaciones alcanzada."},
+                status_code=429,
+                headers={"Retry-After": "86400"},
+            )
         if context.catalog is None:
             return JSONResponse({"detail": "Catálogo no disponible."}, status_code=503)
         try:
@@ -385,16 +428,21 @@ def create_app(
             )
         except QuoteError as error:
             return JSONResponse({"detail": str(error)}, status_code=422)
+        LIMITS.register_quote(username)
         METRICS.inc("quotes_registered")
         logger.info("quote_registered", extra={"count": 1})
         return JSONResponse({"ok": True, "quote": record.__dict__})
 
     @app.post("/feedback")
     def feedback(
+        request: Request,
         message_id: str = Form(""),
         rating: str = Form(""),
         comment: str = Form(""),
     ) -> JSONResponse:
+        limited = _rate_limit(request, "feedback", context.settings)
+        if limited is not None:
+            return limited
         try:
             entry = record_feedback(
                 context.settings.feedback_log_path,
@@ -407,6 +455,80 @@ def create_app(
         METRICS.inc("feedback_registered")
         logger.info("feedback_registered", extra={"count": 1})
         return JSONResponse({"ok": True, "message_id": entry.message_id, "rating": entry.rating})
+
+    @app.get("/login", response_class=HTMLResponse)
+    def login_page(request: Request, next: str = "/") -> Response:
+        if not context.settings.auth_enabled:
+            return RedirectResponse("/", status_code=303)
+        return templates.TemplateResponse(
+            request=request,
+            name="login.html",
+            context={"next": next, "error": None},
+        )
+
+    @app.post("/login", response_class=HTMLResponse)
+    def login_submit(
+        request: Request,
+        username: str = Form(""),
+        password: str = Form(""),
+        next: str = Form("/"),
+    ) -> Response:
+        settings = context.settings
+        if not settings.auth_enabled:
+            return RedirectResponse("/", status_code=303)
+        encoded = settings.auth_users.get(username)
+        if not encoded or not verify_password(password, encoded):
+            METRICS.inc("auth_failures")
+            logger.info("login_failed", extra={"count": 1})
+            return templates.TemplateResponse(
+                request=request,
+                name="login.html",
+                context={"next": next, "error": "Usuario o contraseña incorrectos."},
+                status_code=401,
+            )
+        role = "admin" if username in settings.auth_admins else "user"
+        if settings.auth_secret is None:
+            return JSONResponse({"detail": "Autenticación mal configurada."}, status_code=503)
+        token = create_session(
+            User(username, role), settings.auth_secret, settings.session_ttl_seconds
+        )
+        target = next if next.startswith("/") and not next.startswith("//") else "/"
+        response = RedirectResponse(target, status_code=303)
+        response.set_cookie(
+            COOKIE_NAME,
+            token,
+            max_age=settings.session_ttl_seconds,
+            httponly=True,
+            samesite="lax",
+            secure=settings.auth_cookie_secure,
+            path="/",
+        )
+        METRICS.inc("auth_logins")
+        logger.info("login_ok", extra={"count": 1})
+        return response
+
+    @app.get("/logout")
+    def logout() -> Response:
+        response = RedirectResponse("/login", status_code=303)
+        response.delete_cookie(COOKIE_NAME, path="/")
+        return response
+
+    @app.get("/admin/summary")
+    def admin_summary(request: Request) -> JSONResponse:
+        user = getattr(request.state, "user", None)
+        if user is None or user.role != "admin":
+            return JSONResponse({"detail": "Solo administradores."}, status_code=403)
+        feedback = read_feedback(context.settings.feedback_log_path)
+        quotes = read_quotes(context.settings.quotes_log_path)
+        ratings = {"up": 0, "down": 0}
+        for entry in feedback:
+            ratings[entry.rating] = ratings.get(entry.rating, 0) + 1
+        return JSONResponse(
+            {
+                "feedback": {"total": len(feedback), **ratings},
+                "quotes": {"total": len(quotes)},
+            }
+        )
 
     @app.get("/readyz")
     def readyz() -> JSONResponse:

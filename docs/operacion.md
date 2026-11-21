@@ -30,6 +30,23 @@ Cada respuesta incluye `X-Request-ID` (se reutiliza si llega uno válido). Los l
 JSON por defecto (`LOG_FORMAT=text` para texto) y no contienen preguntas, comentarios ni
 secretos.
 
+## Multiusuario (opcional)
+
+```bash
+export AUTH_ENABLED=true
+export AUTH_SECRET="$(openssl rand -hex 32)"
+export AUTH_USERS="{\"ana\": \"$(uv run python scripts/hash_password.py --password 'clave-segura')\"}"
+export AUTH_ADMINS=ana
+export AUTH_COOKIE_SECURE=true   # detrás de HTTPS
+make run
+```
+
+- `/login` y `/logout`; las rutas del asistente quedan protegidas.
+- Sesión firmada (HMAC), `HttpOnly`, `SameSite=Lax`; no hay estado en servidor.
+- `RATE_LIMIT_PER_MINUTE` (30) y `QUOTE_DAILY_LIMIT` (50) por usuario.
+- `GET /admin/summary` (solo `AUTH_ADMINS`) devuelve conteos de feedback y solicitudes.
+- Si `AUTH_ENABLED=false`, el comportamiento es el actual (un solo usuario local).
+
 ## Logs
 
 ```json

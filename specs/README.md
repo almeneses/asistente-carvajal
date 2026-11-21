@@ -29,5 +29,6 @@ convenciones y decisiones) vive en [`CONSTITUTION.md`](../CONSTITUTION.md); aqu�
 | 007 | Pulido intermedio: animación de Carva, móvil y accesibilidad | ✅ fusionada | [spec.md](007-pulido-interfaz/spec.md) |
 | 008 | Operación, observabilidad y despliegue | ✅ fusionada | [spec.md](008-operacion/spec.md) |
 | 009 | Evaluación continua y despliegue productivo | ✅ fusionada | [spec.md](009-evaluacion-despliegue/spec.md) |
+| 010 | Operación multiusuario: auth, cuotas y resumen | ✅ fusionada | [spec.md](010-multiusuario/spec.md) |
 
 > Estados: 📝 borrador · 🔎 en clarificación · 📐 planeada · ⚙️ en implementación · ✅ fusionada.

@@ -34,6 +34,14 @@ Caddy obtiene y renueva el certificado automáticamente si el DNS apunta al serv
 puertos 80/443 están abiertos. Para pruebas locales usa `DOMAIN=localhost` (Caddy usa TLS
 interno) o accede por HTTP al puerto 80.
 
+## Multiusuario
+
+Para producción con cuentas, añade al `.env.prod`: `AUTH_ENABLED=true`,
+`AUTH_SECRET` (32+ caracteres), `AUTH_USERS` (hashes de `scripts/hash_password.py`),
+`AUTH_ADMINS` y `AUTH_COOKIE_SECURE=true`. Caddy ya termina TLS, por lo que la cookie
+viaja segura. Los límites por usuario se configuran con `RATE_LIMIT_PER_MINUTE` y
+`QUOTE_DAILY_LIMIT`.
+
 ## Secretos
 
 - `deploy/.env.prod` no se versiona (`.gitignore`).
