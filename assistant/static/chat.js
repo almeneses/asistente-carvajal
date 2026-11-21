@@ -346,20 +346,44 @@
     });
   });
 
-  function showConfirmation(quote) {
-    const container = document.getElementById("confirmation");
-    if (!container) return;
-    const full = document.getElementById("confirmation-full");
-    const compact = document.getElementById("confirmation-compact");
-    if (!full || !compact) return;
+  function fillConfirmation(quote) {
     const summary = `${quote.boxes} cajas · ${quote.reference} (${quote.units} u.)`;
     const total = `${quote.total} ${quote.currency}`;
-    document.getElementById("confirmation-code").textContent = quote.code;
-    document.getElementById("confirmation-summary").textContent = summary;
-    document.getElementById("confirmation-total").textContent = total;
-    document.getElementById("compact-code").textContent = quote.code;
-    document.getElementById("compact-summary").textContent = summary;
-    document.getElementById("compact-total").textContent = total;
+    for (const [id, value] of [
+      ["confirmation-code", quote.code],
+      ["confirmation-summary", summary],
+      ["confirmation-total", total],
+      ["confirmation-units", String(quote.units)],
+      ["confirmation-unit-price", `${quote.unit_price} ${quote.currency}`],
+      ["confirmation-city", quote.city || "Por coordinar"],
+      ["confirmation-business", quote.business || "Por coordinar"],
+      ["compact-code", quote.code],
+      ["compact-summary", summary],
+      ["compact-total", total],
+    ]) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value;
+    }
+  }
+
+  function showConfirmation(quote, emailStatus) {
+    const container = document.getElementById("confirmation");
+    const full = document.getElementById("confirmation-full");
+    const compact = document.getElementById("confirmation-compact");
+    if (!container || !full || !compact) return;
+    fillConfirmation(quote);
+    const emailLine = document.getElementById("confirmation-email-status");
+    const messages = {
+      sent: "Cotización enviada a tu correo.",
+      not_configured: "El correo no está configurado; puedes imprimir esta cotización.",
+      failed: "No se pudo enviar el correo, pero la solicitud quedó registrada.",
+      no_email: "",
+    };
+    if (emailLine) {
+      const message = messages[emailStatus] || "";
+      emailLine.textContent = message;
+      emailLine.hidden = !message;
+    }
     container.hidden = false;
     compact.hidden = true;
     full.hidden = false;
@@ -369,27 +393,86 @@
     if (window.startCountdown) window.startCountdown(10);
   }
 
-  document.addEventListener("click", async (event) => {
+  function openQuoteReview(button) {
+    const review = document.getElementById("quote-review");
+    const form = document.getElementById("quote-review-form");
+    if (!review || !form) return;
+    form.dataset.unitPrice = button.dataset.unitPrice || "0";
+    form.dataset.currency = button.dataset.currency || "";
+    form.dataset.unitsPerBox = button.dataset.unitsPerBox || "";
+    document.getElementById("review-sku").value = button.dataset.sku || "";
+    document.getElementById("review-title").textContent = button.dataset.title || "";
+    document.getElementById("review-boxes").value = button.dataset.boxes || "1";
+    document.getElementById("review-city").value = button.dataset.city || "";
+    document.getElementById("review-error").hidden = true;
+    updateReviewTotal();
+    review.hidden = false;
+    document.getElementById("confirmation").hidden = true;
+    document.getElementById("review-boxes").focus();
+  }
+
+  function updateReviewTotal() {
+    const form = document.getElementById("quote-review-form");
+    const boxes = Number(document.getElementById("review-boxes")?.value || 0);
+    const unit = Number(form?.dataset.unitPrice || 0);
+    const currency = form?.dataset.currency || "";
+    const total = Math.max(0, boxes * unit);
+    document.getElementById("review-total").textContent = `${total.toFixed(2)} ${currency}`.trim();
+  }
+
+  function closeQuoteReview() {
+    const review = document.getElementById("quote-review");
+    if (review) review.hidden = true;
+  }
+
+  document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-quote]");
-    if (!button) return;
-    button.disabled = true;
-    try {
-      const response = await fetch("/quotes", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          sku: button.dataset.sku || "",
-          boxes: button.dataset.boxes || "1",
-        }),
-      });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload.detail || "No se pudo registrar la solicitud.");
-      showConfirmation(payload.quote);
-    } catch (error) {
-      setStatus(error.message || "No se pudo registrar la solicitud.");
-    } finally {
-      button.disabled = false;
+    if (button) openQuoteReview(button);
+  });
+
+  const quoteReviewForm = document.getElementById("quote-review-form");
+  if (quoteReviewForm) {
+    document.getElementById("review-boxes")?.addEventListener("input", updateReviewTotal);
+    document.getElementById("review-cancel")?.addEventListener("click", closeQuoteReview);
+    document.getElementById("review-cancel-2")?.addEventListener("click", closeQuoteReview);
+    quoteReviewForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      const errorBox = document.getElementById("review-error");
+      if (errorBox) errorBox.hidden = true;
+      const body = new URLSearchParams();
+      for (const [key, value] of new FormData(form).entries()) {
+        if (key === "consent") body.set("consent", "true");
+        else body.append(key, String(value));
+      }
+      try {
+        const response = await fetch("/quotes", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body,
+        });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.detail || "No se pudo registrar la cotización.");
+        closeQuoteReview();
+        showConfirmation(payload.quote, payload.email_status);
+      } catch (error) {
+        if (errorBox) {
+          errorBox.textContent = error.message || "No se pudo registrar la cotización.";
+          errorBox.hidden = false;
+        }
+      }
+    });
+  }
+
+  document.querySelector("[data-print-quote]")?.addEventListener("click", () => {
+    const full = document.getElementById("confirmation-full");
+    const compact = document.getElementById("confirmation-compact");
+    if (full && compact) {
+      compact.hidden = true;
+      full.hidden = false;
     }
+    window.print();
   });
 
   const chatPanel = document.getElementById("chat-panel");

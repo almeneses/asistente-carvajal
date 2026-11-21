@@ -5,7 +5,7 @@
 > repositorio**: este archivo resume sus principios y su estado técnico para que los
 > comandos de Spec Kit (`/speckit.*`) los verifiquen. Si hay discrepancia, manda la raíz.
 >
-> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v1.3.0 (decisiones de §9 hasta esa
+> **Sincronizada**: 2026-11-20, con `CONSTITUTION.md` v1.4.0 (decisiones de §9 hasta esa
 > fecha).
 
 ## Principios fundamentales
@@ -35,11 +35,12 @@ El módulo de recuperación no depende del proveedor de LLM y ambos se prueban p
 La interfaz es FastAPI + HTMX, el índice es Qdrant, el proveedor es DeepSeek con
 fallback a Ollama y la orquestación es una cadena propia en `assistant/rag.py`.
 
-### V. Cero secretos y cero datos personales
+### V. Cero secretos y datos personales mínimos
 
 Claves, cadenas de conexión y configuración local viven en `.env` (ignorado); solo se
-versiona `.env.example`. No se almacenan ni citan datos personales de clientes, y los
-fixtures de prueba son sintéticos.
+versiona `.env.example`. Los datos de contacto para una cotización se guardan solo con
+consentimiento explícito, de forma mínima, con retención limitada y sin aparecer en logs
+ni métricas. Los fixtures de prueba son sintéticos.
 
 ## Restricciones técnicas
 
@@ -82,4 +83,4 @@ Toda spec nueva se numera de forma secuencial y se registra en el índice `specs
   (actualizando la línea de sincronización).
 - **Cumplimiento:** el plan de cada feature incluye una sección *Constitution Check*; toda
   violación se justifica o se elimina antes de implementar.
-- **Versión:** 1.3.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.
+- **Versión:** 1.4.0 — 2026-11-20, sincronizada con `CONSTITUTION.md` de la raíz.

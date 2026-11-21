@@ -87,3 +87,61 @@ def test_chat_incluye_confirmacion_y_cta(tmp_path: Path) -> None:
     assert "Minimizar" in chat
     assert "Solicitar cotización" in stream
     assert "data-quote" in stream
+
+
+def test_quote_con_contacto_y_consentimiento(tmp_path: Path) -> None:
+    # Arrange
+    client = _client(tmp_path)
+
+    # Act
+    response = client.post(
+        "/quotes",
+        data={
+            "sku": "MX-VASO-12-PP",
+            "boxes": 2,
+            "city": "Bogotá",
+            "contact_name": "Ana",
+            "contact_email": "ana@example.com",
+            "consent": "true",
+        },
+    )
+
+    # Assert
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["quote"]["contact_email"] == "ana@example.com"
+    assert payload["quote"]["consent_at"]
+    assert payload["email_status"] == "not_configured"
+
+
+def test_quote_contacto_sin_consentimiento(tmp_path: Path) -> None:
+    # Arrange
+    client = _client(tmp_path)
+
+    # Act
+    response = client.post(
+        "/quotes",
+        data={"sku": "MX-VASO-12-PP", "boxes": 1, "contact_email": "ana@example.com"},
+    )
+
+    # Assert
+    assert response.status_code == 422
+    assert "privacidad" in response.json()["detail"]
+
+
+def test_chat_incluye_revision_y_impresion(tmp_path: Path) -> None:
+    # Arrange
+    client = _client(tmp_path)
+
+    # Act
+    chat = client.get("/chat").text
+    stream = client.post(
+        "/ask/stream", data={"question": "necesito vasos para café caliente de 12 oz"}
+    ).text
+
+    # Assert
+    assert 'id="quote-review"' in chat
+    assert 'id="review-consent"' in chat
+    assert "data-print-quote" in chat
+    assert "data-unit-price" in stream
+    assert "data-units-per-box" in stream

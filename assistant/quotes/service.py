@@ -52,6 +52,10 @@ def create_quote(
         currency=currency,
         city=request.city.strip(),
         business=request.business.strip(),
+        contact_name=request.contact_name.strip(),
+        contact_email=request.contact_email.strip(),
+        contact_phone=request.contact_phone.strip(),
+        consent_at=(now or datetime.now(UTC)).isoformat() if request.consent else "",
         created_at=(now or datetime.now(UTC)).isoformat(),
     )
     append_quote(path, record)

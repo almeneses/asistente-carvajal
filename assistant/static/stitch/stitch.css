@@ -155,3 +155,14 @@ body.carvajal-bg::before {
   .chat-composer button[type="submit"] { font-size: 0; gap: 0; }
   .chat-composer button[type="submit"] .material-symbols-outlined { display: inline-block; font-size: 24px; }
 }
+
+/* Revisión de cotización */
+.chat-review { padding: 0 18px 10px; max-height: 52%; overflow-y: auto; }
+@media (max-width: 600px) { .chat-review { max-height: 60%; } }
+
+@media print {
+  body * { visibility: hidden !important; }
+  #confirmation, #confirmation * { visibility: visible !important; }
+  #confirmation { position: absolute; left: 0; top: 0; width: 100%; border: none; box-shadow: none; }
+  #confirmation [data-minimize], #confirmation-compact, #confirmation-email-status, [data-print-quote] { display: none !important; }
+}

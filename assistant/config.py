@@ -76,6 +76,13 @@ class Settings:
     session_ttl_seconds: int = 8 * 3600
     rate_limit_per_minute: int = 30
     quote_daily_limit: int = 50
+    smtp_host: str | None = None
+    smtp_port: int = 587
+    smtp_user: str | None = None
+    smtp_password: str | None = field(default=None, repr=False)
+    smtp_from: str | None = None
+    smtp_tls: bool = True
+    quote_retention_days: int = 90
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> Settings:
@@ -209,6 +216,21 @@ class Settings:
         except ValueError:
             errors.append("RATE_LIMIT_PER_MINUTE y QUOTE_DAILY_LIMIT deben ser enteros ≥ 1.")
             rate_limit_per_minute, quote_daily_limit = 30, 50
+        smtp_host = _clean(source, "SMTP_HOST")
+        smtp_from = _clean(source, "SMTP_FROM")
+        if smtp_host and not smtp_from:
+            errors.append("SMTP_FROM es obligatorio si SMTP_HOST está definido.")
+        try:
+            smtp_port = int(_clean(source, "SMTP_PORT") or "587")
+            quote_retention_days = int(_clean(source, "QUOTE_RETENTION_DAYS") or "90")
+            if smtp_port < 1 or quote_retention_days < 1:
+                raise ValueError
+        except ValueError:
+            errors.append("SMTP_PORT y QUOTE_RETENTION_DAYS deben ser enteros ≥ 1.")
+            smtp_port, quote_retention_days = 587, 90
+        smtp_user = _clean(source, "SMTP_USER")
+        smtp_password = _clean(source, "SMTP_PASSWORD")
+        smtp_tls = (_clean(source, "SMTP_TLS") or "true").lower() in {"1", "true", "yes"}
 
         price_today = _clean(source, "CATALOG_PRICE_TODAY")
         if price_today is not None:
@@ -259,4 +281,11 @@ class Settings:
             auth_cookie_secure=auth_cookie_secure,
             rate_limit_per_minute=rate_limit_per_minute,
             quote_daily_limit=quote_daily_limit,
+            smtp_host=smtp_host,
+            smtp_port=smtp_port,
+            smtp_user=smtp_user,
+            smtp_password=smtp_password,
+            smtp_from=smtp_from,
+            smtp_tls=smtp_tls,
+            quote_retention_days=quote_retention_days,
         )
