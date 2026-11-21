@@ -27,5 +27,6 @@ convenciones y decisiones) vive en [`CONSTITUTION.md`](../CONSTITUTION.md); aqu�
 | 005 | Fidelidad visual del flujo Stitch y solicitud de cotización | ✅ fusionada | [spec.md](005-fidelidad-stitch/spec.md) |
 | 006 | Asistente único con voz/texto, chat al 70% y transición de Carva | ✅ fusionada | [spec.md](006-asistente-unificado/spec.md) |
 | 007 | Pulido intermedio: animación de Carva, móvil y accesibilidad | ✅ fusionada | [spec.md](007-pulido-interfaz/spec.md) |
+| 008 | Operación, observabilidad y despliegue | ✅ fusionada | [spec.md](008-operacion/spec.md) |
 
 > Estados: 📝 borrador · 🔎 en clarificación · 📐 planeada · ⚙️ en implementación · ✅ fusionada.

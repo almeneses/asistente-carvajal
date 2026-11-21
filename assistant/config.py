@@ -65,6 +65,8 @@ class Settings:
     catalog_price_today: str | None = None
     feedback_log_path: Path = Path(".cache/feedback.jsonl")
     quotes_log_path: Path = Path(".cache/solicitudes.jsonl")
+    log_level: str = "INFO"
+    log_format: str = "json"
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None) -> Settings:
@@ -152,6 +154,12 @@ class Settings:
         feedback_log_path = Path(feedback_raw or ".cache/feedback.jsonl").expanduser()
         quotes_raw = _clean(source, "QUOTES_LOG_PATH")
         quotes_log_path = Path(quotes_raw or ".cache/solicitudes.jsonl").expanduser()
+        log_level = (_clean(source, "LOG_LEVEL") or "INFO").upper()
+        if log_level not in {"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"}:
+            errors.append("LOG_LEVEL debe ser DEBUG, INFO, WARNING, ERROR o CRITICAL.")
+        log_format = (_clean(source, "LOG_FORMAT") or "json").lower()
+        if log_format not in {"json", "text"}:
+            errors.append("LOG_FORMAT debe ser json o text.")
 
         price_today = _clean(source, "CATALOG_PRICE_TODAY")
         if price_today is not None:
@@ -193,4 +201,6 @@ class Settings:
             catalog_price_today=price_today,
             feedback_log_path=feedback_log_path,
             quotes_log_path=quotes_log_path,
+            log_level=log_level,
+            log_format=log_format,
         )

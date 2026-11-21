@@ -63,6 +63,7 @@ entrada de solo lectura.
 | Fidelidad visual Stitch + solicitudes (fase 5) | ✅ |
 | Asistente único y transición de Carva (fase 6) | ✅ |
 | Pulido intermedio de interfaz (fase 6.1) | ✅ |
+| Operación, observabilidad y despliegue (fase 7) | ✅ |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
@@ -81,6 +82,8 @@ entrada de solo lectura.
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
 | **Feedback** | JSONL local sin PII (`.cache/feedback.jsonl`) |
 | **Solicitudes** | JSONL local sin PII (`.cache/solicitudes.jsonl`); código `OC-AAAA-MMDD-XXXX` |
+| **Observabilidad** | Logs JSON con `request_id`, `/readyz`, `/metrics` y cabeceras de seguridad |
+| **Despliegue** | Dockerfile no-root, `docker-compose.yml` y runbook en `docs/operacion.md` |
 | **Índice vectorial** | Qdrant (1024 dims, coseno) |
 | **Embeddings** | `bge-m3` vía Ollama (1024 dims) |
 | **Proveedor LLM** | DeepSeek API con fallback a Ollama local |
@@ -165,6 +168,7 @@ make check   # lint + formato + tipos + pruebas
 | `make acceptance` | Ejecuta las preguntas de aceptación y reporta citas. |
 | `make catalog-acceptance` | Aceptación del catálogo (130 preguntas de enrutamiento). |
 | `make ui-check` | Pruebas de streaming, Markdown, feedback y contraste. |
+| `make smoke` | Health, readiness y métricas del servidor local. |
 | `make gt-propose` | Propone el ground truth de evaluación para revisión. |
 | `make eval` | Matriz de recuperación de la fase 2. |
 | `make eval-e2e` | Evaluación end-to-end de la variante ganadora. |
@@ -221,7 +225,9 @@ asistente-carvajal/
 ├── tests/                   # pruebas (pytest, patrón AAA)
 ├── specs/                   # especificaciones por feature (Spec Kit)
 │   └── README.md            # índice de specs
-├── docs/                    # documentación y arquitectura (JSON + HTML)
+├── docs/                    # documentación, arquitectura y runbook de operación
+├── Dockerfile               # imagen reproducible (uv, no root, healthcheck)
+├── docker-compose.yml       # app + Ollama + volúmenes
 ├── .specify/                # motor de Spec Kit (templates, scripts, memoria)
 ├── .opencode/               # comandos /speckit.* y reglas para agentes (tgrep)
 ├── .github/                 # gobernanza: PR/issue templates, CI, Dependabot, labels
