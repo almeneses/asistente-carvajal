@@ -28,6 +28,7 @@ from assistant.auth import (
     verify_password,
 )
 from assistant.catalog.answers import build_catalog_answer, city_names
+from assistant.catalog.assets import product_image
 from assistant.catalog.loader import load_catalog
 from assistant.catalog.models import CatalogSnapshot
 from assistant.catalog.money import format_amount
@@ -59,6 +60,7 @@ BASE_DIR = Path(__file__).resolve().parent
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 templates.env.filters["markdown"] = render_safe
 templates.env.filters["money"] = format_amount
+templates.env.filters["product_image"] = product_image
 
 INDEX_HINT = (
     "El índice Qdrant está vacío o no existe. "
@@ -134,6 +136,14 @@ def _catalog_html(catalog_answer: object) -> str:
     )
 
 
+def _quote_best_html(item: object) -> str:
+    return templates.get_template("_quote_best.html").render(item=item)
+
+
+def _quote_alternatives_html(items: object) -> str:
+    return templates.get_template("_quote_alternatives.html").render(items=items)
+
+
 def _sources_html(sources: object) -> str:
     template = templates.get_template("_sources.html")
     return template.render(sources=sources)
@@ -174,7 +184,22 @@ def _stream_events(context: AppContext, question: str) -> Iterator[str]:
             and catalog_answer.section is not None
             and catalog_answer.section.kind == "no_match"
         ):
-            yield encode_event(StreamEvent("catalog", {"html": _catalog_html(catalog_answer)}))
+            section = catalog_answer.section
+            if section is not None and section.kind == "recommendations" and section.items:
+                yield encode_event(StreamEvent("status", {"phase": "ranking"}))
+                yield encode_event(
+                    StreamEvent("quote_best", {"html": _quote_best_html(section.items[0])})
+                )
+                alternatives = section.items[1:3]
+                if alternatives:
+                    yield encode_event(
+                        StreamEvent(
+                            "quote_alternatives",
+                            {"html": _quote_alternatives_html(alternatives)},
+                        )
+                    )
+            else:
+                yield encode_event(StreamEvent("catalog", {"html": _catalog_html(catalog_answer)}))
             yield encode_event(
                 StreamEvent(
                     "done",
@@ -446,7 +471,14 @@ def create_app(
         email_status = send_quote_email(record, context.settings)
         METRICS.inc("quotes_registered")
         logger.info("quote_registered", extra={"count": 1})
-        return JSONResponse({"ok": True, "quote": record.__dict__, "email_status": email_status})
+        return JSONResponse(
+            {
+                "ok": True,
+                "quote": record.__dict__,
+                "image": product_image(record.sku),
+                "email_status": email_status,
+            }
+        )
 
     @app.post("/feedback")
     def feedback(

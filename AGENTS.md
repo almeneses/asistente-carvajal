@@ -117,7 +117,8 @@ En OpenCode la preferencia se aplica automáticamente mediante la regla
   - `quality.py` — gates de calidad sobre los reportes de evaluación.
   - `auth.py` / `limits.py` — login multiusuario, sesión firmada y cuotas.
   - `templates/` y `static/` — Jinja/HTMX, tema, `chat.js`, DM Sans y logo.
-- `scripts/` — indexación, aceptación, propuesta de ground truth y evaluación.
+  - `static/products/` — imágenes WebP locales del catálogo (generadas).
+- `scripts/` — indexación, aceptación, evaluación y enriquecimiento de catálogo.
 - `docs/design/DESIGN.md` — fuente de verdad visual (proyecto Stitch de Carvajal).
 - `docs/operacion.md` — runbook: salud, logs, métricas, Docker, backup y rollback.
 - `docs/despliegue.md` y `docs/evaluacion.md` — producción y evaluación continua.

@@ -31,5 +31,6 @@ convenciones y decisiones) vive en [`CONSTITUTION.md`](../CONSTITUTION.md); aqu�
 | 009 | Evaluación continua y despliegue productivo | ✅ fusionada | [spec.md](009-evaluacion-despliegue/spec.md) |
 | 010 | Operación multiusuario: auth, cuotas y resumen | ✅ fusionada | [spec.md](010-multiusuario/spec.md) |
 | 011 | Cotizador refinado: revisión, contacto, detalle y correo | ✅ fusionada | [spec.md](011-cotizador-refinado/spec.md) |
+| 012 | Catálogo enriquecido con imágenes y cotizador streaming | ✅ fusionada | [spec.md](012-catalogo-enriquecido/spec.md) |
 
 > Estados: 📝 borrador · 🔎 en clarificación · 📐 planeada · ⚙️ en implementación · ✅ fusionada.

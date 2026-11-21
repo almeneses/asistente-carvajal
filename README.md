@@ -68,6 +68,7 @@ entrada de solo lectura.
 | Decisiones y ADRs de arquitectura | ✅ |
 | Operación multiusuario (fase 9) | ✅ |
 | Cotizador refinado (fase 11) | ✅ |
+| Catálogo enriquecido y cotizador streaming (fase 12) | ✅ |
 
 > ✅ Fases 1–4 completas: corpus con citas, catálogo de empaques, evaluación de recuperación
 > y chat accesible con streaming. Siguiente: fase 5 (operación, observabilidad y despliegue).
@@ -85,7 +86,7 @@ entrada de solo lectura.
 | **Interfaz de chat** | Asistente único texto/voz; Carva central → avatar; chat al 70%; fondo Carvajal; Tailwind/DM Sans/iconos locales |
 | **Streaming de respuestas** | SSE token a token (`POST /ask/stream`) con `POST /ask` de respaldo |
 | **Feedback** | JSONL local sin PII (`.cache/feedback.jsonl`) |
-| **Solicitudes** | Revisión, contacto con consentimiento, detalle/PDF y correo opcional; JSONL local |
+| **Solicitudes** | Revisión, contacto con consentimiento, detalle/PDF, correo e imágenes locales del catálogo |
 | **Observabilidad** | Logs JSON con `request_id`, `/readyz`, `/metrics` y cabeceras de seguridad |
 | **Despliegue** | Dockerfile no-root, compose local/producción, Caddy con TLS y runbooks |
 | **Calidad continua** | Gates sobre reportes de evaluación en CI (`make quality-gates`) |
@@ -177,6 +178,7 @@ make check   # lint + formato + tipos + pruebas
 | `make smoke` | Health, readiness y métricas del servidor local. |
 | `make quality-gates` | Umbrales de recuperación, citas, abstención y catálogo. |
 | `uv run python scripts/hash_password.py` | Genera hashes para `AUTH_USERS`. |
+| `uv run python scripts/enrich_catalog.py` | Descarga imágenes/specs de las fichas del catálogo. |
 | `make gt-propose` | Propone el ground truth de evaluación para revisión. |
 | `make eval` | Matriz de recuperación de la fase 2. |
 | `make eval-e2e` | Evaluación end-to-end de la variante ganadora. |

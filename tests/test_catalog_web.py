@@ -58,8 +58,9 @@ def test_pregunta_comercial_usa_catalogo(tmp_path: Path) -> None:
     # Assert
     assert response.status_code == 200
     assert 'data-intent="commercial"' in response.text
-    assert 'data-section="catalog"' in response.text
+    assert "Mejor opción" in response.text
     assert "MX-VASO-12-PP" in response.text
+    assert "Solicitar cotización" in response.text
 
 
 def test_pregunta_documental_sigue_usando_corpus(tmp_path: Path) -> None:
